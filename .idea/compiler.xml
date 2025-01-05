@@ -2,28 +2,41 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="TransactioService" />
+        <module name="FundTransfer" />
+        <module name="UserService" />
+        <module name="ServiceRegistry" />
         <module name="AccountService" />
         <module name="WB_BE" />
       </profile>
-      <profile name="Annotation profile for FundTransfer" enabled="true">
+      <profile name="Annotation profile for Sequence Generator" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
-        <module name="FundTransfer" />
+        <module name="Sequence_Generator" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SequenceGenerator" target="23" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AccountService" options="-parameters" />
       <module name="FundTransfer" options="-parameters" />
+      <module name="SequenceGenerator" options="-parameters" />
+      <module name="Sequence_Generator" options="-parameters" />
+      <module name="ServiceRegistry" options="-parameters" />
+      <module name="TransactioService" options="-parameters" />
+      <module name="UserService" options="-parameters" />
       <module name="WB_BE" options="-parameters" />
     </option>
   </component>

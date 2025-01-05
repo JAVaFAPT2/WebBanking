@@ -4,5 +4,9 @@
     <file url="file://$PROJECT_DIR$/API Gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AccountService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/FundTransfer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sequence Generator/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service Registry/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Transaction Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/User Service/src/main/java" charset="UTF-8" />
   </component>
 </project>
