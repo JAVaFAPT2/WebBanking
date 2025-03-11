@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 public class FeignConfiguration extends FeignClientProperties.FeignClientConfiguration {
    @Bean
     public ErrorDecoder errorDecoder() {
-        return new FeignClientErrorDecoder();
+
+       return new FeignClientErrorDecoder();
     }
 }

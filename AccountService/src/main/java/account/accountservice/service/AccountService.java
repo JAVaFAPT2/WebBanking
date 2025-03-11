@@ -2,9 +2,8 @@ package account.accountservice.service;
 
 import account.accountservice.model.dto.AccountDto;
 import account.accountservice.model.dto.AccountStatusUpdate;
-import account.accountservice.model.dto.external.TransactionRepsonse;
+import account.accountservice.model.dto.response.TransactionRepsonse;
 import account.accountservice.model.dto.response.Response;
-import account.accountservice.model.entity.Account;
 
 import java.util.List;
 

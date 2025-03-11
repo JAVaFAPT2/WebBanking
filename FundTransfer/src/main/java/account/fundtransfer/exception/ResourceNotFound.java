@@ -2,11 +2,11 @@ package account.fundtransfer.exception;
 
 
 
-public class AccountNotFound  extends GlobalException {
-    public AccountNotFound(String message) {
+public class ResourceNotFound extends GlobalException {
+    public ResourceNotFound(String message) {
         super(GlobalErrolCode.ACCOUNT_NOT_FOUND, message);
     }
-    public AccountNotFound() {
+    public ResourceNotFound(String fundTransferNotFound, String accountNotFound) {
         super("Account not found", GlobalErrolCode.ACCOUNT_NOT_FOUND);
     }
 }

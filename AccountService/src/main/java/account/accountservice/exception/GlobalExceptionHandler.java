@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+
     @Value("${spring.application.bad_request}")
     private String badRequest;
     @Value("${spring.application.not_found}")

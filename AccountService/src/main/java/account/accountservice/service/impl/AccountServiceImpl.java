@@ -1,5 +1,6 @@
 package account.accountservice.service.impl;
 
+import account.accountservice.configuaration.FeignClientErrorDecoder;
 import account.accountservice.exception.*;
 import account.accountservice.external.SequenceService;
 import account.accountservice.external.TransactionService;
@@ -8,7 +9,7 @@ import account.accountservice.model.AccountStatus;
 import account.accountservice.model.AccountType;
 import account.accountservice.model.dto.AccountDto;
 import account.accountservice.model.dto.AccountStatusUpdate;
-import account.accountservice.model.dto.external.TransactionRepsonse;
+import account.accountservice.model.dto.response.TransactionRepsonse;
 import account.accountservice.model.dto.external.UserDTO;
 import account.accountservice.model.dto.response.Response;
 import account.accountservice.model.entity.Account;
@@ -17,6 +18,8 @@ import account.accountservice.repository.AccountRepository;
 import account.accountservice.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -29,12 +32,14 @@ import java.util.Objects;
 
 import static account.accountservice.model.Constants.ACC_PREFIX;
 
-@Slf4j
+
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
     private final UserService userService;
+
+    private static final Logger log = LoggerFactory.getLogger(FeignClientErrorDecoder.class);
 
     private final AccountRepository accountRepository;
 
@@ -60,9 +65,7 @@ public class AccountServiceImpl implements AccountService {
     public Response createAccount(AccountDto accountDto) {
 
         ResponseEntity<UserDTO> user = userService.readUserById(accountDto.getUserId());
-        if (Objects.isNull(user.getBody())) {
-            throw new AccountNotFound("user not found on the server");
-        }
+        user.getBody();
 
         accountRepository.findAccountByUserIdAndAccountType(accountDto.getUserId(), AccountType.valueOf(accountDto.getAccountType()))
                 .ifPresent(account -> {

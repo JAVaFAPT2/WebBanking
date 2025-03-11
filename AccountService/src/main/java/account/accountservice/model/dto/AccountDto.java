@@ -1,10 +1,7 @@
 package account.accountservice.model.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -12,11 +9,14 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 public class AccountDto {
     private Long accountId;
     private String accountNunber;
     private String accountType;
     private String accountStatus;
     private BigDecimal availableBalance;
-    private Long userId;
+    private Long UserId;
+
 }

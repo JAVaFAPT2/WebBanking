@@ -1,15 +1,17 @@
 package account.accountservice.controller;
 
+import account.accountservice.configuaration.FeignClientErrorDecoder;
 import account.accountservice.model.dto.AccountDto;
 import account.accountservice.model.dto.AccountStatusUpdate;
-import account.accountservice.model.dto.external.TransactionRepsonse;
+import account.accountservice.model.dto.response.TransactionRepsonse;
 import account.accountservice.model.dto.response.Response;
 import account.accountservice.service.AccountService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +21,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("account")
-@Slf4j
 @RequiredArgsConstructor
 
 public class RestAccountController {
     private final AccountService accountService;
+    private static final Logger log = LoggerFactory.getLogger(FeignClientErrorDecoder.class);
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Response> createAccount(@Valid @RequestBody AccountDto accountDto) {
-        log.info("Creating new account for user: {}", accountDto.getUserId());
+//        log.info("Creating new account for user: {}", accountDto.getUserId());
         Response response = accountService.createAccount(accountDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

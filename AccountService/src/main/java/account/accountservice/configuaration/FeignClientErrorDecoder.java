@@ -7,15 +7,18 @@ import com.nimbusds.jose.util.IOUtils;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
-@Slf4j
+
 public class FeignClientErrorDecoder implements ErrorDecoder {
 
+    private static final Logger log = LoggerFactory.getLogger(FeignClientErrorDecoder.class);
     @Override
     public Exception decode(String methodKey, Response response) {
         GlobalException globalException = extractGlobalException(response);
