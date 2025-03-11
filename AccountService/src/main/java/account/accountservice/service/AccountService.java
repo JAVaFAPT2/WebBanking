@@ -1,8 +1,12 @@
 package account.accountservice.service;
 
 import account.accountservice.model.dto.AccountDto;
+import account.accountservice.model.dto.AccountStatusUpdate;
+import account.accountservice.model.dto.external.TransactionRepsonse;
 import account.accountservice.model.dto.response.Response;
 import account.accountservice.model.entity.Account;
+
+import java.util.List;
 
 public interface AccountService {
     /**
@@ -53,7 +57,7 @@ public interface AccountService {
      * @param accountId The ID of the account to retrieve transactions from.
      * @return A list of transaction responses.
      */
-    List<TransactionResponse> getTransactionsFromAccountId(String accountId);
+    List<TransactionRepsonse> getTransactionsFromAccountId(String accountId);
 
     /**
      * Closes the account with the specified account number.
