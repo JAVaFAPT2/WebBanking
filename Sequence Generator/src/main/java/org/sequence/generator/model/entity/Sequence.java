@@ -1,4 +1,4 @@
-package org.training.sequence.generator.model.entity;
+package org.sequence.generator.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

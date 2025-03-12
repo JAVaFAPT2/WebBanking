@@ -1,4 +1,4 @@
-package org.training.account.service;
+package org.account.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package org.training.account.service.model;
+package org.account.service.model;
 
 public class Constants {
 

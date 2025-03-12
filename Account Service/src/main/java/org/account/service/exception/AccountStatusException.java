@@ -1,4 +1,4 @@
-package org.training.account.service.exception;
+package org.account.service.exception;
 
 public class AccountStatusException extends GlobalException {
     public AccountStatusException(String errorMessage) {

@@ -8,7 +8,7 @@
         <version>3.2.8</version> <!-- 修改为兼容的版本 -->
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.training</groupId>
+    <groupId>org</groupId>
     <artifactId>fundtransfer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Fund Transfer</name>

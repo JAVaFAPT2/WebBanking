@@ -1,4 +1,4 @@
-package org.training.user.service.config;
+package org.user.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

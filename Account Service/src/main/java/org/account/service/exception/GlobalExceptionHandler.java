@@ -1,4 +1,4 @@
-package org.training.account.service.exception;
+package org.account.service.exception;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;

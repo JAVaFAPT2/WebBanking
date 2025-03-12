@@ -1,10 +1,10 @@
-package org.training.user.service.service;
+package org.user.service.service;
 
-import org.training.user.service.model.dto.CreateUser;
-import org.training.user.service.model.dto.UserDto;
-import org.training.user.service.model.dto.UserUpdate;
-import org.training.user.service.model.dto.UserUpdateStatus;
-import org.training.user.service.model.dto.response.Response;
+import org.user.service.model.dto.CreateUser;
+import org.user.service.model.dto.UserDto;
+import org.user.service.model.dto.UserUpdate;
+import org.user.service.model.dto.UserUpdateStatus;
+import org.user.service.model.dto.response.Response;
 
 import java.util.List;
 

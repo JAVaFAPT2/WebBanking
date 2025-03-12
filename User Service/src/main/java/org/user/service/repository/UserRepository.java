@@ -1,7 +1,7 @@
-package org.training.user.service.repository;
+package org.user.service.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.training.user.service.model.entity.User;
+import org.user.service.model.entity.User;
 
 import java.util.Optional;
 

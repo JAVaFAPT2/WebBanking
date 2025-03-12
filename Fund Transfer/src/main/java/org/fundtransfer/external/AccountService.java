@@ -1,4 +1,4 @@
-package org.training.fundtransfer.external;
+package org.fundtransfer.external;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.training.fundtransfer.configuration.FeignClientConfiguration;
-import org.training.fundtransfer.model.dto.Account;
-import org.training.fundtransfer.model.dto.response.Response;
+import org.fundtransfer.configuration.FeignClientConfiguration;
+import org.fundtransfer.model.dto.Account;
+import org.fundtransfer.model.dto.response.Response;
 
 @FeignClient(name = "account-service", configuration = FeignClientConfiguration.class)
 public interface AccountService {

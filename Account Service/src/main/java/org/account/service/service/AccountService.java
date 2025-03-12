@@ -1,9 +1,9 @@
-package org.training.account.service.service;
+package org.account.service.service;
 
-import org.training.account.service.model.dto.AccountDto;
-import org.training.account.service.model.dto.AccountStatusUpdate;
-import org.training.account.service.model.dto.response.Response;
-import org.training.account.service.model.dto.external.TransactionResponse;
+import org.account.service.model.dto.AccountDto;
+import org.account.service.model.dto.AccountStatusUpdate;
+import org.account.service.model.dto.response.Response;
+import org.account.service.model.dto.external.TransactionResponse;
 
 import java.util.List;
 

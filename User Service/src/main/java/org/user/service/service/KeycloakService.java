@@ -1,4 +1,4 @@
-package org.training.user.service.service;
+package org.user.service.service;
 
 import org.keycloak.representations.idm.UserRepresentation;
 

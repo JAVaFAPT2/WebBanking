@@ -1,13 +1,13 @@
-package org.training.fundtransfer.controller;
+package org.fundtransfer.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.training.fundtransfer.model.dto.FundTransferDto;
-import org.training.fundtransfer.model.dto.request.FundTransferRequest;
-import org.training.fundtransfer.model.dto.response.FundTransferResponse;
-import org.training.fundtransfer.service.FundTransferService;
+import org.fundtransfer.model.dto.FundTransferDto;
+import org.fundtransfer.model.dto.request.FundTransferRequest;
+import org.fundtransfer.model.dto.response.FundTransferResponse;
+import org.fundtransfer.service.FundTransferService;
 
 import java.util.List;
 

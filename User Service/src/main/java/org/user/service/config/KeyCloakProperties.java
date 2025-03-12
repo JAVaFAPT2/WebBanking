@@ -1,4 +1,4 @@
-package org.training.user.service.config;
+package org.user.service.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.admin.client.Keycloak;

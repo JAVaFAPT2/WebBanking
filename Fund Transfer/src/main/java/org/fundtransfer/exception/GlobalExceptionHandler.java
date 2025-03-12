@@ -1,4 +1,4 @@
-package org.training.fundtransfer.exception;
+package org.fundtransfer.exception;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;

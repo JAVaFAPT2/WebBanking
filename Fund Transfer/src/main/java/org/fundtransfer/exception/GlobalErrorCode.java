@@ -1,4 +1,4 @@
-package org.training.fundtransfer.exception;
+package org.fundtransfer.exception;
 
 public class GlobalErrorCode {
 

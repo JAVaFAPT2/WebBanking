@@ -1,4 +1,4 @@
-package org.training.account.service.model.mapper;
+package org.account.service.model.mapper;
 
 import java.util.Collection;
 import java.util.List;

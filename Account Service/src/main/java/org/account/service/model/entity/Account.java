@@ -1,4 +1,4 @@
-package org.training.account.service.model.entity;
+package org.account.service.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,8 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.training.account.service.model.AccountStatus;
-import org.training.account.service.model.AccountType;
+import org.account.service.model.AccountStatus;
+import org.account.service.model.AccountType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

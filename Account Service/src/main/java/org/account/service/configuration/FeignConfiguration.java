@@ -1,4 +1,4 @@
-package org.training.account.service.configuration;
+package org.account.service.configuration;
 
 import feign.codec.ErrorDecoder;
 import org.springframework.cloud.openfeign.FeignClientProperties;

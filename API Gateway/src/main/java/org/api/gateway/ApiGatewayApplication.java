@@ -1,4 +1,4 @@
-package org.training.api.gateway;
+package org.api.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

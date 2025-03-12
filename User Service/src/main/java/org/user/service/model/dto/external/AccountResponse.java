@@ -1,4 +1,4 @@
-package org.training.user.service.model.dto.external;
+package org.user.service.model.dto.external;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

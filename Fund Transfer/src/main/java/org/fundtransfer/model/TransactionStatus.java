@@ -1,4 +1,4 @@
-package org.training.fundtransfer.model;
+package org.fundtransfer.model;
 
 public enum TransactionStatus {
 

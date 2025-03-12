@@ -1,4 +1,4 @@
-package org.training.user.service.exception;
+package org.user.service.exception;
 
 public class GlobalError {
 

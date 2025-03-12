@@ -1,4 +1,4 @@
-package org.training.user.service.utils;
+package org.user.service.utils;
 
 import java.util.Arrays;
 

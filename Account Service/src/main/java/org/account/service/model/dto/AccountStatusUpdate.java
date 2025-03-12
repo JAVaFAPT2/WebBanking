@@ -1,7 +1,7 @@
-package org.training.account.service.model.dto;
+package org.account.service.model.dto;
 
 import lombok.Data;
-import org.training.account.service.model.AccountStatus;
+import org.account.service.model.AccountStatus;
 
 @Data
 public class AccountStatusUpdate {

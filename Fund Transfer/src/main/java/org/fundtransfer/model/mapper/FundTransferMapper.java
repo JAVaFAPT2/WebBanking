@@ -1,8 +1,8 @@
-package org.training.fundtransfer.model.mapper;
+package org.fundtransfer.model.mapper;
 
 import org.springframework.beans.BeanUtils;
-import org.training.fundtransfer.model.dto.FundTransferDto;
-import org.training.fundtransfer.model.entity.FundTransfer;
+import org.fundtransfer.model.dto.FundTransferDto;
+import org.fundtransfer.model.entity.FundTransfer;
 
 import java.util.Objects;
 

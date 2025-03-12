@@ -1,4 +1,4 @@
-package org.training.fundtransfer.configuration;
+package org.fundtransfer.configuration;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,7 @@ import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.training.fundtransfer.exception.GlobalException;
+import org.fundtransfer.exception.GlobalException;
 
 import java.io.IOException;
 import java.io.Reader;

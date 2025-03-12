@@ -1,4 +1,4 @@
-package org.training.fundtransfer.model.dto.response;
+package org.fundtransfer.model.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,32 +1,32 @@
-package org.training.account.service.service.implementation;
+package org.account.service.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.account.service.exception.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.training.account.service.exception.*;
-import org.training.account.service.external.SequenceService;
-import org.training.account.service.external.TransactionService;
-import org.training.account.service.external.UserService;
-import org.training.account.service.model.AccountStatus;
-import org.training.account.service.model.AccountType;
-import org.training.account.service.model.dto.AccountDto;
-import org.training.account.service.model.dto.AccountStatusUpdate;
-import org.training.account.service.model.dto.external.UserDto;
-import org.training.account.service.model.dto.response.Response;
-import org.training.account.service.model.entity.Account;
-import org.training.account.service.model.mapper.AccountMapper;
-import org.training.account.service.model.dto.external.TransactionResponse;
-import org.training.account.service.repository.AccountRepository;
-import org.training.account.service.service.AccountService;
+import org.account.service.external.SequenceService;
+import org.account.service.external.TransactionService;
+import org.account.service.external.UserService;
+import org.account.service.model.AccountStatus;
+import org.account.service.model.AccountType;
+import org.account.service.model.dto.AccountDto;
+import org.account.service.model.dto.AccountStatusUpdate;
+import org.account.service.model.dto.external.UserDto;
+import org.account.service.model.dto.response.Response;
+import org.account.service.model.entity.Account;
+import org.account.service.model.mapper.AccountMapper;
+import org.account.service.model.dto.external.TransactionResponse;
+import org.account.service.repository.AccountRepository;
+import org.account.service.service.AccountService;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
-import static org.training.account.service.model.Constants.ACC_PREFIX;
+import static org.account.service.model.Constants.ACC_PREFIX;
 
 @Slf4j
 @Service
@@ -61,7 +61,7 @@ public class AccountServiceImpl implements AccountService {
         }
 
         accountRepository.findAccountByUserIdAndAccountType(accountDto.getUserId(), AccountType.valueOf(accountDto.getAccountType()))
-                .ifPresent(account -> {
+                .ifPresent(_ -> {
                     log.error("Account already exists on the server");
                     throw new ResourceConflict("Account already exists on the server");
                 });

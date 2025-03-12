@@ -1,4 +1,4 @@
-package org.training.user.service.service.implementation;
+package org.user.service.service.implementation;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -9,24 +9,24 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.training.user.service.exception.EmptyFields;
-import org.training.user.service.exception.ResourceConflictException;
-import org.training.user.service.exception.ResourceNotFound;
-import org.training.user.service.external.AccountService;
-import org.training.user.service.model.Status;
-import org.training.user.service.model.dto.CreateUser;
-import org.training.user.service.model.dto.UserDto;
-import org.training.user.service.model.dto.UserUpdate;
-import org.training.user.service.model.dto.UserUpdateStatus;
-import org.training.user.service.model.dto.response.Response;
-import org.training.user.service.model.entity.User;
-import org.training.user.service.model.entity.UserProfile;
-import org.training.user.service.model.external.Account;
-import org.training.user.service.model.mapper.UserMapper;
-import org.training.user.service.repository.UserRepository;
-import org.training.user.service.service.KeycloakService;
-import org.training.user.service.service.UserService;
-import org.training.user.service.utils.FieldChecker;
+import org.user.service.exception.EmptyFields;
+import org.user.service.exception.ResourceConflictException;
+import org.user.service.exception.ResourceNotFound;
+import org.user.service.external.AccountService;
+import org.user.service.model.Status;
+import org.user.service.model.dto.CreateUser;
+import org.user.service.model.dto.UserDto;
+import org.user.service.model.dto.UserUpdate;
+import org.user.service.model.dto.UserUpdateStatus;
+import org.user.service.model.dto.response.Response;
+import org.user.service.model.entity.User;
+import org.user.service.model.entity.UserProfile;
+import org.user.service.model.external.Account;
+import org.user.service.model.mapper.UserMapper;
+import org.user.service.repository.UserRepository;
+import org.user.service.service.KeycloakService;
+import org.user.service.service.UserService;
+import org.user.service.utils.FieldChecker;
 
 
 import java.util.*;

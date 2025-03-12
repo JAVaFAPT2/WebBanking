@@ -1,8 +1,8 @@
-package org.training.account.service.model.mapper;
+package org.account.service.model.mapper;
 
 import org.springframework.beans.BeanUtils;
-import org.training.account.service.model.dto.AccountDto;
-import org.training.account.service.model.entity.Account;
+import org.account.service.model.dto.AccountDto;
+import org.account.service.model.entity.Account;
 
 import java.util.Objects;
 

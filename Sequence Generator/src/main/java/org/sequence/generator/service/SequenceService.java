@@ -1,6 +1,6 @@
-package org.training.sequence.generator.service;
+package org.sequence.generator.service;
 
-import org.training.sequence.generator.model.entity.Sequence;
+import org.sequence.generator.model.entity.Sequence;
 
 public interface SequenceService {
 

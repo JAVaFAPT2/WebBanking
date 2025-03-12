@@ -1,4 +1,4 @@
-package org.training.fundtransfer.configuration;
+package org.fundtransfer.configuration;
 
 import feign.codec.ErrorDecoder;
 import org.springframework.cloud.openfeign.FeignClientProperties;

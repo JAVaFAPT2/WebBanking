@@ -1,4 +1,4 @@
-package org.training.fundtransfer.exception;
+package org.fundtransfer.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

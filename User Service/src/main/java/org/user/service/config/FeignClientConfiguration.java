@@ -1,4 +1,4 @@
-package org.training.user.service.config;
+package org.user.service.config;
 
 import feign.codec.ErrorDecoder;
 import org.springframework.cloud.openfeign.FeignClientProperties;

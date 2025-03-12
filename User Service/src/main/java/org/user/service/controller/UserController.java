@@ -1,16 +1,16 @@
-package org.training.user.service.controller;
+package org.user.service.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.training.user.service.model.dto.CreateUser;
-import org.training.user.service.model.dto.UserDto;
-import org.training.user.service.model.dto.UserUpdate;
-import org.training.user.service.model.dto.UserUpdateStatus;
-import org.training.user.service.model.dto.response.Response;
-import org.training.user.service.service.UserService;
+import org.user.service.model.dto.CreateUser;
+import org.user.service.model.dto.UserDto;
+import org.user.service.model.dto.UserUpdate;
+import org.user.service.model.dto.UserUpdateStatus;
+import org.user.service.model.dto.response.Response;
+import org.user.service.service.UserService;
 
 import java.util.List;
 

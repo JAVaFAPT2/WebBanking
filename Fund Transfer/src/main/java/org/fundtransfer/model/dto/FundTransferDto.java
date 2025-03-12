@@ -1,11 +1,11 @@
-package org.training.fundtransfer.model.dto;
+package org.fundtransfer.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.training.fundtransfer.model.TransactionStatus;
-import org.training.fundtransfer.model.TransferType;
+import org.fundtransfer.model.TransactionStatus;
+import org.fundtransfer.model.TransferType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

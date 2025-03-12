@@ -1,4 +1,4 @@
-package org.training.user.service.config;
+package org.user.service.config;
 
 import lombok.RequiredArgsConstructor;
 import org.keycloak.admin.client.resource.RealmResource;

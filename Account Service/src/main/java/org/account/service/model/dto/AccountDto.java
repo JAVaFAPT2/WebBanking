@@ -1,4 +1,4 @@
-package org.training.account.service.model.dto;
+package org.account.service.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

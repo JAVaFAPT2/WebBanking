@@ -1,4 +1,4 @@
-package org.training.fundtransfer.exception;
+package org.fundtransfer.exception;
 
 public class ResourceNotFound extends GlobalException {
     public ResourceNotFound(String errorCode, String message) {

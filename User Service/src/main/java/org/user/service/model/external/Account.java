@@ -1,4 +1,4 @@
-package org.training.user.service.model.external;
+package org.user.service.model.external;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

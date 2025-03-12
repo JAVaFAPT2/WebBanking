@@ -1,4 +1,4 @@
-package org.training.fundtransfer.model.mapper;
+package org.fundtransfer.model.mapper;
 
 import java.util.Collection;
 import java.util.List;

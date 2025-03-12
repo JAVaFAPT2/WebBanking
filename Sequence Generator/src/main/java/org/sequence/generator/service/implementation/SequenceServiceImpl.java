@@ -1,11 +1,11 @@
-package org.training.sequence.generator.service.implementation;
+package org.sequence.generator.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.training.sequence.generator.model.entity.Sequence;
-import org.training.sequence.generator.reporitory.SequenceRepository;
-import org.training.sequence.generator.service.SequenceService;
+import org.sequence.generator.model.entity.Sequence;
+import org.sequence.generator.reporitory.SequenceRepository;
+import org.sequence.generator.service.SequenceService;
 
 @Slf4j
 @Service

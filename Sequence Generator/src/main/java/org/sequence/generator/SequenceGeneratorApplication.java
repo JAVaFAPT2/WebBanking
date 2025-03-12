@@ -1,4 +1,4 @@
-package org.training.sequence.generator;
+package org.sequence.generator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

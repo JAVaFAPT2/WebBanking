@@ -1,8 +1,8 @@
-package org.training.account.service.repository;
+package org.account.service.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.training.account.service.model.AccountType;
-import org.training.account.service.model.entity.Account;
+import org.account.service.model.AccountType;
+import org.account.service.model.entity.Account;
 
 import java.util.Optional;
 

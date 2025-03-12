@@ -1,4 +1,4 @@
-package org.training.account.service.exception;
+package org.account.service.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

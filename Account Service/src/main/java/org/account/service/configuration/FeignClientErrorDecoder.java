@@ -1,4 +1,4 @@
-package org.training.account.service.configuration;
+package org.account.service.configuration;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,7 @@ import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.training.account.service.exception.GlobalException;
+import org.account.service.exception.GlobalException;
 
 import java.io.IOException;
 import java.io.Reader;

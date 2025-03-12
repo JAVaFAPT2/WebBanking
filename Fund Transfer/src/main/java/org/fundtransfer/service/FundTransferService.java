@@ -1,8 +1,8 @@
-package org.training.fundtransfer.service;
+package org.fundtransfer.service;
 
-import org.training.fundtransfer.model.dto.FundTransferDto;
-import org.training.fundtransfer.model.dto.request.FundTransferRequest;
-import org.training.fundtransfer.model.dto.response.FundTransferResponse;
+import org.fundtransfer.model.dto.FundTransferDto;
+import org.fundtransfer.model.dto.request.FundTransferRequest;
+import org.fundtransfer.model.dto.response.FundTransferResponse;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package org.training.user.service.model.mapper;
+package org.user.service.model.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
-import org.training.user.service.model.dto.UserDto;
-import org.training.user.service.model.dto.UserProfileDto;
-import org.training.user.service.model.entity.User;
-import org.training.user.service.model.entity.UserProfile;
+import org.user.service.model.dto.UserDto;
+import org.user.service.model.dto.UserProfileDto;
+import org.user.service.model.entity.User;
+import org.user.service.model.entity.UserProfile;
 
 import java.util.Objects;
 

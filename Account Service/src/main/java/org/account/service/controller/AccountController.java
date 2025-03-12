@@ -1,15 +1,15 @@
-package org.training.account.service.controller;
+package org.account.service.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.training.account.service.model.dto.AccountDto;
-import org.training.account.service.model.dto.AccountStatusUpdate;
-import org.training.account.service.model.dto.response.Response;
-import org.training.account.service.model.dto.external.TransactionResponse;
-import org.training.account.service.service.AccountService;
+import org.account.service.model.dto.AccountDto;
+import org.account.service.model.dto.AccountStatusUpdate;
+import org.account.service.model.dto.response.Response;
+import org.account.service.model.dto.external.TransactionResponse;
+import org.account.service.service.AccountService;
 
 import java.util.List;
 

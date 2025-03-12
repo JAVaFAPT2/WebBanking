@@ -1,8 +1,8 @@
-package org.training.sequence.generator.reporitory;
+package org.sequence.generator.reporitory;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.training.sequence.generator.model.entity.Sequence;
+import org.sequence.generator.model.entity.Sequence;
 
 public interface SequenceRepository extends JpaRepository<Sequence, Long> {
 

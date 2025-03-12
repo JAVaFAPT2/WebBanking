@@ -1,4 +1,4 @@
-package org.training.user.service.model.entity;
+package org.user.service.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.training.user.service.model.Status;
+import org.user.service.model.Status;
 
 
 import java.time.LocalDate;

@@ -1,7 +1,7 @@
-package org.training.fundtransfer.repository;
+package org.fundtransfer.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.training.fundtransfer.model.entity.FundTransfer;
+import org.fundtransfer.model.entity.FundTransfer;
 
 import java.util.List;
 import java.util.Optional;

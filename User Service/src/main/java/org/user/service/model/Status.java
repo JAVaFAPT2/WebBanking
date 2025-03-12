@@ -1,4 +1,4 @@
-package org.training.user.service.model;
+package org.user.service.model;
 
 public enum Status {
 
