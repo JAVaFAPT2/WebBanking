@@ -1,5 +1,7 @@
 package org.api.gateway.config;
 
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -13,16 +15,18 @@ public class SecurityConfig {
 
         @Bean
         public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-            return http
-                    .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/api/users/register").permitAll()
-                        .anyExchange().authenticated()
-                    )
-                    .csrf(ServerHttpSecurity.CsrfSpec::disable)
-                    .oauth2Login(Customizer.withDefaults())
-                    .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(Customizer.withDefaults())
-                    )
-                    .build();
+                http
+                        .authorizeExchange(exchanges -> exchanges
+                                //ALLOWING REGISTER API FOR DIRECT ACCESS
+                                .pathMatchers("/api/users/register").permitAll()
+                                //ALL OTHER APIS ARE AUTHENTICATED
+                                .anyExchange().authenticated()
+                        )
+                        .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                        .oauth2Login(Customizer.withDefaults())
+                        .oauth2ResourceServer(oauth2 -> oauth2
+                                .jwt(Customizer.withDefaults())
+                        );
+                return http.build();
         }
 }

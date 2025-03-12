@@ -9,11 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TransactioService" />
         <module name="fundtransfer" />
+        <module name="apigateway" />
         <module name="UserService" />
         <module name="Sequence_Generator" />
         <module name="accountService" />
         <module name="ServiceRegistry" />
-        <module name="WB_BE" />
       </profile>
       <profile name="Annotation profile for AccountService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -27,12 +27,14 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AccountService" target="21" />
+      <module name="APiGateway" target="21" />
       <module name="FundTransfer" target="23" />
       <module name="SequenceGenerator" target="23" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="APiGateway" options="-parameters" />
       <module name="AccountService" options="-parameters" />
       <module name="FundTransfer" options="-parameters" />
       <module name="SequenceGenerator" options="-parameters" />
@@ -40,9 +42,9 @@
       <module name="ServiceRegistry" options="-parameters" />
       <module name="TransactioService" options="-parameters" />
       <module name="UserService" options="-parameters" />
-      <module name="WB_BE" options="-parameters" />
       <module name="WebBanking" options="-parameters" />
       <module name="accountService" options="-parameters" />
+      <module name="apigateway" options="-parameters" />
       <module name="fundtransfer" options="-parameters" />
     </option>
   </component>
