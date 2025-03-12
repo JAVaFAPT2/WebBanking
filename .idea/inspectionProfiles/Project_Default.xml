@@ -8,6 +8,8 @@
           <option value="AccountService" />
           <option value="AccountService" />
           <option value="AccountService" />
+          <option value="WB_BE" />
+          <option value="WB_BE" />
         </list>
       </option>
       <option name="ignoredPackages">
@@ -15,6 +17,8 @@
           <option value="org.bouncycastle:bcprov-jdk15on:1.55" />
           <option value="org.springframework.cloud:spring-cloud-netflix-core:1.4.7.RELEASE" />
           <option value="org.apache.tomcat.embed:tomcat-embed-core:10.1.34" />
+          <option value="org.springframework:spring-context:6.1.11" />
+          <option value="org.springframework.security:spring-security-crypto:6.2.5" />
         </list>
       </option>
       <option name="ignoredReasons">
@@ -22,6 +26,8 @@
           <option value="Not exploitable" />
           <option value="In progress" />
           <option value="Fixed in branch" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
         </list>
       </option>
     </inspection_tool>
