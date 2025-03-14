@@ -10,6 +10,9 @@
         <module name="TransactioService" />
         <module name="fundtransfer" />
         <module name="apigateway" />
+        <module name="accountService)" />
+        <module name="API_GATEWAY" />
+        <module name="BE" />
         <module name="UserService" />
         <module name="Sequence_Generator" />
         <module name="accountService" />
@@ -24,6 +27,15 @@
         </processorPath>
         <module name="WebBanking" />
       </profile>
+      <profile name="Annotation profile for LoanService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="LoanService" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AccountService" target="21" />
@@ -34,9 +46,12 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="API_GATEWAY" options="-parameters" />
       <module name="APiGateway" options="-parameters" />
       <module name="AccountService" options="-parameters" />
+      <module name="BE" options="-parameters" />
       <module name="FundTransfer" options="-parameters" />
+      <module name="LoanService" options="-parameters" />
       <module name="SequenceGenerator" options="-parameters" />
       <module name="Sequence_Generator" options="-parameters" />
       <module name="ServiceRegistry" options="-parameters" />
@@ -44,6 +59,7 @@
       <module name="UserService" options="-parameters" />
       <module name="WebBanking" options="-parameters" />
       <module name="accountService" options="-parameters" />
+      <module name="accountService)" options="-parameters" />
       <module name="apigateway" options="-parameters" />
       <module name="fundtransfer" options="-parameters" />
     </option>

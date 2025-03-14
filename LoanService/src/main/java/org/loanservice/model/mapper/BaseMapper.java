@@ -1,8 +1,6 @@
 package org.loanservice.model.mapper;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class BaseMapper<E, D> {
@@ -55,7 +53,7 @@ public abstract class BaseMapper<E, D> {
      * @return       the list of converted entities
      */
     public List<E> covertToEntityList(Collection<D> dtos, Object... args) {
-        return convertToEntity(dtos, args).stream().collect(Collectors.toList());
+        return new ArrayList<>(convertToEntity(dtos, args));
     }
 
     /**
@@ -66,7 +64,7 @@ public abstract class BaseMapper<E, D> {
      * @return           the list of DTOs obtained from the conversion
      */
     public List<D> convertToDtoList(Collection<E> entities, Object... args) {
-        return convertToDto(entities, args).stream().collect(Collectors.toList());
+        return new ArrayList<>(convertToDto(entities, args));
     }
 
     /**
@@ -77,7 +75,7 @@ public abstract class BaseMapper<E, D> {
      * @return       the set of entities converted from the DTOs
      */
     public Set<E> convertToEntitySet(Collection<D> dtos, Object... args) {
-        return convertToEntity(dtos, args).stream().collect(Collectors.toSet());
+        return new HashSet<>(convertToEntity(dtos, args));
     }
 
 }
