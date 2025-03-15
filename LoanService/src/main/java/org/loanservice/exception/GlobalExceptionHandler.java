@@ -15,7 +15,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Value("${spring.application.bad_request}")
     private String badRequest;
-
+    @Value("${spring.application.unauthorized}")
+    private String unauthorized;
     @Value("${spring.application.conflict}")
     private String conflict;
 
