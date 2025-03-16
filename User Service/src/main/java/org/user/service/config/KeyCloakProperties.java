@@ -1,6 +1,8 @@
 package org.user.service.config;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +15,12 @@ public class KeyCloakProperties {
     @Value("${app.config.keycloak.server-url}")
     private String serverUrl;
 
+    /**
+     * -- GETTER --
+     *  Returns the realm.
+     *
+     */
+    @Getter
     @Value("${app.config.keycloak.realm}")
     private String realm;
 
@@ -38,19 +46,11 @@ public class KeyCloakProperties {
                     .realm(realm)
                     .clientId(clientId)
                     .clientSecret(clientSecret)
-                    .grantType("client_credentials")
+                    .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
                     .build();
         }
 
         return keycloakInstance;
     }
 
-    /**
-     * Returns the realm.
-     *
-     * @return the realm
-     */
-    public String getRealm() {
-        return realm;
-    }
 }

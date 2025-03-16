@@ -61,48 +61,54 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Response createUser(CreateUser userDto) {
-
-        List<UserRepresentation> userRepresentations = keycloakService.readUserByEmail(userDto.getEmailId());
-        if(userRepresentations.size() > 0) {
-            log.error("This emailId is already registered as a user");
-            throw new ResourceConflictException("This emailId is already registered as a user");
+        // Check if email already exists in Keycloak
+        List<UserRepresentation> existingUsers = keycloakService.readUserByEmail(userDto.getEmailId());
+        if (!existingUsers.isEmpty()) {
+            log.error("Email already registered: {}", userDto.getEmailId());
+            throw new ResourceConflictException("Email already registered");
         }
 
-        UserRepresentation userRepresentation = new UserRepresentation();
-        userRepresentation.setUsername(userDto.getEmailId());
-        userRepresentation.setFirstName(userDto.getFirstName());
-        userRepresentation.setLastName(userDto.getLastName());
-        userRepresentation.setEmailVerified(false);
-        userRepresentation.setEnabled(false);
-        userRepresentation.setEmail(userDto.getEmailId());
+        // Create Keycloak user representation
+        UserRepresentation userRep = new UserRepresentation();
+        userRep.setUsername(userDto.getEmailId());
+        userRep.setFirstName(userDto.getFirstName());
+        userRep.setLastName(userDto.getLastName());
+        userRep.setEmail(userDto.getEmailId());
+        userRep.setEnabled(true);
 
-        CredentialRepresentation credentialRepresentation = new CredentialRepresentation();
-        credentialRepresentation.setValue(userDto.getPassword());
-        credentialRepresentation.setTemporary(false);
-        userRepresentation.setCredentials(Collections.singletonList(credentialRepresentation));
+        // Set password
+        CredentialRepresentation cred = new CredentialRepresentation();
+        cred.setValue(userDto.getPassword());
+        cred.setType(CredentialRepresentation.PASSWORD);
+        cred.setTemporary(false);
+        userRep.setCredentials(Collections.singletonList(cred));
 
-        Integer userCreationResponse = keycloakService.createUser(userRepresentation);
+        // Create user in Keycloak
+        Response keycloakResponse = keycloakService.createUser(userRep);
 
-        if (userCreationResponse.equals(201)) {
+        if ("201".equals(keycloakResponse.getResponseCode())) {
+            // User created successfully in Keycloak
+            // Now create corresponding user in your database
+            User user = new User();
+            user.setEmailId(userDto.getEmailId());
+            user.setContactNo(userDto.getContactNumber());
+            user.setStatus(Status.PENDING);
 
-            List<UserRepresentation> representations = keycloakService.readUserByEmail(userDto.getEmailId());
-            UserProfile userProfile = UserProfile.builder()
-                    .firstName(userDto.getFirstName())
-                    .lastName(userDto.getLastName()).build();
-
-            User user = User.builder()
-                    .emailId(userDto.getEmailId())
-                    .contactNo(userDto.getContactNumber())
-                    .status(Status.PENDING).userProfile(userProfile)
-                    .authId(representations.get(0).getId())
-                    .identificationNumber(UUID.randomUUID().toString()).build();
+            UserProfile userProfile = new UserProfile();
+            userProfile.setFirstName(userDto.getFirstName());
+            userProfile.setLastName(userDto.getLastName());
+            user.setUserProfile(userProfile);
 
             userRepository.save(user);
+
             return Response.builder()
                     .responseMessage("User created successfully")
-                    .responseCode(responseCodeSuccess).build();
+                    .responseCode("201")
+                    .build();
+        } else {
+            log.error("Failed to create user in Keycloak: {}", keycloakResponse.getResponseMessage());
+            throw new RuntimeException("Failed to create user: " + keycloakResponse.getResponseMessage());
         }
-        throw new RuntimeException("User with identification number not found");
     }
 
     /**

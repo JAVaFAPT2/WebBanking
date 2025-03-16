@@ -6,6 +6,7 @@ import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.stereotype.Service;
 import org.user.service.config.KeyCloakManager;
+import org.user.service.model.dto.response.Response;
 import org.user.service.service.KeycloakService;
 
 import java.util.List;
@@ -24,9 +25,21 @@ public class KeycloakServiceImpl implements KeycloakService {
      * @return                     the status code indicating the success or failure of the user creation
      */
     @Override
-    public Integer createUser(UserRepresentation userRepresentation) {
+    public Response createUser(UserRepresentation userRepresentation) {
+        Response response = new Response();
+        try {
+            int statusCode = keyCloakManager.getKeyCloakInstanceWithRealm()
+                    .users()
+                    .create(userRepresentation)
+                    .getStatus();
 
-        return keyCloakManager.getKeyCloakInstanceWithRealm().users().create(userRepresentation).getStatus();
+            response.setResponseCode(String.valueOf(statusCode));
+            response.setResponseMessage("User creation attempt");
+        } catch (Exception e) {
+            response.setResponseCode("403");
+            response.setResponseMessage("Forbidden: " + e.getMessage());
+        }
+        return response;
     }
 
     /**

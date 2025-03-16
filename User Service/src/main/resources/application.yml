@@ -28,4 +28,9 @@ app:
       server-url: http://localhost:8571
       realm: banking-service
       client-id: banking-service-api-client
-      client-secret: 932OFITe8vtH4z0G9gem4Afd69JhbwrI
+      client-secret: BszxUM6j75voyA9yIURScS943zy4AIA7
+
+logging:
+  level:
+    org:
+      keycloak: DEBUG

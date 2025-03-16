@@ -1,5 +1,6 @@
 package org.user.service.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -29,9 +30,9 @@ public class UserController {
      * @return the response entity containing the response
      */
     @PostMapping("/register")
-    public ResponseEntity<Response> createUser(@RequestBody CreateUser userDto) {
-        log.info("creating user with: {}", userDto.toString());
-        return ResponseEntity.ok(userService.createUser(userDto));
+    public ResponseEntity<Response> registerUser(@Valid @RequestBody CreateUser userDto) {
+        Response response = userService.createUser(userDto);
+        return ResponseEntity.status(Integer.parseInt(response.getResponseCode())).body(response);
     }
 
     /**

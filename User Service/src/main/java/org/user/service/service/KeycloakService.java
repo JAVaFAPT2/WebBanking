@@ -1,6 +1,7 @@
 package org.user.service.service;
 
 import org.keycloak.representations.idm.UserRepresentation;
+import org.user.service.model.dto.response.Response;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface KeycloakService {
      * @param  userRepresentation  the user representation object containing the user details
      * @return                     the ID of the newly created user
      */
-    Integer createUser(UserRepresentation userRepresentation);
+    Response createUser(UserRepresentation userRepresentation);
 
     /**
      * Retrieves a list of user representations based on the provided email ID.

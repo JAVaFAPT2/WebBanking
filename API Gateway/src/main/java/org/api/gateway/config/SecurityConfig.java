@@ -17,9 +17,7 @@ public class SecurityConfig {
         public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
                 http
                         .authorizeExchange(exchanges -> exchanges
-                                //ALLOWING REGISTER API FOR DIRECT ACCESS
                                 .pathMatchers("/api/users/register").permitAll()
-                                //ALL OTHER APIS ARE AUTHENTICATED
                                 .anyExchange().authenticated()
                         )
                         .csrf(ServerHttpSecurity.CsrfSpec::disable)
