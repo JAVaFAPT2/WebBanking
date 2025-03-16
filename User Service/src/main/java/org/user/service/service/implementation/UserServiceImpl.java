@@ -8,6 +8,7 @@ import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.user.service.exception.EmptyFields;
 import org.user.service.exception.ResourceConflictException;
@@ -88,12 +89,12 @@ public class UserServiceImpl implements UserService {
 
         if ("201".equals(keycloakResponse.getResponseCode())) {
             // User created successfully in Keycloak
-            // Now create corresponding user in your database
             User user = new User();
             user.setEmailId(userDto.getEmailId());
             user.setContactNo(userDto.getContactNumber());
             user.setStatus(Status.PENDING);
-
+            String hashedPassword = BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt());
+            user.setPassword(hashedPassword);//need to change adding bCrypt password//done
             UserProfile userProfile = new UserProfile();
             userProfile.setFirstName(userDto.getFirstName());
             userProfile.setLastName(userDto.getLastName());
@@ -110,7 +111,6 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Failed to create user: " + keycloakResponse.getResponseMessage());
         }
     }
-
     /**
      * Retrieves all users and their corresponding details.
      *
@@ -118,20 +118,31 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<UserDto> readAllUsers() {
-
         List<User> users = userRepository.findAll();
 
-        Map<String, UserRepresentation> userRepresentationMap = keycloakService.readUsers(users.stream().map(user -> user.getAuthId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.toMap(UserRepresentation::getId, Function.identity()));
+        // Get user representations from Keycloak
+        List<UserRepresentation> userRepresentations = keycloakService.readUsers(users.stream()
+                .map(User::getAuthId)
+                .collect(Collectors.toList()));
 
-        return users.stream().map(user -> {
-            UserDto userDto = userMapper.convertToDto(user);
-            UserRepresentation userRepresentation = userRepresentationMap.get(user.getAuthId());
-            userDto.setUserId(user.getUserId());
-            userDto.setEmailId(userRepresentation.getEmail());
-            userDto.setIdentificationNumber(user.getIdentificationNumber());
-            return userDto;
-        }).collect(Collectors.toList());
+        // Create a map of user representations for quick lookup
+        Map<String, UserRepresentation> userRepMap = userRepresentations.stream()
+                .collect(Collectors.toMap(UserRepresentation::getId, Function.identity()));
+
+        return users.stream()
+                .map(user -> {
+                    UserDto userDto = userMapper.convertToDto(user);
+                    UserRepresentation userRep = userRepMap.get(user.getAuthId());
+
+                    // Check if userRep is not null before accessing its properties
+                    if (userRep != null) {
+                        userDto.setEmailId(userRep.getEmail());
+                        // Set other properties from userRep if needed
+                    }
+
+                    return userDto;
+                })
+                .collect(Collectors.toList());
     }
 
     /**

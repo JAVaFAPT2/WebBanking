@@ -27,6 +27,8 @@ public class User {
 
     private String authId;
 
+    private String password;
+
     private String identificationNumber;
 
     @CreationTimestamp

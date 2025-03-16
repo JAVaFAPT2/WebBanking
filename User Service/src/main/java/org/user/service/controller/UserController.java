@@ -31,8 +31,12 @@ public class UserController {
      */
     @PostMapping("/register")
     public ResponseEntity<Response> registerUser(@Valid @RequestBody CreateUser userDto) {
-        Response response = userService.createUser(userDto);
-        return ResponseEntity.status(Integer.parseInt(response.getResponseCode())).body(response);
+        try {
+            Response response = userService.createUser(userDto);
+            return ResponseEntity.status(Integer.parseInt(response.getResponseCode())).body(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response("500", "Internal Server Error"));
+        }
     }
 
     /**

@@ -95,8 +95,8 @@ public class AccountServiceImpl implements AccountService {
                     if(account.getAccountStatus().equals(AccountStatus.ACTIVE)){
                         throw new AccountStatusException("Account is inactive/closed");
                     }
-                    if(account.getAvailableBalance().compareTo(BigDecimal.ZERO) < 0 || account.getAvailableBalance().compareTo(BigDecimal.valueOf(1000)) < 0){
-                        throw new InSufficientFunds("Minimum balance of Rs.1000 is required");
+                    if(account.getAvailableBalance().compareTo(BigDecimal.ZERO) < 0 || account.getAvailableBalance().compareTo(BigDecimal.valueOf(1)) < 0){
+                        throw new InSufficientFunds("Minimum balance of 1$ is required");
                     }
                     account.setAccountStatus(accountUpdate.getAccountStatus());
                     accountRepository.save(account);

@@ -10,6 +10,7 @@ import org.user.service.model.dto.response.Response;
 import org.user.service.service.KeycloakService;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,13 +63,19 @@ public class KeycloakServiceImpl implements KeycloakService {
      */
     @Override
     public List<UserRepresentation> readUsers(List<String> authIds) {
-
-        return authIds.stream().map(authId -> {
-            UserResource usersResource = keyCloakManager.getKeyCloakInstanceWithRealm().users().get(authId);
-            return usersResource.toRepresentation();
-        }).collect(Collectors.toList());
+        return authIds.stream()
+                .map(authId -> {
+                    try {
+                        UserResource userResource = keyCloakManager.getKeyCloakInstanceWithRealm().users().get(authId);
+                        return userResource != null ? userResource.toRepresentation() : null;
+                    } catch (Exception e) {
+                        // Log the exception
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull) // Filter out null values
+                .collect(Collectors.toList());
     }
-
     /**
      * Retrieves a user representation based on the provided authentication ID.
      *
