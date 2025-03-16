@@ -1,0 +1,215 @@
+{
+  "clientId": "banking-service-api-client",
+  "name": "banking-service-api-client",
+  "description": "",
+  "rootUrl": "",
+  "adminUrl": "",
+  "baseUrl": "",
+  "surrogateAuthRequired": false,
+  "enabled": true,
+  "alwaysDisplayInConsole": true,
+  "clientAuthenticatorType": "client-secret",
+  "secret": "BszxUM6j75voyA9yIURScS943zy4AIA7",
+  "redirectUris": [
+    "*"
+  ],
+  "webOrigins": [],
+  "notBefore": 0,
+  "bearerOnly": false,
+  "consentRequired": false,
+  "standardFlowEnabled": true,
+  "implicitFlowEnabled": false,
+  "directAccessGrantsEnabled": true,
+  "serviceAccountsEnabled": true,
+  "authorizationServicesEnabled": true,
+  "publicClient": false,
+  "frontchannelLogout": true,
+  "protocol": "openid-connect",
+  "attributes": {
+    "client.secret.creation.time": "1742104640",
+    "request.object.signature.alg": "any",
+    "request.object.encryption.alg": "any",
+    "client.introspection.response.allow.jwt.claim.enabled": "false",
+    "post.logout.redirect.uris": "*",
+    "frontchannel.logout.session.required": "true",
+    "oauth2.device.authorization.grant.enabled": "true",
+    "use.jwks.url": "false",
+    "backchannel.logout.revoke.offline.tokens": "false",
+    "use.refresh.tokens": "true",
+    "realm_client": "false",
+    "oidc.ciba.grant.enabled": "false",
+    "client.use.lightweight.access.token.enabled": "false",
+    "backchannel.logout.session.required": "true",
+    "request.object.required": "not required",
+    "client_credentials.use_refresh_token": "false",
+    "tls.client.certificate.bound.access.tokens": "false",
+    "require.pushed.authorization.requests": "false",
+    "acr.loa.map": "{}",
+    "display.on.consent.screen": "false",
+    "request.object.encryption.enc": "any",
+    "token.response.type.bearer.lower-case": "false"
+  },
+  "authenticationFlowBindingOverrides": {},
+  "fullScopeAllowed": true,
+  "nodeReRegistrationTimeout": -1,
+  "protocolMappers": [
+    {
+      "name": "family name",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-usermodel-attribute-mapper",
+      "consentRequired": false,
+      "config": {
+        "introspection.token.claim": "true",
+        "userinfo.token.claim": "true",
+        "user.attribute": "lastName",
+        "id.token.claim": "true",
+        "access.token.claim": "true",
+        "claim.name": "family_name",
+        "jsonType.label": "String"
+      }
+    },
+    {
+      "name": "acr loa level",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-acr-mapper",
+      "consentRequired": false,
+      "config": {
+        "id.token.claim": "true",
+        "introspection.token.claim": "true",
+        "access.token.claim": "true"
+      }
+    },
+    {
+      "name": "allowed web origins",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-allowed-origins-mapper",
+      "consentRequired": false,
+      "config": {
+        "introspection.token.claim": "true",
+        "access.token.claim": "true"
+      }
+    },
+    {
+      "name": "email",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-usermodel-attribute-mapper",
+      "consentRequired": false,
+      "config": {
+        "introspection.token.claim": "true",
+        "userinfo.token.claim": "true",
+        "user.attribute": "email",
+        "id.token.claim": "true",
+        "access.token.claim": "true",
+        "claim.name": "email",
+        "jsonType.label": "String"
+      }
+    },
+    {
+      "name": "email verified",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-usermodel-property-mapper",
+      "consentRequired": false,
+      "config": {
+        "introspection.token.claim": "true",
+        "userinfo.token.claim": "true",
+        "user.attribute": "emailVerified",
+        "id.token.claim": "true",
+        "access.token.claim": "true",
+        "claim.name": "email_verified",
+        "jsonType.label": "boolean"
+      }
+    },
+    {
+      "name": "birthdate",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-usermodel-attribute-mapper",
+      "consentRequired": false,
+      "config": {
+        "introspection.token.claim": "true",
+        "userinfo.token.claim": "true",
+        "user.attribute": "birthdate",
+        "id.token.claim": "true",
+        "access.token.claim": "true",
+        "claim.name": "birthdate",
+        "jsonType.label": "String"
+      }
+    },
+    {
+      "name": "client roles",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-usermodel-client-role-mapper",
+      "consentRequired": false,
+      "config": {
+        "user.attribute": "foo",
+        "introspection.token.claim": "true",
+        "access.token.claim": "true",
+        "claim.name": "resource_access.${client_id}.roles",
+        "jsonType.label": "String",
+        "multivalued": "true"
+      }
+    },
+    {
+      "name": "auth_time",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-usersessionmodel-note-mapper",
+      "consentRequired": false,
+      "config": {
+        "user.session.note": "AUTH_TIME",
+        "id.token.claim": "true",
+        "introspection.token.claim": "true",
+        "access.token.claim": "true",
+        "claim.name": "auth_time",
+        "jsonType.label": "long"
+      }
+    },
+    {
+      "name": "address",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-address-mapper",
+      "consentRequired": false,
+      "config": {
+        "user.attribute.formatted": "formatted",
+        "user.attribute.country": "country",
+        "introspection.token.claim": "true",
+        "user.attribute.postal_code": "postal_code",
+        "userinfo.token.claim": "true",
+        "user.attribute.street": "street",
+        "id.token.claim": "true",
+        "user.attribute.region": "region",
+        "access.token.claim": "true",
+        "user.attribute.locality": "locality"
+      }
+    },
+    {
+      "name": "audience resolve",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-audience-resolve-mapper",
+      "consentRequired": false,
+      "config": {
+        "introspection.token.claim": "true",
+        "access.token.claim": "true"
+      }
+    }
+  ],
+  "defaultClientScopes": [
+    "service_account",
+    "web-origins",
+    "acr",
+    "profile",
+    "roles",
+    "basic",
+    "email"
+  ],
+  "optionalClientScopes": [
+    "address",
+    "phone",
+    "organization",
+    "offline_access",
+    "microprofile-jwt"
+  ],
+  "access": {
+    "view": true,
+    "configure": true,
+    "manage": true
+  }
+}
