@@ -1,6 +1,6 @@
 spring:
   application:
-    name: LoanService
+    name: loan-service
     bad_request: "Bad Request: The request could not be understood by the server."
     unauthorized: "Unauthorized: The request requires user authentication."
     conflict: "Conflict: The request could not be completed due to a conflict with the current state of the resource."

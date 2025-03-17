@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.*;
         name = "CRUD REST APIs for Loans in Capital First",
         description = "CRUD REST APIs in Capital First to CREATE, UPDATE, FETCH AND DELETE loan details"
 )
-@RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/loans", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
 public class LoanController {
     private static final Logger logger = LoggerFactory.getLogger(LoanController.class);

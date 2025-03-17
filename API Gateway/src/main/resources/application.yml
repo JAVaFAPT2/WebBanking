@@ -43,7 +43,10 @@ spring:
           uri: lb://fund-transfer-service
           predicates:
             - Path=/fund-transfers/**
-
+        - id: loan-service
+          uri: lb://loan-service
+          predicates:
+            - Path=/loans/**
   security:
     oauth2:
       client:
