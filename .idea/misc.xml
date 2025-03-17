@@ -18,6 +18,8 @@
         <option value="$PROJECT_DIR$/Account Service/pom.xml" />
         <option value="$PROJECT_DIR$/Fund Transfer/pom.xml" />
         <option value="$PROJECT_DIR$/LoanService/pom.xml" />
+        <option value="$PROJECT_DIR$/analyzeService/pom.xml" />
+        <option value="$PROJECT_DIR$/CartService/pom.xml" />
       </list>
     </option>
   </component>
