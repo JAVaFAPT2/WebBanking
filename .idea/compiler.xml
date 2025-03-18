@@ -19,15 +19,16 @@
         <module name="Sequence_Generator" />
         <module name="ServiceRegistry" />
       </profile>
-      <profile name="Annotation profile for CardService" enabled="true">
+      <profile name="Annotation profile for Notification Service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
-        <module name="CardService" />
         <module name="WebBanking" />
+        <module name="Notification_Service" />
+        <module name="CardService" />
         <module name="analyzeService" />
       </profile>
     </annotationProcessing>
@@ -47,6 +48,7 @@
       <module name="CardService" options="-parameters" />
       <module name="FundTransfer" options="-parameters" />
       <module name="LoanService" options="-parameters" />
+      <module name="Notification_Service" options="-parameters" />
       <module name="SequenceGenerator" options="-parameters" />
       <module name="Sequence_Generator" options="-parameters" />
       <module name="ServiceRegistry" options="-parameters" />

@@ -6,7 +6,8 @@ import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.fundtransfer.exception.GlobalException;
+import org.cartservice.exception.GlobalException;
+
 
 import java.io.IOException;
 import java.io.Reader;

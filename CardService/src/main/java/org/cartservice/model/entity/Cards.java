@@ -21,9 +21,11 @@ public class Cards extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cardId;
     private String cardNumber;
+    private String userPhoneNumber;
     private CardType cardType;
     private BigDecimal amountUsed;
     private BigDecimal availableAmount;
+    private BigDecimal cardLimit;
     private String cardHolderName;
     private String cvv;
     private String expiryDate;
