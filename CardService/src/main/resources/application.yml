@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: card-service
+    bad_request: "Bad Request: The request could not be understood by the server."
+    unauthorized: "Unauthorized: The request requires user authentication."
+    conflict: "Conflict: The request could not be completed due to a conflict with the current state of the resource."
+    not_found: "Not Found: The requested resource could not be found."
+  datasource:
+    url: jdbc:mysql://localhost:3306/card_service_db
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: true
+
+server:
+  port: 8092
