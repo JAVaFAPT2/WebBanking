@@ -15,10 +15,10 @@ import org.transactions.model.TransactionStatus;
 import org.transactions.model.TransactionType;
 import org.transactions.model.dto.TransactionDto;
 import org.transactions.model.entity.Transaction;
-import org.transactions.model.external.Account;
+import org.transactions.model.Account;
 import org.transactions.model.mapper.TransactionMapper;
-import org.transactions.model.response.Response;
-import org.transactions.model.response.TransactionRequest;
+import org.transactions.model.dto.response.Response;
+import org.transactions.model.dto.response.TransactionRequest;
 import org.transactions.repository.TransactionRepository;
 import org.transactions.service.TransactionService;
 

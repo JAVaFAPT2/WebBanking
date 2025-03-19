@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.transactions.model.dto.TransactionDto;
-import org.transactions.model.response.Response;
-import org.transactions.model.response.TransactionRequest;
+import org.transactions.model.dto.response.Response;
+import org.transactions.model.dto.response.TransactionRequest;
 import org.transactions.service.TransactionService;
 
 import java.util.List;

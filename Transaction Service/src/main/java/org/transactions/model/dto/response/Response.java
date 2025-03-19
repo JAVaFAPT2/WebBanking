@@ -1,4 +1,4 @@
-package org.transactions.model.response;
+package org.transactions.model.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

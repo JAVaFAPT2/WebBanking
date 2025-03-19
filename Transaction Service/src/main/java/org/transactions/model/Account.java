@@ -1,4 +1,4 @@
-package org.transactions.model.external;
+package org.transactions.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

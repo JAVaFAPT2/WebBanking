@@ -3,8 +3,8 @@ package org.transactions.external;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.transactions.model.external.Account;
-import org.transactions.model.response.Response;
+import org.transactions.model.Account;
+import org.transactions.model.dto.response.Response;
 
 @FeignClient(name = "account-service", url = "http://localhost:8081")
 public interface AccountService {
