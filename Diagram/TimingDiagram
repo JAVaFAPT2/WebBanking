@@ -1,0 +1,27 @@
+@startuml
+skinparam timing {
+  BackgroundColor White
+  BorderColor Black
+}
+
+concise "Customer" as C
+concise "API Gateway" as AG
+concise "Fund Transfer Service" as FTS
+concise "Kafka" as K
+concise "Transaction Service" as TS
+concise "Notification Service" as NS
+
+@0
+C is AG : Initiate Transfer
+@1
+AG is FTS : Receive Request
+@2
+FTS is K : Process Transfer
+@3
+K is TS : Publish Event
+@4
+TS is NS : Record Transaction
+@5
+NS is NS : Send Notification
+
+@enduml

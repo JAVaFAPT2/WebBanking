@@ -1,0 +1,81 @@
+@startuml
+skinparam componentStyle uml2
+skinparam backgroundColor #FFFFFF
+
+component "API Gateway" as ApiGateway {
+  component "Routing"
+  component "Security"
+}
+
+component "Service Discovery" as EurekaServer
+
+component "Config Server" as ConfigServer {
+  component "Centralized Configuration"
+}
+
+component "User Service" as UserService {
+  component "Command Side"
+  component "Query Side"
+  component "Event Publisher"
+}
+
+component "Account Service" as AccountService {
+  component "Command Side"
+  component "Query Side"
+  component "Event Publisher"
+}
+
+component "Fund Transfer Service" as FundTransferService {
+  component "Command Side"
+  component "Query Side"
+  component "Event Publisher"
+}
+
+component "Transaction Service" as TransactionService {
+  component "Command Side"
+  component "Query Side"
+  component "Event Publisher"
+}
+
+component "Notification Service" as NotificationService {
+  component "Event Consumer"
+  component "Notification Logic"
+}
+
+component "Kafka" as Kafka {
+  component "Topics"
+  component "Producers"
+  component "Consumers"
+}
+
+component "Shared Module" as SharedModule {
+  component "Common Models"
+  component "Events"
+  component "Utilities"
+}
+
+ApiGateway --> EurekaServer : Service Discovery
+ApiGateway --> ConfigServer : Configuration
+UserService --> EurekaServer : Service Registration
+AccountService --> EurekaServer : Service Registration
+FundTransferService --> EurekaServer : Service Registration
+TransactionService --> EurekaServer : Service Registration
+NotificationService --> EurekaServer : Service Registration
+
+UserService --> Kafka : Publishes Events
+AccountService --> Kafka : Publishes Events
+FundTransferService --> Kafka : Publishes Events
+TransactionService --> Kafka : Publishes Events
+
+Kafka --> NotificationService : Delivers Events
+Kafka --> TransactionService : Delivers Events
+Kafka --> AccountService : Delivers Events
+Kafka --> UserService : Delivers Events
+
+NotificationService --> SharedModule : Uses Common Models
+TransactionService --> SharedModule : Uses Common Models
+FundTransferService --> SharedModule : Uses Common Models
+AccountService --> SharedModule : Uses Common Models
+UserService --> SharedModule : Uses Common Models
+
+@enduml

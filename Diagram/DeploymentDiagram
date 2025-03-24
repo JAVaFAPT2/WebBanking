@@ -1,0 +1,53 @@
+@startuml
+skinparam node {
+  BackgroundColor White
+  BorderColor Black
+}
+
+node "Customer Devices" as CustomerDevices {
+  artifact "Mobile App" as MobileApp
+  artifact "Web Browser" as WebBrowser
+}
+
+node "API Gateway Server" as ApiGatewayServer {
+  artifact "API Gateway" as ApiGateway
+}
+
+node "Microservices Cluster" as MicroservicesCluster {
+  node "Service Instances" as ServiceInstances {
+    artifact "User Service" as UserService
+    artifact "Account Service" as AccountService
+    artifact "Fund Transfer Service" as FundTransferService
+    artifact "Transaction Service" as TransactionService
+    artifact "Notification Service" as NotificationService
+  }
+
+  node "Config Server" as ConfigServer {
+    artifact "Configuration" as Configuration
+  }
+
+  node "Service Discovery" as ServiceDiscovery {
+    artifact "Eureka Server" as EurekaServer
+  }
+}
+
+node "Kafka Cluster" as KafkaCluster {
+  artifact "Kafka Topics" as KafkaTopics
+  artifact "Kafka Brokers" as KafkaBrokers
+}
+
+node "Database Servers" as DatabaseServers {
+  artifact "User DB" as UserDB
+  artifact "Account DB" as AccountDB
+  artifact "Transfer DB" as TransferDB
+  artifact "Transaction DB" as TransactionDB
+}
+
+CustomerDevices --> ApiGatewayServer : Communicates
+ApiGatewayServer --> MicroservicesCluster : Routes Requests
+MicroservicesCluster --> ServiceDiscovery : Discovers Services
+MicroservicesCluster --> ConfigServer : Retrieves Configuration
+MicroservicesCluster --> KafkaCluster : Publishes/Consumes Events
+MicroservicesCluster --> DatabaseServers : Persists Data
+KafkaCluster --> MicroservicesCluster : Delivers Events
+@enduml

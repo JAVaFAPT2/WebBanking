@@ -1,0 +1,26 @@
+@startuml
+actor Client
+participant "API Gateway" as ApiGateway
+participant "Fund Transfer Service" as FundTransferService
+participant "Kafka" as Kafka
+participant "Transaction Service" as TransactionService
+participant "Notification Service" as NotificationService
+participant "Account Service" as AccountService
+
+Client -> ApiGateway: POST /api/transfer/commands/transfer
+ApiGateway -> FundTransferService: Forward Transfer Command
+FundTransferService -> FundTransferService: Process Transfer Command
+FundTransferService -> Kafka: Publish TransferInitiatedEvent
+Kafka -> TransactionService: Deliver TransferInitiatedEvent
+Kafka -> NotificationService: Deliver TransferInitiatedEvent
+Kafka -> AccountService: Deliver TransferInitiatedEvent
+
+TransactionService -> TransactionService: Record Transaction
+NotificationService -> NotificationService: Prepare Notification
+AccountService -> AccountService: Update Account Balances
+
+Client -> ApiGateway: GET /api/transfer/queries/{transferId}
+ApiGateway -> FundTransferService: Forward Transfer Query
+FundTransferService -> Client: Return Transfer Status
+
+@enduml

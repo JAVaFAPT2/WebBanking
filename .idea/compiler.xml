@@ -9,12 +9,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="fundtransfer" />
         <module name="accountService)" />
+        <module name="shared" />
         <module name="API_GATEWAY" />
         <module name="UserService" />
         <module name="LoanService" />
+        <module name="eureka-server" />
         <module name="TransactioService" />
         <module name="apigateway" />
+        <module name="config-server" />
         <module name="Sequence_Generator" />
+        <module name="api-gateway" />
         <module name="ServiceRegistry" />
       </profile>
       <profile name="Annotation profile for AccountService" enabled="true">
@@ -67,8 +71,12 @@
       <module name="accountService" options="" />
       <module name="accountService)" options="-parameters" />
       <module name="analyzeService" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
       <module name="apigateway" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
       <module name="fundtransfer" options="-parameters" />
+      <module name="shared" options="-parameters" />
     </option>
   </component>
 </project>

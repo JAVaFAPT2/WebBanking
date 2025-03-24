@@ -1,0 +1,67 @@
+@startuml
+skinparam object {
+  BackgroundColor White
+  BorderColor Black
+}
+
+object "user1" as u1 {
+  id: "123"
+  name: "John Doe"
+  email: "john@example.com"
+}
+
+object "account1" as a1 {
+  id: "acc123"
+  userId: "123"
+  balance: 10000.00
+  status: "ACTIVE"
+}
+
+object "account2" as a2 {
+  id: "acc456"
+  userId: "456"
+  balance: 5000.00
+  status: "ACTIVE"
+}
+
+object "transfer1" as t1 {
+  id: "trf789"
+  fromAccountId: "acc123"
+  toAccountId: "acc456"
+  amount: 500.00
+  status: "PENDING"
+}
+
+object "transaction1" as tr1 {
+  id: "txn101"
+  accountId: "acc123"
+  amount: -500.00
+  type: "TRANSFER"
+  description: "Transfer to acc456"
+}
+
+object "transaction2" as tr2 {
+  id: "txn102"
+  accountId: "acc456"
+  amount: 500.00
+  type: "TRANSFER"
+  description: "Transfer from acc123"
+}
+
+object "notification1" as n1 {
+  id: "not999"
+  userId: "123"
+  message: "You transferred $500 to acc456"
+  status: "SENT"
+}
+
+u1 -- a1 : owns
+u1 -- n1 : received
+a1 -- tr1 : has
+a2 -- tr2 : has
+t1 -- a1 : from
+t1 -- a2 : to
+t1 -- tr1 : creates
+t1 -- tr2 : creates
+t1 -- n1 : triggers
+@enduml
