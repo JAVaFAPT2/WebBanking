@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="fundtransfer" />
+        <module name="accountService)" />
+        <module name="API_GATEWAY" />
+        <module name="UserService" />
+        <module name="LoanService" />
+        <module name="TransactioService" />
+        <module name="apigateway" />
+        <module name="Sequence_Generator" />
+        <module name="ServiceRegistry" />
+      </profile>
+      <profile name="Annotation profile for AccountService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="WebBanking" />
+        <module name="BE" />
+      </profile>
+      <profile name="Annotation profile for analyzeService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="Notification_Service" />
+        <module name="CardService" />
+        <module name="analyzeService" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="accountService" target="1.5" />
+      <module name="AccountService" target="21" />
+      <module name="APiGateway" target="21" />
+      <module name="CartService" target="1.5" />
+      <module name="FundTransfer" target="23" />
+      <module name="SequenceGenerator" target="23" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="API_GATEWAY" options="-parameters" />
+      <module name="APiGateway" options="-parameters" />
+      <module name="AccountService" options="-parameters" />
+      <module name="BE" options="-parameters" />
+      <module name="CardService" options="-parameters" />
+      <module name="FundTransfer" options="-parameters" />
+      <module name="LoanService" options="-parameters" />
+      <module name="Notification_Service" options="-parameters" />
+      <module name="SequenceGenerator" options="-parameters" />
+      <module name="Sequence_Generator" options="-parameters" />
+      <module name="ServiceRegistry" options="-parameters" />
+      <module name="TransactioService" options="-parameters" />
+      <module name="UserService" options="-parameters" />
+      <module name="WebBanking" options="-parameters" />
+      <module name="accountService" options="" />
+      <module name="accountService)" options="-parameters" />
+      <module name="analyzeService" options="-parameters" />
+      <module name="apigateway" options="-parameters" />
+      <module name="fundtransfer" options="-parameters" />
+    </option>
+  </component>
+</project>
