@@ -1,0 +1,277 @@
+web-banking-microservices/
+├── eureka-server/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── banking/
+│   │   │   │           └── eureka/
+│   │   │   │               ├── EurekaServerApplication.java
+│   │   │   │               └── config/
+│   │   │   │                   └── EurekaServerConfig.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── bootstrap.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── api-gateway/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── banking/
+│   │   │   │           └── gateway/
+│   │   │   │               ├── ApiGatewayApplication.java
+│   │   │   │               ├── config/
+│   │   │   │               │   └── GatewayConfig.java
+│   │   │   │               └── filter/
+│   │   │   │                   └── AuthFilter.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── bootstrap.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── config-server/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── banking/
+│   │   │   │           └── config/
+│   │   │   │               └── ConfigServerApplication.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── bootstrap.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── user-service/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── banking/
+│   │   │   │           └── user/
+│   │   │   │               ├── UserServiceApplication.java
+│   │   │   │               ├── command/
+│   │   │   │               │   ├── api/
+│   │   │   │               │   │   ├── CreateUserCommand.java
+│   │   │   │               │   │   └── UserController.java
+│   │   │   │               │   └── internal/
+│   │   │   │               │       ├── UserCommandHandler.java
+│   │   │   │               │       └── model/
+│   │   │   │               │           └── UserWriteModel.java
+│   │   │   │               ├── query/
+│   │   │   │               │   ├── api/
+│   │   │   │               │   │   ├── GetUserQuery.java
+│   │   │   │               │   │   └── UserController.java
+│   │   │   │               │   └── internal/
+│   │   │   │               │       ├── UserQueryHandler.java
+│   │   │   │               │       └── model/
+│   │   │   │               │           └── UserReadModel.java
+│   │   │   │               ├── event/
+│   │   │   │               │   ├── UserEvent.java
+│   │   │   │               │   └── UserEventPublisher.java
+│   │   │   │               ├── repository/
+│   │   │   │               │   ├── UserWriteRepository.java
+│   │   │   │               │   └── UserReadRepository.java
+│   │   │   │               ├── security/
+│   │   │   │               │   ├── UserDetailsService.java
+│   │   │   │               │   └── SecurityConfig.java
+│   │   │   │               ├── config/
+│   │   │   │               │   ├── UserConfig.java
+│   │   │   │               │   └── KafkaProducerConfig.java
+│   │   │   │               └── kafka/
+│   │   │   │                   └── UserEventProducer.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       ├── data.sql
+│   │   │       └── schema.sql
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── account-service/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── banking/
+│   │   │   │           └── account/
+│   │   │   │               ├── AccountServiceApplication.java
+│   │   │   │               ├── command/
+│   │   │   │               │   ├── api/
+│   │   │   │               │   │   ├── CreateAccountCommand.java
+│   │   │   │               │   │   └── AccountController.java
+│   │   │   │               │   └── internal/
+│   │   │   │               │       ├── AccountCommandHandler.java
+│   │   │   │               │       └── model/
+│   │   │   │               │           └── AccountWriteModel.java
+│   │   │   │               ├── query/
+│   │   │   │               │   ├── api/
+│   │   │   │               │   │   ├── GetAccountQuery.java
+│   │   │   │               │   │   └── AccountController.java
+│   │   │   │               │   └── internal/
+│   │   │   │               │       ├── AccountQueryHandler.java
+│   │   │   │               │       └── model/
+│   │   │   │               │           └── AccountReadModel.java
+│   │   │   │               ├── event/
+│   │   │   │               │   ├── AccountEvent.java
+│   │   │   │               │   └── AccountEventPublisher.java
+│   │   │   │               ├── repository/
+│   │   │   │               │   ├── AccountWriteRepository.java
+│   │   │   │               │   └── AccountReadRepository.java
+│   │   │   │               ├── config/
+│   │   │   │               │   ├── AccountConfig.java
+│   │   │   │               │   └── KafkaProducerConfig.java
+│   │   │   │               └── kafka/
+│   │   │   │                   └── AccountEventProducer.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       ├── data.sql
+│   │   │       └── schema.sql
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── fund-transfer-service/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── banking/
+│   │   │   │           └── transfer/
+│   │   │   │               ├── FundTransferServiceApplication.java
+│   │   │   │               ├── command/
+│   │   │   │               │   ├── api/
+│   │   │   │               │   │   ├── InitiateTransferCommand.java
+│   │   │   │               │   │   └── TransferController.java
+│   │   │   │               │   └── internal/
+│   │   │   │               │       ├── TransferCommandHandler.java
+│   │   │   │               │       └── model/
+│   │   │   │               │           └── TransferWriteModel.java
+│   │   │   │               ├── query/
+│   │   │   │               │   ├── api/
+│   │   │   │               │   │   ├── GetTransferStatusQuery.java
+│   │   │   │               │   │   └── TransferController.java
+│   │   │   │               │   └── internal/
+│   │   │   │               │       ├── TransferQueryHandler.java
+│   │   │   │               │       └── model/
+│   │   │   │               │           └── TransferReadModel.java
+│   │   │   │               ├── event/
+│   │   │   │               │   ├── TransferEvent.java
+│   │   │   │               │   └── TransferEventPublisher.java
+│   │   │   │               ├── repository/
+│   │   │   │               │   ├── TransferWriteRepository.java
+│   │   │   │               │   └── TransferReadRepository.java
+│   │   │   │               ├── config/
+│   │   │   │               │   ├── TransferConfig.java
+│   │   │   │               │   └── KafkaProducerConfig.java
+│   │   │   │               └── kafka/
+│   │   │   │                   └── TransferEventProducer.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       ├── data.sql
+│   │   │       └── schema.sql
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── transaction-service/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── banking/
+│   │   │   │           └── transaction/
+│   │   │   │               ├── TransactionServiceApplication.java
+│   │   │   │               ├── command/
+│   │   │   │               │   ├── api/
+│   │   │   │               │   │   ├── RecordTransactionCommand.java
+│   │   │   │               │   │   └── TransactionController.java
+│   │   │   │               │   └── internal/
+│   │   │   │               │       ├── TransactionCommandHandler.java
+│   │   │   │               │       └── model/
+│   │   │   │               │           └── TransactionWriteModel.java
+│   │   │   │               ├── query/
+│   │   │   │               │   ├── api/
+│   │   │   │               │   │   ├── GetTransactionsQuery.java
+│   │   │   │               │   │   └── TransactionController.java
+│   │   │   │               │   └── internal/
+│   │   │   │               │       ├── TransactionQueryHandler.java
+│   │   │   │               │       └── model/
+│   │   │   │               │           └── TransactionReadModel.java
+│   │   │   │               ├── event/
+│   │   │   │               │   ├── TransactionEvent.java
+│   │   │   │               │   └── TransactionEventPublisher.java
+│   │   │   │               ├── repository/
+│   │   │   │               │   ├── TransactionWriteRepository.java
+│   │   │   │               │   └── TransactionReadRepository.java
+│   │   │   │               ├── config/
+│   │   │   │               │   ├── TransactionConfig.java
+│   │   │   │               │   └── KafkaProducerConfig.java
+│   │   │   │               └── kafka/
+│   │   │   │                   └── TransactionEventProducer.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       ├── data.cql
+│   │   │       └── schema.cql
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── notification-service/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── banking/
+│   │   │   │           └── notification/
+│   │   │   │               ├── NotificationServiceApplication.java
+│   │   │   │               ├── controller/
+│   │   │   │               │   └── NotificationController.java
+│   │   │   │               ├── service/
+│   │   │   │               │   ├── NotificationService.java
+│   │   │   │               │   └── impl/
+│   │   │   │               │       └── NotificationServiceImpl.java
+│   │   │   │               ├── repository/
+│   │   │   │               │   └── NotificationRepository.java
+│   │   │   │               ├── model/
+│   │   │   │               │   └── Notification.java
+│   │   │   │               ├── config/
+│   │   │   │               │   ├── NotificationConfig.java
+│   │   │   │               │   └── KafkaConsumerConfig.java
+│   │   │   │               └── kafka/
+│   │   │   │                   └── NotificationEventConsumer.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── shared/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── banking/
+│   │   │   │           └── common/
+│   │   │   │               ├── model/
+│   │   │   │               │   ├── User.java
+│   │   │   │               │   ├── Account.java
+│   │   │   │               │   ├── Transfer.java
+│   │   │   │               │   └── Transaction.java
+│   │   │   │               ├── event/
+│   │   │   │               │   ├── UserEvent.java
+│   │   │   │               │   ├── AccountEvent.java
+│   │   │   │               │   ├── TransferEvent.java
+│   │   │   │               │   └── TransactionEvent.java
+│   │   │   │               ├── exception/
+│   │   │   │               │   └── BankingException.java
+│   │   │   │               └── util/
+│   │   │   │                   └── BankingUtils.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── pom.xml
+├── docker-compose.yml
+├── README.md
+└── pom.xml (or build.gradle)
