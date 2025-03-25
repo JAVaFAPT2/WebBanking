@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import service.shared.event.UserEvent;
 import service.shared.exception.BankingException;
 import service.shared.models.User;
-import service.userservice.command.api.commands.CreateUserCommand;
+import service.userservice.command.CreateUserCommand;
 import service.userservice.command.internal.models.UserWriteModel;
 import service.userservice.repository.UserWriteRepository;
 
@@ -31,7 +31,7 @@ public class UserCommandHandler {
     }
 
     @CommandHandler
-    public void handleCreateUserCommand(service.userservice.command.api.commands.CreateUserCommand command) {
+    public void handleCreateUserCommand(CreateUserCommand command) {
         // Validate command
         Set<ConstraintViolation<CreateUserCommand>> violations = validator.validate(command);
         if (!violations.isEmpty()) {

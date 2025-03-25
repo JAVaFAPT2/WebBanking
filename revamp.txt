@@ -1,5 +1,5 @@
 web-banking-microservices/
-├── eureka-server/
+├── eureka-server/                   // Service Registry using Eureka
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -14,7 +14,7 @@ web-banking-microservices/
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── api-gateway/
+├── api-gateway/                     // API Gateway (Spring Cloud Gateway)
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -31,7 +31,7 @@ web-banking-microservices/
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── config-server/
+├── config-server/                   // Centralized configuration server
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -41,6 +41,26 @@ web-banking-microservices/
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── orchestration-service/           // New service for workflow orchestration (Saga pattern)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── service/
+│   │   │   │       └── orchestration/
+│   │   │   │           ├── OrchestrationServiceApplication.java
+│   │   │   │           ├── controller/
+│   │   │   │           │   └── OrchestrationController.java
+│   │   │   │           ├── service/
+│   │   │   │           │   ├── OrchestrationService.java
+│   │   │   │           │   └── impl/
+│   │   │   │           │       └── OrchestrationServiceImpl.java
+│   │   │   │           └── workflow/
+│   │   │   │               └── SagaOrchestrator.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
@@ -78,7 +98,7 @@ web-banking-microservices/
 │   │   │   │               └── UserConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       └── data.sql
+│   │   │       ├── data.sql         // Using MySQL
 │   │   │       └── schema.sql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -114,7 +134,7 @@ web-banking-microservices/
 │   │   │   │               └── AccountConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       └── data.sql
+│   │   │       ├── data.sql         // MySQL data
 │   │   │       └── schema.sql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -150,7 +170,7 @@ web-banking-microservices/
 │   │   │   │               └── TransferConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       └── data.sql
+│   │   │       ├── data.sql         // MySQL or other RDBMS
 │   │   │       └── schema.sql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -186,7 +206,7 @@ web-banking-microservices/
 │   │   │   │               └── TransactionConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       └── data.cql
+│   │   │       ├── data.cql         // Using Cassandra
 │   │   │       └── schema.cql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -218,7 +238,7 @@ web-banking-microservices/
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── shared/
+├── shared/                          // Common models, events, utilities, etc.
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -243,6 +263,113 @@ web-banking-microservices/
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── pom.xml
-├── docker-compose.yml
+├── monitor-service/                 // Monitoring (Prometheus integration, health checks, etc.)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── service/
+│   │   │   │       └── monitor/
+│   │   │   │           ├── MonitorServiceApplication.java
+│   │   │   │           ├── config/
+│   │   │   │           │   └── MonitorConfig.java
+│   │   │   │           ├── controller/
+│   │   │   │           │   ├── HealthCheckController.java
+│   │   │   │           │   └── MetricsController.java
+│   │   │   │           ├── service/
+│   │   │   │           │   ├── MonitoringService.java
+│   │   │   │           │   └── impl/
+│   │   │   │           │       └── MonitoringServiceImpl.java
+│   │   │   │           ├── repository/
+│   │   │   │           │   └── MetricsRepository.java
+│   │   │   │           ├── model/
+│   │   │   │           │   └── Metrics.java
+│   │   │   │           ├── event/
+│   │   │   │           │   └── listener/
+│   │   │   │           │       └── MetricsEventListener.java
+│   │   │   │           └── security/
+│   │   │   │               ├── MonitorSecurityConfig.java
+│   │   │   │               └── MonitorUserDetailsService.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── bootstrap.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── security-service/                // Security (Spring Security, OAuth2, JWT, etc.)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── service/
+│   │   │   │       └── security/
+│   │   │   │           ├── SecurityServiceApplication.java
+│   │   │   │           ├── config/
+│   │   │   │           │   ├── SecurityConfig.java
+│   │   │   │           │   └── OAuth2Config.java
+│   │   │   │           ├── controller/
+│   │   │   │           │   ├── AuthController.java
+│   │   │   │           │   └── UserController.java
+│   │   │   │           ├── service/
+│   │   │   │           │   ├── UserService.java
+│   │   │   │           │   ├── AuthService.java
+│   │   │   │           │   └── TokenService.java
+│   │   │   │           ├── repository/
+│   │   │   │           │   ├── UserRepository.java
+│   │   │   │           │   └── RoleRepository.java
+│   │   │   │           ├── model/
+│   │   │   │           │   ├── User.java
+│   │   │   │           │   ├── Role.java
+│   │   │   │           │   └── Token.java
+│   │   │   │           └── security/
+│   │   │   │               ├── JwtTokenFilter.java
+│   │   │   │               ├── JwtProvider.java
+│   │   │   │               └── CustomUserDetails.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── bootstrap.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── circuit-breaker-service/         // Resilience4j based circuit breaker service
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── service/
+│   │   │   │       └── circuitbreaker/
+│   │   │   │           ├── CircuitBreakerServiceApplication.java
+│   │   │   │           ├── config/
+│   │   │   │           │   └── CircuitBreakerConfig.java
+│   │   │   │           ├── controller/
+│   │   │   │           │   └── CircuitBreakerController.java
+│   │   │   │           ├── service/
+│   │   │   │           │   └── CircuitBreakerService.java
+│   │   │   │           └── feign/
+│   │   │   │               ├── UserClient.java
+│   │   │   │               └── AccountClient.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── bootstrap.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── message-broker/                  // Kafka message broker integration
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── service/
+│   │   │   │       └── messagebroker/
+│   │   │   │           ├── MessageBrokerApplication.java
+│   │   │   │           ├── config/
+│   │   │   │           │   └── KafkaConfig.java
+│   │   │   │           ├── listener/
+│   │   │   │           │   └── MessageListener.java
+│   │   │   │           └── sender/
+│   │   │   │               └── MessageSender.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── bootstrap.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── docker-compose.yml               // Compose file for all containers (Eureka, Config, MySQL, Cassandra, Kafka, Prometheus, Jaeger, etc.)
 ├── README.md
-└── pom.xml (or build.gradle)
+└── pom.xml
