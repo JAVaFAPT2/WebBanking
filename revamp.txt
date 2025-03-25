@@ -3,12 +3,11 @@ web-banking-microservices/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── banking/
-│   │   │   │           └── eureka/
-│   │   │   │               ├── EurekaServerApplication.java
-│   │   │   │               └── config/
-│   │   │   │                   └── EurekaServerConfig.java
+│   │   │   │   └── service/
+│   │   │   │       └── eureka/
+│   │   │   │           ├── EurekaServerApplication.java
+│   │   │   │           └── config/
+│   │   │   │               └── EurekaServerConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
@@ -19,14 +18,13 @@ web-banking-microservices/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── banking/
-│   │   │   │           └── gateway/
-│   │   │   │               ├── ApiGatewayApplication.java
-│   │   │   │               ├── config/
-│   │   │   │               │   └── GatewayConfig.java
-│   │   │   │               └── filter/
-│   │   │   │                   └── AuthFilter.java
+│   │   │   │   └── service/
+│   │   │   │       └── apigateway/
+│   │   │   │           ├── ApiGatewayApplication.java
+│   │   │   │           ├── config/
+│   │   │   │           │   └── GatewayConfig.java
+│   │   │   │           └── filter/
+│   │   │   │               └── AuthFilter.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
@@ -37,10 +35,9 @@ web-banking-microservices/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── banking/
-│   │   │   │           └── config/
-│   │   │   │               └── ConfigServerApplication.java
+│   │   │   │   └── service/
+│   │   │   │       └── configserver/
+│   │   │   │           └── ConfigServerApplication.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
@@ -51,43 +48,37 @@ web-banking-microservices/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── banking/
-│   │   │   │           └── user/
-│   │   │   │               ├── UserServiceApplication.java
-│   │   │   │               ├── command/
-│   │   │   │               │   ├── api/
-│   │   │   │               │   │   ├── CreateUserCommand.java
-│   │   │   │               │   │   └── UserController.java
-│   │   │   │               │   └── internal/
-│   │   │   │               │       ├── UserCommandHandler.java
-│   │   │   │               │       └── model/
-│   │   │   │               │           └── UserWriteModel.java
-│   │   │   │               ├── query/
-│   │   │   │               │   ├── api/
-│   │   │   │               │   │   ├── GetUserQuery.java
-│   │   │   │               │   │   └── UserController.java
-│   │   │   │               │   └── internal/
-│   │   │   │               │       ├── UserQueryHandler.java
-│   │   │   │               │       └── model/
-│   │   │   │               │           └── UserReadModel.java
-│   │   │   │               ├── event/
-│   │   │   │               │   ├── UserEvent.java
-│   │   │   │               │   └── UserEventPublisher.java
-│   │   │   │               ├── repository/
-│   │   │   │               │   ├── UserWriteRepository.java
-│   │   │   │               │   └── UserReadRepository.java
-│   │   │   │               ├── security/
-│   │   │   │               │   ├── UserDetailsService.java
-│   │   │   │               │   └── SecurityConfig.java
-│   │   │   │               ├── config/
-│   │   │   │               │   ├── UserConfig.java
-│   │   │   │               │   └── KafkaProducerConfig.java
-│   │   │   │               └── kafka/
-│   │   │   │                   └── UserEventProducer.java
+│   │   │   │   └── service/
+│   │   │   │       └── userservice/
+│   │   │   │           ├── UserServiceApplication.java
+│   │   │   │           ├── command/
+│   │   │   │           │   ├── api/
+│   │   │   │           │   │   ├── CreateUserCommand.java
+│   │   │   │           │   │   └── UpdateUserCommand.java
+│   │   │   │           │   └── internal/
+│   │   │   │           │       ├── UserCommandHandler.java
+│   │   │   │           │       └── model/
+│   │   │   │           │           └── UserWriteModel.java
+│   │   │   │           ├── query/
+│   │   │   │           │   ├── api/
+│   │   │   │           │   │   └── GetUserQuery.java
+│   │   │   │           │   └── internal/
+│   │   │   │           │       ├── UserQueryHandler.java
+│   │   │   │           │       └── model/
+│   │   │   │           │           └── UserReadModel.java
+│   │   │   │           ├── event/
+│   │   │   │           │   ├── UserEvent.java
+│   │   │   │           │   └── UserEventPublisher.java
+│   │   │   │           ├── repository/
+│   │   │   │           │   └── UserWriteRepository.java
+│   │   │   │           ├── security/
+│   │   │   │           │   ├── UserDetailsService.java
+│   │   │   │           │   └── SecurityConfig.java
+│   │   │   │           └── config/
+│   │   │   │               └── UserConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       ├── data.sql
+│   │   │       └── data.sql
 │   │   │       └── schema.sql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -96,40 +87,34 @@ web-banking-microservices/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── banking/
-│   │   │   │           └── account/
-│   │   │   │               ├── AccountServiceApplication.java
-│   │   │   │               ├── command/
-│   │   │   │               │   ├── api/
-│   │   │   │               │   │   ├── CreateAccountCommand.java
-│   │   │   │               │   │   └── AccountController.java
-│   │   │   │               │   └── internal/
-│   │   │   │               │       ├── AccountCommandHandler.java
-│   │   │   │               │       └── model/
-│   │   │   │               │           └── AccountWriteModel.java
-│   │   │   │               ├── query/
-│   │   │   │               │   ├── api/
-│   │   │   │               │   │   ├── GetAccountQuery.java
-│   │   │   │               │   │   └── AccountController.java
-│   │   │   │               │   └── internal/
-│   │   │   │               │       ├── AccountQueryHandler.java
-│   │   │   │               │       └── model/
-│   │   │   │               │           └── AccountReadModel.java
-│   │   │   │               ├── event/
-│   │   │   │               │   ├── AccountEvent.java
-│   │   │   │               │   └── AccountEventPublisher.java
-│   │   │   │               ├── repository/
-│   │   │   │               │   ├── AccountWriteRepository.java
-│   │   │   │               │   └── AccountReadRepository.java
-│   │   │   │               ├── config/
-│   │   │   │               │   ├── AccountConfig.java
-│   │   │   │               │   └── KafkaProducerConfig.java
-│   │   │   │               └── kafka/
-│   │   │   │                   └── AccountEventProducer.java
+│   │   │   │   └── service/
+│   │   │   │       └── accountsservice/
+│   │   │   │           ├── AccountServiceApplication.java
+│   │   │   │           ├── command/
+│   │   │   │           │   ├── api/
+│   │   │   │           │   │   ├── CreateAccountCommand.java
+│   │   │   │           │   │   └── UpdateAccountCommand.java
+│   │   │   │           │   └── internal/
+│   │   │   │           │       ├── AccountCommandHandler.java
+│   │   │   │           │       └── model/
+│   │   │   │           │           └── AccountWriteModel.java
+│   │   │   │           ├── query/
+│   │   │   │           │   ├── api/
+│   │   │   │           │   │   └── GetAccountQuery.java
+│   │   │   │           │   └── internal/
+│   │   │   │           │       ├── AccountQueryHandler.java
+│   │   │   │           │       └── model/
+│   │   │   │           │           └── AccountReadModel.java
+│   │   │   │           ├── event/
+│   │   │   │           │   ├── AccountEvent.java
+│   │   │   │           │   └── AccountEventPublisher.java
+│   │   │   │           ├── repository/
+│   │   │   │           │   └── AccountWriteRepository.java
+│   │   │   │           └── config/
+│   │   │   │               └── AccountConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       ├── data.sql
+│   │   │       └── data.sql
 │   │   │       └── schema.sql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -138,40 +123,34 @@ web-banking-microservices/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── banking/
-│   │   │   │           └── transfer/
-│   │   │   │               ├── FundTransferServiceApplication.java
-│   │   │   │               ├── command/
-│   │   │   │               │   ├── api/
-│   │   │   │               │   │   ├── InitiateTransferCommand.java
-│   │   │   │               │   │   └── TransferController.java
-│   │   │   │               │   └── internal/
-│   │   │   │               │       ├── TransferCommandHandler.java
-│   │   │   │               │       └── model/
-│   │   │   │               │           └── TransferWriteModel.java
-│   │   │   │               ├── query/
-│   │   │   │               │   ├── api/
-│   │   │   │               │   │   ├── GetTransferStatusQuery.java
-│   │   │   │               │   │   └── TransferController.java
-│   │   │   │               │   └── internal/
-│   │   │   │               │       ├── TransferQueryHandler.java
-│   │   │   │               │       └── model/
-│   │   │   │               │           └── TransferReadModel.java
-│   │   │   │               ├── event/
-│   │   │   │               │   ├── TransferEvent.java
-│   │   │   │               │   └── TransferEventPublisher.java
-│   │   │   │               ├── repository/
-│   │   │   │               │   ├── TransferWriteRepository.java
-│   │   │   │               │   └── TransferReadRepository.java
-│   │   │   │               ├── config/
-│   │   │   │               │   ├── TransferConfig.java
-│   │   │   │               │   └── KafkaProducerConfig.java
-│   │   │   │               └── kafka/
-│   │   │   │                   └── TransferEventProducer.java
+│   │   │   │   └── service/
+│   │   │   │       └── fundtransferservice/
+│   │   │   │           ├── FundTransferServiceApplication.java
+│   │   │   │           ├── command/
+│   │   │   │           │   ├── api/
+│   │   │   │           │   │   ├── InitiateTransferCommand.java
+│   │   │   │           │   │   └── UpdateTransferCommand.java
+│   │   │   │           │   └── internal/
+│   │   │   │           │       ├── TransferCommandHandler.java
+│   │   │   │           │       └── model/
+│   │   │   │           │           └── TransferWriteModel.java
+│   │   │   │           ├── query/
+│   │   │   │           │   ├── api/
+│   │   │   │           │   │   └── GetTransferQuery.java
+│   │   │   │           │   └── internal/
+│   │   │   │           │       ├── TransferQueryHandler.java
+│   │   │   │           │       └── model/
+│   │   │   │           │           └── TransferReadModel.java
+│   │   │   │           ├── event/
+│   │   │   │           │   ├── TransferEvent.java
+│   │   │   │           │   └── TransferEventPublisher.java
+│   │   │   │           ├── repository/
+│   │   │   │           │   └── TransferWriteRepository.java
+│   │   │   │           └── config/
+│   │   │   │               └── TransferConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       ├── data.sql
+│   │   │       └── data.sql
 │   │   │       └── schema.sql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -180,40 +159,34 @@ web-banking-microservices/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── banking/
-│   │   │   │           └── transaction/
-│   │   │   │               ├── TransactionServiceApplication.java
-│   │   │   │               ├── command/
-│   │   │   │               │   ├── api/
-│   │   │   │               │   │   ├── RecordTransactionCommand.java
-│   │   │   │               │   │   └── TransactionController.java
-│   │   │   │               │   └── internal/
-│   │   │   │               │       ├── TransactionCommandHandler.java
-│   │   │   │               │       └── model/
-│   │   │   │               │           └── TransactionWriteModel.java
-│   │   │   │               ├── query/
-│   │   │   │               │   ├── api/
-│   │   │   │               │   │   ├── GetTransactionsQuery.java
-│   │   │   │               │   │   └── TransactionController.java
-│   │   │   │               │   └── internal/
-│   │   │   │               │       ├── TransactionQueryHandler.java
-│   │   │   │               │       └── model/
-│   │   │   │               │           └── TransactionReadModel.java
-│   │   │   │               ├── event/
-│   │   │   │               │   ├── TransactionEvent.java
-│   │   │   │               │   └── TransactionEventPublisher.java
-│   │   │   │               ├── repository/
-│   │   │   │               │   ├── TransactionWriteRepository.java
-│   │   │   │               │   └── TransactionReadRepository.java
-│   │   │   │               ├── config/
-│   │   │   │               │   ├── TransactionConfig.java
-│   │   │   │               │   └── KafkaProducerConfig.java
-│   │   │   │               └── kafka/
-│   │   │   │                   └── TransactionEventProducer.java
+│   │   │   │   └── service/
+│   │   │   │       └── transactionservice/
+│   │   │   │           ├── TransactionServiceApplication.java
+│   │   │   │           ├── command/
+│   │   │   │           │   ├── api/
+│   │   │   │           │   │   ├── RecordTransactionCommand.java
+│   │   │   │           │   │   └── UpdateTransactionCommand.java
+│   │   │   │           │   └── internal/
+│   │   │   │           │       ├── TransactionCommandHandler.java
+│   │   │   │           │       └── model/
+│   │   │   │           │           └── TransactionWriteModel.java
+│   │   │   │           ├── query/
+│   │   │   │           │   ├── api/
+│   │   │   │           │   │   └── GetTransactionsQuery.java
+│   │   │   │           │   └── internal/
+│   │   │   │           │       ├── TransactionQueryHandler.java
+│   │   │   │           │       └── model/
+│   │   │   │           │           └── TransactionReadModel.java
+│   │   │   │           ├── event/
+│   │   │   │           │   ├── TransactionEvent.java
+│   │   │   │           │   └── TransactionEventPublisher.java
+│   │   │   │           ├── repository/
+│   │   │   │           │   └── TransactionWriteRepository.java
+│   │   │   │           └── config/
+│   │   │   │               └── TransactionConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       ├── data.cql
+│   │   │       └── data.cql
 │   │   │       └── schema.cql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -222,25 +195,24 @@ web-banking-microservices/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── banking/
-│   │   │   │           └── notification/
-│   │   │   │               ├── NotificationServiceApplication.java
-│   │   │   │               ├── controller/
-│   │   │   │               │   └── NotificationController.java
-│   │   │   │               ├── service/
-│   │   │   │               │   ├── NotificationService.java
-│   │   │   │               │   └── impl/
-│   │   │   │               │       └── NotificationServiceImpl.java
-│   │   │   │               ├── repository/
-│   │   │   │               │   └── NotificationRepository.java
-│   │   │   │               ├── model/
-│   │   │   │               │   └── Notification.java
-│   │   │   │               ├── config/
-│   │   │   │               │   ├── NotificationConfig.java
-│   │   │   │               │   └── KafkaConsumerConfig.java
-│   │   │   │               └── kafka/
-│   │   │   │                   └── NotificationEventConsumer.java
+│   │   │   │   └── service/
+│   │   │   │       └── notificationservice/
+│   │   │   │           ├── NotificationServiceApplication.java
+│   │   │   │           ├── controller/
+│   │   │   │           │   └── NotificationController.java
+│   │   │   │           ├── service/
+│   │   │   │           │   ├── NotificationService.java
+│   │   │   │           │   └── impl/
+│   │   │   │           │       └── NotificationServiceImpl.java
+│   │   │   │           ├── repository/
+│   │   │   │           │   └── NotificationRepository.java
+│   │   │   │           ├── model/
+│   │   │   │           │   └── Notification.java
+│   │   │   │           ├── config/
+│   │   │   │           │   └── NotificationConfig.java
+│   │   │   │           └── event/
+│   │   │   │               └── listener/
+│   │   │   │                   └── NotificationEventListener.java
 │   │   │   └── resources/
 │   │   │       └── application.yml
 │   │   └── test/
@@ -250,23 +222,22 @@ web-banking-microservices/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── banking/
-│   │   │   │           └── common/
-│   │   │   │               ├── model/
-│   │   │   │               │   ├── User.java
-│   │   │   │               │   ├── Account.java
-│   │   │   │               │   ├── Transfer.java
-│   │   │   │               │   └── Transaction.java
-│   │   │   │               ├── event/
-│   │   │   │               │   ├── UserEvent.java
-│   │   │   │               │   ├── AccountEvent.java
-│   │   │   │               │   ├── TransferEvent.java
-│   │   │   │               │   └── TransactionEvent.java
-│   │   │   │               ├── exception/
-│   │   │   │               │   └── BankingException.java
-│   │   │   │               └── util/
-│   │   │   │                   └── BankingUtils.java
+│   │   │   │   └── service/
+│   │   │   │       └── common/
+│   │   │   │           ├── model/
+│   │   │   │           │   ├── User.java
+│   │   │   │           │   ├── Account.java
+│   │   │   │           │   ├── Transfer.java
+│   │   │   │           │   └── Transaction.java
+│   │   │   │           ├── event/
+│   │   │   │           │   ├── UserEvent.java
+│   │   │   │           │   ├── AccountEvent.java
+│   │   │   │           │   ├── TransferEvent.java
+│   │   │   │           │   └── TransactionEvent.java
+│   │   │   │           ├── exception/
+│   │   │   │           │   └── BankingException.java
+│   │   │   │           └── util/
+│   │   │   │               └── BankingUtils.java
 │   │   │   └── resources/
 │   │   │       └── application.yml
 │   │   └── test/
