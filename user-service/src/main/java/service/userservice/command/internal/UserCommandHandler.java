@@ -8,7 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import service.shared.event.UserEvent;
 import service.shared.exception.BankingException;
 import service.shared.models.User;
-import service.userservice.command.CreateUserCommand;
+import service.userservice.command.api.CreateUserCommand;
+import service.userservice.command.api.UpdateUserCommand;
 import service.userservice.command.internal.models.UserWriteModel;
 import service.userservice.repository.UserWriteRepository;
 
@@ -81,10 +82,27 @@ public class UserCommandHandler {
         apply(userEvent);
     }
 
-//    @CommandHandler
-//    public void handleUpdateUserCommand(UpdateUserCommand command) {
-//
-//    }
+    @CommandHandler
+    public void handleUpdateUserCommand(UpdateUserCommand command) {
+            // Validate command
+        Set<ConstraintViolation<UpdateUserCommand>> violations = validator.validate(command);
+        if (!violations.isEmpty()) {
+            throw new BankingException("Command validation failed: " + violations.toString());
+        }
+        // Check if user exists
+        UserWriteModel user = userWriteRepository.findById(command.getUserId()).orElseThrow(() -> new BankingException("User not found"));
+        // Update user
+        if (command.getUsername() != null) {
+            user.setUsername(command.getUsername());
+        }
+        if (command.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(command.getPassword()));
+        }
+        if (command.getEmail() != null) {
+            user.setEmail(command.getEmail());
+        }
+        userWriteRepository.save(user);
+    }
 
     @EventSourcingHandler
     public void onUserCreatedEvent(UserEvent event) {

@@ -1,4 +1,4 @@
-package service.userservice.command;
+package service.userservice.command.api;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -104,7 +104,7 @@ public class CreateUserCommand extends BaseEntity {
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
-        user.setAccounts(Collections.<Account>emptySet());
+        user.setAccounts(Collections.emptySet());
 
         UserEvent userEvent = new UserEvent(
                 this.id,

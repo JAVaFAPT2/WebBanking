@@ -24,7 +24,8 @@ web-banking-microservices/
 │   │   │   │           ├── config/
 │   │   │   │           │   └── GatewayConfig.java
 │   │   │   │           └── filter/
-│   │   │   │               └── AuthFilter.java
+│   │   │   │               ├── AuthFilter.java
+│   │   │   │               └── RateLimitingFilter.java  // New rate limiting filter
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
@@ -44,7 +45,7 @@ web-banking-microservices/
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── orchestration-service/           // New service for workflow orchestration (Saga pattern)
+├── orchestration-service/           // Workflow orchestration (Saga pattern)
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -90,7 +91,8 @@ web-banking-microservices/
 │   │   │   │           │   ├── UserEvent.java
 │   │   │   │           │   └── UserEventPublisher.java
 │   │   │   │           ├── repository/
-│   │   │   │           │   └── UserWriteRepository.java
+│   │   │   │           │   ├── UserWriteRepository.java
+│   │   │   │           │   └── UserReadRepository.java  // Added read repository
 │   │   │   │           ├── security/
 │   │   │   │           │   ├── UserDetailsService.java
 │   │   │   │           │   └── SecurityConfig.java
@@ -98,7 +100,7 @@ web-banking-microservices/
 │   │   │   │               └── UserConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       ├── data.sql         // Using MySQL
+│   │   │       ├── data.sql
 │   │   │       └── schema.sql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -129,12 +131,13 @@ web-banking-microservices/
 │   │   │   │           │   ├── AccountEvent.java
 │   │   │   │           │   └── AccountEventPublisher.java
 │   │   │   │           ├── repository/
-│   │   │   │           │   └── AccountWriteRepository.java
+│   │   │   │           │   ├── AccountWriteRepository.java
+│   │   │   │           │   └── AccountReadRepository.java  // Added read repository
 │   │   │   │           └── config/
 │   │   │   │               └── AccountConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       ├── data.sql         // MySQL data
+│   │   │       ├── data.sql
 │   │   │       └── schema.sql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -165,12 +168,13 @@ web-banking-microservices/
 │   │   │   │           │   ├── TransferEvent.java
 │   │   │   │           │   └── TransferEventPublisher.java
 │   │   │   │           ├── repository/
-│   │   │   │           │   └── TransferWriteRepository.java
+│   │   │   │           │   ├── TransferWriteRepository.java
+│   │   │   │           │   └── TransferReadRepository.java  // Added read repository
 │   │   │   │           └── config/
 │   │   │   │               └── TransferConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       ├── data.sql         // MySQL or other RDBMS
+│   │   │       ├── data.sql
 │   │   │       └── schema.sql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -201,12 +205,13 @@ web-banking-microservices/
 │   │   │   │           │   ├── TransactionEvent.java
 │   │   │   │           │   └── TransactionEventPublisher.java
 │   │   │   │           ├── repository/
-│   │   │   │           │   └── TransactionWriteRepository.java
+│   │   │   │           │   ├── TransactionWriteRepository.java
+│   │   │   │           │   └── TransactionReadRepository.java  // Added read repository
 │   │   │   │           └── config/
 │   │   │   │               └── TransactionConfig.java
 │   │   │   └── resources/
 │   │   │       ├── application.yml
-│   │   │       ├── data.cql         // Using Cassandra
+│   │   │       ├── data.cql
 │   │   │       └── schema.cql
 │   │   └── test/
 │   │       └── ... (test classes)
@@ -370,6 +375,70 @@ web-banking-microservices/
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── docker-compose.yml               // Compose file for all containers (Eureka, Config, MySQL, Cassandra, Kafka, Prometheus, Jaeger, etc.)
+├── logging-service/                 // Centralized logging service
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── service/
+│   │   │   │       └── logging/
+│   │   │   │           ├── LoggingServiceApplication.java
+│   │   │   │           ├── config/
+│   │   │   │           │   └── LoggingConfig.java
+│   │   │   │           ├── controller/
+│   │   │   │           │   └── LoggingController.java
+│   │   │   │           ├── service/
+│   │   │   │           │   └── LoggingService.java
+│   │   │   │           └── repository/
+│   │   │   │               └── LogRepository.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── audit-service/                   // Audit tracking service
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── service/
+│   │   │   │       └── audit/
+│   │   │   │           ├── AuditServiceApplication.java
+│   │   │   │           ├── config/
+│   │   │   │           │   └── AuditConfig.java
+│   │   │   │           ├── controller/
+│   │   │   │           │   └── AuditController.java
+│   │   │   │           ├── service/
+│   │   │   │           │   └── AuditService.java
+│   │   │   │           └── repository/
+│   │   │   │               └── AuditRepository.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── caching-service/                 // Caching service
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── service/
+│   │   │   │       └── caching/
+│   │   │   │           ├── CachingServiceApplication.java
+│   │   │   │           ├── config/
+│   │   │   │           │   └── CachingConfig.java
+│   │   │   │           ├── service/
+│   │   │   │           │   └── CachingService.java
+│   │   │   │           └── repository/
+│   │   │   │               └── CacheRepository.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── ... (test classes)
+│   └── Dockerfile
+├── docker-compose.yml               // Compose file for all containers
 ├── README.md
-└── pom.xml
+├── pom.xml
+└── ci-cd/                           // CI/CD pipeline configuration
+    ├── jenkinsfile
+    ├── github-actions/
+    │   └── main.yml
+    └── circleci/
+        └── config.yml
