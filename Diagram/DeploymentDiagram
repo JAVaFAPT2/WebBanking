@@ -1,53 +1,49 @@
 @startuml
-skinparam node {
-  BackgroundColor White
-  BorderColor Black
+node "Docker Host" {
+  [Eureka Server Container]
+  [Config Server Container]
+  [API Gateway Container]
+  [User Service Container]
+  [Account Service Container]
+  [Fund Transfer Service Container]
+  [Transaction Service Container]
+  [Notification Service Container]
+  [Orchestration Service Container]
+  [Monitor Service Container]
+  [Security Service Container]
+  [Circuit Breaker Service Container]
+  [Kafka Container]
+  [MySQL Container]
+  [Cassandra Container]
+  [Prometheus Container]
+  [Jaeger Container]
 }
 
-node "Customer Devices" as CustomerDevices {
-  artifact "Mobile App" as MobileApp
-  artifact "Web Browser" as WebBrowser
-}
+[Eureka Server Container] --> [MySQL Container] : uses
+[Config Server Container] --> [MySQL Container] : uses
+[User Service Container] --> [MySQL Container] : uses
+[Account Service Container] --> [MySQL Container] : uses
+[Fund Transfer Service Container] --> [MySQL Container] : uses
+[Transaction Service Container] --> [Cassandra Container] : uses
+[Notification Service Container] --> [MySQL Container] : uses
+[Orchestration Service Container] --> [MySQL Container] : uses
 
-node "API Gateway Server" as ApiGatewayServer {
-  artifact "API Gateway" as ApiGateway
-}
+[API Gateway Container] --> [Eureka Server Container] : discovers services
+[User Service Container] --> [Eureka Server Container] : registers
+[Account Service Container] --> [Eureka Server Container] : registers
+[Fund Transfer Service Container] --> [Eureka Server Container] : registers
+[Transaction Service Container] --> [Eureka Server Container] : registers
+[Notification Service Container] --> [Eureka Server Container] : registers
+[Orchestration Service Container] --> [Eureka Server Container] : registers
 
-node "Microservices Cluster" as MicroservicesCluster {
-  node "Service Instances" as ServiceInstances {
-    artifact "User Service" as UserService
-    artifact "Account Service" as AccountService
-    artifact "Fund Transfer Service" as FundTransferService
-    artifact "Transaction Service" as TransactionService
-    artifact "Notification Service" as NotificationService
-  }
+[User Service Container] --> [Config Server Container] : fetches config
+[Account Service Container] --> [Config Server Container] : fetches config
+[Fund Transfer Service Container] --> [Config Server Container] : fetches config
+[Transaction Service Container] --> [Config Server Container] : fetches config
+[Notification Service Container] --> [Config Server Container] : fetches config
+[Orchestration Service Container] --> [Config Server Container] : fetches config
 
-  node "Config Server" as ConfigServer {
-    artifact "Configuration" as Configuration
-  }
-
-  node "Service Discovery" as ServiceDiscovery {
-    artifact "Eureka Server" as EurekaServer
-  }
-}
-
-node "Kafka Cluster" as KafkaCluster {
-  artifact "Kafka Topics" as KafkaTopics
-  artifact "Kafka Brokers" as KafkaBrokers
-}
-
-node "Database Servers" as DatabaseServers {
-  artifact "User DB" as UserDB
-  artifact "Account DB" as AccountDB
-  artifact "Transfer DB" as TransferDB
-  artifact "Transaction DB" as TransactionDB
-}
-
-CustomerDevices --> ApiGatewayServer : Communicates
-ApiGatewayServer --> MicroservicesCluster : Routes Requests
-MicroservicesCluster --> ServiceDiscovery : Discovers Services
-MicroservicesCluster --> ConfigServer : Retrieves Configuration
-MicroservicesCluster --> KafkaCluster : Publishes/Consumes Events
-MicroservicesCluster --> DatabaseServers : Persists Data
-KafkaCluster --> MicroservicesCluster : Delivers Events
+[Kafka Container] --> "Microservices" : event bus
+[Prometheus Container] --> [Monitor Service Container] : scrapes metrics
+[Jaeger Container] --> "Microservices" : traces
 @enduml

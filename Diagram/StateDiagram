@@ -1,18 +1,8 @@
 @startuml
-skinparam state {
-  BackgroundColor White
-  BorderColor Black
-}
-
-state "Initiated"
-"Initiated" --> "Validating"
-"Validating" --> "Validation Failed" : Invalid
-"Validating" --> "Processing" : Valid
-"Processing" --> "Completed" : Success
-"Processing" --> "Failed" : Error
-"Completed" --> "Notified" : Notification Sent
-"Failed" --> "Retrying" : Retry Condition
-"Retrying" --> "Processing" : Retry
-"Retrying" --> "Cancelled" : Max Retries
-
+[*] --> Initiated
+Initiated --> Pending : Start Transfer
+Pending --> Completed : Transfer Successful
+Pending --> Failed : Transfer Failed
+Completed --> [*]
+Failed --> [*]
 @enduml

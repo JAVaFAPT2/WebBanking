@@ -1,22 +1,15 @@
 @startuml
-skinparam activity {
-  BackgroundColor White
-  BorderColor Black
-}
-
 start
-:Customer initiates transfer;
-:API Gateway receives request;
-:Fund Transfer Service validates transfer;
-if (Validation successful?) then (yes)
-  :Debit fromAccount;
-  :Credit toAccount;
-  :Record transactions;
-  :Publish transfer completed event;
-  :Send notification to customer;
+:Receive Fund Transfer Request;
+:Check Sender Balance;
+if (Balance Sufficient?) then (yes)
+  :Debit Sender Account;
+  :Credit Receiver Account;
+  :Record Transaction;
+  :Send Notification;
+  :Return Success;
 else (no)
-  :Log validation error;
-  :Return error to customer;
+  :Return Insufficient Funds;
 endif
 stop
 @enduml

@@ -1,27 +1,30 @@
 @startuml
-skinparam timing {
-  BackgroundColor White
-  BorderColor Black
-}
-
-concise "Customer" as C
-concise "API Gateway" as AG
-concise "Fund Transfer Service" as FTS
-concise "Kafka" as K
-concise "Transaction Service" as TS
-concise "Notification Service" as NS
+concise "User" as U
+concise "API Gateway" as API
+concise "Orchestration" as O
 
 @0
-C is AG : Initiate Transfer
-@1
-AG is FTS : Receive Request
-@2
-FTS is K : Process Transfer
-@3
-K is TS : Publish Event
-@4
-TS is NS : Record Transaction
-@5
-NS is NS : Send Notification
+U is Idle
+API is Idle
+O is Idle
 
+@+2
+U -> API : Initiate Transfer
+U is Waiting
+API is Processing
+
+@+3
+API -> O : Forward Request
+API is Waiting
+O is Processing
+
+@+6
+O --> API : Transfer Successful
+API is Processing
+
+@+7
+API --> U : Success Response
+U is Idle
+API is Idle
+O is Idle
 @enduml
