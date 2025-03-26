@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import service.userservice.query.api.GetUserQuery;
 import service.userservice.query.internal.models.UserReadModel;
+import service.userservice.repository.UserReadRepository;
 
 @Service
 public class UserQueryHandler {

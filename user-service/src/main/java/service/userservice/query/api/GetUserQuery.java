@@ -6,11 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class GetUserQuery {
     @NotBlank(message = "User ID cannot be blank")
-    private String userId;
+    private UUID userId;
 }

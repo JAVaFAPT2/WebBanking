@@ -14,10 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
-public class Transfer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+public class Transfer extends BaseEntity {
 
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;
@@ -28,8 +25,6 @@ public class Transfer {
     @Column(nullable = false)
     private String status;
 
-    @Column(nullable = false)
-    private LocalDateTime timestamp;
 
     @Column(nullable = false, length = 255)
     private String description;

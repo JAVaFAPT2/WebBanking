@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public abstract class BaseEntity implements Serializable {
     private UUID id;
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdDate;
+    private Instant createdDate = Instant.now();
 
     @Column(nullable = false)
     private LocalDateTime lastModifiedDate;

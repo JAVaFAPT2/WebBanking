@@ -13,10 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+public class User extends BaseEntity {
 
     @Column(nullable = false, unique = true, length = 100)
     private String email;

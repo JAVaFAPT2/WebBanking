@@ -14,11 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Account {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-
+public class Account extends BaseEntity {
     @Column(nullable = false, unique = true, length = 20)
     private String accountNumber;
 

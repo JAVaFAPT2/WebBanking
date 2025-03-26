@@ -71,3 +71,15 @@ spring:
           jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
   main:
     allow-bean-definition-overriding: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      connect-timeout: 10000
+
+
+gateway:
+  rate-limiting:
+    limit: 100000
+
+#account-service\src\main\resources\application.yml

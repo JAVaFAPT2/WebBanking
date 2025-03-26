@@ -53,7 +53,7 @@ public final class BankingUtils {
                 transaction.getTransactionType(),
                 transaction.getAmount(),
                 transaction.getAccount().getId(),
-                transaction.getTimestamp()
+                transaction.getCreatedDate()
         );
         System.out.println(logMessage); // In production, use a proper logging framework
     }
@@ -70,7 +70,7 @@ public final class BankingUtils {
                 transfer.getAmount(),
                 transfer.getFromAccount().getId(),
                 transfer.getToAccount().getId(),
-                transfer.getTimestamp()
+                transfer.getCreatedDate()
         );
         System.out.println(logMessage); // In production, use a proper logging framework
     }

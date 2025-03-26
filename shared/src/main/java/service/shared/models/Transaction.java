@@ -14,11 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-
+public class Transaction extends BaseEntity {
     @Column(nullable = false)
     private String transactionType;
 
@@ -33,9 +29,6 @@ public class Transaction {
 
     @Column(nullable = false)
     private String status;
-
-    @Column(nullable = false)
-    private LocalDateTime timestamp;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")

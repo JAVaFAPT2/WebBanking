@@ -19,6 +19,7 @@
         <module name="config-server" />
         <module name="Sequence_Generator" />
         <module name="api-gateway" />
+        <module name="orchestration-service" />
         <module name="ServiceRegistry" />
       </profile>
       <profile name="Annotation profile for analyzeService" enabled="true">
@@ -77,6 +78,7 @@
       <module name="config-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="fundtransfer" options="-parameters" />
+      <module name="orchestration-service" options="-parameters" />
       <module name="shared" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
