@@ -1,0 +1,49 @@
+package service.orchestrationservice.config;
+
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
+
+public class PublicKeyTest {
+    public static void main(String[] args) {
+        // Replace with a complete, valid RSA public key
+        String publicKeyPEM = "-----BEGIN PUBLIC KEY-----\n" +
+                "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwQHoRll7fRmR6L2M8d4L\n" +
+                "3X1oS8i7JtrVDB7SGu5h+UhF5eXHYsc2v2J+9lZ8b9A0r9Wrh+8A8eI3T2y7l+0g\n" +
+                "V1e9jyNn2V9OaMjSv2l+9lZ8b9A0r9Wrh+8A8eI3T2y7l+0gV1e9jyNn2V9OaMjS\n" +
+                "5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X";
+
+        try {
+            // Remove header, footer, and whitespace
+            String publicKeyContent = publicKeyPEM
+                    .replace("-----BEGIN PUBLIC KEY-----", "")
+                    .replace("-----END PUBLIC KEY-----", "")
+                    .replaceAll("\\s", "");
+
+            // Check if the content is non-empty and has a reasonable length
+            if (publicKeyContent.length() < 100) {
+                throw new IllegalArgumentException("The public key content appears to be incomplete: " +
+                        publicKeyContent.length() + " characters found.");
+            }
+
+            System.out.println("Base64 Key length: " + publicKeyContent.length());
+            System.out.println("Base64 Key content: " + publicKeyContent);
+
+            // Decode the Base64 content to get the key bytes
+            byte[] decodedKey = Base64.getDecoder().decode(publicKeyContent);
+            System.out.println("Decoded key length: " + decodedKey.length + " bytes");
+
+            // Create the RSA public key using X509EncodedKeySpec
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(decodedKey);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            PublicKey publicKey = keyFactory.generatePublic(keySpec);
+
+            System.out.println("Successfully loaded public key:");
+            System.out.println(publicKey);
+        } catch (Exception e) {
+            System.err.println("Error loading public key: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}

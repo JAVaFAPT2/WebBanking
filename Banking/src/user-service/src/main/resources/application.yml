@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: user-service
+  config:
+    import: "optional:configserver:http://localhost:8888"  # Changed from 8088 to 8888
+  cloud:
+    config:
+      uri: http://localhost:8888  # Make sure this matches
+      fail-fast: true
+      profile: dev
+      label: main
+      enabled: true
+      discovery:
+        enabled: false
+        service-id: config-server
+
+# Remove the datasource configuration from here since it should come from the config server
+# The rest of your configuration can stay
+
+server:
+  port: 8231
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
