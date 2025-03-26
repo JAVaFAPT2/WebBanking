@@ -16,10 +16,8 @@
         <module name="eureka-server" />
         <module name="TransactioService" />
         <module name="apigateway" />
-        <module name="config-server" />
         <module name="Sequence_Generator" />
         <module name="api-gateway" />
-        <module name="orchestration-service" />
         <module name="ServiceRegistry" />
       </profile>
       <profile name="Annotation profile for analyzeService" enabled="true">
@@ -41,7 +39,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="WebBanking" />
-        <module name="user-service" />
         <module name="BE" />
       </profile>
     </annotationProcessing>
@@ -50,8 +47,11 @@
       <module name="AccountService" target="21" />
       <module name="APiGateway" target="21" />
       <module name="CartService" target="1.5" />
+      <module name="config-server" target="21" />
       <module name="FundTransfer" target="23" />
+      <module name="orchestration-service" target="21" />
       <module name="SequenceGenerator" target="23" />
+      <module name="user-service" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
