@@ -1,5 +1,5 @@
 web-banking-microservices/
-├── eureka-server/                   // Service Registry using Eureka
+├── !eureka-server/                   // Service Registry using Eureka
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -14,7 +14,7 @@ web-banking-microservices/
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── api-gateway/                     // API Gateway (Spring Cloud Gateway)
+├── !api-gateway/                     // API Gateway (Spring Cloud Gateway)
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -32,7 +32,7 @@ web-banking-microservices/
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── config-server/                   // Centralized configuration server
+├── !config-server/                   // Centralized configuration server
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -42,30 +42,58 @@ web-banking-microservices/
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
+│   │   │       └── config/
+│   │   │           ├── application.yml
+│   │   │           ├── eureka-server.yml
+│   │   │           ├── api-gateway.yml
+│   │   │           ├── orchestration-service.yml
+│   │   │           ├── user-service.yml
+│   │   │           ├── account-service.yml
+│   │   │           ├── fund-transfer-service.yml
+│   │   │           ├── transaction-service.yml
+│   │   │           ├── notification-service.yml
+│   │   │           └── ... (other service configurations)
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── orchestration-service/           // Workflow orchestration (Saga pattern)
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── orchestration/
-│   │   │   │           ├── OrchestrationServiceApplication.java
-│   │   │   │           ├── controller/
-│   │   │   │           │   └── OrchestrationController.java
-│   │   │   │           ├── service/
-│   │   │   │           │   ├── OrchestrationService.java
-│   │   │   │           │   └── impl/
-│   │   │   │           │       └── OrchestrationServiceImpl.java
-│   │   │   │           └── workflow/
-│   │   │   │               └── SagaOrchestrator.java
-│   │   │   └── resources/
-│   │   │       └── application.yml
+├─ !orchestration-service/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── service/
+│   │   │       └── orchestration/
+│   │   │           ├── OrchestrationServiceApplication.java
+│   │   │           ├── config/
+│   │   │           │   ├── OrchestrationConfig.java
+│   │   │           │   └── SecurityConfig.java
+│   │   │           │   └── JwtAuthenticationFilter.java
+│   │   │           ├── client/
+│   │   │           │   ├── UserServiceClient.java
+│   │   │           │   ├── AccountServiceClient.java
+│   │   │           │   ├── FundTransferServiceClient.java
+│   │   │           │   ├── TransactionServiceClient.java
+│   │   │           │   └── NotificationServiceClient.java
+│   │   │           ├── controller/
+│   │   │           │   └── OrchestrationController.java
+│   │   │           ├── event/
+│   │   │           │   ├── OrchestrationEvent.java
+│   │   │           │   └── OrchestrationStatus.java
+│   │   │           ├── workflow/
+│   │   │           │   └── SagaOrchestrator.java
+│   │   │           ├── messaging/
+│   │   │           │   └── OrchestrationStreamConfig.java
+│   │   │           └── model/
+│   │   │               ├── TransferRequest.java
+│   │   │               ├── TransactionRequest.java
+│   │   │               ├── NotificationRequest.java
+│   │   │               └── OrchestrationResponse.java
+│   │   │───── resources/
+│   │   │       ├── application.yml
+│   │   │       └── bootstrap.yml
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── user-service/
+├── !user-service/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -94,7 +122,7 @@ web-banking-microservices/
 │   │   │   │           │   ├── UserWriteRepository.java
 │   │   │   │           │   └── UserReadRepository.java  // Added read repository
 │   │   │   │           ├── security/
-│   │   │   │           │   ├── UserDetailsService.java
+│   │   │   │           │   ├── UserrDetailsService.java
 │   │   │   │           │   └── SecurityConfig.java
 │   │   │   │           └── config/
 │   │   │   │               └── UserConfig.java
@@ -243,7 +271,7 @@ web-banking-microservices/
 │   │   └── test/
 │   │       └── ... (test classes)
 │   └── Dockerfile
-├── shared/                          // Common models, events, utilities, etc.
+├── !shared/                          // Common models, events, utilities, etc.
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -347,6 +375,10 @@ web-banking-microservices/
 │   │   │   │           │   └── CircuitBreakerController.java
 │   │   │   │           ├── service/
 │   │   │   │           │   └── CircuitBreakerService.java
+│   │   │   │           │   └── CircuitBreakerMetricsController.java
+│   │   │   │           ├── DTo/
+│   │   │   │           │   └── UserDTo.java
+│   │   │   │           │   └── AccountDTo.java
 │   │   │   │           └── feign/
 │   │   │   │               ├── UserClient.java
 │   │   │   │               └── AccountClient.java

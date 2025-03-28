@@ -29,15 +29,15 @@ public class GatewayConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("user-service", r -> r.path("/users/**")
-                        .uri("lb://USER-SERVICE"))
+                        .uri("lb://user-service"))
                 .route("account-service", r -> r.path("/accounts/**")
-                        .uri("lb://ACCOUNT-SERVICE"))
+                        .uri("lb://account-service"))
                 .route("fund-transfer-service", r -> r.path("/transfers/**")
-                        .uri("lb://FUND-TRANSFER-SERVICE"))
+                        .uri("lb://fund-transfer-service"))
                 .route("transaction-service", r -> r.path("/transactions/**")
-                        .uri("lb://TRANSACTION-SERVICE"))
+                        .uri("lb://transaction-service"))
                 .route("notification-service", r -> r.path("/notifications/**")
-                        .uri("lb://NOTIFICATION-SERVICE"))
+                        .uri("lb://notification-service"))
                 .build();
     }
 }
