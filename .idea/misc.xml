@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Banking/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/account-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/circuit-breaker-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/logging-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/monitor-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/orchestration-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/shared/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/caching-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/audit-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/notification-service/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" project-jdk-name="openjdk-21 (2)" project-jdk-type="JavaSDK" />
+</project>

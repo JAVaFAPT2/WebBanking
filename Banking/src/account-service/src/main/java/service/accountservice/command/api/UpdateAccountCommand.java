@@ -1,14 +1,14 @@
 package service.accountservice.command.api;
 
 
-import jakarta.persistence.Entity;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import service.shared.models.BaseEntity;
+
 
 import java.math.BigDecimal;
 import java.util.UUID;

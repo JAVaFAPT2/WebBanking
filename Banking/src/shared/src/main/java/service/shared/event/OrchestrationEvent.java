@@ -1,4 +1,4 @@
-package service.orchestrationservice.event;
+package service.shared.event;
 
 import lombok.*;
 

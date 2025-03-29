@@ -18,13 +18,13 @@ common:
       url: http://www.apache.org/licenses/LICENSE-2.0.html
 
 # Security configurations
-security:
-  jwt:
-    secret: your-jwt-secret-key
-    expiration: 86400 # 24 hours in seconds
-    header: Authorization
-    token-prefix: Bearer
-    enabled: true
+#security:
+#  jwt:
+#    secret: your-jwt-secret-key
+#    expiration: 86400 # 24 hours in seconds
+#    header: Authorization
+#    token-prefix: Bearer
+#    enabled: true
 
 # API documentation
 springdoc:

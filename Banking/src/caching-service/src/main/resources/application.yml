@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: caching-service
+server:
+  port: 8086
+logging:
+  level:
+    root: INFO

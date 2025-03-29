@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Banking/src/account-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/audit-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/caching-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/circuit-breaker-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/logging-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/monitor-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/notification-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/orchestration-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/shared/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Banking/src/user-service/src/main/java" charset="UTF-8" />
+  </component>
+</project>

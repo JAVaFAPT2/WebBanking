@@ -3,15 +3,14 @@ package service.orchestrationservice.workflow;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import service.orchestrationservice.client.*;
-import service.orchestrationservice.event.OrchestrationEvent;
-import service.orchestrationservice.event.OrchestrationStatus;
+import service.shared.event.OrchestrationEvent;
+import service.shared.event.OrchestrationStatus;
 import service.orchestrationservice.model.NotificationRequest;
 import service.orchestrationservice.model.TransactionRequest;
 import service.orchestrationservice.model.TransferRequest;
 
 import java.math.BigDecimal;
 import java.time.Duration;
-import java.util.UUID;
 
 @Service
 public class SagaOrchestrator {

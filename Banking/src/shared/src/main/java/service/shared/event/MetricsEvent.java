@@ -1,4 +1,4 @@
-package service.monitorservice.event;
+package service.shared.event;
 
 import lombok.*;
 

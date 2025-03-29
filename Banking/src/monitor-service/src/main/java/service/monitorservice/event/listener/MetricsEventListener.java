@@ -3,7 +3,7 @@ package service.monitorservice.event.listener;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import service.monitorservice.event.MetricsEvent;
+import service.shared.event.MetricsEvent;
 
 
 @Component

@@ -1,7 +1,7 @@
 package service.orchestrationservice.model;
 
 import lombok.*;
-import service.orchestrationservice.event.OrchestrationStatus;
+import service.shared.event.OrchestrationStatus;
 
 @Getter
 @Setter
