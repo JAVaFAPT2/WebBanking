@@ -16,13 +16,7 @@ public class UserQueryHandler {
     }
 
     public Mono<UserReadModel> handleGetUser(GetUserQuery query) {
-        return Mono.fromCallable(() -> userReadRepository.findById(query.getUserId()))
-                .flatMap(optionalUser -> {
-                    if (optionalUser.isPresent()) {
-                        return Mono.just(optionalUser.get());
-                    } else {
-                        return Mono.error(new RuntimeException("User not found"));
-                    }
-                });
+        return Mono.justOrEmpty(userReadRepository.findById(query.getUserId()))
+                .switchIfEmpty(Mono.error(new RuntimeException("User not found")));
     }
 }

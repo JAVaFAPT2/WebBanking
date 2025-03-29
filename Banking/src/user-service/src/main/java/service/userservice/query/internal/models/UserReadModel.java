@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user_read")
 @Getter
 @Setter
 @AllArgsConstructor

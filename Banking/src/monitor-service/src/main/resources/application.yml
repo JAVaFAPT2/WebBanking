@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: monitor-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      access: unrestricted
+
+server:
+  port: 8021
+
+logging:
+  level:
+    root: INFO
+    io.micrometer: DEBUG
+
+

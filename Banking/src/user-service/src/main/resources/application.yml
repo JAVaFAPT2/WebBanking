@@ -13,10 +13,20 @@ spring:
       discovery:
         enabled: false
         service-id: config-server
+app:
+  config:
+    keycloak:
+      server-url: http://localhost:8982
+      realm: banking-service
+      client-id: banking-service-api-client
+      client-secret: BszxUM6j75voyA9yIURScS943zy4AIA7
 
+logging:
+  level:
+    org:
+      keycloak: DEBUG
 server:
   port: 8231
-
 eureka:
   client:
     service-url:

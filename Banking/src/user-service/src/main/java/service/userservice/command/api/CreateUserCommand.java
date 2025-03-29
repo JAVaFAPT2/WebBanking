@@ -34,7 +34,7 @@ import static service.shared.util.BankingUtils.generateId;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CreateUserCommand extends BaseEntity {
+public class CreateUserCommand {
     @AggregateIdentifier
     private UUID id;
 

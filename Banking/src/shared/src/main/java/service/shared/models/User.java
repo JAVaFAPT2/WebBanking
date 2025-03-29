@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -14,7 +13,6 @@ import java.util.UUID;
 @Setter
 @ToString
 public class User extends BaseEntity {
-
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
@@ -45,11 +43,6 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private boolean credentialsNonExpired;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "user_accounts",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "account_id")
-    )
-    private Set<Account> accounts;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Account> accounts; // Ensure this is the only mapping for accounts
 }

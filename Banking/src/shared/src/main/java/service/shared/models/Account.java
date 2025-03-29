@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "accounts")
@@ -34,12 +33,9 @@ public class Account extends BaseEntity {
     private String ownerType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id") // Ensure this is the only mapping for user_id
     private User user;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Transaction> transactions;
-
-    @ManyToMany(mappedBy = "accounts")
-    private Set<User> users;
 }

@@ -1,0 +1,68 @@
+@startuml
+class UserServiceApplication {
+  +main(String[] args)
+}
+
+package command {
+  class CreateUserCommand {
+    +username: String
+    +password: String
+    +email: String
+  }
+  class UpdateUserCommand {
+    +userId: Long
+    +username: String
+    +email: String
+  }
+  class UserCommandHandler {
+    +handle(CreateUserCommand)
+    +handle(UpdateUserCommand)
+  }
+}
+
+package query {
+  class GetUserQuery {
+    +userId: Long
+  }
+  class UserQueryHandler {
+    +handle(GetUserQuery): UserReadModel
+  }
+}
+
+package model {
+  class UserWriteModel {
+    +id: Long
+    +username: String
+    +password: String
+    +email: String
+  }
+  class UserReadModel {
+    +id: Long
+    +username: String
+    +email: String
+  }
+}
+
+package repository {
+  interface UserWriteRepository {
+    +save(UserWriteModel)
+    +findById(Long): UserWriteModel
+  }
+}
+
+package event {
+  class UserEvent {
+    +type: String
+    +userId: Long
+  }
+  class UserEventPublisher {
+    +publish(UserEvent)
+  }
+}
+
+UserCommandHandler --> UserWriteRepository : uses
+UserCommandHandler --> UserEventPublisher : publishes
+UserQueryHandler --> UserWriteRepository : reads
+UserServiceApplication --> UserCommandHandler : initiates
+UserServiceApplication --> UserQueryHandler : initiates
+@enduml

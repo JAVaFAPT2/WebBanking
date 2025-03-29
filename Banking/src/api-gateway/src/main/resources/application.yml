@@ -8,8 +8,9 @@ logging:
 app:
   config:
     keycloak:
-      url: http://localhost:8571/
+      url: http://localhost:8982/
       realm: banking-service
+
 
 eureka:
   client:
@@ -35,6 +36,12 @@ spring:
           uri: lb://account-service
           predicates:
             - Path=/accounts/**
+        - id: user-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/user/**
+          filters:
+            - TokenRelay=your-keycloak-client-id
         - id: sequence-generator
           uri: lb://sequence-generator
           predicates:
@@ -68,7 +75,7 @@ spring:
             client-id: banking-service-client
             client-secret: R4GSxWcxPyW3QpNxqj4n1fPr9B2OezMb
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8571/login/oauth2/code/keycloak
+            redirect-uri: http://localhost:8982/login/oauth2/code/keycloak
             scope: openid
       resourceserver:
         jwt:

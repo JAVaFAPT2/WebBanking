@@ -10,7 +10,7 @@ package command {
     +email: String
   }
   class UpdateUserCommand {
-    +userId: Long
+    +userId: UUID
     +username: String
     +email: String
   }
@@ -22,7 +22,7 @@ package command {
 
 package query {
   class GetUserQuery {
-    +userId: Long
+    +userId: UUID
   }
   class UserQueryHandler {
     +handle(GetUserQuery): UserReadModel
@@ -31,13 +31,13 @@ package query {
 
 package model {
   class UserWriteModel {
-    +id: Long
+    +id: UUID
     +username: String
     +password: String
     +email: String
   }
   class UserReadModel {
-    +id: Long
+    +id: UUID
     +username: String
     +email: String
   }

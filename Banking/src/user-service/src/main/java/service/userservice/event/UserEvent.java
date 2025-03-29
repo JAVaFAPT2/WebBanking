@@ -8,12 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEvent extends BaseEntity {
+public class UserEvent {
     private String eventType;
     private UUID userId;
     private Instant timestamp = Instant.now();
+    private Map<String, Object> metadata;
 }
