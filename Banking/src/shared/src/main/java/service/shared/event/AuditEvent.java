@@ -2,7 +2,8 @@ package service.shared.event;
 
 import jakarta.persistence.*;
 import lombok.*;
-import service.auditservice.event.listener.AuditEventListener;
+import service.shared.listener.AuditEventListener;
+
 
 import java.time.LocalDateTime;
 import java.util.UUID;

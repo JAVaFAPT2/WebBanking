@@ -1,0 +1,27 @@
+web-banking-microservices/
+├── eureka-server/                   # Service Registry using Eureka
+├── api-gateway/                     # API Gateway (Spring Cloud Gateway)
+├── config-server/                   # Centralized configuration server
+├── orchestration-service/           # Orchestration service
+├── user-service/                    # User service
+├── account-service/                 # Account service
+├── fund-transfer-service/           # Fund transfer service
+├── transaction-service/             # Transaction service
+├── notification-service/            # Notification service
+├── shared/                          # Common models, events, utilities, etc.
+├── monitor-service/                 # Monitoring service
+├── security-service/                # Security service
+├── circuit-breaker-service/         # Circuit breaker service
+├── message-broker/                  # Message broker integration
+├── logging-service/                 # Centralized logging service
+├── audit-service/                   # Audit tracking service
+├── caching-service/                 # Caching service
+├── docker-compose.yml               # Compose file for all containers
+├── README.md
+├── pom.xml
+└── ci-cd/                           # CI/CD pipeline configuration
+    ├── jenkinsfile
+    ├── github-actions/
+    │   └── main.yml
+    └── circleci/
+        └── config.yml
