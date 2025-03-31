@@ -1,4 +1,4 @@
-package service.monitorservice.event.listener;
+package service.monitorservice.listener;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.context.event.EventListener;

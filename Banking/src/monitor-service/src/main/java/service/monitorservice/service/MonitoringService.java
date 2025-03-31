@@ -1,6 +1,6 @@
 package service.monitorservice.service;
 
-import service.monitorservice.model.Metrics;
+import service.shared.models.Metrics;
 
 public interface MonitoringService {
     Metrics collectMetrics();

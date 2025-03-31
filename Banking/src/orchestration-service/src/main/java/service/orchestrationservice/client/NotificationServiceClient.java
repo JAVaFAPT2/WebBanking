@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import service.orchestrationservice.model.NotificationRequest;
-import service.shared.models.Notification;
 
 import java.time.Duration;
 import java.util.Collections;

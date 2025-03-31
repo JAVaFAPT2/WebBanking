@@ -1,5 +1,6 @@
 package service.shared.event;
 
+import jakarta.persistence.EntityListeners;
 import lombok.*;
 import service.shared.models.Account;
 

@@ -1,5 +1,5 @@
 web-banking-microservices/
-├── eureka-server/                   # Service Registry using Eureka
+├── eureka-server/                   
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -11,10 +11,9 @@ web-banking-microservices/
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
-├── api-gateway/                     # API Gateway (Spring Cloud Gateway)
+├── api-gateway/                    
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -29,10 +28,9 @@ web-banking-microservices/
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
-├── config-server/                   # Centralized configuration server
+├── config-server/                  
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -52,8 +50,7 @@ web-banking-microservices/
 │   │   │           ├── fund-transfer-service.yml
 │   │   │           ├── transaction-service.yml
 │   │   │           └── notification-service.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── orchestration-service/
 │   ├── src/
@@ -88,8 +85,7 @@ web-banking-microservices/
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── user-service/
 │   ├── src/
@@ -127,8 +123,7 @@ web-banking-microservices/
 │   │   │       ├── application.yml
 │   │   │       ├── data.sql
 │   │   │       └── schema.sql
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── account-service/
 │   ├── src/
@@ -163,8 +158,7 @@ web-banking-microservices/
 │   │   │       ├── application.yml
 │   │   │       ├── data.sql
 │   │   │       └── schema.sql
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── fund-transfer-service/
 │   ├── src/
@@ -196,11 +190,10 @@ web-banking-microservices/
 │   │   │   │           └── config/
 │   │   │   │               └── TransferConfig.java
 │   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       ├── data.sql
-│   │   │       └── schema.sql
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │       ├── application.yml
+│   │       ├── data.sql
+│   │       └── schema.sql
+│   └── test/ … (test classes)
 │   └── Dockerfile
 ├── transaction-service/
 │   ├── src/
@@ -232,11 +225,10 @@ web-banking-microservices/
 │   │   │   │           └── config/
 │   │   │   │               └── TransactionConfig.java
 │   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       ├── data.cql
-│   │   │       └── schema.cql
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │       ├── application.yml
+│   │       ├── data.cql
+│   │       └── schema.cql
+│   └── test/ … (test classes)
 │   └── Dockerfile
 ├── notification-service/
 │   ├── src/
@@ -258,14 +250,15 @@ web-banking-microservices/
 │   │   │   │           ├── config/
 │   │   │   │           │   └── NotificationConfig.java
 │   │   │   │           └── event/
-│   │   │   │               └── listener/
-│   │   │   │                   └── NotificationEventListener.java
+│   │   │   │               ├── listener/
+│   │   │   │               │   └── NotificationEventListener.java
+│   │   │   │               └── publisher/
+│   │   │   │                   └── NotificationEventPublisher.java
 │   │   │   └── resources/
 │   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
-├── shared/                          # Common models, events, utilities, etc.
+├── shared/  (common models, utilities, etc.)
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -282,8 +275,7 @@ web-banking-microservices/
 │   │   │   │               └── BankingUtils.java
 │   │   │   └── resources/
 │   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── pom.xml
 ├── monitor-service/
 │   ├── src/
@@ -314,8 +306,7 @@ web-banking-microservices/
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── security-service/
 │   ├── src/
@@ -348,8 +339,7 @@ web-banking-microservices/
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── circuit-breaker-service/
 │   ├── src/
@@ -374,8 +364,7 @@ web-banking-microservices/
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── message-broker/
 │   ├── src/
@@ -393,8 +382,7 @@ web-banking-microservices/
 │   │   │   └── resources/
 │   │   │       ├── application.yml
 │   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── logging-service/
 │   ├── src/
@@ -413,8 +401,7 @@ web-banking-microservices/
 │   │   │   │               └── LogRepository.java
 │   │   │   └── resources/
 │   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── audit-service/
 │   ├── src/
@@ -433,8 +420,7 @@ web-banking-microservices/
 │   │   │   │               └── AuditRepository.java
 │   │   │   └── resources/
 │   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── caching-service/
 │   ├── src/
@@ -451,8 +437,7 @@ web-banking-microservices/
 │   │   │   │               └── CacheRepository.java
 │   │   │   └── resources/
 │   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── test/ … (test classes)
 │   └── Dockerfile
 ├── docker-compose.yml
 ├── README.md

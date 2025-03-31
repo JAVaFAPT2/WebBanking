@@ -5,11 +5,9 @@ package service.monitorservice.service.impl;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import service.monitorservice.model.Metrics;
+import service.shared.models.Metrics;
 
 import service.monitorservice.service.MonitoringService;
-
-import java.time.Instant;
 
 @Service
 public class MonitoringServiceImpl implements MonitoringService {

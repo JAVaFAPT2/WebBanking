@@ -2,7 +2,8 @@ package service.shared.event;
 
 import jakarta.persistence.*;
 import lombok.*;
-import service.shared.listener.AuditEventListener;
+import org.springframework.context.event.EventListener;
+import service.auditservice.listener.AuditEventListener;
 
 
 import java.time.LocalDateTime;
@@ -12,13 +13,12 @@ import java.util.UUID;
  * Entity representing an audit event.
  */
 @Entity
-@Table(name = "audit_events")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@EntityListeners(AuditEventListener.class)
+@EventListener(AuditEventListener.class)
 public class AuditEvent {
 
     @Id

@@ -18,7 +18,13 @@
         <option value="$PROJECT_DIR$/Banking/src/caching-service/pom.xml" />
         <option value="$PROJECT_DIR$/Banking/src/audit-service/pom.xml" />
         <option value="$PROJECT_DIR$/Banking/src/notification-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Banking/src/common/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Banking/src/common/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_24" project-jdk-name="openjdk-21 (2)" project-jdk-type="JavaSDK" />

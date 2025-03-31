@@ -1,4 +1,4 @@
-package service.monitorservice.model;
+package service.shared.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,26 +1,37 @@
 package service.shared.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Entity
+@Table(name = "notifications")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "notification")
+@ToString
+@Builder
 public class Notification extends BaseEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID userId;
+    @GeneratedValue
+    private UUID id = UUID.randomUUID();
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false, length = 1024)
     private String message;
-    private String type;
-    @Column(name = "read_flag", nullable = false)
-    private boolean read;
-    private java.time.Instant createdAt;
+
+    @Column(nullable = false)
+    private String recipientId; // User ID of the recipient
+
+    @Column(nullable = false)
+    private LocalDateTime timestamp;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private NotificationStatus status;
 }

@@ -19,18 +19,14 @@ import java.util.UUID;
 public abstract class BaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue
+    private UUID id = UUID.randomUUID();
 
     @Column(nullable = false, updatable = false)
     private Instant createdDate = Instant.now();
 
     @Column(nullable = false)
     private LocalDateTime lastModifiedDate;
-
-    public BaseEntity(UUID id) {
-    }
-
 
     @PreUpdate
     protected void onUpdate() {

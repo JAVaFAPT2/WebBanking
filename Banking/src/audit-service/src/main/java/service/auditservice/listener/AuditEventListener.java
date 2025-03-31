@@ -1,4 +1,4 @@
-package service.shared.listener;
+package service.auditservice.listener;
 
 import jakarta.persistence.PrePersist;
 import service.shared.event.AuditEvent;
