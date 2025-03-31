@@ -1,11 +1,11 @@
 package service.auditservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import service.auditservice.service.AuditService;
-import service.shared.event.AuditEvent;
-
+import service.auditservice.event.AuditEvenEx;
+import service.auditservice.service.Impl.AuditServiceImpl;
+import service.shared.models.ApiResponse;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class AuditController {
 
     @Autowired
-    private AuditService auditService;
+    private AuditServiceImpl auditService;
 
     /**
      * Endpoint to record an audit event.
@@ -26,9 +26,10 @@ public class AuditController {
      * @return The saved audit event.
      */
     @PostMapping("/log")
-    public ResponseEntity<AuditEvent> logAuditEvent(@RequestBody AuditEvent auditEvent) {
-        AuditEvent savedEvent = auditService.logEvent(auditEvent);
-        return ResponseEntity.ok(savedEvent);
+    public ApiResponse<AuditEvenEx> logAuditEvent(@RequestBody AuditEvenEx auditEvent) {
+    AuditEvenEx savedEvent = auditService.logEvent(auditEvent);
+    return new ApiResponse<>(true, savedEvent, "Audit event logged successfully", HttpStatus.OK);
+
     }
 
     /**
@@ -37,8 +38,8 @@ public class AuditController {
      * @return A list of audit events.
      */
     @GetMapping("/logs")
-    public ResponseEntity<List<AuditEvent>> getAuditLogs() {
-        List<AuditEvent> logs = auditService.getAllEvents();
-        return ResponseEntity.ok(logs);
+    public ApiResponse<List<AuditEvenEx>> getAuditLogs() {
+        List<AuditEvenEx> logs = auditService.getAllEvents();
+        return new ApiResponse<>(true, logs, "Audit logs retrieved successfully", HttpStatus.OK);
     }
 }

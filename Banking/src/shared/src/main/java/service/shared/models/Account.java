@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EntityListeners(AccountEventListener.class)
 public class Account extends BaseEntity {
     @Column(nullable = false, unique = true, length = 20)
     private String accountNumber;

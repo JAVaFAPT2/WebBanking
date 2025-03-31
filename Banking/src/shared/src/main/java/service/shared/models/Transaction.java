@@ -14,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EntityListeners(TransactionEventListener.class)
 public class Transaction extends BaseEntity {
     @Column(nullable = false)
     private String transactionType;

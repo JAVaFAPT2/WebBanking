@@ -13,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
+@EntityListeners(LogEventListener.class)
 public class Log {
     @Id
     private UUID id = UUID.randomUUID();

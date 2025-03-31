@@ -4,7 +4,8 @@ package service.notificationservice.listener;
 import jakarta.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.shared.models.Notification;
+import service.notificationservice.entity.NotificationEntity;
+
 
 import java.time.LocalDateTime;
 
@@ -17,7 +18,7 @@ public class NotificationEventListener {
     private static final Logger logger = LoggerFactory.getLogger(NotificationEventListener.class);
 
     @PrePersist
-    public void prePersist(Notification notification) {
+    public void prePersist(NotificationEntity notification) {
         // Automatically set the timestamp if not set
         if (notification.getTimestamp() == null) {
             notification.setTimestamp(LocalDateTime.now());
@@ -28,62 +29,55 @@ public class NotificationEventListener {
     }
 
     @PostPersist
-    public void postPersist(Notification notification) {
+    public void postPersist(NotificationEntity notification) {
         // Logic after the notification is persisted
         logger.info("Notification persisted with ID: {}", notification.getId());
-
-        // Example: Send a message to a message broker (e.g., Kafka)
-        // sendMessageToBroker(notification);
+         sendMessageToBroker(notification);
     }
 
     @PreUpdate
-    public void preUpdate(Notification notification) {
+    public void preUpdate(NotificationEntity notification) {
         // Logic before the notification is updated
         logger.info("Notification with ID {} is about to be updated", notification.getId());
-
-        // Example: Update the timestamp when the notification is updated
         notification.setTimestamp(LocalDateTime.now());
     }
 
     @PostUpdate
-    public void postUpdate(Notification notification) {
+    public void postUpdate(NotificationEntity notification) {
         // Logic after the notification is updated
         logger.info("Notification with ID {} has been updated", notification.getId());
 
-        // Example: Trigger an external service call
-        // triggerExternalService(notification);
+
+        triggerExternalService(notification);
     }
 
     @PreRemove
-    public void preRemove(Notification notification) {
+    public void preRemove(NotificationEntity notification) {
         // Logic before the notification is removed
         logger.info("Notification with ID {} is about to be removed", notification.getId());
-
-        // Example: Archive the notification before deletion
-        // archiveNotification(notification);
+        archiveNotification(notification);
     }
 
     @PostRemove
-    public void postRemove(Notification notification) {
+    public void postRemove(NotificationEntity notification) {
         // Logic after the notification is removed
         logger.info("Notification with ID {} has been removed", notification.getId());
     }
 
     // Example method to send a message to a message broker
-    private void sendMessageToBroker(Notification notification) {
+    private void sendMessageToBroker(NotificationEntity notification) {
         // Implementation for sending a message to a message broker
         logger.info("Sending notification to message broker: {}", notification.getMessage());
     }
 
     // Example method to trigger an external service
-    private void triggerExternalService(Notification notification) {
-        // Implementation for triggering an external service
+    private void triggerExternalService(NotificationEntity notification) {
         logger.info("Triggering external service for notification: {}", notification.getId());
     }
 
     // Example method to archive a notification
-    private void archiveNotification(Notification notification) {
-        // Implementation for archiving a notification
+    private void archiveNotification(NotificationEntity notification) {
+
         logger.info("Archiving notification: {}", notification.getId());
     }
 }
