@@ -1,8 +1,0 @@
-@startuml
-[*] --> Initiated
-Initiated --> Pending : Start Transfer
-Pending --> Completed : Transfer Successful
-Pending --> Failed : Transfer Failed
-Completed --> [*]
-Failed --> [*]
-@enduml
