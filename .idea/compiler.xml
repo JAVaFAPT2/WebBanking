@@ -7,37 +7,28 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="config-server" />
         <module name="shared" />
         <module name="circuit-breaker-service" />
+        <module name="audit-service" />
         <module name="Banking" />
-        <module name="api-gateway" />
         <module name="monitor-service" />
-        <module name="orchestration-service" />
         <module name="eureka-server" />
-      </profile>
-      <profile name="Annotation profile for caching-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-        </processorPath>
+        <module name="logging-service" />
+        <module name="notification-service" />
         <module name="caching-service" />
+        <module name="config-server" />
+        <module name="api-gateway" />
+        <module name="orchestration-service" />
+        <module name="account-service" />
       </profile>
-      <profile name="Annotation profile for notification-service" enabled="true">
+      <profile name="Annotation profile for user-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="user-service" />
-        <module name="account-service" />
-        <module name="audit-service" />
-        <module name="notification-service" />
-        <module name="logging-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

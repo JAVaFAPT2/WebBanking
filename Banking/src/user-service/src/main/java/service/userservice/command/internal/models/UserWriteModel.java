@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.axonframework.commandhandling.model.AggregateRoot;
 import service.shared.models.Account;
 import service.shared.models.BaseEntity;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@AggregateRoot
 @Getter
 @Setter
 @AllArgsConstructor

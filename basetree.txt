@@ -1,8 +1,8 @@
 web-banking-microservices/
-├── eureka-server/                   # Service Registry using Eureka
+├── eureka-server/                   # Service Registry using Eureka// try to up to ZooKeeper
 ├── api-gateway/                     # API Gateway (Spring Cloud Gateway)
-├── config-server/                   # Centralized configuration server
-├── orchestration-service/           # Orchestration service
+├── config-server/                   # Centralized configuration server//using Spring Cloud Vault to handel
+├── orchestration-service/           # Orchestration service ?? handle the flow of the system
 ├── user-service/                    # User service
 ├── account-service/                 # Account service
 ├── fund-transfer-service/           # Fund transfer service
@@ -11,17 +11,26 @@ web-banking-microservices/
 ├── shared/                          # Common models, events, utilities, etc.
 ├── monitor-service/                 # Monitoring service
 ├── security-service/                # Security service
-├── circuit-breaker-service/         # Circuit breaker service
-├── message-broker/                  # Message broker integration
-├── logging-service/                 # Centralized logging service
-├── audit-service/                   # Audit tracking service
+├── circuit-breaker-service/         # Circuit breaker service//this is wrong
+├── message-broker/                  # Message broker integration //Kafka
+├── logging-service/                 # Centralized logging service//rm this to intergrade in mornitor
+├── audit-service/                   # Audit tracking service//rm this to intergrade in mornitor
 ├── caching-service/                 # Caching service
 ├── docker-compose.yml               # Compose file for all containers
 ├── README.md
 ├── pom.xml
-└── ci-cd/                           # CI/CD pipeline configuration
+└── ci-cd/                           # CI/CD pipeline configuration ?? maybe rm cause we use github actions(solo)
     ├── jenkinsfile
     ├── github-actions/
     │   └── main.yml
     └── circleci/
         └── config.yml
+
+note : update the diagram to reflect the new structure
+      _-> remove the circuit-breaker-service
+      _-> remove the logging-service
+      _-> remove the audit-service
+        _-> remove the ci-cd folder
+        _-> update the config-server to use Spring Cloud Config Server
+        _-> update the orchestration-service to use Spring Cloud Data Flow
+        _-> update the Controller to use gRPC instead of REST
