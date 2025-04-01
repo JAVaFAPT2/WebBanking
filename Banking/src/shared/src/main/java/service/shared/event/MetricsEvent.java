@@ -4,12 +4,8 @@ import lombok.*;
 
 import java.time.Instant;
 
-@AllArgsConstructor
-@ToString
-@Getter
-@Setter
-public class MetricsEvent {
-    private final String eventType;
-    private final Instant timestamp;
-    private final double value; // This can represent a metric value if needed
+/**
+ * @param value This can represent a metric value if needed
+ */
+public record MetricsEvent(String eventType, Instant timestamp, double value) {
 }

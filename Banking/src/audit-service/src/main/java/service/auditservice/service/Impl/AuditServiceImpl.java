@@ -22,8 +22,8 @@ public class AuditServiceImpl implements AuditService {
     @Override
     public AuditEvenEx logEvent(AuditEvenEx auditEvent) {
         // Set a timestamp if not already provided
-        if (auditEvent.getTimestamp() == null) {
-            auditEvent.setTimestamp(LocalDateTime.now());
+        if (auditEvent.getEventTimestamp() == null) {
+           auditEvent.setEventTimestamp(LocalDateTime.now());
         }
         return auditRepository.save(auditEvent);
     }

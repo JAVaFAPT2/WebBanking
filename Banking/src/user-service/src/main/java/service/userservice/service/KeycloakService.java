@@ -39,6 +39,7 @@ public class KeycloakService {
         keycloak.realm("banking-service").users().delete(userId);
     }
 
+
     public UserRepresentation getUserById(String userId) {
         return keycloak.realm("banking-service").users().get(userId).toRepresentation();
     }

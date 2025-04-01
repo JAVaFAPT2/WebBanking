@@ -6,6 +6,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+
+
 @Entity
 @Table(name = "logs")
 @Data
@@ -13,7 +15,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@EntityListeners(LogEventListener.class)
 public class Log {
     @Id
     private UUID id = UUID.randomUUID();

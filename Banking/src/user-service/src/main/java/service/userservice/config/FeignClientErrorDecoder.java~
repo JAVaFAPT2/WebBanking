@@ -5,10 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
-
+import service.userservice.exception.GlobalException;
 import org.apache.commons.io.IOUtils;
-import service.shared.exception.BankingException;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
@@ -27,7 +25,7 @@ public class FeignClientErrorDecoder implements ErrorDecoder {
     @Override
     public Exception decode(String s, Response response) {
 
-        BankingException globalException = extractGlobalException(response);
+        GlobalException globalException = extractGlobalException(response);
 
         switch (response.status()) {
             case 400 -> {
@@ -47,9 +45,9 @@ public class FeignClientErrorDecoder implements ErrorDecoder {
      * @param response The Response object from which to extract the GlobalException.
      * @return The extracted GlobalException object, or null if extraction fails.
      */
-    private BankingException extractGlobalException(Response response) {
+    private GlobalException extractGlobalException(Response response) {
 
-        BankingException globalException = null;
+        GlobalException globalException = null;
         Reader reader = null;
 
         try {
@@ -58,7 +56,7 @@ public class FeignClientErrorDecoder implements ErrorDecoder {
             log.error(result);
             ObjectMapper mapper = new ObjectMapper();
             mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-            globalException = mapper.readValue(result, BankingException.class);
+            globalException = mapper.readValue(result, GlobalException.class);
             log.error(globalException.toString());
         } catch (IOException e) {
             log.error("IO Exception while reading exception message", e);

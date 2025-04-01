@@ -1,32 +1,31 @@
 package service.shared.event;
 
-import jakarta.persistence.*;
+
 import lombok.*;
+import org.springframework.context.ApplicationEvent;
 import java.time.LocalDateTime;
 import java.util.UUID;
+
 
 /**
  * Entity representing an audit event.
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
-public class AuditEvent {
+public class AuditEvent extends ApplicationEvent {
+    private final UUID id = UUID.randomUUID();
+    private final String message;
+    private final String details;
+    protected LocalDateTime eventTimestamp;
 
-    @Id
-    private UUID id ;
 
-    @Column(nullable = false)
-    private String level;
+    public AuditEvent(Object source, String message, String details) {
+        super(source);
+        this.message = message;
+        this.details = details;
+        this.eventTimestamp = LocalDateTime.now();
+    }
 
-    @Column(nullable = false, length = 1024)
-    private String message;
 
-    @Column(nullable = false)
-    private LocalDateTime timestamp;
-
-    @Column
-    private String serviceName;
 }

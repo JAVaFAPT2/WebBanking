@@ -23,7 +23,7 @@ public class MetricsEventListener {
     @EventListener
     public void onMetricsEvent(MetricsEvent event) {
         // Example: increment a counter using the event's type as a tag
-        meterRegistry.counter("app.metrics.events", "eventType", event.getEventType()).increment();
+        meterRegistry.counter("app.metrics.events", "eventType", event.eventType()).increment();
 
         // You can add additional processing for different event types if needed.
         System.out.println("Processed MetricsEvent: " + event);

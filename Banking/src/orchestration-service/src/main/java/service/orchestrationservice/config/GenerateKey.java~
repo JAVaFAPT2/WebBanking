@@ -1,4 +1,0 @@
-package service.orchestrationservice.config;
-
-public class GenerateKey {
-}

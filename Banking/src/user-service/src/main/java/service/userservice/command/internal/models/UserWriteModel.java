@@ -12,7 +12,7 @@ import service.shared.models.BaseEntity;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
+
 @Getter
 @Setter
 @AllArgsConstructor

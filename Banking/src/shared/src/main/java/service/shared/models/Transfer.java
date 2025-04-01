@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
-@EntityListeners(TransferEventListener.class)
+//@EntityListeners(TransferEventListener.class)
 public class Transfer extends BaseEntity {
 
     @Column(nullable = false, precision = 19, scale = 2)

@@ -2,10 +2,10 @@ package service.loggingservice.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import service.loggingservice.entity.LogEntity;
 import service.loggingservice.repository.LogRepository;
-import service.shared.models.Log;
+
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -27,13 +27,13 @@ public class LoggingService {
      * @param message the log message
      * @return the saved Log entity
      */
-    public Log logInfo(String message) {
-        Log log = new Log();
+    public LogEntity logInfo(String message) {
+        LogEntity log = new LogEntity();
         log.setLevel("INFO");
         log.setMessage(message);
         log.setTimestamp(LocalDateTime.now());
         // Save the log record to the database
-        Log savedLog = logRepository.save(log);
+        LogEntity savedLog = logRepository.save(log);
         // Log to the console using SLF4J
         logger.info(message);
         return savedLog;
@@ -45,13 +45,13 @@ public class LoggingService {
      * @param message the log message
      * @return the saved Log entity
      */
-    public Log logError(String message) {
-        Log log = new Log();
+    public LogEntity logError(String message) {
+        LogEntity log = new LogEntity();
         log.setLevel("ERROR");
         log.setMessage(message);
         log.setTimestamp(LocalDateTime.now());
         // Save the log record to the database
-        Log savedLog = logRepository.save(log);
+        LogEntity savedLog = logRepository.save(log);
         // Log to the console using SLF4J
         logger.error(message);
         return savedLog;
@@ -63,7 +63,7 @@ public class LoggingService {
      * @param id the UUID of the log entry
      * @return the Log entity if found, otherwise null
      */
-    public Log getLog(UUID id) {
+    public LogEntity getLog(UUID id) {
         return logRepository.findById(id).orElse(null);
     }
 
@@ -73,8 +73,8 @@ public class LoggingService {
      * @param timestamp the timestamp to search for
      * @return the Log entity if found, otherwise null
      */
-    public Log getLogByDate(LocalDateTime timestamp) {
-        Optional<Log> logOpt = logRepository.findByTimestamp(timestamp);
+    public LogEntity getLogByDate(LocalDateTime timestamp) {
+        Optional<LogEntity> logOpt = logRepository.findByTimestamp(timestamp);
         return logOpt.orElse(null);
     }
 }

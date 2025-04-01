@@ -2,14 +2,22 @@ spring:
   application:
     name: notification-service
   config:
-    import: configserver:http://localhost:8888
+    import: "optional:configserver:http://localhost:8888"
   cloud:
     config:
+      uri: http://localhost:8888
+      fail-fast: true
+      profile: dev
+      label: main
       enabled: true
       discovery:
         enabled: false
         service-id: config-server
-      profile: dev
-      label: main
-  main:
-    allow-bean-definition-overriding: true
+
+server:
+  port: 8040
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
