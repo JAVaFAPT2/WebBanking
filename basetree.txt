@@ -34,3 +34,5 @@ note : update the diagram to reflect the new structure
         _-> update the config-server to use Spring Cloud Config Server
         _-> update the orchestration-service to use Spring Cloud Data Flow
         _-> update the Controller to use gRPC instead of REST
+        _-> maybe keep Orchestration to use Mixing Choreography and Orchestration
+https://pretius.com/blog/keycloak-angular-integration/

@@ -15,7 +15,6 @@ public class OrchestrationStreamConfig {
 
     @Bean
     public Supplier<Message<String>> orchestrationSupplier() {
-        // Here you generate or fetch the message payload as needed
         return () -> MessageBuilder.withPayload("Orchestration Event")
                 .build();
     }
