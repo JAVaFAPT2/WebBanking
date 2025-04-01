@@ -35,4 +35,7 @@ note : update the diagram to reflect the new structure
         _-> update the orchestration-service to use Spring Cloud Data Flow
         _-> update the Controller to use gRPC instead of REST
         _-> maybe keep Orchestration to use Mixing Choreography and Orchestration
+        _-> let C# handle the Business Logic of the services
+        _-> let Java handle the Orchestration and the API Gateway(using Choreography )
+        _-> let Python handle the Monitoring and the Analysis of the system
 https://pretius.com/blog/keycloak-angular-integration/
