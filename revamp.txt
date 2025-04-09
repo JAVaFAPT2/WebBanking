@@ -1,61 +1,48 @@
 web-banking-microservices/
-├── eureka-server/                   # Service Registry using Eureka
+├── zookeeper-server/                # Service Registry using ZooKeeper (or external cluster)
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── eureka/
-│   │   │   │           ├── EurekaServerApplication.java
-│   │   │   │           └── config/
-│   │   │   │               └── EurekaServerConfig.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── zookeeper/
+│   │   │               ├── ZookeeperServerApplication.java
+│   │   │               └── config/
+│   │   │                   └── ZookeeperConfig.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── bootstrap.yml
 │   └── Dockerfile
-├── api-gateway/                     # API Gateway (Spring Cloud Gateway)
+│
+├── api-gateway/                     # API Gateway with Authentication & Rate Limiting
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── apigateway/
-│   │   │   │           ├── ApiGatewayApplication.java
-│   │   │   │           ├── config/
-│   │   │   │           │   └── GatewayConfig.java
-│   │   │   │           └── filter/
-│   │   │   │               ├── AuthFilter.java
-│   │   │   │               └── RateLimitingFilter.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── apigateway/
+│   │   │               ├── ApiGatewayApplication.java
+│   │   │               ├── config/
+│   │   │               │   └── GatewayConfig.java
+│   │   │               └── filter/
+│   │   │                   ├── AuthFilter.java
+│   │   │                   └── RateLimitingFilter.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── bootstrap.yml
 │   └── Dockerfile
-├── config-server/                   # Centralized configuration server
+│
+├── config-server/                   # Centralized Configuration & Secrets Management
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── configserver/
-│   │   │   │           └── ConfigServerApplication.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── bootstrap.yml
-│   │   │       └── config/
-│   │   │           ├── application.yml
-│   │   │           ├── eureka-server.yml
-│   │   │           ├── api-gateway.yml
-│   │   │           ├── orchestration-service.yml
-│   │   │           ├── user-service.yml
-│   │   │           ├── account-service.yml
-│   │   │           ├── fund-transfer-service.yml
-│   │   │           ├── transaction-service.yml
-│   │   │           └── notification-service.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── configserver/
+│   │   │               └── ConfigServerApplication.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── bootstrap.yml
 │   └── Dockerfile
-├── orchestration-service/
+│
+├── orchestration-service/           # Workflow Orchestration & gRPC Communication
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -63,403 +50,154 @@ web-banking-microservices/
 │   │   │   │       └── orchestration/
 │   │   │   │           ├── OrchestrationServiceApplication.java
 │   │   │   │           ├── config/
-│   │   │   │           │   ├── OrchestrationConfig.java
+│   │   │   │           │   ├── OrchestrationConfig.java      # Data Flow integration settings
 │   │   │   │           │   └── SecurityConfig.java
-│   │   │   │           │   └── JwtAuthenticationFilter.java
-│   │   │   │           ├── client/
-│   │   │   │           │   ├── UserServiceClient.java
-│   │   │   │           │   ├── AccountServiceClient.java
-│   │   │   │           │   ├── FundTransferServiceClient.java
-│   │   │   │           │   ├── TransactionServiceClient.java
-│   │   │   │           │   └── NotificationServiceClient.java
-│   │   │   │           ├── controller/
-│   │   │   │           │   └── OrchestrationController.java
-│   │   │   │           ├── event/
-│   │   │   │           │   └── OrchestrationStatus.java
-│   │   │   │           ├── workflow/
+│   │   │   │           ├── grpc/                              # gRPC-based controllers
+│   │   │   │           │   └── OrchestrationGrpcController.java
+│   │   │   │           ├── workflow/                          # Orchestration logic
 │   │   │   │           │   └── SagaOrchestrator.java
-│   │   │   │           ├── messaging/
-│   │   │   │           │   └── OrchestrationStreamConfig.java
-│   │   │   │           └── model/
-│   │   │   │               ├── TransferRequest.java
-│   │   │   │               ├── TransactionRequest.java
-│   │   │   │               ├── NotificationRequest.java
-│   │   │   │               └── OrchestrationResponse.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
-│   └── Dockerfile
-├── user-service/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── userservice/
-│   │   │   │           ├── UserServiceApplication.java
-│   │   │   │           ├── command/
-│   │   │   │           │   ├── api/
-│   │   │   │           │   │   ├── CreateUserCommand.java
-│   │   │   │           │   │   └── UpdateUserCommand.java
-│   │   │   │           │   └── internal/
-│   │   │   │           │       ├── UserCommandHandler.java
-│   │   │   │           │       └── model/
-│   │   │   │           │           └── UserWriteModel.java
-│   │   │   │           ├── query/
-│   │   │   │           │   ├── api/
-│   │   │   │           │   │   └── GetUserQuery.java
-│   │   │   │           │   └── internal/
-│   │   │   │           │       ├── UserQueryHandler.java
-│   │   │   │           │       └── model/
-│   │   │   │           │           └── UserReadModel.java
-│   │   │   │           ├── event/
-│   │   │   │           │   └── UserEventPublisher.java
-│   │   │   │           ├── repository/
-│   │   │   │           │   ├── UserWriteRepository.java
-│   │   │   │           │   └── UserReadRepository.java
-│   │   │   │           ├── security/
-│   │   │   │           │   ├── UserrDetailsService.java
-│   │   │   │           │   └── SecurityConfig.java
-│   │   │   │           └── config/
-│   │   │   │               └── UserConfig.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       ├── data.sql
-│   │   │       └── schema.sql
-│   │   └── test/
-│   │       └── ... (test classes)
-│   └── Dockerfile
-├── account-service/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── accountsservice/
-│   │   │   │           ├── AccountServiceApplication.java
-│   │   │   │           ├── command/
-│   │   │   │           │   ├── api/
-│   │   │   │           │   │   ├── CreateAccountCommand.java
-│   │   │   │           │   │   └── UpdateAccountCommand.java
-│   │   │   │           │   └── internal/
-│   │   │   │           │       ├── AccountCommandHandler.java
-│   │   │   │           │       └── model/
-│   │   │   │           │           └── AccountWriteModel.java
-│   │   │   │           ├── query/
-│   │   │   │           │   ├── api/
-│   │   │   │           │   │   └── GetAccountQuery.java
-│   │   │   │           │   └── internal/
-│   │   │   │           │       ├── AccountQueryHandler.java
-│   │   │   │           │       └── model/
-│   │   │   │           │           └── AccountReadModel.java
-│   │   │   │           ├── event/
-│   │   │   │           │   └── AccountEventPublisher.java
-│   │   │   │           ├── repository/
-│   │   │   │           │   ├── AccountWriteRepository.java
-│   │   │   │           │   └── AccountReadRepository.java
-│   │   │   │           └── config/
-│   │   │   │               └── AccountConfig.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       ├── data.sql
-│   │   │       └── schema.sql
-│   │   └── test/
-│   │       └── ... (test classes)
-│   └── Dockerfile
-├── fund-transfer-service/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── fundtransferservice/
-│   │   │   │           ├── FundTransferServiceApplication.java
-│   │   │   │           ├── command/
-│   │   │   │           │   ├── api/
-│   │   │   │           │   │   ├── InitiateTransferCommand.java
-│   │   │   │           │   │   └── UpdateTransferCommand.java
-│   │   │   │           │   └── internal/
-│   │   │   │           │       ├── TransferCommandHandler.java
-│   │   │   │           │       └── model/
-│   │   │   │           │           └── TransferWriteModel.java
-│   │   │   │           ├── query/
-│   │   │   │           │   ├── api/
-│   │   │   │           │   │   └── GetTransferQuery.java
-│   │   │   │           │   └── internal/
-│   │   │   │           │       ├── TransferQueryHandler.java
-│   │   │   │           │       └── model/
-│   │   │   │           │           └── TransferReadModel.java
-│   │   │   │           ├── event/
-│   │   │   │           │   └── TransferEventPublisher.java
-│   │   │   │           ├── repository/
-│   │   │   │           │   ├── TransferWriteRepository.java
-│   │   │   │           │   └── TransferReadRepository.java
-│   │   │   │           └── config/
-│   │   │   │               └── TransferConfig.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       ├── data.sql
-│   │   │       └── schema.sql
-│   │   └── test/
-│   │       └── ... (test classes)
-│   └── Dockerfile
-├── transaction-service/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── transactionservice/
-│   │   │   │           ├── TransactionServiceApplication.java
-│   │   │   │           ├── command/
-│   │   │   │           │   ├── api/
-│   │   │   │           │   │   ├── RecordTransactionCommand.java
-│   │   │   │           │   │   └── UpdateTransactionCommand.java
-│   │   │   │           │   └── internal/
-│   │   │   │           │       ├── TransactionCommandHandler.java
-│   │   │   │           │       └── model/
-│   │   │   │           │           └── TransactionWriteModel.java
-│   │   │   │           ├── query/
-│   │   │   │           │   ├── api/
-│   │   │   │           │   │   └── GetTransactionsQuery.java
-│   │   │   │           │   └── internal/
-│   │   │   │           │       ├── TransactionQueryHandler.java
-│   │   │   │           │       └── model/
-│   │   │   │           │           └── TransactionReadModel.java
-│   │   │   │           ├── event/
-│   │   │   │           │   └── TransactionEventPublisher.java
-│   │   │   │           ├── repository/
-│   │   │   │           │   ├── TransactionWriteRepository.java
-│   │   │   │           │   └── TransactionReadRepository.java
-│   │   │   │           └── config/
-│   │   │   │               └── TransactionConfig.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       ├── data.cql
-│   │   │       └── schema.cql
-│   │   └── test/
-│   │       └── ... (test classes)
-│   └── Dockerfile
-├── notification-service/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── notificationservice/
-│   │   │   │           ├── NotificationServiceApplication.java
-│   │   │   │           ├── controller/
-│   │   │   │           │   └── NotificationController.java
-│   │   │   │           ├── service/
-│   │   │   │           │   ├── NotificationService.java
-│   │   │   │           │   └── impl/
-│   │   │   │           │       └── NotificationServiceImpl.java
-│   │   │   │           ├── repository/
-│   │   │   │           │   └── NotificationRepository.java
-│   │   │   │           ├── model/
-│   │   │   │           │   └── Notification.java
-│   │   │   │           ├── config/
-│   │   │   │           │   └── NotificationConfig.java
-│   │   │   │           └── event/
-│   │   │   │               └── listener/
-│   │   │   │                   └── NotificationEventListener.java
+│   │   │   │           └── client/                            # Service clients
 │   │   │   └── resources/
 │   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
 │   └── Dockerfile
-├── shared/                          # Common models, events, utilities, etc.
+│
+├── CSharp-Business-Services/
+│   ├── UserService/
+│   │   ├── UserService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── UserController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── User.cs
+│   │   │   ├── Services/
+│   │   │   │   └── UserService.cs
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   └── Dockerfile
+│   │
+│   ├── AccountService/
+│   │   ├── AccountService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── AccountController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── Account.cs
+│   │   │   ├── Services/
+│   │   │   │   └── AccountService.cs
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   └── Dockerfile
+│   │
+│   ├── FundTransferService/
+│   │   ├── FundTransferService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── FundTransferController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── FundTransfer.cs
+│   │   │   ├── Services/
+│   │   │   │   └── FundTransferService.cs
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   └── Dockerfile
+│   │
+│   ├── TransactionService/
+│   │   ├── TransactionService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── TransactionController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── Transaction.cs
+│   │   │   ├── Services/
+│   │   │   │   └── TransactionService.cs
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   └── Dockerfile
+│   │
+│   ├── NotificationService/
+│   │   ├── NotificationService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── NotificationController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── Notification.cs
+│   │   │   ├── Services/
+│   │   │   │   └── NotificationService.cs
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   └── Dockerfile
+│   │
+│   └── Shared/
+│       ├── Shared.sln
+│       ├── src/
+│       │   ├── Models/
+│       │   │   ├── CommonModel.cs
+│       │   │   └── ... (other shared models)
+│       │   └── Utilities/
+│       │       └── BankingUtils.cs
+│       └── Shared.csproj
+│
+├── shared/                          # Shared models, events, and utilities
 │   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── shared/
-│   │   │   │           ├── model/
-│   │   │   │           │   ├── User.java
-│   │   │   │           │   ├── Account.java
-│   │   │   │           │   ├── Transfer.java
-│   │   │   │           │   └── Transaction.java
-│   │   │   │           ├── exception/
-│   │   │   │           │   └── BankingException.java
-│   │   │   │           └── util/
-│   │   │   │               └── BankingUtils.java
-│   │   │   └── resources/
-│   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   └── ... 
 │   └── pom.xml
-├── monitor-service/
+│
+├── monitor-service/                 # Centralized Monitoring & Logging
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── monitor/
-│   │   │   │           ├── MonitorServiceApplication.java
-│   │   │   │           ├── config/
-│   │   │   │           │   └── MonitorConfig.java
-│   │   │   │           ├── controller/
-│   │   │   │           │   ├── HealthCheckController.java
-│   │   │   │           │   └── MetricsController.java
-│   │   │   │           ├── service/
-│   │   │   │           │   ├── MonitoringService.java
-│   │   │   │           │   └── impl/
-│   │   │   │           │       └── MonitoringServiceImpl.java
-│   │   │   │           ├── repository/
-│   │   │   │           │   └── MetricsRepository.java
-│   │   │   │           ├── model/
-│   │   │   │           │   └── Metrics.java
-│   │   │   │           ├── event/
-│   │   │   │           │   └── listener/
-│   │   │   │           │       └── MetricsEventListener.java
-│   │   │   │           └── security/
-│   │   │   │               ├── MonitorSecurityConfig.java
-│   │   │   │               └── MonitorUserDetailsService.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── monitor/
+│   │   │               ├── MonitorServiceApplication.java
+│   │   │               ├── config/
+│   │   │               │   └── MonitorConfig.java
+│   │   │               ├── controller/
+│   │   │               │   ├── HealthCheckController.java
+│   │   │               │   └── MetricsController.java
+│   │   │               ├── service/
+│   │   │               │   └── MonitoringServiceImpl.java
+│   │   │               └── repository/     
+│   │   │                   └── MetricsRepository.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── bootstrap.yml
 │   └── Dockerfile
-├── security-service/
+│
+├── message-broker/                  # Kafka-based Event-Driven Communication
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── security/
-│   │   │   │           ├── SecurityServiceApplication.java
-│   │   │   │           ├── config/
-│   │   │   │           │   ├── SecurityConfig.java
-│   │   │   │           │   └── OAuth2Config.java
-│   │   │   │           ├── controller/
-│   │   │   │           │   ├── AuthController.java
-│   │   │   │           │   └── UserController.java
-│   │   │   │           ├── service/
-│   │   │   │           │   ├── UserService.java
-│   │   │   │           │   ├── AuthService.java
-│   │   │   │           │   └── TokenService.java
-│   │   │   │           ├── repository/
-│   │   │   │           │   ├── UserRepository.java
-│   │   │   │           │   └── RoleRepository.java
-│   │   │   │           ├── model/
-│   │   │   │           │   ├── User.java
-│   │   │   │           │   ├── Role.java
-│   │   │   │           │   └── Token.java
-│   │   │   │           └── security/
-│   │   │   │               ├── JwtTokenFilter.java
-│   │   │   │               ├── JwtProvider.java
-│   │   │   │               └── CustomUserDetails.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── messagebroker/
+│   │   │               ├── MessageBrokerApplication.java
+│   │   │               ├── config/
+│   │   │               │   └── KafkaConfig.java
+│   │   │               ├── listener/
+│   │   │               │   └── MessageListener.java
+│   │   │               └── sender/
+│   │   │                   └── MessageSender.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── bootstrap.yml
 │   └── Dockerfile
-├── circuit-breaker-service/
+│
+├── caching-service/                 # Distributed Caching Solution
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── circuitbreaker/
-│   │   │   │           ├── CircuitBreakerServiceApplication.java
-│   │   │   │           ├── config/
-│   │   │   │           │   └── CircuitBreakerConfig.java
-│   │   │   │           ├── controller/
-│   │   │   │           │   └── CircuitBreakerController.java
-│   │   │   │           ├── service/
-│   │   │   │           │   └── CircuitBreakerService.java
-│   │   │   │           │   └── CircuitBreakerMetricsController.java
-│   │   │   │           ├── DTo/
-│   │   │   │           │   └── UserDTo.java
-│   │   │   │           │   └── AccountDTo.java
-│   │   │   │           └── feign/
-│   │   │   │               ├── UserClient.java
-│   │   │   │               └── AccountClient.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── caching/
+│   │   │               ├── CachingServiceApplication.java
+│   │   │               ├── config/
+│   │   │               │   └── CachingConfig.java
+│   │   │               ├── service/
+│   │   │               │   └── CachingService.java
+│   │   │               └── repository/
+│   │   │                   └── CacheRepository.java
+│   │   └── resources/
+│   │       └── application.yml
 │   └── Dockerfile
-├── message-broker/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── messagebroker/
-│   │   │   │           ├── MessageBrokerApplication.java
-│   │   │   │           ├── config/
-│   │   │   │           │   └── KafkaConfig.java
-│   │   │   │           ├── listener/
-│   │   │   │           │   └── MessageListener.java
-│   │   │   │           └── sender/
-│   │   │   │               └── MessageSender.java
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── bootstrap.yml
-│   │   └── test/
-│   │       └── ... (test classes)
-│   └── Dockerfile
-├── logging-service/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── logging/
-│   │   │   │           ├── LoggingServiceApplication.java
-│   │   │   │           ├── config/
-│   │   │   │           │   └── LoggingConfig.java
-│   │   │   │           ├── controller/
-│   │   │   │           │   └── LoggingController.java
-│   │   │   │           ├── service/
-│   │   │   │           │   └── LoggingService.java
-│   │   │   │           └── repository/
-│   │   │   │               └── LogRepository.java
-│   │   │   └── resources/
-│   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
-│   └── Dockerfile
-├── audit-service/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── audit/
-│   │   │   │           ├── AuditServiceApplication.java
-│   │   │   │           ├── config/
-│   │   │   │           │   └── AuditConfig.java
-│   │   │   │           ├── controller/
-│   │   │   │           │   └── AuditController.java
-│   │   │   │           ├── service/
-│   │   │   │           │   └── AuditService.java
-│   │   │   │           └── repository/
-│   │   │   │               └── AuditRepository.java
-│   │   │   └── resources/
-│   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
-│   └── Dockerfile
-├── caching-service/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── service/
-│   │   │   │       └── caching/
-│   │   │   │           ├── CachingServiceApplication.java
-│   │   │   │           ├── config/
-│   │   │   │           │   └── CachingConfig.java
-│   │   │   │           ├── service/
-│   │   │   │           │   └── CachingService.java
-│   │   │   │           └── repository/
-│   │   │   │               └── CacheRepository.java
-│   │   │   └── resources/
-│   │   │       └── application.yml
-│   │   └── test/
-│   │       └── ... (test classes)
-│   └── Dockerfile
-├── docker-compose.yml
+│
+├── docker-compose.yml               # Container Orchestration
 ├── README.md
-├── pom.xml
-└── ci-cd/
-    ├── jenkinsfile
-    ├── github-actions/
-    │   └── main.yml
-    └── circleci/
-        └── config.yml
+└── pom.xml
