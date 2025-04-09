@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: zookeeper-server
+
+zookeeper:
+  client-port: 2181
+  data-dir: ./data/zookeeper
+  tick-time: 2000
+
+logging:
+  level:
+    org.zookeeperserver: INFO
+    org.apache.zookeeper: WARN
