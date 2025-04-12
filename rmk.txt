@@ -1,0 +1,336 @@
+web-banking-microservices/
+├── kafka-kraft-server/                # Service Registry using Kafka KRaft (without ZooKeeper)
+│   ├── src/
+│   │   ├── main/
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── kafka/
+│   │   │               ├── KafkaKraftServerApplication.java
+│   │   │               └── config/
+│   │   │                   └── KafkaKraftConfig.java
+│   │   └── resources/
+│   │       ├── application.yml        # Contains KRaft mode configurations
+│   │       ├── server.properties      # Kafka server properties with KRaft settings
+│   │       └── bootstrap.yml
+│   └── Dockerfile
+│
+├── api-gateway/                     # API Gateway with Authentication, Rate Limiting, and OpenFeign Clients
+│   ├── src/
+│   │   ├── main/
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── apigateway/
+│   │   │               ├── ApiGatewayApplication.java
+│   │   │               ├── config/
+│   │   │               │   ├── GatewayConfig.java
+│   │   │               │   ├── SecurityConfig.java       # Added Spring Security configuration
+│   │   │               │   └── FeignClientConfig.java    # Configuration for OpenFeign usage
+│   │   │               ├── filter/
+│   │   │               │   ├── AuthFilter.java
+│   │   │               │   ├── RateLimitingFilter.java
+│   │   │               │   └── RBACFilter.java
+│   │   │               ├── exception/
+│   │   │               │   └── GlobalExceptionHandler.java # Centralized exception handling
+│   │   │               └── client/
+│   │   │                   └── RemoteServiceClient.java  # OpenFeign client interface
+│   │   └── resources/
+│   │       ├── application.yml       # Gateway configuration (including Feign/timeout settings)
+│   │       └── bootstrap.yml
+│   └── Dockerfile
+│
+├── config-server/                   # Centralized Configuration & Secrets Management
+│   ├── src/
+│   │   ├── main/
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── configserver/
+│   │   │               ├── ConfigServerApplication.java
+│   │   │               └── config/
+│   │   │                   └── ConfigServerConfig.java   # Added configuration class
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       ├── bootstrap.yml
+│   │       └── config-repo/          # Git-based config repository structure
+│   │           ├── application.yml
+│   │           └── service-specific-configs/
+│   └── Dockerfile
+│
+├── orchestration-service/           # Workflow Orchestration, gRPC Communication, and OpenFeign Inter-service Communication
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── service/
+│   │   │   │       └── orchestration/
+│   │   │   │           ├── OrchestrationServiceApplication.java
+│   │   │   │           ├── config/
+│   │   │   │           │   ├── OrchestrationConfig.java
+│   │   │   │           │   ├── SecurityConfig.java
+│   │   │   │           │   └── FeignClientConfig.java    # OpenFeign configuration to call downstream services
+│   │   │   │           ├── grpc/
+│   │   │   │           │   ├── OrchestrationGrpcController.java
+│   │   │   │           │   └── proto/                    # Added Protocol Buffers directory
+│   │   │   │           │       └── orchestration.proto   # gRPC service definition
+│   │   │   │           ├── workflow/
+│   │   │   │           │   ├── SagaOrchestrator.java
+│   │   │   │           │   └── CompensationHandler.java  # For managing transaction compensation
+│   │   │   │           ├── exception/
+│   │   │   │           │   └── OrchestrationException.java
+│   │   │   │           └── client/
+│   │   │   │               └── RemoteServiceClient.java  # OpenFeign client interface example
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── bootstrap.yml
+│   │   └── test/                      # Added test directory
+│   │       └── java/
+│   │           └── service/
+│   │               └── orchestration/
+│   │                   └── OrchestrationServiceTests.java
+│   └── Dockerfile
+│
+├── CSharp-Business-Services/        # C#-based Business Services
+│   ├── UserService/
+│   │   ├── UserService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── UserController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── User.cs
+│   │   │   ├── Services/
+│   │   │   │   └── UserService.cs
+│   │   │   ├── Repositories/        # Added repository layer
+│   │   │   │   └── UserRepository.cs
+│   │   │   ├── Data/                # Added data access layer
+│   │   │   │   └── ApplicationDbContext.cs
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   ├── appsettings.Development.json  # Environment-specific config
+│   │   └── Dockerfile
+│   │
+│   ├── AccountService/
+│   │   ├── AccountService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── AccountController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── Account.cs
+│   │   │   ├── Services/
+│   │   │   │   └── AccountService.cs
+│   │   │   ├── Repositories/
+│   │   │   │   └── AccountRepository.cs
+│   │   │   ├── Data/
+│   │   │   │   └── ApplicationDbContext.cs
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   ├── appsettings.Development.json
+│   │   └── Dockerfile
+│   │
+│   ├── FundTransferService/
+│   │   ├── FundTransferService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── FundTransferController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── FundTransfer.cs
+│   │   │   ├── Services/
+│   │   │   │   └── FundTransferService.cs
+│   │   │   ├── Repositories/
+│   │   │   │   └── FundTransferRepository.cs
+│   │   │   ├── Data/
+│   │   │   │   └── ApplicationDbContext.cs
+│   │   │   ├── Kafka/              # Added Kafka integration
+│   │   │   │   ├── KafkaProducer.cs
+│   │   │   │   └── KafkaConsumer.cs
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   ├── appsettings.Development.json
+│   │   └── Dockerfile
+│   │
+│   ├── TransactionService/
+│   │   ├── TransactionService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── TransactionController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── Transaction.cs
+│   │   │   ├── Services/
+│   │   │   │   └── TransactionService.cs
+│   │   │   ├── Repositories/
+│   │   │   │   └── TransactionRepository.cs
+│   │   │   ├── Data/
+│   │   │   │   └── ApplicationDbContext.cs
+│   │   │   ├── Background/         # Added background processing
+│   │   │   │   └── TransactionProcessor.cs
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   ├── appsettings.Development.json
+│   │   └── Dockerfile
+│   │
+│   ├── NotificationService/
+│   │   ├── NotificationService.sln
+│   │   ├── src/
+│   │   │   ├── Controllers/
+│   │   │   │   └── NotificationController.cs
+│   │   │   ├── Models/
+│   │   │   │   └── Notification.cs
+│   │   │   ├── Services/
+│   │   │   │   ├── NotificationService.cs
+│   │   │   │   ├── EmailService.cs      # Added specific notification channels
+│   │   │   │   ├── SmsService.cs
+│   │   │   │   └── PushNotificationService.cs
+│   │   │   ├── Kafka/
+│   │   │   │   └── NotificationConsumer.cs  # For consuming notification events
+│   │   │   ├── Templates/
+│   │   │   │   ├── EmailTemplates/
+│   │   │   │   └── SmsTemplates/
+│   │   │   └── Program.cs
+│   │   ├── appsettings.json
+│   │   ├── appsettings.Development.json
+│   │   └── Dockerfile
+│   │
+│   └── Shared/
+│       ├── Shared.sln
+│       ├── src/
+│       │   ├── Models/
+│       │   │   ├── CommonModel.cs
+│       │   │   ├── DTOs/           # Added DTOs directory
+│       │   │   │   └── UserDto.cs
+│       │   │   └── ... (other shared models)
+│       │   ├── Utilities/
+│       │   │   ├── BankingUtils.cs
+│       │   │   └── SecurityUtils.cs  # Added security utilities
+│       │   ├── Middleware/         # Added shared middleware
+│       │   │   ├── ExceptionMiddleware.cs
+│       │   │   └── AuthMiddleware.cs
+│       │   └── Extensions/         # Added extensions
+│       │       └── ServiceCollectionExtensions.cs
+│       └── Shared.csproj
+│
+├── shared/                          # Shared models, events, and utilities (Java)
+│   ├── src/
+│   │   ├── main/
+│   │   │   └── java/
+│   │   │       └── shared/
+│   │   │           ├── model/
+│   │   │           │   ├── BaseEntity.java
+│   │   │           │   └── dto/
+│   │   │           │       └── CommonDto.java
+│   │   │           ├── event/
+│   │   │           │   ├── BaseEvent.java
+│   │   │           │   ├── TransactionEvent.java
+│   │   │           │   └── NotificationEvent.java
+│   │   │           ├── exception/
+│   │   │           │   ├── BaseException.java
+│   │   │           │   └── BusinessException.java
+│   │   │           └── util/
+│   │   │               ├── DateUtils.java
+│   │   │               └── ValidationUtils.java
+│   │   └── test/
+│   │       └── java/
+│   │           └── shared/
+│   │               └── ... (test classes)
+│   └── pom.xml
+│
+├── monitor-service/                 # Centralized Monitoring & Logging
+│   ├── src/
+│   │   ├── main/
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── monitor/
+│   │   │               ├── MonitorServiceApplication.java
+│   │   │               ├── config/
+│   │   │               │   ├── MonitorConfig.java
+│   │   │               │   └── PrometheusConfig.java    # Added Prometheus configuration
+│   │   │               ├── controller/
+│   │   │               │   ├── HealthCheckController.java
+│   │   │               │   └── MetricsController.java
+│   │   │               ├── service/
+│   │   │               │   ├── MonitoringServiceImpl.java
+│   │   │               │   ├── AlertService.java        # Added alerting capability
+│   │   │               │   └── LogAggregationService.java
+│   │   │               ├── repository/     
+│   │   │               │   └── MetricsRepository.java
+│   │   │               └── tracing/                    # Added distributed tracing
+│   │   │                   └── TracingConfig.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── bootstrap.yml
+│   ├── prometheus/
+│   │   └── prometheus.yml         # Prometheus configuration
+│   ├── grafana/
+│   │   ├── dashboards/
+│   │   │   ├── banking-overview.json
+│   │   │   └── service-metrics.json
+│   │   └── datasources/
+│   │       └── prometheus.yml
+│   └── Dockerfile
+│
+├── message-broker/                  # Kafka-based Event-Driven Communication
+│   ├── src/
+│   │   ├── main/
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── messagebroker/
+│   │   │               ├── MessageBrokerApplication.java
+│   │   │               ├── config/
+│   │   │               │   └── KafkaConfig.java
+│   │   │               ├── listener/
+│   │   │               │   └── MessageListener.java
+│   │   │               ├── producer/                   # Renamed from sender
+│   │   │               │   └── MessageProducer.java
+│   │   │               ├── stream/                     # Added Kafka Streams
+│   │   │               │   └── TransactionStreamProcessor.java
+│   │   │               └── model/
+│   │   │                   └── KafkaMessage.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── bootstrap.yml
+│   └── Dockerfile
+│
+├── caching-service/                 # Distributed Caching with Redis Integration
+│   ├── src/
+│   │   ├── main/
+│   │   │   └── java/
+│   │   │       └── service/
+│   │   │           └── caching/
+│   │   │               ├── CachingServiceApplication.java
+│   │   │               ├── config/
+│   │   │               │   ├── CachingConfig.java        # Sets up Redis connection using Spring Data Redis
+│   │   │               │   └── RedissonConfig.java       # Added Redisson for distributed locks
+│   │   │               ├── service/
+│   │   │               │   ├── CachingService.java       # Implements caching logic (e.g., with @Cacheable)
+│   │   │               │   └── DistributedLockService.java # For distributed locking
+│   │   │               ├── controller/
+│   │   │               │   └── CacheController.java     # Added REST API for cache operations
+│   │   │               └── repository/
+│   │   │                   └── CacheRepository.java     # Abstracts Redis operations
+│   │   └── resources/
+│   │       ├── application.yml                      # Contains Redis host & port settings
+│   │       └── bootstrap.yml
+│   └── Dockerfile
+│
+├── docker-compose.yml               # Container Orchestration file including Redis, Kafka, etc.
+├── kubernetes/                      # Added Kubernetes deployment manifests
+│   ├── deployments/
+│   │   ├── api-gateway.yaml
+│   │   ├── config-server.yaml
+│   │   └── ... (other deployment files)
+
+
+│   ├── services/
+│   │   ├── api-gateway-svc.yaml
+│   │   └── ... (other service files)
+│   ├── configmaps/
+│   │   └── global-config.yaml
+│   ├── secrets/
+│   │   └── db-credentials.yaml
+│   └── ingress/
+│       └── banking-ingress.yaml
+├── ci-cd/                           # Added CI/CD pipeline configurations //////////////////////////////////
+│   ├── Jenkinsfile											(Not Need RN)							
+│   ├── github-actions/ 			/////////////////////////////////////////////////////////////////
+│   │   └── main.yml
+│   └── helm/		///////////////////////////////////////////////////////////////////
+│       ├── charts/
+│       └── values.yaml
+├── README.md
+└── pom.xml
