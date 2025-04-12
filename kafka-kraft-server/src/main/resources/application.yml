@@ -1,0 +1,12 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092 # Kafka KRaft mode - no ZooKeeper
+    consumer:
+      group-id: kafka-group
+      auto-offset-reset: earliest
+    producer:
+      acks: all
+    streams:
+      application-id: kafka-kraft-app
+      default-key-serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+      default-value-serde: org.apache.kafka.common.serialization.Serdes$StringSerde

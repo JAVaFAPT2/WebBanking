@@ -1,10 +1,10 @@
-package org.zookeeperserver;
+package service.kafkakraftserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ZookeeperServerApplicationTests {
+class KafkaKraftServerApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,14 +1,13 @@
-package org.zookeeperserver;
+package service.kafkakraftserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-
-public class ZookeeperServerApplication {
+public class KafkaKraftServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ZookeeperServerApplication.class, args);
+        SpringApplication.run(KafkaKraftServerApplication.class, args);
     }
 
 }
