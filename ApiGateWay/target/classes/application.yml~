@@ -1,0 +1,97 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    org.springframework.cloud.openfeign: DEBUG
+    org.apigateway: DEBUG  # Added for better debugging
+
+jwt:
+  secret: t4whZJUAhgif/tV1Y9b2lB+p7INVKkGKm4EZcxWpvP0=
+  expiration: 86400
+  excluded:
+    paths:
+      - /public/**
+      - /auth/login
+      - /auth/register
+      - /actuator/**
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 10
+            redis-rate-limiter.burstCapacity: 20
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+          filters:
+            - name: RateLimit
+              args:
+                limitForPeriod: 10
+                refreshPeriod: 1000
+
+        - id: account-service
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/accounts/**
+          filters:
+            - name: RateLimit
+              args:
+                limitForPeriod: 5
+                refreshPeriod: 1000
+
+        - id: admin-service
+          uri: lb://ADMIN-SERVICE
+          predicates:
+            - Path=/admin/**
+          filters:
+            - name: RBACFilter
+              args:
+                requiredRoles:
+                  - ROLE_ADMIN
+  main:
+    allow-bean-definition-overriding: true
+
+
+rate-limit:
+  default-limit: 10
+  default-refresh-period: 1000
+  default-timeout-duration: 3000
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+  ratelimiter:
+    instances:
+      default:
+        limitForPeriod: 10
+        limitRefreshPeriod: 100ms
+        timeoutDuration: 30s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

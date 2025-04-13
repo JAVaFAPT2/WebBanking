@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: message-broker
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: message-broker-group
+    topics:
+      transaction: transaction-topic
+      notification: notification-topic
+      user-activity: user-activity-topic
+      analytics: analytics-topic
+      fraud-alert: fraud-alert-topic
