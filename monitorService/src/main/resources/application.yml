@@ -80,3 +80,12 @@ alert:
     api.error.rate: 5.0
     api.response.time: 2000.0
     transaction.failure.rate: 2.0
+
+# Log aggregation service configuration
+log:
+  max-entries: 10000
+  retention-hours: 24
+  error-threshold: 5
+  kafka:
+    topic: service-logs
+    processed-topic: processed-logs

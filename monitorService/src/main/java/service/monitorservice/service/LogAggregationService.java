@@ -35,23 +35,23 @@ public class LogAggregationService {
     private static final Pattern ERROR_PATTERN = Pattern.compile("(?i)(error|exception|fail|failed|failure)");
 
     // Maximum number of logs to keep in memory
-    @Value("${log.max-entries:10000}")
+    @Value("${log.max-entries}")
     private int maxLogEntries;
 
     // Log retention period in hours
-    @Value("${log.retention-hours:24}")
+    @Value("${log.retention-hours}")
     private int logRetentionHours;
 
     // Error threshold for alerting
-    @Value("${log.error-threshold:5}")
+    @Value("${log.error-threshold}")
     private int errorThreshold;
 
     // Topic to listen for logs
-    @Value("${log.kafka.topic:service-logs}")
+    @Value("${log.kafka.topic}")
     private String logTopic;
 
     // Topic to forward processed logs
-    @Value("${log.kafka.processed-topic:processed-logs}")
+    @Value("${log.kafka.processed-topic}")
     private String processedLogTopic;
 
     @Autowired
@@ -79,7 +79,7 @@ public class LogAggregationService {
      *
      * @param logMessage the log message received from Kafka
      */
-    @KafkaListener(topics = "${log.kafka.topic:service-logs}", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(topics = "${log.kafka.topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void consumeLog(String logMessage) {
         try {
             // Parse the log message
