@@ -16,5 +16,7 @@
     <file url="file://$PROJECT_DIR$/Banking/src/orchestration-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Banking/src/shared/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Banking/src/user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MessageBroker/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/monitorService/src/main/java" charset="UTF-8" />
   </component>
 </project>

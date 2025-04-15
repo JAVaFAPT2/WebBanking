@@ -34,6 +34,8 @@
         <option value="$PROJECT_DIR$/Banking/src/orchestration-service/pom.xml" />
         <option value="$PROJECT_DIR$/Banking/src/shared/pom.xml" />
         <option value="$PROJECT_DIR$/Banking/src/user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MessageBroker/pom.xml" />
+        <option value="$PROJECT_DIR$/monitorService/pom.xml" />
       </list>
     </option>
   </component>

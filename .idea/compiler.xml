@@ -13,6 +13,7 @@
         <module name="Banking" />
         <module name="monitor-service" />
         <module name="eureka-server" />
+        <module name="monitorService" />
         <module name="logging-service" />
         <module name="notification-service" />
         <module name="caching-service" />
@@ -33,11 +34,14 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="21" />
+      <module name="kafka-kraft-server" target="21" />
+      <module name="MessageBroker" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Banking" options="-parameters" />
+      <module name="MessageBroker" options="-parameters" />
       <module name="account-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="audit-service" options="-parameters" />
@@ -48,6 +52,7 @@
       <module name="eureka-server" options="-parameters" />
       <module name="logging-service" options="-parameters" />
       <module name="monitor-service" options="-parameters" />
+      <module name="monitorService" options="-parameters" />
       <module name="notification-service" options="-parameters" />
       <module name="orchestration-service" options="-parameters" />
       <module name="shared" options="-parameters" />
