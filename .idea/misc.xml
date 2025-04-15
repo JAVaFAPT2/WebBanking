@@ -19,22 +19,6 @@
         <option value="$PROJECT_DIR$/CartService/pom.xml" />
         <option value="$PROJECT_DIR$/Notification Service/pom.xml" />
         <option value="$PROJECT_DIR$/CardService/pom.xml" />
-        <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/account-service/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/api-gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/audit-service/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/caching-service/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/circuit-breaker-service/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/config-server/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/eureka-server/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/logging-service/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/monitor-service/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/notification-service/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/orchestration-service/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/shared/pom.xml" />
-        <option value="$PROJECT_DIR$/Banking/src/user-service/pom.xml" />
-        <option value="$PROJECT_DIR$/MessageBroker/pom.xml" />
         <option value="$PROJECT_DIR$/monitorService/pom.xml" />
       </list>
     </option>

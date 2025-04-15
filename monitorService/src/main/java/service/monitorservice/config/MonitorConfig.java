@@ -2,6 +2,8 @@ package service.monitorservice.config;
 
 import io.micrometer.core.aop.TimedAspect;
 import io.micrometer.core.instrument.MeterRegistry;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,25 +50,12 @@ public class MonitorConfig {
     /**
      * Inner class for health check configuration.
      */
+    @Setter
+    @Getter
     public static class HealthCheckConfig {
         private long timeout = 5000; // Default timeout in milliseconds
         private boolean detailedOutput = true;
 
-        public long getTimeout() {
-            return timeout;
-        }
-
-        public void setTimeout(long timeout) {
-            this.timeout = timeout;
-        }
-
-        public boolean isDetailedOutput() {
-            return detailedOutput;
-        }
-
-        public void setDetailedOutput(boolean detailedOutput) {
-            this.detailedOutput = detailedOutput;
-        }
     }
 
     /**
@@ -85,6 +74,8 @@ public class MonitorConfig {
     /**
      * Alert configuration class for setting monitoring thresholds.
      */
+    @Setter
+    @Getter
     public static class AlertConfig {
         private double cpuThreshold;
         private double memoryThreshold;
@@ -92,45 +83,6 @@ public class MonitorConfig {
         private long responseTimeThreshold;
         private boolean alertsEnabled = true;
 
-        public double getCpuThreshold() {
-            return cpuThreshold;
-        }
-
-        public void setCpuThreshold(double cpuThreshold) {
-            this.cpuThreshold = cpuThreshold;
-        }
-
-        public double getMemoryThreshold() {
-            return memoryThreshold;
-        }
-
-        public void setMemoryThreshold(double memoryThreshold) {
-            this.memoryThreshold = memoryThreshold;
-        }
-
-        public double getDiskThreshold() {
-            return diskThreshold;
-        }
-
-        public void setDiskThreshold(double diskThreshold) {
-            this.diskThreshold = diskThreshold;
-        }
-
-        public long getResponseTimeThreshold() {
-            return responseTimeThreshold;
-        }
-
-        public void setResponseTimeThreshold(long responseTimeThreshold) {
-            this.responseTimeThreshold = responseTimeThreshold;
-        }
-
-        public boolean isAlertsEnabled() {
-            return alertsEnabled;
-        }
-
-        public void setAlertsEnabled(boolean alertsEnabled) {
-            this.alertsEnabled = alertsEnabled;
-        }
     }
 
     /**
@@ -147,33 +99,12 @@ public class MonitorConfig {
     /**
      * Log aggregation configuration class.
      */
+    @Setter
+    @Getter
     public static class LogAggregationConfig {
         private int retentionDays;
         private String indexPrefix;
         private boolean enabledStructuredLogging = true;
 
-        public int getRetentionDays() {
-            return retentionDays;
-        }
-
-        public void setRetentionDays(int retentionDays) {
-            this.retentionDays = retentionDays;
-        }
-
-        public String getIndexPrefix() {
-            return indexPrefix;
-        }
-
-        public void setIndexPrefix(String indexPrefix) {
-            this.indexPrefix = indexPrefix;
-        }
-
-        public boolean isEnabledStructuredLogging() {
-            return enabledStructuredLogging;
-        }
-
-        public void setEnabledStructuredLogging(boolean enabledStructuredLogging) {
-            this.enabledStructuredLogging = enabledStructuredLogging;
-        }
     }
 }

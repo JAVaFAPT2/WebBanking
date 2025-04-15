@@ -3,7 +3,7 @@ package service.monitorservice.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import service.monitorservice.model.Metric;
+import service.monitorservice.DTO.MetricDTO;
 import service.monitorservice.repository.MetricsRepository;
 
 import java.time.Instant;
@@ -27,35 +27,35 @@ public class MetricsService {
     /**
      * Save a metric.
      */
-    public Metric saveMetric(Metric metric) {
+    public MetricDTO saveMetric(MetricDTO metric) {
         return metricsRepository.save(metric);
     }
 
     /**
      * Save multiple metrics.
      */
-    public List<Metric> saveMetrics(List<Metric> metrics) {
+    public List<MetricDTO> saveMetrics(List<MetricDTO> metrics) {
         return metricsRepository.saveAll(metrics);
     }
 
     /**
      * Get metrics for a specific service.
      */
-    public List<Metric> getMetricsByService(String serviceName) {
+    public List<MetricDTO> getMetricsByService(String serviceName) {
         return metricsRepository.findByServiceNameOrderByTimestampDesc(serviceName);
     }
 
     /**
      * Get metrics for a specific service and metric name.
      */
-    public List<Metric> getMetricsByServiceAndName(String serviceName, String metricName) {
+    public List<MetricDTO> getMetricsByServiceAndName(String serviceName, String metricName) {
         return metricsRepository.findByServiceNameAndNameOrderByTimestampDesc(serviceName, metricName);
     }
 
     /**
      * Get metrics for a specific service and time range.
      */
-    public List<Metric> getMetricsByServiceAndTimeRange(String serviceName, Instant startTime, Instant endTime) {
+    public List<MetricDTO> getMetricsByServiceAndTimeRange(String serviceName, Instant startTime, Instant endTime) {
         return metricsRepository.findByServiceNameAndTimestampBetweenOrderByTimestampDesc(
                 serviceName, startTime, endTime);
     }
@@ -64,8 +64,8 @@ public class MetricsService {
      * Get the latest value for a specific metric.
      */
     public Double getLatestMetricValue(String serviceName, String metricName) {
-        Metric metric = metricsRepository.findFirstByServiceNameAndNameOrderByTimestampDesc(serviceName, metricName);
-        return metric != null ? metric.getValue() : null;
+        MetricDTO metric = metricsRepository.findFirstByServiceNameAndNameOrderByTimestampDesc(serviceName, metricName);
+        return metric != null ? metric.value() : null;
     }
 
     /**

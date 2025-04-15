@@ -145,15 +145,6 @@ public class HealthCheckController {
             ResponseEntity<Health> response = restTemplate.getForEntity(healthUrl, Health.class);
             Health serviceHealth = response.getBody();
 
-            if (serviceHealth == null) {
-                return Health.unknown()
-                        .withDetail("service", serviceName)
-                        .withDetail("instance", instance.id())
-                        .withDetail("error", "Empty health response")
-                        .withDetail("timestamp", System.currentTimeMillis())
-                        .build();
-            }
-
             return Health.status(serviceHealth.getStatus())
                     .withDetail("service", serviceName)
                     .withDetail("instance", instance.id())
@@ -207,4 +198,60 @@ public class HealthCheckController {
 
         return ResponseEntity.ok(health);
     }
+    /**
+     * Get all registered services
+     */
+    @GetMapping("/services")
+    public ResponseEntity<List<String>> getAllServices() {
+        return ResponseEntity.ok(serviceRegistry.getAllServices());
+    }
+
+    /**
+     * Get details for a specific service
+     */
+    @GetMapping("/services/{serviceName}")
+    public ResponseEntity<?> getServiceInstance(@PathVariable String serviceName) {
+        ServiceRegistryService.ServiceInstance instance = serviceRegistry.getServiceInstance(serviceName);
+        if (instance == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(instance);
+    }
+
+    /**
+     * Check Kafka health
+     */
+    @GetMapping("/kafka/health")
+    public ResponseEntity<Map<String, Boolean>> getKafkaHealth() {
+        boolean isHealthy = serviceRegistry.isKafkaHealthy();
+        return ResponseEntity.ok(Map.of("healthy", isHealthy));
+    }
+
+    /**
+     * Check if service registry topic exists
+     */
+    @GetMapping("/topic/exists")
+    public ResponseEntity<Map<String, Boolean>> doesTopicExist() {
+        boolean exists = serviceRegistry.doesServiceRegistryTopicExist();
+        return ResponseEntity.ok(Map.of("exists", exists));
+    }
+
+    /**
+     * Get system status including Kafka health and topic existence
+     */
+    @GetMapping("/status")
+    public ResponseEntity<Map<String, Object>> getSystemStatus() {
+        boolean kafkaHealthy = serviceRegistry.isKafkaHealthy();
+        boolean topicExists = serviceRegistry.doesServiceRegistryTopicExist();
+        int serviceCount = serviceRegistry.getAllServices().size();
+
+        Map<String, Object> status = Map.of(
+                "kafkaHealthy", kafkaHealthy,
+                "topicExists", topicExists,
+                "serviceCount", serviceCount
+        );
+
+        return ResponseEntity.ok(status);
+    }
+
 }

@@ -1,5 +1,6 @@
 package service.monitorservice.service;
 
+import lombok.Getter;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.DescribeClusterResult;
 import org.apache.kafka.clients.admin.ListTopicsResult;
@@ -104,8 +105,13 @@ public class ServiceRegistryService {
                     while (running) {
                         ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                         for (ConsumerRecord<String, String> record : records) {
-                            processServiceRegistryRecord(record);
+                            try {
+                                processServiceRegistryRecord(record);
+                            } catch (Exception e) {
+                                System.err.println("Error processing record: " + e.getMessage());
+                            }
                         }
+                        consumer.commitSync();
                     }
                 } else {
                     // Log that we're using example services because the topic doesn't exist
@@ -116,9 +122,14 @@ public class ServiceRegistryService {
             // Log the exception
             System.err.println("Error in service registry consumer: " + e.getMessage());
             e.printStackTrace();
+        } finally {
+            try {
+                consumer.close();
+            } catch (Exception e) {
+                System.err.println("Error closing consumer: " + e.getMessage());
+            }
         }
     }
-
     /**
      * Process a record from the service registry topic.
      * This would parse the service registration/deregistration message and update the serviceInstances map.
@@ -162,7 +173,7 @@ public class ServiceRegistryService {
     private void removeServiceInstance(String serviceName, String id) {
         List<ServiceInstance> instances = serviceInstances.get(serviceName);
         if (instances != null) {
-            instances.removeIf(instance -> instance.getId().equals(id));
+            instances.removeIf(instance -> instance.id().equals(id));
             if (instances.isEmpty()) {
                 serviceInstances.remove(serviceName);
             }
@@ -186,7 +197,7 @@ public class ServiceRegistryService {
             return null;
         }
         // Simple round-robin or first instance selection
-        return instances.get(0);
+        return instances.getFirst();
     }
 
     /**
@@ -218,36 +229,11 @@ public class ServiceRegistryService {
     }
 
     /**
-     * Service instance representation.
-     */
-    public static class ServiceInstance {
-        private final String id;
-        private final String serviceName;
-        private final String url;
-        private final Map<String, String> metadata;
+         * Service instance representation.
+         */
+        @Getter
+        public record ServiceInstance(String id, String serviceName, String url, Map<String, String> metadata) {
 
-        public ServiceInstance(String id, String serviceName, String url, Map<String, String> metadata) {
-            this.id = id;
-            this.serviceName = serviceName;
-            this.url = url;
-            this.metadata = metadata;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getServiceName() {
-            return serviceName;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public Map<String, String> getMetadata() {
-            return metadata;
-        }
     }
 
     /**
@@ -279,11 +265,4 @@ public class ServiceRegistryService {
         serviceInstances.computeIfAbsent(serviceName, k -> new ArrayList<>()).add(instance);
     }
 
-    /**
-     * Get the name of the service registry topic.
-     * This method actively uses the serviceRegistryTopic field.
-     */
-    public String getServiceRegistryTopic() {
-        return serviceRegistryTopic;
-    }
 }

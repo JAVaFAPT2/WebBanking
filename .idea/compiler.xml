@@ -18,7 +18,6 @@
         <module name="notification-service" />
         <module name="caching-service" />
         <module name="config-server" />
-        <module name="api-gateway" />
         <module name="orchestration-service" />
         <module name="account-service" />
       </profile>
@@ -33,9 +32,21 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="accountService" target="23" />
+      <module name="AccountService (1) (account)" target="21" />
+      <module name="analyzeService" target="21" />
+      <module name="api-gateway" target="21" />
+      <module name="CardService" target="21" />
       <module name="common" target="21" />
+      <module name="fundtransfer" target="21" />
       <module name="kafka-kraft-server" target="21" />
+      <module name="LoanService" target="21" />
       <module name="MessageBroker" target="21" />
+      <module name="Notification_Service" target="21" />
+      <module name="sequencegenerator" target="21" />
+      <module name="serviceregistry" target="21" />
+      <module name="transactions" target="21" />
+      <module name="userservice" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

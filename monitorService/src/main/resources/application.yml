@@ -25,6 +25,18 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
+  # Email configuration for alerts
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: alerts@webbanking.com
+    password: your-email-password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 server:
   port: 8081
@@ -51,3 +63,20 @@ logging:
 service-registry:
   topic: service-registry
   timeout: 5000
+
+# Alert service configuration
+alert:
+  kafka:
+    topic: system-alerts
+  email:
+    recipients: admin@webbanking.com,support@webbanking.com
+    from: alerts@webbanking.com
+  cooldown:
+    minutes: 15
+  thresholds:
+    cpu.usage: 85.0
+    memory.usage: 90.0
+    disk.usage: 85.0
+    api.error.rate: 5.0
+    api.response.time: 2000.0
+    transaction.failure.rate: 2.0

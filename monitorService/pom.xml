@@ -36,7 +36,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!-- Spring Boot Mail for sending emails -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+			<version>3.1.5</version>
+		</dependency>
 		<!-- Spring Boot Actuator for health checks and metrics -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
