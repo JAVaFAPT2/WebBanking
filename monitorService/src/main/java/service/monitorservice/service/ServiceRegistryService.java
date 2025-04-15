@@ -1,6 +1,5 @@
 package service.monitorservice.service;
 
-import lombok.Getter;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.DescribeClusterResult;
 import org.apache.kafka.clients.admin.ListTopicsResult;
@@ -231,7 +230,6 @@ public class ServiceRegistryService {
     /**
          * Service instance representation.
          */
-        @Getter
         public record ServiceInstance(String id, String serviceName, String url, Map<String, String> metadata) {
 
     }

@@ -1,13 +1,10 @@
 package service.monitorservice.repository;
 
-
-
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import service.monitorservice.DTO.MetricDTO;
+import service.monitorservice.model.Metric;
 
 import java.time.Instant;
 import java.util.List;
@@ -16,28 +13,28 @@ import java.util.List;
  * Repository for storing and retrieving metrics data using JPA.
  */
 @Repository
-public interface MetricsRepository extends JpaRepository<MetricDTO, Long> {
+public interface MetricsRepository extends JpaRepository<Metric, Long> {
 
     /**
      * Find metrics by service name.
      */
-    List<MetricDTO> findByServiceNameOrderByTimestampDesc(String serviceName);
+    List<Metric> findByServiceNameOrderByTimestampDesc(String serviceName);
 
     /**
      * Find metrics by service name and metric name.
      */
-    List<MetricDTO> findByServiceNameAndNameOrderByTimestampDesc(String serviceName, String name);
+    List<Metric> findByServiceNameAndNameOrderByTimestampDesc(String serviceName, String name);
 
     /**
      * Find metrics by service name within a time range.
      */
-    List<MetricDTO> findByServiceNameAndTimestampBetweenOrderByTimestampDesc(
+    List<Metric> findByServiceNameAndTimestampBetweenOrderByTimestampDesc(
             String serviceName, Instant startTime, Instant endTime);
 
     /**
      * Find the latest metric by service name and metric name.
      */
-    MetricDTO findFirstByServiceNameAndNameOrderByTimestampDesc(String serviceName, String name);
+    Metric findFirstByServiceNameAndNameOrderByTimestampDesc(String serviceName, String name);
 
     /**
      * Get average value for a specific metric within a time range.

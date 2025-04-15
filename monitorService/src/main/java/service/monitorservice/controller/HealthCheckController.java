@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import service.monitorservice.config.HealthCheckConfig;
 import service.monitorservice.config.MonitorConfig;
 import service.monitorservice.service.ServiceRegistryService;
 
@@ -29,17 +31,17 @@ public class HealthCheckController {
 
     private final ServiceRegistryService serviceRegistry;
     private final RestTemplate restTemplate;
-    private final MonitorConfig.HealthCheckConfig healthCheckConfig;
+    private final MonitorConfig.HealthCheckConfig monitoringService;
     private final ExecutorService executorService;
 
     @Autowired
     public HealthCheckController(
             ServiceRegistryService serviceRegistry,
-            @Autowired(required = false) RestTemplate restTemplate,
-            MonitorConfig.HealthCheckConfig healthCheckConfig) {
+            @Autowired(required = false) RestTemplate restTemplate, MonitorConfig.HealthCheckConfig monitoringService
+            ) {
         this.serviceRegistry = serviceRegistry;
         this.restTemplate = restTemplate != null ? restTemplate : new RestTemplate();
-        this.healthCheckConfig = healthCheckConfig;
+        this.monitoringService = monitoringService;
         this.executorService = Executors.newFixedThreadPool(10);
     }
 
@@ -80,7 +82,7 @@ public class HealthCheckController {
 
         // Wait for all health checks to complete
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
-                .orTimeout(healthCheckConfig.getTimeout(), TimeUnit.MILLISECONDS)
+                .orTimeout(monitoringService.getTimeout(), TimeUnit.MILLISECONDS)
                 .join();
 
         return ResponseEntity.ok(healthResults);
@@ -148,7 +150,7 @@ public class HealthCheckController {
             return Health.status(serviceHealth.getStatus())
                     .withDetail("service", serviceName)
                     .withDetail("instance", instance.id())
-                    .withDetails(healthCheckConfig.isDetailedOutput() ? serviceHealth.getDetails() : Map.of())
+                    .withDetails(monitoringService.isDetailedOutput() ? serviceHealth.getDetails() : Map.of())
                     .withDetail("timestamp", System.currentTimeMillis())
                     .build();
         } catch (Exception e) {

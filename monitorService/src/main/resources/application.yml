@@ -16,7 +16,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/monitor_service?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
     username: root
-    password: root
+    password: 25102005
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -69,8 +69,8 @@ alert:
   kafka:
     topic: system-alerts
   email:
-    recipients: admin@webbanking.com,support@webbanking.com
-    from: alerts@webbanking.com
+    recipients: dangqwe321@gmail.com,dang.nh.909@aptecchlearning.edu.vn
+    from: dangqwe321@gmail.com
   cooldown:
     minutes: 15
   thresholds:

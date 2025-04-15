@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.monitorservice.DTO.MetricDTO;
+import service.monitorservice.model.Metric;
 import service.monitorservice.repository.MetricsRepository;
 
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Service for managing metrics data.
@@ -27,45 +29,64 @@ public class MetricsService {
     /**
      * Save a metric.
      */
-    public MetricDTO saveMetric(MetricDTO metric) {
-        return metricsRepository.save(metric);
+    public MetricDTO saveMetric(MetricDTO metricDTO) {
+        Metric metric = convertToEntity(metricDTO);
+        Metric savedMetric = metricsRepository.save(metric);
+        return convertToDTO(savedMetric);
     }
 
     /**
      * Save multiple metrics.
      */
-    public List<MetricDTO> saveMetrics(List<MetricDTO> metrics) {
-        return metricsRepository.saveAll(metrics);
+    public List<MetricDTO> saveMetrics(List<MetricDTO> metricDTOs) {
+        List<Metric> metrics = metricDTOs.stream()
+                .map(this::convertToEntity)
+                .collect(Collectors.toList());
+
+        List<Metric> savedMetrics = metricsRepository.saveAll(metrics);
+
+        return savedMetrics.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     /**
      * Get metrics for a specific service.
      */
     public List<MetricDTO> getMetricsByService(String serviceName) {
-        return metricsRepository.findByServiceNameOrderByTimestampDesc(serviceName);
+        List<Metric> metrics = metricsRepository.findByServiceNameOrderByTimestampDesc(serviceName);
+        return metrics.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     /**
      * Get metrics for a specific service and metric name.
      */
     public List<MetricDTO> getMetricsByServiceAndName(String serviceName, String metricName) {
-        return metricsRepository.findByServiceNameAndNameOrderByTimestampDesc(serviceName, metricName);
+        List<Metric> metrics = metricsRepository.findByServiceNameAndNameOrderByTimestampDesc(serviceName, metricName);
+        return metrics.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     /**
      * Get metrics for a specific service and time range.
      */
     public List<MetricDTO> getMetricsByServiceAndTimeRange(String serviceName, Instant startTime, Instant endTime) {
-        return metricsRepository.findByServiceNameAndTimestampBetweenOrderByTimestampDesc(
+        List<Metric> metrics = metricsRepository.findByServiceNameAndTimestampBetweenOrderByTimestampDesc(
                 serviceName, startTime, endTime);
+        return metrics.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     /**
      * Get the latest value for a specific metric.
      */
     public Double getLatestMetricValue(String serviceName, String metricName) {
-        MetricDTO metric = metricsRepository.findFirstByServiceNameAndNameOrderByTimestampDesc(serviceName, metricName);
-        return metric != null ? metric.value() : null;
+        Metric metric = metricsRepository.findFirstByServiceNameAndNameOrderByTimestampDesc(serviceName, metricName);
+        return metric != null ? metric.getValue() : null;
     }
 
     /**
@@ -92,5 +113,31 @@ public class MetricsService {
     @Transactional
     public void deleteOldMetrics(Instant cutoffTime) {
         metricsRepository.deleteByTimestampBefore(cutoffTime);
+    }
+
+    /**
+     * Convert DTO to Entity
+     */
+    private Metric convertToEntity(MetricDTO dto) {
+        return new Metric(
+                dto.serviceName(),
+                dto.name(),
+                dto.value(),
+                dto.timestamp(),
+                dto.unit()
+        );
+    }
+
+    /**
+     * Convert Entity to DTO
+     */
+    private MetricDTO convertToDTO(Metric entity) {
+        return new MetricDTO(
+                entity.getServiceName(),
+                entity.getName(),
+                entity.getValue(),
+                entity.getTimestamp(),
+                entity.getUnit()
+        );
     }
 }

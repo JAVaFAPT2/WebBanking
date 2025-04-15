@@ -47,6 +47,17 @@ public class Metric {
 
     @Column(name = "timestamp", nullable = false)
     private Instant timestamp;
+    @Column
+    private String unit;
+
+    public Metric(String serviceName, String name, Double value, Instant timestamp, String unit) {
+        this.serviceName = serviceName;
+        this.name = name;
+        this.value = value;
+        this.timestamp = timestamp;
+        this.unit = unit;
+    }
+
     @Override
     public String toString() {
         return "Metric{" +
@@ -56,6 +67,7 @@ public class Metric {
                 ", value=" + value +
                 ", tags=" + tags +
                 ", timestamp=" + timestamp +
+                ", unit='" + unit + '\'' +
                 '}';
     }
 }

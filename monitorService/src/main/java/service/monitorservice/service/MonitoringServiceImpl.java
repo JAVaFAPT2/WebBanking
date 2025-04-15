@@ -3,14 +3,16 @@ package service.monitorservice.service;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Timer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import lombok.extern.slf4j.Slf4j;
 import service.monitorservice.model.AlertSeverity;
 
 @Service
-@Slf4j
 public class MonitoringServiceImpl implements MonitoringService {
+
+    private static final Logger log = LoggerFactory.getLogger(MonitoringServiceImpl.class);
 
     private final MeterRegistry meterRegistry;
     private final AlertService alertService;
@@ -18,8 +20,8 @@ public class MonitoringServiceImpl implements MonitoringService {
 
     @Autowired
     public MonitoringServiceImpl(MeterRegistry meterRegistry,
-                               AlertService alertService,
-                               LogAggregationService logAggregationService) {
+                                 AlertService alertService,
+                                 LogAggregationService logAggregationService) {
         this.meterRegistry = meterRegistry;
         this.alertService = alertService;
         this.logAggregationService = logAggregationService;
@@ -32,14 +34,14 @@ public class MonitoringServiceImpl implements MonitoringService {
 
     public Counter createCounter(String name, String... tags) {
         return Counter.builder(name)
-                     .tags(tags)
-                     .register(meterRegistry);
+                .tags(tags)
+                .register(meterRegistry);
     }
 
     public Timer createTimer(String name, String... tags) {
         return Timer.builder(name)
-                   .tags(tags)
-                   .register(meterRegistry);
+                .tags(tags)
+                .register(meterRegistry);
     }
 
     public void triggerAlert(String alertName, String message, AlertSeverity severity) {
@@ -61,7 +63,7 @@ public class MonitoringServiceImpl implements MonitoringService {
             triggerAlert(
                     "ServiceHealthAlert",
                     String.format("Service %s is unhealthy", serviceName),
-                    AlertSeverity.CRITICAL  // Use the enum directly instead of a string
+                    AlertSeverity.CRITICAL
             );
         }
     }

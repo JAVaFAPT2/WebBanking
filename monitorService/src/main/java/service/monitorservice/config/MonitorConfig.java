@@ -2,8 +2,6 @@ package service.monitorservice.config;
 
 import io.micrometer.core.aop.TimedAspect;
 import io.micrometer.core.instrument.MeterRegistry;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,12 +48,27 @@ public class MonitorConfig {
     /**
      * Inner class for health check configuration.
      */
-    @Setter
-    @Getter
     public static class HealthCheckConfig {
         private long timeout = 5000; // Default timeout in milliseconds
         private boolean detailedOutput = true;
 
+        // Getters
+        public long getTimeout() {
+            return timeout;
+        }
+
+        public boolean isDetailedOutput() {
+            return detailedOutput;
+        }
+
+        // Setters
+        public void setTimeout(long timeout) {
+            this.timeout = timeout;
+        }
+
+        public void setDetailedOutput(boolean detailedOutput) {
+            this.detailedOutput = detailedOutput;
+        }
     }
 
     /**
@@ -64,25 +77,65 @@ public class MonitorConfig {
     @Bean
     public AlertConfig alertConfig() {
         AlertConfig config = new AlertConfig();
-        config.setCpuThreshold(80.0); // 80% CPU usage threshold
-        config.setMemoryThreshold(85.0); // 85% memory usage threshold
-        config.setDiskThreshold(90.0); // 90% disk usage threshold
-        config.setResponseTimeThreshold(2000); // 2 seconds response time threshold
+        // Using direct field access instead of setters
+        config.cpuThreshold = 80.0; // 80% CPU usage threshold
+        config.memoryThreshold = 85.0; // 85% memory usage threshold
+        config.diskThreshold = 90.0; // 90% disk usage threshold
+        config.responseTimeThreshold = 2000; // 2 seconds response time threshold
         return config;
     }
 
     /**
      * Alert configuration class for setting monitoring thresholds.
      */
-    @Setter
-    @Getter
     public static class AlertConfig {
-        private double cpuThreshold;
-        private double memoryThreshold;
-        private double diskThreshold;
-        private long responseTimeThreshold;
+        public double cpuThreshold;
+        public double memoryThreshold;
+        public double diskThreshold;
+        public long responseTimeThreshold;
         private boolean alertsEnabled = true;
 
+        // Getters
+        public double getCpuThreshold() {
+            return cpuThreshold;
+        }
+
+        public double getMemoryThreshold() {
+            return memoryThreshold;
+        }
+
+        public double getDiskThreshold() {
+            return diskThreshold;
+        }
+
+        public long getResponseTimeThreshold() {
+            return responseTimeThreshold;
+        }
+
+        public boolean isAlertsEnabled() {
+            return alertsEnabled;
+        }
+
+        // Setters
+        public void setCpuThreshold(double cpuThreshold) {
+            this.cpuThreshold = cpuThreshold;
+        }
+
+        public void setMemoryThreshold(double memoryThreshold) {
+            this.memoryThreshold = memoryThreshold;
+        }
+
+        public void setDiskThreshold(double diskThreshold) {
+            this.diskThreshold = diskThreshold;
+        }
+
+        public void setResponseTimeThreshold(long responseTimeThreshold) {
+            this.responseTimeThreshold = responseTimeThreshold;
+        }
+
+        public void setAlertsEnabled(boolean alertsEnabled) {
+            this.alertsEnabled = alertsEnabled;
+        }
     }
 
     /**
@@ -91,20 +144,44 @@ public class MonitorConfig {
     @Bean
     public LogAggregationConfig logAggregationConfig() {
         LogAggregationConfig config = new LogAggregationConfig();
-        config.setRetentionDays(30);
-        config.setIndexPrefix("web-banking-logs");
+        // Using direct field access instead of setters
+        config.retentionDays = 30;
+        config.indexPrefix = "web-banking-logs";
         return config;
     }
 
     /**
      * Log aggregation configuration class.
      */
-    @Setter
-    @Getter
     public static class LogAggregationConfig {
-        private int retentionDays;
-        private String indexPrefix;
+        public int retentionDays;
+        public String indexPrefix;
         private boolean enabledStructuredLogging = true;
 
+        // Getters
+        public int getRetentionDays() {
+            return retentionDays;
+        }
+
+        public String getIndexPrefix() {
+            return indexPrefix;
+        }
+
+        public boolean isEnabledStructuredLogging() {
+            return enabledStructuredLogging;
+        }
+
+        // Setters
+        public void setRetentionDays(int retentionDays) {
+            this.retentionDays = retentionDays;
+        }
+
+        public void setIndexPrefix(String indexPrefix) {
+            this.indexPrefix = indexPrefix;
+        }
+
+        public void setEnabledStructuredLogging(boolean enabledStructuredLogging) {
+            this.enabledStructuredLogging = enabledStructuredLogging;
+        }
     }
 }

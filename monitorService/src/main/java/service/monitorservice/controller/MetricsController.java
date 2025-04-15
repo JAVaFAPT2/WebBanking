@@ -52,7 +52,7 @@ public class MetricsController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/service/{serviceName}")
+    @GetMapping("/service-info/{serviceName}")
     public Map<String, Object> getServiceMetrics(@PathVariable String serviceName) {
         Map<String, Object> metrics = new HashMap<>();
         List<Meter> serviceMeters = meterRegistry.getMeters().stream()
