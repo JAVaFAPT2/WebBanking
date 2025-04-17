@@ -1,0 +1,82 @@
+spring:
+  application:
+    name: monitor-service
+  security:
+    user:
+      name: user
+      password: 25102005
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: monitor-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  # MySQL Configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/monitor_service?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 25102005
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+  # Email configuration for alerts
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: alerts@webbanking.com
+    password: your-email-password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus, metrics
+  metrics:
+    tags:
+      application: banking-monitor
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+
+# Custom properties for service registry
+service-registry:
+  topic: service-registry
+  timeout: 5000
+
+# Alert service configuration
+alert:
+  kafka:
+    topic: system-alerts
+  email:
+    recipients: dangqwe321@gmail.com,dang.nh.909@aptecchlearning.edu.vn
+    from: dangqwe321@gmail.com
+  cooldown:
+    minutes: 15
+  thresholds:
+    cpu.usage: 85.0
+    memory.usage: 90.0
+    disk.usage: 85.0
+    api.error.rate: 5.0
+    api.response.time: 2000.0
+    transaction.failure.rate: 2.0
