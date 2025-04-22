@@ -7,10 +7,13 @@ web-banking-microservices/
 │   │   │           └── zookeeper/
 │   │   │               ├── ZookeeperServerApplication.java
 │   │   │               └── config/
-│   │   │                   └── ZookeeperConfig.java
+│   │   │               │    └── ZookeeperConfig.java
+│   │   │               ├── ZookeeperServerApplication.java
+│   │   │               └── controller/
+│   │   │                   └── ZookeeperStatusController.java
 │   │   └── resources/
-│   │       ├── application.yml
-│   │       └── bootstrap.yml
+│   │       └── application.yml
+│   │       
 │   └── Dockerfile
 │
 ├── api-gateway/                     # API Gateway with Authentication & Rate Limiting

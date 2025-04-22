@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+service OrchestrationService {
+  rpc InitiateTransfer(FundTransferRequest) returns (TransferResponse);
+}
+
+message FundTransferRequest {
+  string from_account_id = 1;
+  string to_account_id = 2;
+  double amount = 3;
+  string currency_code = 4;
+}
+
+message TransferResponse {
+  string status = 1;
+  string message = 2;
+}

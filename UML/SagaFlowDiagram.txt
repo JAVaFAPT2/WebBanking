@@ -1,0 +1,16 @@
+@startuml
+start
+:Receive Transfer Request;
+:Validate User & Accounts;
+if (Validation OK?) then (Yes)
+  :Debit From Account;
+  :Emit Kafka Event (TransferDebited);
+  :Persist Transaction;
+  :Emit Kafka Event (TransactionLogged);
+  :Send Notification;
+  stop
+else (No)
+  :Abort and Return Error;
+  stop
+endif
+@enduml

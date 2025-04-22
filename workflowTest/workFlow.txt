@@ -1,0 +1,25 @@
+🔁 Saga Workflow (Fund Transfer Orchestration)
+Here’s a high-level Saga flow:
+
+Start: API Gateway receives transfer request → forwards to Orchestration Service.
+
+Validation Phase:
+
+Call UserService to validate sender/receiver.
+
+Call AccountService to validate accounts and funds.
+
+Execution Phase:
+
+Call FundTransferService to debit sender’s account and emit a Kafka event.
+
+Kafka triggers TransactionService to record the transaction.
+
+Notification Phase:
+
+TransactionService emits Kafka event → NotificationService sends confirmation.
+
+Compensation (on failure):
+
+If any step fails, orchestrator calls compensation handlers to rollback (e.g., reverse debit).
+
