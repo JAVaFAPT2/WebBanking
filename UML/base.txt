@@ -1,0 +1,42 @@
+@startuml
+!define RECTANGLE class
+skinparam style strictuml
+skinparam componentStyle rectangle
+
+package "Infrastructure Services" {
+  [Kafka KRaft Server]
+  [Config Server]
+  [Caching Service]
+  [Message Broker]
+  [Monitor Service]
+}
+
+package "API Layer" {
+  [API Gateway]
+}
+
+package "Orchestration Layer" {
+  [Orchestration Service]
+}
+
+package "Core Business Services" {
+  [User Service]
+  [Account Service]
+  [Fund Transfer Service]
+  [Transaction Service]
+  [Notification Service]
+}
+
+[API Gateway] --> [Orchestration Service] : gRPC + Feign
+[Orchestration Service] --> [User Service] : gRPC
+[Orchestration Service] --> [Account Service] : gRPC
+[Orchestration Service] --> [Fund Transfer Service] : gRPC
+[Fund Transfer Service] --> [Kafka KRaft Server]
+[Fund Transfer Service] --> [Transaction Service] : gRPC
+[Transaction Service] --> [Notification Service] : gRPC
+[Notification Service] --> [Kafka KRaft Server]
+[All Services] --> [Config Server]
+[All Services] --> [Caching Service]
+[All Services] --> [Monitor Service]
+
+@enduml
