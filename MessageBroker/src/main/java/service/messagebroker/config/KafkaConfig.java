@@ -41,7 +41,26 @@ public class KafkaConfig {
 
     @Value("${spring.kafka.topics.user-activity}")
     private String userActivityTopic;
+    @Value("${spring.kafka.topics.transfer-debited}")
+    private String transferDebitedTopic;
+    @Value("${spring.kafka.topics.transaction-logged}")
+    private String transactionLoggedTopic;
+    @Value("${spring.kafka.topics.transfer-failed}")
+    private String transferFailedTopic;
+    @Bean
+    public NewTopic analyticsTopic() {
+        return new NewTopic("analytics-topic", 3, (short) 2);
+    }
 
+    @Bean
+    public NewTopic fraudAlertTopic() {
+        return new NewTopic("fraud-alert-topic", 3, (short) 2);
+    }
+
+    @Bean
+    public NewTopic auditLogTopic() {
+        return new NewTopic("audit-log-topic", 3, (short) 2);
+    }
     // Producer configuration
     @Bean
     public ProducerFactory<String, KafkaMessage> producerFactory() {
@@ -105,7 +124,27 @@ public class KafkaConfig {
                 .compact()
                 .build();
     }
-
+    @Bean
+    public NewTopic transferDebitedTopic() {
+        return TopicBuilder.name(transferDebitedTopic)
+                .partitions(10)
+                .replicas(3)
+                .build();
+    }
+    @Bean
+    public NewTopic transactionLoggedTopic() {
+        return TopicBuilder.name(transactionLoggedTopic)
+                .partitions(10)
+                .replicas(3)
+                .build();
+    }
+    @Bean
+    public NewTopic transferFailedTopic() {
+        return TopicBuilder.name(transferFailedTopic)
+                .partitions(10)
+                .replicas(3)
+                .build();
+    }
     @Bean
     public NewTopic notificationTopic() {
         return TopicBuilder.name(notificationTopic)

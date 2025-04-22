@@ -128,18 +128,19 @@ public class MessageProducer {
     /**
      * Send a user activity event
      *
-     * @param userId    The user ID performing the activity
-     * @param activity  The activity description
-     * @param details   Additional activity details
-     * @return CompletableFuture of the send result
+     * @param userId       The user ID performing the activity
+     * @param activity     The activity description
+     * @param userActivity The type of user activity
+     * @param details      Additional activity details
      */
     public CompletableFuture<SendResult<String, KafkaMessage>> sendUserActivityEvent(
-            String userId, String activity, Map<String, Object> details) {
+            String userId, String activity, String userActivity, Map<String, Object> details) {
 
         KafkaMessage message = new KafkaMessage(
                 KafkaMessage.MessageType.USER_ACTIVITY,
                 "user-service",
                 userId,
+                userActivity,
                 activity
         );
 
@@ -151,6 +152,7 @@ public class MessageProducer {
 
         message.setPayload(payload);
         message.setPriority(KafkaMessage.Priority.LOW);
+
 
         return sendMessage("user-activity-topic", userId, message);
     }

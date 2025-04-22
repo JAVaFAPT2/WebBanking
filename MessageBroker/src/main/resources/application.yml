@@ -3,11 +3,32 @@ spring:
     name: message-broker
   kafka:
     bootstrap-servers: localhost:9092
-    consumer:
-      group-id: message-broker-group
     topics:
       transaction: transaction-topic
+      transfer-debited: transfer.debited
+      transaction-logged: transaction.logged
+      transfer-failed: transfer.failed
       notification: notification-topic
       user-activity: user-activity-topic
       analytics: analytics-topic
       fraud-alert: fraud-alert-topic
+    consumer:
+      group-id: message-broker-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      properties:
+        spring.json.trusted.packages: service.messagebroker.models
+    producer:
+      acks: all
+      retries: 3
+      properties:
+        enable.idempotence: true
+
+app:
+  transaction:
+    international:
+      risk-threshold: 7.5            # Risk threshold for international transactions
+    high-value:
+      threshold: 10000.0             # Threshold for high-value transactions
+    spending:
+      alert-threshold: 5000.0

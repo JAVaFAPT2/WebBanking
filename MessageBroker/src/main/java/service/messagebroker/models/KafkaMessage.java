@@ -36,6 +36,15 @@ public class KafkaMessage implements Serializable {
         this.subject = subject;
         this.action = action;
     }
+
+    public KafkaMessage(MessageType messageType, String s, String userId, String userActivity, String activity) {
+        this.type = messageType;
+        this.source = s;
+        this.subject = userId;
+        this.action = userActivity;
+        this.payload = Map.of("activity", activity);
+    }
+
     @Override
     public String toString() {
         return "KafkaMessage{" +
@@ -59,7 +68,9 @@ public class KafkaMessage implements Serializable {
         TRANSACTION,
         NOTIFICATION,
         USER_ACTIVITY,
-        SYSTEM_ALERT
+        SYSTEM_ALERT,
+        ANALYTICS,
+        TRANSFER_DEBIT
     }
 
 }
