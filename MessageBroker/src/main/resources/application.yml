@@ -1,17 +1,42 @@
 spring:
   application:
     name: message-broker
+
+  # Database Configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/webbanking
+    username: webbanking_user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+  # Component Scanning Configuration
+  main:
+    allow-bean-definition-overriding: true
+
+  # Kafka Configuration
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka-broker1:9092,kafka-broker2:9092,kafka-broker3:9092
     topics:
-      transaction: transaction-topic
+      transaction: banking.transactions
       transfer-debited: transfer.debited
       transaction-logged: transaction.logged
       transfer-failed: transfer.failed
-      notification: notification-topic
+      notification: banking.notifications
       user-activity: user-activity-topic
-      analytics: analytics-topic
-      fraud-alert: fraud-alert-topic
+      analytics: banking.analytics
+      fraud-alert: banking.fraud.alerts
+      audit-log: banking.audit.logs
+      dead-letter: banking.dead-letter.queue
     consumer:
       group-id: message-broker-group
       auto-offset-reset: earliest
@@ -23,6 +48,11 @@ spring:
       retries: 3
       properties:
         enable.idempotence: true
+    streams:
+      application-id: transaction-processor-app
+      replication-factor: 3
+      num-stream-threads: 8
+      state-dir: /data/kafka-streams
 
 app:
   transaction:
@@ -31,4 +61,13 @@ app:
     high-value:
       threshold: 10000.0             # Threshold for high-value transactions
     spending:
-      alert-threshold: 5000.0
+      alert-threshold: 5000.0        # Default spending alert threshold
+
+  # User Settings Configuration
+  user-settings:
+    cache-ttl-minutes: 15            # Cache time-to-live for user settings
+
+  # Streams Configuration
+  streams:
+    aggregation:
+      window-size: PT1H              # 1-hour window size for aggregation

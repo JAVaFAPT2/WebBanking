@@ -14,11 +14,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.EnableKafkaStreams;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
+import service.messagebroker.exeption.RiskAssessmentException;
+import service.messagebroker.models.CustomerRiskProfile;
 import service.messagebroker.models.KafkaMessage;
+import service.messagebroker.request.RiskAssessmentRequest;
+import service.messagebroker.service.UserSettingsService;
 
+import javax.naming.ServiceUnavailableException;
+import java.math.BigDecimal;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -32,9 +41,9 @@ public class TransactionStreamProcessor {
     private static final Logger logger = LoggerFactory.getLogger(TransactionStreamProcessor.class);
 
     private final ObjectMapper objectMapper;
+    private final UserSettingsService userSettingsService;
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Value("${spring.kafka.topics.transaction}")
     private String transactionTopic;
@@ -64,8 +73,10 @@ public class TransactionStreamProcessor {
     private double defaultSpendingAlertThreshold;
 
     @Autowired
-    public TransactionStreamProcessor(ObjectMapper objectMapper) {
+    public TransactionStreamProcessor(ObjectMapper objectMapper, UserSettingsService userSettingsService, KafkaTemplate<String, String> kafkaTemplate) {
         this.objectMapper = objectMapper;
+        this.userSettingsService = userSettingsService;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     @Bean
@@ -140,14 +151,11 @@ public class TransactionStreamProcessor {
         return transactionStream;
     }
 
-    /**
-     * Determine if the aggregated transaction amount exceeds the user's configured threshold
-     */
     private boolean exceedsUserThreshold(String userId, String totalAmount) {
         try {
             double total = Double.parseDouble(totalAmount);
             // Get user-specific threshold if available (would come from a user settings service)
-            double threshold = getUserSpendingThreshold(userId);
+            double threshold = getUserSpendingThreshold(UUID.fromString(userId));
             logger.debug("Checking spending threshold for user {}: current={}, threshold={}",
                     userId, total, threshold);
             return total > threshold;
@@ -225,7 +233,7 @@ public class TransactionStreamProcessor {
             // Calculate risk score based on amount, location, and user history
             double amount = Double.parseDouble(payload.get("amount").toString());
             String location = (String) payload.getOrDefault("location", "UNKNOWN");
-            String accountId = (String) payload.getOrDefault("accountId", "UNKNOWN");
+            UUID accountId = (UUID) payload.getOrDefault("accountId", "UNKNOWN");
 
             // Calculate comprehensive risk score using multiple factors
             double riskScore = calculateComprehensiveRiskScore(amount, location, accountId, payload);
@@ -252,7 +260,7 @@ public class TransactionStreamProcessor {
     /**
      * Enhanced risk scoring algorithm that considers multiple factors
      */
-    private double calculateComprehensiveRiskScore(double amount, String location, String accountId, Map<String, Object> payload) {
+    private double calculateComprehensiveRiskScore(double amount, String location, UUID accountId, Map<String, Object> payload) {
         // Base score calculation
         double baseScore = amount / 1000.0;
 
@@ -308,25 +316,201 @@ public class TransactionStreamProcessor {
         return 1.0;
     }
 
-    private double getUserHistoryRiskFactor(String accountId) {
-        // In a real implementation, this would query a user profile service
-        // For this example, return a default value
-        return 1.0;
+    /**
+     * Get user history risk factor by querying the user settings service
+     * @param accountId The user's account ID
+     * @return A risk factor based on user history and settings
+     */
+    private double getUserHistoryRiskFactor(UUID accountId) {
+        try {
+            // Query the user settings service for the user's risk factor
+            Optional<Double> userRiskFactor = userSettingsService.getRiskFactor(accountId);
+
+            if (userRiskFactor.isPresent()) {
+                logger.debug("Found custom risk factor for user {}: {}", accountId, userRiskFactor.get());
+                return userRiskFactor.get();
+            } else {
+                // If no specific risk factor is found, calculate one based on transaction history
+                double calculatedRisk = calculateRiskBasedOnHistory(accountId);
+                logger.debug("Calculated risk factor for user {} based on history: {}", accountId, calculatedRisk);
+                return calculatedRisk;
+            }
+        } catch (Exception e) {
+            logger.error("Error retrieving risk factor for user {}: {}", accountId, e.getMessage());
+            // Return a default moderate risk factor in case of errors
+            return 1.0;
+        }
     }
 
-    private double getTransactionVelocityFactor(String accountId, Map<String, Object> payload) {
-        // In a real implementation, this would check recent transaction frequency
-        // For this example, check if payload contains timeSinceLastTransaction
-        if (payload.containsKey("timeSinceLastTransaction")) {
-            double seconds = Double.parseDouble(payload.get("timeSinceLastTransaction").toString());
-            if (seconds < 60.0) {
-                return 5.0; // Very high risk for rapid transactions
-            } else if (seconds < 300.0) {
-                return 3.0; // High risk for transactions within 5 minutes
+    /**
+     * Calculate risk factor based on user's transaction history
+     * In a production environment, this would analyze recent transactions
+     * @param accountId The user's account ID
+     * @return A calculated risk factor
+     */
+    private double calculateRiskBasedOnHistory(UUID accountId) {
+        // This would typically involve:
+        // 1. Querying a transaction history database or service
+        // 2. Analyzing patterns like frequency, amounts, locations
+        // 3. Checking for previous fraud flags or suspicious activities
+        // 4. Considering account age and standing
+
+        // For this example, we'll simulate this with some randomization
+        // to demonstrate the concept
+        try {
+            // Convert UUID to string and get the last character
+            String accountIdStr = accountId.toString();
+            char lastChar = accountIdStr.charAt(accountIdStr.length() - 1);
+
+            // Use the last character to create a deterministic factor
+            int lastDigit;
+            if (Character.isDigit(lastChar)) {
+                lastDigit = Character.getNumericValue(lastChar);
+            } else {
+                // If it's a letter (a-f in UUID), convert to a number 0-5
+                lastDigit = Character.toLowerCase(lastChar) - 'a';
+                if (lastDigit < 0 || lastDigit > 5) {
+                    lastDigit = 5; // Default value
+                }
             }
+
+            // Base risk on this digit scaled to a reasonable range (0.5-2.0)
+            double baseRisk = 0.5 + (lastDigit * 0.15);
+
+            // Add a small random factor to simulate other variables
+            double randomFactor = Math.random() * 0.3;
+
+            return Math.min(baseRisk + randomFactor, 2.0);
+        } catch (Exception e) {
+            logger.warn("Error calculating history-based risk, using default: {}", e.getMessage());
+            return 1.0;
         }
-        return 1.0;
     }
+
+
+
+    /**
+     * Calculate risk factor based on transaction velocity (frequency of transactions)
+     * Higher velocity of transactions in a short time period indicates higher risk
+     *
+     * @param accountId The user's account ID
+     * @param payload The current transaction payload
+     * @return A risk factor based on transaction velocity
+     */
+    private double getTransactionVelocityFactor(UUID accountId, Map<String, Object> payload) {
+        try {
+            // Check if we have time since last transaction in the payload
+            if (payload.containsKey("timeSinceLastTransaction")) {
+                double seconds = Double.parseDouble(payload.get("timeSinceLastTransaction").toString());
+
+                // Very rapid transactions (less than 1 minute) are the highest risk
+                if (seconds < 60.0) {
+                    logger.debug("Very high velocity detected for account {}: {} seconds", accountId, seconds);
+                    return 5.0;
+                }
+                // Transactions within 5 minutes are high risk
+                else if (seconds < 300.0) {
+                    logger.debug("High velocity detected for account {}: {} seconds", accountId, seconds);
+                    return 3.0;
+                }
+                // Transactions within 15 minutes are moderate risk
+                else if (seconds < 900.0) {
+                    return 2.0;
+                }
+                // Transactions within 1 hour are slightly elevated risk
+                else if (seconds < 3600.0) {
+                    return 1.5;
+                }
+            }
+
+            // If we have transaction count information, use that as well
+            if (payload.containsKey("transactionCountLast24Hours")) {
+                int count = Integer.parseInt(payload.get("transactionCountLast24Hours").toString());
+
+                // Unusually high number of transactions in 24 hours
+                if (count > 20) {
+                    logger.debug("Unusually high transaction count for account {}: {}", accountId, count);
+                    return Math.max(4.0, getTransactionCountRiskFactor(count));
+                }
+                // High number of transactions
+                else if (count > 10) {
+                    return Math.max(2.5, getTransactionCountRiskFactor(count));
+                }
+                // Moderate number of transactions
+                else if (count > 5) {
+                    return Math.max(1.5, getTransactionCountRiskFactor(count));
+                }
+            }
+
+            // If we have neither time nor count, try to query transaction history
+            if (!payload.containsKey("timeSinceLastTransaction") &&
+                    !payload.containsKey("transactionCountLast24Hours")) {
+                return queryTransactionVelocityFromHistory(accountId);
+            }
+
+            // Default return for normal velocity
+            return 1.0;
+        } catch (Exception e) {
+            logger.error("Error calculating transaction velocity factor: {}", e.getMessage());
+            return 1.0; // Default to normal risk in case of errors
+        }
+    }
+
+    /**
+     * Calculate risk factor based on transaction count
+     */
+    private double getTransactionCountRiskFactor(int count) {
+        // Exponential risk increase for higher transaction counts
+        // Formula: 1.0 + (count - 5) * 0.2, capped at 5.0
+        if (count <= 5) {
+            return 1.0;
+        }
+        return Math.min(1.0 + (count - 5) * 0.2, 5.0);
+    }
+
+    /**
+     * Query transaction history to determine velocity factor
+     * In a real implementation, this would query a transaction database
+     */
+    private double queryTransactionVelocityFromHistory(UUID accountId) {
+        try {
+            // This would typically query a transaction history database or service
+            // For this example, we'll use a simulated approach
+
+            // Use the account ID to generate a deterministic but varied result
+            // This simulates different users having different transaction patterns
+            int velocityIndicator = getVelocityIndicator(accountId);
+            // Map this to a risk factor between 1.0 and 3.0
+            return switch (velocityIndicator) {
+                case 0, 1, 2, 3, 4 ->
+                    // 50% chance of normal velocity
+                        1.0;
+                case 5, 6, 7 ->
+                    // 30% chance of moderate velocity
+                        1.5 + (velocityIndicator - 5) * 0.2;
+                case 8 ->
+                    // 10% chance of high velocity
+                        2.5;
+                case 9 ->
+                    // 10% chance of very high velocity
+                        3.0;
+                default ->
+                        1.0;//should not happend
+            };
+        } catch (Exception e) {
+            logger.warn("Error querying transaction velocity history: {}", e.getMessage());
+            return 1.0;
+        }
+    }
+
+    private static int getVelocityIndicator(UUID accountId) {
+        String accountIdStr = accountId.toString();
+        int hashCode = accountIdStr.hashCode();
+
+        // Generate a value between 0 and 9 based on the hash code
+        return Math.abs(hashCode % 10);
+    }
+
 
     private String getRiskCategory(double riskScore) {
         if (riskScore < 3.0) {
@@ -351,7 +535,7 @@ public class TransactionStreamProcessor {
             // Extract transaction data for ML analysis
             double amount = Double.parseDouble(payload.get("amount").toString());
             String location = (String) payload.getOrDefault("location", "UNKNOWN");
-            String accountId = (String) payload.getOrDefault("accountId", "UNKNOWN");
+            UUID accountId = (UUID) payload.getOrDefault("accountId", "UNKNOWN");
             String transactionType = (String) payload.getOrDefault("type", "STANDARD");
 
             // Simulate ML risk assessment
@@ -371,67 +555,152 @@ public class TransactionStreamProcessor {
     }
 
     /**
-     * Simulate machine learning risk assessment
-     * In a real implementation, this would call an ML service
+     * Performs a machine learning risk assessment for financial transactions.
+     * Calls an external ML service and enriches the response with additional risk factors.
+     *
+     * @param amount Transaction amount
+     * @param location Geographic location code of the transaction
+     * @param accountId Unique identifier for the account
+     * @param transactionType Type of financial transaction
+     * @param transactionContext Additional transaction metadata
+     * @return Risk assessment results including scores and recommended actions
+     * @throws RiskAssessmentException If the assessment process fails
      */
-    private Map<String, Object> performMachineLearningRiskAssessment(
-            double amount, String location, String accountId,
-            String transactionType, Map<String, Object> originalPayload) {
+    public Map<String, Object> performMachineLearningRiskAssessment(
+            double amount, String location, UUID accountId,
+            String transactionType, Map<String, Object> transactionContext) throws RiskAssessmentException {
 
+        long startTime = System.currentTimeMillis();
         Map<String, Object> assessment = new HashMap<>();
 
-        // Calculate base risk score
-        double baseRiskScore = 0.0;
+        try {
+            logger.info("Starting risk assessment for account: {}, amount: {}, type: {}",
+                    accountId, amount, transactionType);
 
-        // Factor 1: Transaction amount (higher = higher risk)
-        double amountFactor = Math.min(amount / 1000.0, 5.0);
-        baseRiskScore += amountFactor;
+            // Sanitize inputs to prevent injection attacks
+            String sanitizedLocation = securityService.sanitizeInput(location);
+            String sanitizedTransactionType = securityService.sanitizeInput(transactionType);
 
-        // Factor 2: Location risk
-        if ("HIGH_RISK".equals(location)) {
-            baseRiskScore += 3.0;
-            assessment.put("locationRiskFlag", true);
-        }
+            // Build request payload for ML service
+            RiskAssessmentRequest request = RiskAssessmentRequest.builder()
+                    .accountId(accountId)
+                    .transactionAmount(amount)
+                    .location(sanitizedLocation)
+                    .transactionType(sanitizedTransactionType)
+                    .deviceInfo(transactionContext.get("deviceInfo"))
+                    .ipAddress(transactionContext.get("ipAddress"))
+                    .userAgent(transactionContext.get("userAgent"))
+                    .build();
 
-        // Factor 3: Transaction type risk
-        if ("INTERNATIONAL_WIRE".equals(transactionType)) {
-            baseRiskScore += 2.0;
-        }
+            // Call ML service for risk score prediction
+            RiskAssessmentResponse mlResponse = null;
+            try {
+                mlResponse = mlRiskService.evaluateRisk(request);
+            } catch (ServiceUnavailableException e) {
+                logger.warn("ML service unavailable, falling back to rules engine", e);
+                // Fallback to rules-based assessment if ML service is down
+                mlResponse = fallbackRiskAssessment(request);
+            }
 
-        // Factor 4: Velocity check (simulated)
-        if (originalPayload.containsKey("timeSinceLastTransaction")) {
-            double seconds = Double.parseDouble(originalPayload.get("timeSinceLastTransaction").toString());
-            if (seconds < 180.0) { // Less than 3 minutes
-                baseRiskScore += 4.0;
+            // Extract base risk score from ML response
+            double baseRiskScore = mlResponse.getRiskScore();
+
+            // Additional risk factors that might not be in the ML model
+
+            // Factor: Recent account changes
+            if (Boolean.TRUE.equals(transactionContext.get("recentPasswordReset")) ||
+                    Boolean.TRUE.equals(transactionContext.get("recentContactInfoChange"))) {
+                baseRiskScore += configService.getAccountChangeRiskFactor();
+                assessment.put("accountChangeRiskFlag", true);
+            }
+
+            // Factor: Velocity check (multiple transactions in short time)
+            Integer recentTransactionCount = transactionHistoryService.getRecentTransactionCount(
+                    accountId, configService.getVelocityCheckWindowMinutes());
+            if (recentTransactionCount > configService.getVelocityTransactionThreshold()) {
+                baseRiskScore += configService.getVelocityRiskFactor();
                 assessment.put("velocityRiskFlag", true);
             }
+
+            // Factor: New beneficiary for payments
+            if (Boolean.TRUE.equals(transactionContext.get("newBeneficiary"))) {
+                baseRiskScore += configService.getNewBeneficiaryRiskFactor();
+                assessment.put("newBeneficiaryFlag", true);
+            }
+
+            // Apply risk multipliers from customer risk profile
+            CustomerRiskProfile profile = customerRiskService.getCustomerRiskProfile(accountId);
+            double customerRiskMultiplier = profile.getRiskMultiplier();
+            double finalRiskScore = Math.min(baseRiskScore * customerRiskMultiplier, 10.0);
+
+            // Behavioral anomaly detection
+            AnomalyDetectionResult anomalyResult = anomalyDetectionService.analyze(
+                    accountId, transactionContext);
+            double anomalyScore = anomalyResult.getScore();
+
+            // Populate assessment results
+            assessment.put("mlRiskScore", finalRiskScore);
+            assessment.put("anomalyScore", anomalyScore);
+            assessment.put("assessmentTimestamp", Instant.now().toString());
+            assessment.put("transactionId", transactionContext.get("transactionId"));
+            assessment.put("modelVersion", mlResponse.getModelVersion());
+            assessment.put("confidenceScore", mlResponse.getConfidenceScore());
+
+            // Apply risk flags based on configured thresholds
+            RiskThresholds thresholds = configService.getRiskThresholds(transactionType);
+            assessment.put("highRiskFlag", finalRiskScore > thresholds.getHighRiskThreshold());
+            assessment.put("anomalyFlag", anomalyScore > thresholds.getAnomalyThreshold());
+
+            // Determine recommended action
+            String recommendedAction = determineRecommendedAction(
+                    finalRiskScore, anomalyScore, thresholds, transactionType);
+            assessment.put("recommendedAction", recommendedAction);
+
+            // Record assessment for audit and model training
+            auditService.recordRiskAssessment(accountId, assessment);
+
+            logger.info("Risk assessment completed for account: {}, score: {}, action: {}",
+                    accountId, finalRiskScore, recommendedAction);
+
+            return assessment;
+        } catch (Exception e) {
+            logger.error("Error performing risk assessment for account: " + accountId, e);
+            throw new RiskAssessmentException("Failed to complete risk assessment", e);
+        } finally {
+            long duration = System.currentTimeMillis() - startTime;
+            metricsService.recordRiskAssessmentDuration(duration);
+        }
+    }
+
+    /**
+     * Determines the recommended action based on risk scores and configured thresholds
+     */
+    private String determineRecommendedAction(double riskScore, double anomalyScore,
+                                              RiskThresholds thresholds, String transactionType) {
+
+        // Special handling for high-value transactions
+        if ("INTERNATIONAL_WIRE".equals(transactionType) &&
+                riskScore > thresholds.getInternationalWireThreshold()) {
+            return "MANUAL_REVIEW";
         }
 
-        // Normalize risk score to 0-10 range
-        double normalizedRiskScore = Math.min(baseRiskScore, 10.0);
-
-        // Generate anomaly score (separate from risk score)
-        double anomalyScore = calculateAnomalyScore(originalPayload);
-
-        // Final assessment
-        assessment.put("mlRiskScore", normalizedRiskScore);
-        assessment.put("anomalyScore", anomalyScore);
-        assessment.put("assessmentTimestamp", System.currentTimeMillis());
-
-        // Risk flags based on thresholds
-        assessment.put("highRiskFlag", normalizedRiskScore > 7.0);
-        assessment.put("anomalyFlag", anomalyScore > 0.8);
-
-        // Overall recommendation
-        if (normalizedRiskScore > internationalRiskThreshold || anomalyScore > 0.9) {
-            assessment.put("recommendedAction", "REVIEW");
-        } else if (normalizedRiskScore > 5.0 || anomalyScore > 0.7) {
-            assessment.put("recommendedAction", "MONITOR");
+        // Standard action determination
+        if (riskScore > thresholds.getBlockThreshold() || anomalyScore > thresholds.getBlockAnomalyThreshold()) {
+            return "BLOCK";
+        } else if (riskScore > thresholds.getReviewThreshold() || anomalyScore > thresholds.getReviewAnomalyThreshold()) {
+            return "REVIEW";
+        } else if (riskScore > thresholds.getMonitorThreshold() || anomalyScore > thresholds.getMonitorAnomalyThreshold()) {
+            return "MONITOR";
         } else {
-            assessment.put("recommendedAction", "APPROVE");
+            return "APPROVE";
         }
+    }
 
-        return assessment;
+    /**
+     * Fallback risk assessment using rules engine when ML service is unavailable
+     */
+    private RiskAssessmentResponse fallbackRiskAssessment(RiskAssessmentRequest request) {
+        return rulesEngineService.evaluateRiskWithRules(request);
     }
 
     /**
@@ -667,13 +936,33 @@ public class TransactionStreamProcessor {
 
     /**
      * Get user-specific spending threshold
-     * In a real implementation, this would query a user settings service
+     * Queries the user settings service for the user's configured threshold
      */
-    private double getUserSpendingThreshold(String userId) {
-        // For demonstration, return the default threshold
-        // In production, this would query a user settings database or service
-        return defaultSpendingAlertThreshold;
+    private double getUserSpendingThreshold(UUID userId) {
+        try {
+            // Use the injected userSettingsService to get the user's spending threshold
+            return userSettingsService.getSpendingThreshold(userId)
+                    .orElseGet(() -> {
+                        logger.info("No custom threshold found for user {}, using default: {}",
+                                userId, defaultSpendingAlertThreshold);
+                        return defaultSpendingAlertThreshold;
+                    });
+        } catch (Exception e) {
+            logger.error("Error retrieving spending threshold for user {}: {}", userId, e.getMessage());
+            // Fallback to default threshold in case of errors
+            return defaultSpendingAlertThreshold;
+        }
     }
+    public boolean exceedsUserThreshold(UUID userId, BigDecimal totalAmount) {
+        try {
+            double threshold = getUserSpendingThreshold(userId);
+            return totalAmount.compareTo(BigDecimal.valueOf(threshold)) > 0;
+        } catch (Exception e) {
+            logger.error("Error checking spending threshold", e);
+            return false;
+        }
+    }
+
 
     private String createSpendingNotification(String totalAmount) {
         try {
