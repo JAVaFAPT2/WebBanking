@@ -1,0 +1,4 @@
+service\monitorservice\controller\CustomErrorController.class
+service\monitorservice\MonitorServiceApplication.class
+service\monitorservice\tracing\TracingConfig.class
+service\monitorservice\controller\MetricsController.class

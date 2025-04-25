@@ -2,14 +2,12 @@ spring:
   application:
     name: message-broker
 
-  # Database Configuration
   datasource:
     url: jdbc:mysql://localhost:3306/webbanking
-    username: webbanking_user
-    password: password
+    username: root
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  # JPA Configuration
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,11 +17,9 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
 
-  # Component Scanning Configuration
   main:
     allow-bean-definition-overriding: true
 
-  # Kafka Configuration
   kafka:
     bootstrap-servers: kafka-broker1:9092,kafka-broker2:9092,kafka-broker3:9092
     topics:
@@ -48,26 +44,64 @@ spring:
       retries: 3
       properties:
         enable.idempotence: true
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
     streams:
       application-id: transaction-processor-app
       replication-factor: 3
       num-stream-threads: 8
       state-dir: /data/kafka-streams
 
+
 app:
   transaction:
     international:
-      risk-threshold: 7.5            # Risk threshold for international transactions
+      risk-threshold: 7.5
     high-value:
-      threshold: 10000.0             # Threshold for high-value transactions
+      threshold: 10000.0
     spending:
-      alert-threshold: 5000.0        # Default spending alert threshold
+      alert-threshold: 5000.0
+    cache:
+      expiry-ms: 60000
+      max-size: 10000
 
-  # User Settings Configuration
   user-settings:
-    cache-ttl-minutes: 15            # Cache time-to-live for user settings
+    cache-ttl-minutes: 15
 
-  # Streams Configuration
   streams:
     aggregation:
-      window-size: PT1H              # 1-hour window size for aggregation
+      window-size: PT1H
+
+  rules:
+    high-value-threshold: 10000.0
+    medium-value-threshold: 5000.0
+    international-risk-factor: 2.0
+    new-device-risk-factor: 1.5
+    high-risk-countries: NORTH_KOREA,IRAN,SYRIA,CUBA
+    high-risk-transaction-types: CRYPTOCURRENCY,GAMBLING,ANONYMOUS_TRANSFER
+    model-version: rules-engine-v1.0
+
+  ml:
+    risk-service:
+      url: http://risk-assessment-service/api/evaluate
+      timeout: 3000
+      model-version: v2.1.0
+      enabled: true
+
+  metrics:
+    enabled: true
+    log-level: INFO
+
+  risk:
+    account-change-factor: 1.5
+    velocity-factor: 2.0
+    new-beneficiary-factor: 1.8
+    velocity-check-window: 15
+    velocity-transaction-threshold: 3
+
+  anomaly:
+    amount-threshold-multiplier: 5.0
+    time-sensitivity: 0.7
+    location-sensitivity: 0.8
+    velocity-sensitivity: 0.9
+    detection-method: STATISTICAL

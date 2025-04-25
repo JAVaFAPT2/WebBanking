@@ -4,7 +4,6 @@ package service.messagebroker.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import service.messagebroker.models.UserSettings;
@@ -35,7 +34,7 @@ class UserSettingsServiceImpl implements UserSettingsService {
     @Value("${app.user-settings.cache-ttl-minutes:15}")
     private int cacheTtlMinutes;
 
-    @Autowired
+
     public UserSettingsServiceImpl(UserSettingsRepository userSettingsRepository) {
         this.userSettingsRepository = userSettingsRepository;
     }
@@ -83,7 +82,7 @@ class UserSettingsServiceImpl implements UserSettingsService {
 
             if (settings.isPresent()) {
                 UserSettings userSettings = settings.get();
-                userSettings.setLastFetched(System.currentTimeMillis());
+                userSettings.setLastUpdated(System.currentTimeMillis());
                 userSettingsCache.put(userId, userSettings);
                 return userSettings;
             } else {
@@ -105,7 +104,7 @@ class UserSettingsServiceImpl implements UserSettingsService {
      */
     private boolean isSettingsExpired(UserSettings settings) {
         long now = System.currentTimeMillis();
-        long lastFetched = settings.getLastFetched();
+        long lastFetched = settings.getLastUpdated();
         long ttlMillis = (long) cacheTtlMinutes * 60 * 1000;
 
         return (now - lastFetched) > ttlMillis;
@@ -119,7 +118,7 @@ class UserSettingsServiceImpl implements UserSettingsService {
         settings.setUserId(userId);
         settings.setSpendingThreshold(DEFAULT_SPENDING_THRESHOLD);
         settings.setRiskFactor(DEFAULT_RISK_FACTOR);
-        settings.setLastFetched(System.currentTimeMillis());
+        settings.setLastUpdated(System.currentTimeMillis());
         return settings;
     }
 }

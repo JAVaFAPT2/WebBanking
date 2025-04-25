@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: monitor-service
+  security:
+    user:
+      name: user
+      password: 25102005
+server:
+  port: 8081
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus, metrics
+  metrics:
+    tags:
+      application: banking-monitor
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG

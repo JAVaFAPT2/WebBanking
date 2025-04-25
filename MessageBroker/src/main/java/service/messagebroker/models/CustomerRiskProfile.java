@@ -1,16 +1,21 @@
 package service.messagebroker.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
+import java.util.UUID;
+
+@Entity
+@Table(name = "customer_risk_profiles")
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class CustomerRiskProfile {
-    private String userId;
+    @Id
+    private UUID userId = UUID.randomUUID();
     private RiskLever riskLevel; // LOW, MEDIUM, HIGH
     private double riskMultiplier;
     private boolean isRestricted;

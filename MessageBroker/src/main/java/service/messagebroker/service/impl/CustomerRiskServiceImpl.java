@@ -2,12 +2,12 @@ package service.messagebroker.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.messagebroker.models.CustomerRiskProfile;
 import service.messagebroker.models.RiskLever;
+import service.messagebroker.repository.CustomerRiskProfileRepository;
 import service.messagebroker.service.CustomerRiskService;
-import service.repository.CustomerRiskProfileRepository;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,13 +21,17 @@ public class CustomerRiskServiceImpl implements CustomerRiskService {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRiskServiceImpl.class);
 
     // Cache for frequently accessed profiles
-    private final Map<String, CustomerRiskProfile> profileCache = new HashMap<>();
+    private final Map<UUID, CustomerRiskProfile> profileCache = new HashMap<>();
 
-    @Autowired
-    private CustomerRiskProfileRepository repository;
+
+    private final CustomerRiskProfileRepository repository;
+
+    public CustomerRiskServiceImpl(CustomerRiskProfileRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
-    public CustomerRiskProfile getCustomerRiskProfile(String userId) {
+    public CustomerRiskProfile getCustomerRiskProfile(UUID userId) {
         try {
             // Check cache first
             if (profileCache.containsKey(userId)) {
@@ -64,7 +68,7 @@ public class CustomerRiskServiceImpl implements CustomerRiskService {
         }
     }
 
-    private CustomerRiskProfile createDefaultProfile(String userId) {
+    private CustomerRiskProfile createDefaultProfile(UUID userId) {
         CustomerRiskProfile profile = new CustomerRiskProfile();
         profile.setUserId(userId);
         profile.setRiskLevel(RiskLever.MEDIUM);

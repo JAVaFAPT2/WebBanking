@@ -15,13 +15,12 @@ import org.springframework.kafka.annotation.EnableKafkaStreams;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 import service.messagebroker.exeption.RiskAssessmentException;
-import service.messagebroker.models.CustomerRiskProfile;
-import service.messagebroker.models.KafkaMessage;
+import service.messagebroker.models.*;
+import service.messagebroker.models.RiskAssessmentResponse;
 import service.messagebroker.request.RiskAssessmentRequest;
-import service.messagebroker.service.UserSettingsService;
 
-import javax.naming.ServiceUnavailableException;
-import java.math.BigDecimal;
+import service.messagebroker.service.*;
+
 import java.time.Duration;
 import java.time.Instant;
 import java.util.HashMap;
@@ -41,10 +40,26 @@ public class TransactionStreamProcessor {
     private static final Logger logger = LoggerFactory.getLogger(TransactionStreamProcessor.class);
 
     private final ObjectMapper objectMapper;
+
     private final UserSettingsService userSettingsService;
+
+    private final SecurityService securityService;
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
+    private final MLRiskService mlRiskService;
+
+    private final ConfigService configService;
+
+    private final CustomerRiskService customerRiskService;
+
+    private final transactionHistoryService transactionHistoryService;
+
+    private final anomalyDetectionService anomalyDetectionService;
+
+    private final AuditService auditService;
+
+    private final MetricsService metricsService;
     @Value("${spring.kafka.topics.transaction}")
     private String transactionTopic;
 
@@ -72,11 +87,27 @@ public class TransactionStreamProcessor {
     @Value("${app.transaction.spending.alert-threshold:5000.0}")
     private double defaultSpendingAlertThreshold;
 
+    private final RulesEngineService rulesEngineService;
+
+
     @Autowired
-    public TransactionStreamProcessor(ObjectMapper objectMapper, UserSettingsService userSettingsService, KafkaTemplate<String, String> kafkaTemplate) {
+    public TransactionStreamProcessor(ObjectMapper objectMapper,
+                                      UserSettingsService userSettingsService,
+                                      SecurityService securityService,
+                                      KafkaTemplate<String, String> kafkaTemplate,
+                                      MLRiskService mLRiskService, ConfigService configService, CustomerRiskService customerRiskService, transactionHistoryService transactionHistoryService, anomalyDetectionService anomalyDetectionService, AuditService auditService, MetricsService metricsService, RulesEngineService rulesEngineService) {
         this.objectMapper = objectMapper;
         this.userSettingsService = userSettingsService;
+        this.securityService = securityService;
         this.kafkaTemplate = kafkaTemplate;
+        this.mlRiskService = mLRiskService;
+        this.configService = configService;
+        this.customerRiskService = customerRiskService;
+        this.transactionHistoryService = transactionHistoryService;
+        this.anomalyDetectionService = anomalyDetectionService;
+        this.auditService = auditService;
+        this.metricsService = metricsService;
+        this.rulesEngineService = rulesEngineService;
     }
 
     @Bean
@@ -131,8 +162,7 @@ public class TransactionStreamProcessor {
                 .windowedBy(TimeWindows.ofSizeWithNoGrace(Duration.ofHours(1)).advanceBy(Duration.ofMinutes(15)))
                 .aggregate(
                         () -> "0.0", // Initial value
-                        (key, value, aggregate) -> aggregateTransactionAmount(value, aggregate),
-                        Materialized.with(Serdes.String(), Serdes.String())
+                        (key, value, aggregate) -> aggregateTransactionAmount(value, aggregate)
                 )
                 .toStream()
                 .map((windowedKey, value) -> KeyValue.pair(windowedKey.key(), value))
@@ -151,19 +181,6 @@ public class TransactionStreamProcessor {
         return transactionStream;
     }
 
-    private boolean exceedsUserThreshold(String userId, String totalAmount) {
-        try {
-            double total = Double.parseDouble(totalAmount);
-            // Get user-specific threshold if available (would come from a user settings service)
-            double threshold = getUserSpendingThreshold(UUID.fromString(userId));
-            logger.debug("Checking spending threshold for user {}: current={}, threshold={}",
-                    userId, total, threshold);
-            return total > threshold;
-        } catch (Exception e) {
-            logger.error("Error checking user threshold", e);
-            return false;
-        }
-    }
 
     /**
      * Audit transaction for compliance and monitoring
@@ -177,7 +194,7 @@ public class TransactionStreamProcessor {
             Map<String, Object> auditData = new HashMap<>();
             auditData.put("transactionId", payload.getOrDefault("transactionId", "Unknown"));
             auditData.put("accountId", payload.getOrDefault("accountId", "Unknown"));
-            auditData.put("processingTimestamp", System.currentTimeMillis());
+            auditData.put("processingTimestamp", Optional.of(System.currentTimeMillis()).orElse(null));
             auditData.put("originalPayload", payload);
 
             // Create audit message
@@ -594,13 +611,7 @@ public class TransactionStreamProcessor {
 
             // Call ML service for risk score prediction
             RiskAssessmentResponse mlResponse = null;
-            try {
-                mlResponse = mlRiskService.evaluateRisk(request);
-            } catch (ServiceUnavailableException e) {
-                logger.warn("ML service unavailable, falling back to rules engine", e);
-                // Fallback to rules-based assessment if ML service is down
-                mlResponse = fallbackRiskAssessment(request);
-            }
+            mlResponse = mlRiskService.evaluateRisk(request);
 
             // Extract base risk score from ML response
             double baseRiskScore = mlResponse.getRiskScore();
@@ -953,10 +964,10 @@ public class TransactionStreamProcessor {
             return defaultSpendingAlertThreshold;
         }
     }
-    public boolean exceedsUserThreshold(UUID userId, BigDecimal totalAmount) {
+    public boolean exceedsUserThreshold(String userId, String totalAmount) {
         try {
-            double threshold = getUserSpendingThreshold(userId);
-            return totalAmount.compareTo(BigDecimal.valueOf(threshold)) > 0;
+            double threshold = getUserSpendingThreshold(UUID.fromString(userId));
+            return totalAmount.compareTo(String.valueOf(threshold)) > 0;
         } catch (Exception e) {
             logger.error("Error checking spending threshold", e);
             return false;
