@@ -15,6 +15,7 @@ import service.messagebroker.producer.MessageProducer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -344,7 +345,7 @@ public class MessageListener {
         Map<String, Object> payload = message.getPayload();
 
         // Fraud alerts are critical and need immediate attention
-        String accountId = message.getSubject();
+        UUID accountId = UUID.fromString(message.getSubject());
         String fraudType = (String) payload.getOrDefault("fraudType", "UNKNOWN");
 
         // Take immediate action like freezing the account
@@ -436,7 +437,7 @@ public class MessageListener {
 
     // Helper methods for fraud alert processing
 
-    private void freezeAccountIfNeeded(String accountId, String fraudType, Map<String, Object> details) {
+    private void freezeAccountIfNeeded(UUID accountId, String fraudType, Map<String, Object> details) {
         // Logic to determine if account should be frozen
         if ("UNUSUAL_LOCATION".equals(fraudType) || "RAPID_SUCCESSION".equals(fraudType)) {
             logger.warn("Freezing account {} due to fraud type: {}", accountId, fraudType);
@@ -446,14 +447,14 @@ public class MessageListener {
         }
     }
 
-    private void notifySecurityTeam(String accountId, String fraudType, Map<String, Object> details) {
+    private void notifySecurityTeam(UUID accountId, String fraudType, Map<String, Object> details) {
         logger.info("Notifying security team about fraud alert for account {}: {}", accountId, fraudType);
 
         // Logic to notify security team
         // This might involve sending an email, creating a ticket, etc.
     }
 
-    private void notifyUserOfFraudAlert(String accountId, String fraudType) {
+    private void notifyUserOfFraudAlert(UUID accountId, String fraudType) {
         logger.info("Notifying user about fraud alert: {}", fraudType);
 
         messageProducer.sendNotificationEvent(
@@ -563,7 +564,7 @@ public class MessageListener {
      */
     private void notifyAboutSignificantTransaction(Map<String, Object> payload) {
         String transactionId = (String) payload.getOrDefault("transactionId", "Unknown");
-        String accountId = (String) payload.getOrDefault("accountId", "Unknown");
+        UUID accountId = (UUID) payload.getOrDefault("accountId", "Unknown");
 
         logger.info("Sending notification for significant transaction: {}", transactionId);
 
@@ -585,7 +586,7 @@ public class MessageListener {
      */
     private void processTransferDebitedMessage(KafkaMessage message) {
         Map<String, Object> payload = message.getPayload();
-        String accountId = message.getSubject();
+        UUID accountId = UUID.fromString(message.getSubject());
 
         // Extract transfer details
         String transferId = (String) payload.getOrDefault("transferId", "Unknown");
@@ -609,11 +610,11 @@ public class MessageListener {
                 accountId, transferId, amount, recipientId);
 
         // Record the debit transaction
-        recordDebitTransaction(accountId, transferId, amount);
+        recordDebitTransaction(String.valueOf(accountId), transferId, amount);
 
         // Check for unusual transfer patterns
-        if (isUnusualTransfer(accountId, amount, recipientId)) {
-            reportUnusualTransfer(accountId, transferId, amount, recipientId);
+        if (isUnusualTransfer(String.valueOf(accountId), amount, recipientId)) {
+            reportUnusualTransfer(String.valueOf(accountId), transferId, amount, recipientId);
         }
 
         // Send notification to the user about the debit
@@ -693,7 +694,7 @@ public class MessageListener {
     /**
      * Notify the user about the debit from their account
      */
-    private void notifyUserOfDebit(String accountId, String transferId, double amount, String recipientId) {
+    private void notifyUserOfDebit(UUID accountId, String transferId, double amount, String recipientId) {
         logger.info("Sending debit notification to user: {}", accountId);
 
         // Create a user-friendly message
@@ -718,7 +719,7 @@ public class MessageListener {
     /**
      * Update account activity records
      */
-    private void updateAccountActivity(String accountId, Map<String, Object> details) {
+    private void updateAccountActivity(UUID accountId, Map<String, Object> details) {
         logger.info("Updating account activity: account={}, type={}", accountId, "TRANSFER_DEBIT");
 
         // Create activity record

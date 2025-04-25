@@ -7,18 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MessageBroker" />
         <module name="shared" />
-        <module name="config-server" />
         <module name="circuit-breaker-service" />
         <module name="audit-service" />
         <module name="Banking" />
         <module name="monitor-service" />
-        <module name="orchestration-service" />
-        <module name="account-service" />
         <module name="eureka-server" />
         <module name="logging-service" />
         <module name="notification-service" />
+        <module name="MessageBroker" />
+        <module name="config-server" />
+        <module name="orchestration-service" />
+        <module name="account-service" />
       </profile>
       <profile name="Annotation profile for caching-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -33,20 +33,22 @@
     <bytecodeTargetLevel>
       <module name="accountService" target="23" />
       <module name="AccountService (1) (account)" target="21" />
-      <module name="analyzeService" target="21" />
-      <module name="api-gateway" target="21" />
+      <module name="accountService (1) (org)" target="1.5" />
+      <module name="AccountService (2) (account)" target="22" />
+      <module name="analyzeService" target="1.5" />
+      <module name="api-gateway" target="1.5" />
       <module name="caching-service" target="21" />
-      <module name="CardService" target="21" />
+      <module name="CardService" target="1.5" />
       <module name="common" target="21" />
-      <module name="fundtransfer" target="21" />
+      <module name="fundtransfer" target="1.5" />
       <module name="kafka-kraft-server" target="21" />
-      <module name="LoanService" target="21" />
+      <module name="LoanService" target="1.5" />
       <module name="monitorService" target="21" />
-      <module name="Notification_Service" target="21" />
-      <module name="sequencegenerator" target="21" />
-      <module name="serviceregistry" target="21" />
-      <module name="transactions" target="21" />
-      <module name="userservice" target="21" />
+      <module name="Notification_Service" target="1.5" />
+      <module name="sequencegenerator" target="1.5" />
+      <module name="serviceregistry" target="1.5" />
+      <module name="transactions" target="1.5" />
+      <module name="userservice" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -54,7 +56,7 @@
       <module name="Banking" options="-parameters" />
       <module name="MessageBroker" options="-parameters" />
       <module name="account-service" options="-parameters" />
-      <module name="api-gateway" options="-parameters" />
+      <module name="api-gateway" options="" />
       <module name="audit-service" options="-parameters" />
       <module name="caching-service" options="-parameters" />
       <module name="circuit-breaker-service" options="-parameters" />
