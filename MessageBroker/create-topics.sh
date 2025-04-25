@@ -1,4 +1,3 @@
-#!/bin/bash
 
 echo "Creating Kafka topics..."
 

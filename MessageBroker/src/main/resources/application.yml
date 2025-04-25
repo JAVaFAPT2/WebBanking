@@ -21,7 +21,7 @@ spring:
     allow-bean-definition-overriding: true
 
   kafka:
-    bootstrap-servers: kafka-broker1:9092,kafka-broker2:9092,kafka-broker3:9092
+    bootstrap-servers: kafka:9092,kafka2:9092,kafka3:9092
     topics:
       transaction: banking.transactions
       transfer-debited: transfer.debited
