@@ -19,7 +19,7 @@ namespace Application.CQRS.Handler.QueriesH
             var user = await _userRepository.GetByIdAsync(request.UserId);
             return user == null ? null : new UserDto(
                 user.Id,
-                user.Name,
+                user.Username,
                 user.Email,
                 user.CreatedAt
             );

@@ -3,30 +3,24 @@ using Application.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace Presentation.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UserController : ControllerBase
+public class UserController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public UserController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
     [HttpPost]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command)
     {
-        await _mediator.Send(command);
-        return Ok();
+        var userId = await mediator.Send(command);
+        return Ok(new { UserId = userId });
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand command)
     {
-        await _mediator.Send(command);
+        await mediator.Send(command);
         return Ok();
     }
 
@@ -34,7 +28,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> DeleteUser(Guid userId)
     {
         var command = new DeleteUserCommand(userId);
-        await _mediator.Send(command);
+        await mediator.Send(command);
         return Ok();
     }
 
@@ -42,7 +36,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> GetUserById(Guid userId)
     {
         var query = new GetUserByIdQuery(userId);
-        var result = await _mediator.Send(query);
+        var result = await mediator.Send(query);
         return result == null ? NotFound() : Ok(result);
     }
 
@@ -50,7 +44,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> GetAllUsers()
     {
         var query = new GetAllUsersQuery();
-        var result = await _mediator.Send(query);
+        var result = await mediator.Send(query);
         return Ok(result);
     }
 
@@ -58,7 +52,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> GetUserByEmail(string email)
     {
         var query = new GetUserByEmailQuery(email);
-        var result = await _mediator.Send(query);
+        var result = await mediator.Send(query);
         return result == null ? NotFound() : Ok(result);
     }
 }

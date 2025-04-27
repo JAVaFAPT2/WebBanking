@@ -14,12 +14,12 @@ namespace Application.CQRS.Handler.QueriesH
     {
         private readonly IUserRepository _userRepository = userRepository;
 
-        public async Task<UserDto> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
+        public async Task<UserDto?> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByEmailAsync(request.Email);
             return user == null ? null : new UserDto(
                 user.Id,
-                user.Name,
+                user.Username,
                 user.Email,
                 user.CreatedAt
             );

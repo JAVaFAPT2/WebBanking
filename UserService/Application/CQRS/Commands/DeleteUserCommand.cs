@@ -6,5 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.CQRS.Commands
-{  public record DeleteUserCommand(Guid UserId) : IRequest<Unit>;
+{
+    public record DeleteUserCommand(Guid UserId) : IRequest<Unit>
+    {
+        
+    }
 }

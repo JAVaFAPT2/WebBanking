@@ -24,7 +24,7 @@ namespace Application.CQRS.Handler.QueriesH
             var users = await _userRepository.GetAllAsync();
             return users.Select(user => new UserDto(
                 user.Id,
-                user.Name,
+                user.Username,
                 user.Email,
                 user.CreatedAt
             ));

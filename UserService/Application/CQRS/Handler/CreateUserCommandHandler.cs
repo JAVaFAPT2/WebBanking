@@ -1,25 +1,38 @@
 ﻿using Application.CQRS.Commands;
+using Application.EventBus;
 using Domain.Interface;
 using Domain.models;
 using MediatR;
 
 namespace Application.CQRS.Handler
 {
-    public class CreateUserCommandHandler(IUserRepository userRepository) : IRequestHandler<CreateUserCommand, Unit>
+    public class CreateUserCommandHandler(IUserRepository repo, IEventBus events) : IRequestHandler<CreateUserCommand, Guid>
     {
-        private readonly IUserRepository _userRepository = userRepository;
+        private readonly IUserRepository _repo = repo;
+        private readonly IEventBus _events = events;
 
-        async Task<Unit> IRequestHandler<CreateUserCommand, Unit>.Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateUserCommand request, CancellationToken ct)
         {
+            if (string.IsNullOrWhiteSpace(request.Password))
+            {
+                throw new ArgumentException("Password cannot be null or empty.", nameof(request.Password));
+            }
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
             var user = new User
             {
-                Name = request.UserName,
+                Id = Guid.NewGuid(),
+                Username = request.Username,
                 Email = request.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
+                PasswordHash = hashedPassword, // Ensure this is set
                 CreatedAt = DateTime.UtcNow
             };
-            await _userRepository.AddAsync(user);
-            return Unit.Value;
+            await _repo.AddAsync(user);
+
+            var @evt = new Domain.Events.UserCreatedEvent(
+                          user.Id, user.Username, user.Email, user.CreatedAt);
+            await _events.PublishAsync(@evt);
+
+            return user.Id;
         }
     }
 }

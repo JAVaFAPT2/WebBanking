@@ -13,7 +13,7 @@ namespace Infrastructure.Persistence.DBContext
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Name)
+                entity.Property(e => e.Username)
                       .IsRequired()
                       .HasMaxLength(100);
                 entity.Property(e => e.Email)

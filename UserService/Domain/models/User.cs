@@ -1,35 +1,45 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
     public class User
     {
+        private Guid guid;
+        private string userName;
+        private string hashed;
 
         [Key]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get;  set; }
+
         [Required]
-        public required string Name { get; set; }
+        [StringLength(100)]
+        public string Username { get;  set; }
+
         [Required]
-        [Length(7, 20)]
-        public required string Email { get; set; }
+        [StringLength(100)]
+        public string Email { get;  set; }
+
         [Required]
-        [PasswordPropertyText]
-        public required string PasswordHash { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public string PasswordHash { get;  set; }
+
+        [Required]
+        public DateTime CreatedAt { get;  set; }
 
         public User()
         {
         }
         public void Update(string name, string email)
         {
-            Name = name;
+            Username = name;
             Email = email;
         }
         public User(Guid id, string name, string email, string passwordHash, DateTime createdAt)
         {
             Id = id;
-            Name = name;
+            Username = name;
             Email = email;
             this.PasswordHash = passwordHash;
             CreatedAt = createdAt;
@@ -37,16 +47,24 @@ namespace Domain.models
 
         public User(string name, string email, string passwordHash)
         {
-            Name = name;
+            Username = name;
             Email = email;
             this.PasswordHash = passwordHash;
+        }
+
+        public User(Guid guid, string userName, string email, string hashed)
+        {
+            this.guid = guid;
+            this.userName = userName;
+            Email = email;
+            this.hashed = hashed;
         }
 
         public override bool Equals(object? obj)
         {
             return obj is User user &&
                    Id.Equals(user.Id) &&
-                   Name == user.Name &&
+                   Username == user.Username &&
                    Email == user.Email &&
                    PasswordHash == user.PasswordHash &&
                    CreatedAt == user.CreatedAt;
@@ -54,7 +72,7 @@ namespace Domain.models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name, Email, PasswordHash, CreatedAt);
+            return HashCode.Combine(Id, Username, Email, PasswordHash, CreatedAt);
         }
     }
 }

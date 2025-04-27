@@ -1,4 +1,5 @@
 C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\bin\Debug\net9.0\Domain.deps.json
+C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\bin\Debug\net9.0\Domain.runtimeconfig.json
 C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\bin\Debug\net9.0\Domain.dll
 C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\bin\Debug\net9.0\Domain.pdb
 C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache
@@ -10,6 +11,5 @@ C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\obj\Debug\net9.0\D
 C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\obj\Debug\net9.0\Domain.dll
 C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\obj\Debug\net9.0\refint\Domain.dll
 C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\obj\Debug\net9.0\Domain.pdb
-C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\obj\Debug\net9.0\ref\Domain.dll
-C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\bin\Debug\net9.0\Domain.runtimeconfig.json
 C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\obj\Debug\net9.0\Domain.genruntimeconfig.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Domain\obj\Debug\net9.0\ref\Domain.dll

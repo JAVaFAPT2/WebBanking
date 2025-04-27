@@ -1,81 +1,89 @@
-using System;
-using System.Linq;
-using System.Reflection;
+﻿using Application.CQRS.Commands;
+using Application.CQRS.DTO;
+using Application.CQRS.Handler.QueriesH;
+using Application.CQRS.Handler;
+using Application.CQRS.Queries;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Features.Variance;
 using Domain.Interface;
 using Infrastructure.Persistence.DBContext;
-using Infrastructure.Persistence.Repository;
+using Infrastructure.Persistence.Repositories;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
-namespace UserService
+namespace UserService.Infrastructure;
+
+public static class ContainerConfig
 {
-    public static class ContainerConfig
+    public static ContainerBuilder AddGenericHandlers(this ContainerBuilder builder)
     {
-        public static ContainerBuilder AddGenericHandlers(this ContainerBuilder builder)
-        {
-            // 1. Enable contravariant resolution for handler interfaces
-            builder.RegisterSource(new ContravariantRegistrationSource());
+        // Enable contravariant resolution for notification handlers
+        builder.RegisterSource(new ContravariantRegistrationSource());
 
-            // 2. Register MediatR core types by scanning its assembly
-            builder
-                .RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly)
-                .AsImplementedInterfaces();
+        // MediatR core registrations
+        builder.RegisterType<Mediator>()
+               .As<IMediator>()
+               .InstancePerLifetimeScope();
 
-            // 3. Explicitly register the Mediator and ServiceFactory delegate
-            builder.RegisterType<Mediator>()
-                   .As<IMediator>()
-                   .InstancePerLifetimeScope();
-
-
-            // 4. Register pipeline behaviors (open generics)
-            builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>))
-                   .As(typeof(IPipelineBehavior<,>))
-                   .InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(RequestPostProcessorBehavior<,>))
-                   .As(typeof(IPipelineBehavior<,>))
-                   .InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(RequestExceptionActionProcessorBehavior<,>))
-                   .As(typeof(IPipelineBehavior<,>))
-                   .InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(RequestExceptionProcessorBehavior<,>))
-                   .As(typeof(IPipelineBehavior<,>))
-                   .InstancePerLifetimeScope();
-
-            // 5. Scan your application assemblies for closed-generic handlers
-            var handlerAssemblies = new[]
-            {
+        
+        var handlerAssemblies = new[]
+             {
                 Assembly.GetExecutingAssembly()
-                // You can add more assemblies containing handlers here
             };
 
-            builder.RegisterAssemblyTypes(handlerAssemblies)
-                   .AsClosedTypesOf(typeof(IRequestHandler<,>))
-                   .AsImplementedInterfaces()
-                   .InstancePerLifetimeScope();
+        // Pipeline behaviors
+        builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>))
+               .As(typeof(IPipelineBehavior<,>))
+               .InstancePerLifetimeScope();
+        builder.RegisterGeneric(typeof(RequestPostProcessorBehavior<,>))
+               .As(typeof(IPipelineBehavior<,>))
+               .InstancePerLifetimeScope();
+        builder.RegisterGeneric(typeof(RequestExceptionProcessorBehavior<,>))
+               .As(typeof(IPipelineBehavior<,>))
+               .InstancePerLifetimeScope();
+        builder.RegisterGeneric(typeof(RequestExceptionActionProcessorBehavior<,>))
+               .As(typeof(IPipelineBehavior<,>))
+               .InstancePerLifetimeScope();
 
-            builder.RegisterAssemblyTypes(handlerAssemblies)
-                   .AsClosedTypesOf(typeof(INotificationHandler<>))
-                   .AsImplementedInterfaces()
-                   .InstancePerLifetimeScope();
 
-            // 6. Register application DbContext and repositories
-            builder.RegisterType<ApplicationDbContext>()
-                   .AsSelf()
-                   .InstancePerLifetimeScope();
+        // Explicitly register command handlers
+        builder.RegisterType<CreateUserCommandHandler>()
+               .As<IRequestHandler<CreateUserCommand, Guid>>()
+               .InstancePerLifetimeScope();
+        builder.RegisterType<UpdateUserCommandHandler>()
+               .As<IRequestHandler<UpdateUserCommand, Unit>>()
+               .InstancePerLifetimeScope();
+        builder.RegisterType<DeleteUserCommandHandler>()
+               .As<IRequestHandler<DeleteUserCommand, Unit>>()
+               .InstancePerLifetimeScope();
 
-            builder.RegisterType<UserRepository>()
-                   .As<IUserRepository>()
-                   .InstancePerLifetimeScope();
-            var services = new ServiceCollection();
+        // Explicitly register query handlers
+        builder.RegisterType<GetUserByIdQueryHandler>()
+               .As<IRequestHandler<GetUserByIdQuery, UserDto>>()
+               .InstancePerLifetimeScope();
+        builder.RegisterType<GetAllUsersQueryHandler>()
+               .As<IRequestHandler<GetAllUsersQuery, IEnumerable<UserDto>>>()
+               .InstancePerLifetimeScope();
+        builder.RegisterType<GetUserByEmailQueryHandler>()
+               .As<IRequestHandler<GetUserByEmailQuery, UserDto>>()
+               .InstancePerLifetimeScope();
 
-            builder.Populate(services);
+        // EF Core DbContext & Repositories
+        builder.RegisterType<ApplicationDbContext>()
+               .AsSelf()
+               .InstancePerLifetimeScope();
 
-            return builder;
+        builder.RegisterType<UserRepository>()
+               .As<IUserRepository>()
+               .InstancePerLifetimeScope();
 
-        }
+        // Populate ASP.NET Core services
+        var services = new ServiceCollection();
+        builder.Populate(services);
+
+        return builder;
     }
 }

@@ -9,14 +9,9 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.Handler
 {
-    public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, Unit>
+    public class DeleteUserCommandHandler(IUserRepository userRepository) : IRequestHandler<DeleteUserCommand, Unit>
     {
-        private readonly IUserRepository _userRepository;
-
-        public DeleteUserCommandHandler(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
+        private readonly IUserRepository _userRepository = userRepository;
 
         public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
