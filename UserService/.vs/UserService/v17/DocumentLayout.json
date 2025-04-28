@@ -3,6 +3,38 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\domain\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|solutionrelative:domain\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\domain\\models\\kycstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|solutionrelative:domain\\models\\kycstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\domain\\events\\usercreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|solutionrelative:domain\\events\\usercreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\domain\\valueobjects\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|solutionrelative:domain\\valueobjects\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\domain\\interface\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|solutionrelative:domain\\interface\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5949650D-2A83-4FD1-854C-441747077CD7}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5949650D-2A83-4FD1-854C-441747077CD7}|Presentation\\Presentation.csproj|solutionrelative:presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\infastructure\\containerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|solutionrelative:infastructure\\containerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\infastructure\\eventbus\\kafkaeventbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|solutionrelative:infastructure\\eventbus\\kafkaeventbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\infastructure\\persistence\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|solutionrelative:infastructure\\persistence\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,20 +47,12 @@
       "RelativeMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|solutionrelative:application\\cqrs\\handler\\queriesh\\getallusersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Migrations\\20250427174228_test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infastructure\\Migrations\\20250427174228_test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\application\\cqrs\\handler\\queriesh\\getuserbyidqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|solutionrelative:application\\cqrs\\handler\\queriesh\\getuserbyidqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\application\\cqrs\\handler\\queriesh\\getuserbyemailqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|solutionrelative:application\\cqrs\\handler\\queriesh\\getuserbyemailqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\domain\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|solutionrelative:domain\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\application\\cqrs\\commands\\updateusercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,24 +75,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infastructure\\Migrations\\20250427173604_test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\infastructure\\containerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|solutionrelative:infastructure\\containerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5949650D-2A83-4FD1-854C-441747077CD7}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5949650D-2A83-4FD1-854C-441747077CD7}|Presentation\\Presentation.csproj|solutionrelative:presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\infastructure\\eventbus\\kafkaeventbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|solutionrelative:infastructure\\eventbus\\kafkaeventbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\application\\cqrs\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|solutionrelative:application\\cqrs\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\domain\\events\\usercreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1B43AF-CF7F-4CA2-9BFF-BEA1D32A4F5B}|Domain\\Domain.csproj|solutionrelative:domain\\events\\usercreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5949650D-2A83-4FD1-854C-441747077CD7}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\presentation\\presentation.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
@@ -117,6 +125,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\application\\cqrs\\queries\\getuserbyidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7870FDE4-21A9-492C-B84F-F8F328F183CD}|Application\\Application.csproj|solutionrelative:application\\cqrs\\queries\\getuserbyidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\userservice\\infastructure\\migrations\\20250427174228_test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{113AF6FA-2375-4A94-A5B0-0D6EFE6E5AAF}|Infastructure\\Infrastructure.csproj|solutionrelative:infastructure\\migrations\\20250427174228_test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -126,50 +138,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 245,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "20250427174228_test.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Migrations\\20250427174228_test.cs",
-              "RelativeDocumentMoniker": "Infastructure\\Migrations\\20250427174228_test.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Migrations\\20250427174228_test.cs",
-              "RelativeToolTip": "Infastructure\\Migrations\\20250427174228_test.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:42:28.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "GetUserByIdQueryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetUserByIdQueryHandler.cs",
-              "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\QueriesH\\GetUserByIdQueryHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetUserByIdQueryHandler.cs",
-              "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetUserByIdQueryHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Interface\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "Domain\\Interface\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Interface\\IUserRepository.cs",
+              "RelativeToolTip": "Domain\\Interface\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:51:17.64Z",
+              "WhenOpened": "2025-04-28T15:08:50.583Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CreateUserCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\CreateUserCommandHandler.cs",
-              "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\CreateUserCommandHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\CreateUserCommandHandler.cs",
-              "RelativeToolTip": "Application\\CQRS\\Handler\\CreateUserCommandHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABOAAAAAAAAAA==",
+              "Title": "KycStatus.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\models\\KycStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\models\\KycStatus.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\models\\KycStatus.cs",
+              "RelativeToolTip": "Domain\\models\\KycStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:31:15.373Z",
+              "WhenOpened": "2025-04-28T15:49:35.468Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "Address.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\ValueObjects\\Address.cs",
+              "RelativeDocumentMoniker": "Domain\\ValueObjects\\Address.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\ValueObjects\\Address.cs",
+              "RelativeToolTip": "Domain\\ValueObjects\\Address.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T15:47:41.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Persistence\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "Infastructure\\Persistence\\Repositories\\UserRepository.cs",
@@ -183,38 +195,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "GetAllUsersQueryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetAllUsersQueryHandler.cs",
-              "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\QueriesH\\GetAllUsersQueryHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetAllUsersQueryHandler.cs",
-              "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetAllUsersQueryHandler.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAuwB4AAAAJAAAAAAAAAA==",
+              "Title": "UserCreatedEvent.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Events\\UserCreatedEvent.cs",
+              "RelativeDocumentMoniker": "Domain\\Events\\UserCreatedEvent.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Events\\UserCreatedEvent.cs",
+              "RelativeToolTip": "Domain\\Events\\UserCreatedEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:53:48.199Z",
+              "WhenOpened": "2025-04-27T16:24:47.387Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GetUserByEmailQueryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetUserByEmailQueryHandler.cs",
-              "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\QueriesH\\GetUserByEmailQueryHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetUserByEmailQueryHandler.cs",
-              "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetUserByEmailQueryHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:54:48.461Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\models\\User.cs",
               "RelativeDocumentMoniker": "Domain\\models\\User.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\models\\User.cs",
               "RelativeToolTip": "Domain\\models\\User.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCAAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAAAqwDkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-26T08:50:10.219Z",
               "EditorCaption": ""
@@ -222,6 +221,105 @@
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "KafkaEventBus.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\EventBus\\KafkaEventBus.cs",
+              "RelativeDocumentMoniker": "Infastructure\\EventBus\\KafkaEventBus.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\EventBus\\KafkaEventBus.cs",
+              "RelativeToolTip": "Infastructure\\EventBus\\KafkaEventBus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T16:25:52.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ContainerConfig.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\ContainerConfig.cs",
+              "RelativeDocumentMoniker": "Infastructure\\ContainerConfig.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\ContainerConfig.cs",
+              "RelativeToolTip": "Infastructure\\ContainerConfig.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAQwFkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T09:57:41.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Program.cs",
+              "RelativeDocumentMoniker": "Presentation\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Program.cs",
+              "RelativeToolTip": "Presentation\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T10:02:33.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GetAllUsersQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetAllUsersQueryHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\QueriesH\\GetAllUsersQueryHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetAllUsersQueryHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetAllUsersQueryHandler.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwB4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T09:53:48.199Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CreateUserCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\CreateUserCommandHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\CreateUserCommandHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\CreateUserCommandHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Handler\\CreateUserCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T09:31:15.373Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GetUserByIdQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetUserByIdQueryHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\QueriesH\\GetUserByIdQueryHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetUserByIdQueryHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetUserByIdQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T09:51:17.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "20250427174228_test.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Migrations\\20250427174228_test.cs",
+              "RelativeDocumentMoniker": "Infastructure\\Migrations\\20250427174228_test.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Migrations\\20250427174228_test.cs",
+              "RelativeToolTip": "Infastructure\\Migrations\\20250427174228_test.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T17:42:28.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GetUserByEmailQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetUserByEmailQueryHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\QueriesH\\GetUserByEmailQueryHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\QueriesH\\GetUserByEmailQueryHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetUserByEmailQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T09:54:48.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "UpdateUserCommand.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Commands\\UpdateUserCommand.cs",
               "RelativeDocumentMoniker": "Application\\CQRS\\Commands\\UpdateUserCommand.cs",
@@ -229,12 +327,11 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\UpdateUserCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:39:51.404Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:39:51.404Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Presentation\\Controllers\\UserController.cs",
@@ -242,12 +339,11 @@
               "RelativeToolTip": "Presentation\\Controllers\\UserController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T10:15:45.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T10:15:45.034Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "DeleteUserCommand.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Commands\\DeleteUserCommand.cs",
               "RelativeDocumentMoniker": "Application\\CQRS\\Commands\\DeleteUserCommand.cs",
@@ -255,12 +351,11 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\DeleteUserCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T15:48:32.626Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T15:48:32.626Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "IEventBus.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\EventBus\\IEventBus.cs",
               "RelativeDocumentMoniker": "Application\\EventBus\\IEventBus.cs",
@@ -268,12 +363,11 @@
               "RelativeToolTip": "Application\\EventBus\\IEventBus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:53:11.095Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T16:53:11.095Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "UserDto.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\DTO\\UserDto.cs",
               "RelativeDocumentMoniker": "Application\\CQRS\\DTO\\UserDto.cs",
@@ -281,38 +375,11 @@
               "RelativeToolTip": "Application\\CQRS\\DTO\\UserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:23:23.633Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:23:23.633Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "KafkaEventBus.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\EventBus\\KafkaEventBus.cs",
-              "RelativeDocumentMoniker": "Infastructure\\EventBus\\KafkaEventBus.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\EventBus\\KafkaEventBus.cs",
-              "RelativeToolTip": "Infastructure\\EventBus\\KafkaEventBus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:25:52.716Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Program.cs",
-              "RelativeDocumentMoniker": "Presentation\\Program.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Program.cs",
-              "RelativeToolTip": "Presentation\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T10:02:33.577Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "20250427173604_test.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Migrations\\20250427173604_test.cs",
               "RelativeDocumentMoniker": "Infastructure\\Migrations\\20250427173604_test.cs",
@@ -320,38 +387,11 @@
               "RelativeToolTip": "Infastructure\\Migrations\\20250427173604_test.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:36:05.252Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:36:05.252Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ContainerConfig.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\ContainerConfig.cs",
-              "RelativeDocumentMoniker": "Infastructure\\ContainerConfig.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\ContainerConfig.cs",
-              "RelativeToolTip": "Infastructure\\ContainerConfig.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAqwDIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:57:41.348Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UserCreatedEvent.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Events\\UserCreatedEvent.cs",
-              "RelativeDocumentMoniker": "Domain\\Events\\UserCreatedEvent.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Events\\UserCreatedEvent.cs",
-              "RelativeToolTip": "Domain\\Events\\UserCreatedEvent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:24:47.387Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "Presentation.http",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Presentation.http",
               "RelativeDocumentMoniker": "Presentation\\Presentation.http",
@@ -359,12 +399,11 @@
               "RelativeToolTip": "Presentation\\Presentation.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-04-26T10:19:08.122Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T10:19:08.122Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "docker-compose.yml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\docker-compose.yml",
               "RelativeDocumentMoniker": "Presentation\\docker-compose.yml",
@@ -372,12 +411,11 @@
               "RelativeToolTip": "Presentation\\docker-compose.yml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2025-04-27T16:51:03.321Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T16:51:03.321Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Presentation\\Properties\\launchSettings.json",
@@ -385,12 +423,11 @@
               "RelativeToolTip": "Presentation\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-27T17:14:08.145Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:14:08.145Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\appsettings.json",
               "RelativeDocumentMoniker": "Presentation\\appsettings.json",
@@ -398,12 +435,11 @@
               "RelativeToolTip": "Presentation\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-26T10:04:32.835Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T10:04:32.835Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Dockerfile",
               "RelativeDocumentMoniker": "Presentation\\Dockerfile",
@@ -411,12 +447,11 @@
               "RelativeToolTip": "Presentation\\Dockerfile",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-27T17:13:51.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:13:51.469Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "Presentation.csproj",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Presentation.csproj",
               "RelativeDocumentMoniker": "Presentation\\Presentation.csproj",
@@ -424,25 +459,23 @@
               "RelativeToolTip": "Presentation\\Presentation.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-26T10:26:29.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T10:26:29.508Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Infrastructure",
+              "DocumentIndex": 25,
+              "Title": "Infrastructure.csproj",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Infrastructure.csproj",
               "RelativeDocumentMoniker": "Infastructure\\Infrastructure.csproj",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Infrastructure.csproj",
               "RelativeToolTip": "Infastructure\\Infrastructure.csproj",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-27T17:02:51.395Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:02:51.395Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "DeleteUserCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\DeleteUserCommandHandler.cs",
               "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\DeleteUserCommandHandler.cs",
@@ -450,12 +483,11 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\DeleteUserCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:50:23.662Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:50:23.662Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "UpdateUserCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Handler\\UpdateUserCommandHandler.cs",
               "RelativeDocumentMoniker": "Application\\CQRS\\Handler\\UpdateUserCommandHandler.cs",
@@ -463,12 +495,11 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\UpdateUserCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:48:24.63Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:48:24.63Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": "GetAllUsersQuery.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Queries\\GetAllUsersQuery.cs",
               "RelativeDocumentMoniker": "Application\\CQRS\\Queries\\GetAllUsersQuery.cs",
@@ -480,7 +511,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "GetUserByEmailQuery.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Queries\\GetUserByEmailQuery.cs",
               "RelativeDocumentMoniker": "Application\\CQRS\\Queries\\GetUserByEmailQuery.cs",
@@ -492,7 +523,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "GetUserByIdQuery.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\CQRS\\Queries\\GetUserByIdQuery.cs",
               "RelativeDocumentMoniker": "Application\\CQRS\\Queries\\GetUserByIdQuery.cs",

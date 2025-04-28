@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Domain.ValueObjects;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,73 +7,67 @@ namespace Domain.models
 {
     public class User
     {
-        private Guid guid;
-        private string userName;
-        private string hashed;
+        public Guid Id { get; private set; }
+        public string Username { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public string Email { get; private set; }
+        public string PhoneNumber { get; private set; }
+        public string PasswordHash { get; private set; }
+        public DateTime DateOfBirth { get; private set; }
+        public Address Address { get; private set; }
+        public KycStatus KycStatus { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime? UpdatedAt { get; private set; }
+        public bool IsActive { get; private set; }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get;  set; }
+        // For ORM
+        private User() { }
 
-        [Required]
-        [StringLength(100)]
-        public string Username { get;  set; }
-
-        [Required]
-        [StringLength(100)]
-        public string Email { get;  set; }
-
-        [Required]
-        public string PasswordHash { get;  set; }
-
-        [Required]
-        public DateTime CreatedAt { get;  set; }
-
-        public User()
+        public User(string username, string firstName, string lastName, string email,
+                  string phoneNumber, string passwordHash, DateTime dateOfBirth, Address address)
         {
-        }
-        public void Update(string name, string email)
-        {
-            Username = name;
+            Id = Guid.NewGuid();
+            Username = username;
+            FirstName = firstName;
+            LastName = lastName;
             Email = email;
-        }
-        public User(Guid id, string name, string email, string passwordHash, DateTime createdAt)
-        {
-            Id = id;
-            Username = name;
-            Email = email;
-            this.PasswordHash = passwordHash;
-            CreatedAt = createdAt;
-        }
-
-        public User(string name, string email, string passwordHash)
-        {
-            Username = name;
-            Email = email;
-            this.PasswordHash = passwordHash;
+            PhoneNumber = phoneNumber;
+            PasswordHash = passwordHash;
+            DateOfBirth = dateOfBirth;
+            Address = address;
+            KycStatus = KycStatus.Pending;
+            CreatedAt = DateTime.UtcNow;
+            IsActive = true;
         }
 
-        public User(Guid guid, string userName, string email, string hashed)
+        public void UpdateProfile(string firstName, string lastName, string phoneNumber, Address address)
         {
-            this.guid = guid;
-            this.userName = userName;
-            Email = email;
-            this.hashed = hashed;
+            FirstName = firstName;
+            LastName = lastName;
+            PhoneNumber = phoneNumber;
+            Address = address;
+            UpdatedAt = DateTime.UtcNow;
         }
 
-        public override bool Equals(object? obj)
+        public void UpdatePassword(string newPasswordHash)
         {
-            return obj is User user &&
-                   Id.Equals(user.Id) &&
-                   Username == user.Username &&
-                   Email == user.Email &&
-                   PasswordHash == user.PasswordHash &&
-                   CreatedAt == user.CreatedAt;
+            PasswordHash = newPasswordHash;
+            UpdatedAt = DateTime.UtcNow;
         }
 
-        public override int GetHashCode()
+        public void UpdateKycStatus(KycStatus status)
         {
-            return HashCode.Combine(Id, Username, Email, PasswordHash, CreatedAt);
+            KycStatus = status;
+            UpdatedAt = DateTime.UtcNow;
         }
+
+        public void Deactivate()
+        {
+            IsActive = false;
+            UpdatedAt = DateTime.UtcNow;
+        }
+
+
     }
 }
