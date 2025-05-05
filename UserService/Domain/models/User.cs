@@ -1,32 +1,107 @@
 ﻿using Domain.ValueObjects;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domain.models
 {
+    [Table("Users")]
     public class User
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; private set; }
+
+        [Required]
+        [StringLength(50, MinimumLength = 3)]
+        [Column(TypeName = "nvarchar(50)")]
         public string Username { get; private set; }
+
+        [Required]
+        [StringLength(50)]
+        [Column(TypeName = "nvarchar(50)")]
         public string FirstName { get; private set; }
+
+        [Required]
+        [StringLength(50)]
+        [Column(TypeName = "nvarchar(50)")]
         public string LastName { get; private set; }
+
+        [Required]
+        [EmailAddress]
+        [StringLength(100)]
+        [Column(TypeName = "nvarchar(100)")]
         public string Email { get; private set; }
+
+        [Required]
+        [Phone]
+        [StringLength(20)]
+        [Column(TypeName = "nvarchar(20)")]
         public string PhoneNumber { get; private set; }
+
+        [Required]
+        [StringLength(128)]
+        [Column(TypeName = "nvarchar(128)")]
         public string PasswordHash { get; private set; }
+
+        [Required]
+        [Column(TypeName = "date")]
         public DateTime DateOfBirth { get; private set; }
+
+        [Required]
         public Address Address { get; private set; }
+
+        [Required]
+        [Column(TypeName = "int")]
         public KycStatus KycStatus { get; private set; }
+
+        [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime CreatedAt { get; private set; }
+
+        [Column(TypeName = "datetime2")]
         public DateTime? UpdatedAt { get; private set; }
+
+        [Required]
+        [DefaultValue(true)]
         public bool IsActive { get; private set; }
 
-        // For ORM
+        /// <summary>
+        /// Private constructor for ORM
+        /// </summary>
         private User() { }
 
+        /// <summary>
+        /// Creates a new user with the specified details
+        /// </summary>
+        /// <param name="username">Unique username for the user</param>
+        /// <param name="firstName">User's first name</param>
+        /// <param name="lastName">User's last name</param>
+        /// <param name="email">User's email address</param>
+        /// <param name="phoneNumber">User's phone number</param>
+        /// <param name="passwordHash">Hashed password</param>
+        /// <param name="dateOfBirth">User's date of birth</param>
+        /// <param name="address">User's address</param>
         public User(string username, string firstName, string lastName, string email,
                   string phoneNumber, string passwordHash, DateTime dateOfBirth, Address address)
         {
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentNullException(nameof(username));
+            if (string.IsNullOrWhiteSpace(firstName))
+                throw new ArgumentNullException(nameof(firstName));
+            if (string.IsNullOrWhiteSpace(lastName))
+                throw new ArgumentNullException(nameof(lastName));
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentNullException(nameof(email));
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+                throw new ArgumentNullException(nameof(phoneNumber));
+            if (string.IsNullOrWhiteSpace(passwordHash))
+                throw new ArgumentNullException(nameof(passwordHash));
+            if (address == null)
+                throw new ArgumentNullException(nameof(address));
+
             Id = Guid.NewGuid();
             Username = username;
             FirstName = firstName;
@@ -41,8 +116,20 @@ namespace Domain.models
             IsActive = true;
         }
 
+        /// <summary>
+        /// Updates the user's profile information
+        /// </summary>
         public void UpdateProfile(string firstName, string lastName, string phoneNumber, Address address)
         {
+            if (string.IsNullOrWhiteSpace(firstName))
+                throw new ArgumentNullException(nameof(firstName));
+            if (string.IsNullOrWhiteSpace(lastName))
+                throw new ArgumentNullException(nameof(lastName));
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+                throw new ArgumentNullException(nameof(phoneNumber));
+            if (address == null)
+                throw new ArgumentNullException(nameof(address));
+
             FirstName = firstName;
             LastName = lastName;
             PhoneNumber = phoneNumber;
@@ -50,24 +137,55 @@ namespace Domain.models
             UpdatedAt = DateTime.UtcNow;
         }
 
+        /// <summary>
+        /// Updates the user's password
+        /// </summary>
         public void UpdatePassword(string newPasswordHash)
         {
+            if (string.IsNullOrWhiteSpace(newPasswordHash))
+                throw new ArgumentNullException(nameof(newPasswordHash));
+
             PasswordHash = newPasswordHash;
             UpdatedAt = DateTime.UtcNow;
         }
 
+        /// <summary>
+        /// Updates the user's KYC status
+        /// </summary>
         public void UpdateKycStatus(KycStatus status)
         {
             KycStatus = status;
             UpdatedAt = DateTime.UtcNow;
         }
 
+        /// <summary>
+        /// Deactivates the user account
+        /// </summary>
         public void Deactivate()
         {
             IsActive = false;
             UpdatedAt = DateTime.UtcNow;
         }
 
+        /// <summary>
+        /// Reactivates a previously deactivated user account
+        /// </summary>
+        public void Activate()
+        {
+            IsActive = true;
+            UpdatedAt = DateTime.UtcNow;
+        }
 
+        /// <summary>
+        /// Gets the full name of the user
+        /// </summary>
+        [NotMapped]
+        public string FullName => $"{FirstName} {LastName}";
+
+        /// <summary>
+        /// Checks if the user is of legal age (18+)
+        /// </summary>
+        [NotMapped]
+        public bool IsLegalAge => DateTime.Today.AddYears(-18) >= DateOfBirth;
     }
 }

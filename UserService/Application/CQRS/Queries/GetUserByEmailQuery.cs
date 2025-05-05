@@ -8,14 +8,6 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.Queries
 {
-    public record GetUserByEmailQuery : IRequest<UserDto>, IBaseRequest, IEquatable<GetUserByEmailQuery>
-    {
-        public GetUserByEmailQuery(string email)
-        {
-            Email = email;
-        }
-
-        public string Email { get; init; }
-    }
+    public record GetUserByEmailQuery(string Email) : IRequest<UserDto>;
 
 }

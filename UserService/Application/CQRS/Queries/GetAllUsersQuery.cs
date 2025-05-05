@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.Queries
 {
-    public record GetAllUsersQuery : IRequest<IEnumerable<UserDto>>, IBaseRequest, IEquatable<GetAllUsersQuery>
-    {
-    }
+    public record GetAllUsersQuery : IRequest<List<UserDto>>;
 
 }

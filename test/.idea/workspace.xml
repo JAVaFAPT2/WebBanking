@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7782c11f-5625-4938-b59e-5c4d332cb5e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/CQRS/Commands/CreateUserCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/CQRS/Commands/CreateUserCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/CQRS/Commands/UpdateUserCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/CQRS/Commands/UpdateUserCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/CQRS/Handler/CreateUserCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/CQRS/Handler/CreateUserCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/CQRS/Handler/QueriesH/GetAllUsersQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/CQRS/Handler/QueriesH/GetAllUsersQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/CQRS/Handler/UpdateUserCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/CQRS/Handler/UpdateUserCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/obj/Application.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/obj/Application.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/obj/Debug/net9.0/Application.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/obj/Debug/net9.0/Application.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Application/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Application/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Domain/Interface/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Domain/Interface/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Domain/ValueObjects/Address.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Domain/ValueObjects/Address.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Domain/models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Domain/models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Domain/obj/Debug/net9.0/Domain.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Domain/obj/Debug/net9.0/Domain.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Domain/obj/Debug/net9.0/Domain.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Domain/obj/Debug/net9.0/Domain.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Domain/obj/Domain.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Domain/obj/Domain.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Infastructure/ContainerConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Infastructure/ContainerConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Infastructure/Migrations/20250427174228_test.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Infastructure/Migrations/20250427174228_test.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Infastructure/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Infastructure/Persistence/DBContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Infastructure/Persistence/DBContext/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Infastructure/Persistence/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Infastructure/Persistence/Repositories/UserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Infastructure/obj/Debug/net9.0/Infrastructure.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Infastructure/obj/Debug/net9.0/Infrastructure.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Infastructure/obj/Infrastructure.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Infastructure/obj/Infrastructure.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Presentation/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Presentation/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Presentation/obj/Debug/net9.0/Presentation.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Presentation/obj/Debug/net9.0/Presentation.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserService/Presentation/obj/Presentation.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../UserService/Presentation/obj/Presentation.csproj.nuget.g.props" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2wVGq0LqqS2cfhRwtOdTTuaxKgo" />
+  <component name="ProjectViewState">
+    <option name="flattenModules" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ChatTagsLlmMigration": "true",
+    "RunOnceActivity.CodyAccountHistoryMigration": "true",
+    "RunOnceActivity.CodyAccountsIdsRefresh": "true",
+    "RunOnceActivity.CodyAssignOrphanedChatsToActiveAccount": "true",
+    "RunOnceActivity.CodyConvertUrlToCodebaseName": "true",
+    "RunOnceActivity.CodyHistoryLlmMigration": "true",
+    "RunOnceActivity.CodyMigrateChatHistory-v2": "true",
+    "RunOnceActivity.CodyProjectSettingsMigration": "true",
+    "RunOnceActivity.DeprecatedChatLlmMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.ToggleCodyToolWindowAfterMigration": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.codeium.enabled": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "v3-CSharp-Business-Services",
+    "go.import.settings.migrated": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Admin/Documents/GitHub/WebBanking/test",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15136719",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7782c11f-5625-4938-b59e-5c4d332cb5e6" name="Changes" comment="" />
+      <created>1746119514479</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746119514479</updated>
+      <workItem from="1746119515939" duration="106000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

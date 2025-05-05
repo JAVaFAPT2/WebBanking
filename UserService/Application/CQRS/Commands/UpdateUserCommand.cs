@@ -1,12 +1,17 @@
 ﻿using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.CQRS.Commands
 {
-    public record UpdateUserCommand(Guid UserId, string Username, string Email) : IRequest<Unit>;
-
+    public record UpdateUserCommand(
+            Guid UserId,
+            string FirstName,
+            string LastName,
+            string PhoneNumber,
+            string Street,
+            string City,
+            string State,
+            string ZipCode,
+            string Country
+        ) : IRequest<Unit>;
 }

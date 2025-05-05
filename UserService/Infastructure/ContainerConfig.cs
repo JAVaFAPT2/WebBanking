@@ -1,40 +1,39 @@
-﻿using Application.CQRS.Commands;
-using Application.CQRS.DTO;
-using Application.CQRS.Handler.QueriesH;
+﻿using System.Reflection;
+using Application.CQRS.Commands;
 using Application.CQRS.Handler;
-using Application.CQRS.Queries;
+using Application.CQRS.Validator;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Features.Variance;
+using Confluent.Kafka;
 using Domain.Interface;
+using FluentValidation;
 using Infrastructure.Persistence.DBContext;
 using Infrastructure.Persistence.Repositories;
 using MediatR;
 using MediatR.Pipeline;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
+using Shared.Behaviors;
+using StackExchange.Redis;
 
-namespace UserService.Infrastructure;
+namespace Infrastructure;
 
 public static class ContainerConfig
 {
     public static ContainerBuilder AddGenericHandlers(this ContainerBuilder builder)
     {
-        // Enable contravariant resolution for notification handlers
         builder.RegisterSource(new ContravariantRegistrationSource());
 
-        // MediatR core registrations
+        // Register MediatR
+        builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly)
+               .AsImplementedInterfaces()
+               .InstancePerLifetimeScope();
         builder.RegisterType<Mediator>()
                .As<IMediator>()
                .InstancePerLifetimeScope();
 
-        
-        var handlerAssemblies = new[]
-             {
-                Assembly.GetExecutingAssembly()
-            };
-
-        // Pipeline behaviors
+        // Register pipeline behaviors
         builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>))
                .As(typeof(IPipelineBehavior<,>))
                .InstancePerLifetimeScope();
@@ -47,40 +46,57 @@ public static class ContainerConfig
         builder.RegisterGeneric(typeof(RequestExceptionActionProcessorBehavior<,>))
                .As(typeof(IPipelineBehavior<,>))
                .InstancePerLifetimeScope();
+        builder.RegisterGeneric(typeof(ValidationBehavior<,>))
+               .As(typeof(IPipelineBehavior<,>))
+               .InstancePerLifetimeScope();
 
+        // Register handlers and validators
+        var handlerAssemblies = new[] { typeof(CreateUserCommand).Assembly };
+        foreach (var assembly in handlerAssemblies)
+        {
+            builder.RegisterAssemblyTypes(assembly)
+                   .AsClosedTypesOf(typeof(IRequestHandler<,>))
+                   .AsImplementedInterfaces()
+                   .InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(assembly)
+                   .AsClosedTypesOf(typeof(INotificationHandler<>))
+                   .AsImplementedInterfaces()
+                   .InstancePerLifetimeScope();
+        }
 
-        // Explicitly register command handlers
         builder.RegisterType<CreateUserCommandHandler>()
                .As<IRequestHandler<CreateUserCommand, Guid>>()
                .InstancePerLifetimeScope();
-        builder.RegisterType<UpdateUserCommandHandler>()
-               .As<IRequestHandler<UpdateUserCommand, Unit>>()
-               .InstancePerLifetimeScope();
-        builder.RegisterType<DeleteUserCommandHandler>()
-               .As<IRequestHandler<DeleteUserCommand, Unit>>()
+        builder.RegisterType<CreateUserCommandValidator>()
+               .As<IValidator<CreateUserCommand>>()
                .InstancePerLifetimeScope();
 
-        // Explicitly register query handlers
-        builder.RegisterType<GetUserByIdQueryHandler>()
-               .As<IRequestHandler<GetUserByIdQuery, UserDto>>()
-               .InstancePerLifetimeScope();
-        builder.RegisterType<GetAllUsersQueryHandler>()
-               .As<IRequestHandler<GetAllUsersQuery, IEnumerable<UserDto>>>()
-               .InstancePerLifetimeScope();
-        builder.RegisterType<GetUserByEmailQueryHandler>()
-               .As<IRequestHandler<GetUserByEmailQuery, UserDto>>()
-               .InstancePerLifetimeScope();
-
-        // EF Core DbContext & Repositories
+        // Register database context and repositories
         builder.RegisterType<ApplicationDbContext>()
                .AsSelf()
                .InstancePerLifetimeScope();
-
         builder.RegisterType<UserRepository>()
                .As<IUserRepository>()
                .InstancePerLifetimeScope();
 
-        // Populate ASP.NET Core services
+        // Register Kafka producer
+        builder.Register(c =>
+        {
+            var config = c.Resolve<IConfiguration>();
+            return new ProducerBuilder<Null, string>(new ProducerConfig
+            {
+                BootstrapServers = config["Kafka:BootstrapServers"]
+            }).Build();
+        }).As<IProducer<Null, string>>().InstancePerLifetimeScope();
+
+        // Register Redis connection
+        builder.Register(c =>
+        {
+            var config = c.Resolve<IConfiguration>();
+            return ConnectionMultiplexer.Connect(config["Redis:ConnectionString"]);
+        }).As<IConnectionMultiplexer>().SingleInstance();
+
+        // Populate services
         var services = new ServiceCollection();
         builder.Populate(services);
 

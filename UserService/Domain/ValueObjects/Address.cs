@@ -1,26 +1,52 @@
-﻿using Domain.models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domain.ValueObjects
 {
+    [Owned]
     public class Address
     {
-        public string Street { get; private set; }
-        public string City { get; private set; }
-        public string State { get; private set; }
-        public string ZipCode { get; private set; }
-        public string Country { get; private set; }
+        [Required]
+        [StringLength(100)]
+        [Column(TypeName = "nvarchar(100)")]
+        public string Street { get; }
 
-        private Address() { } // For ORM
+        [Required]
+        [StringLength(50)]
+        [Column(TypeName = "nvarchar(50)")]
+        public string City { get; }
+
+        [Required]
+        [StringLength(50)]
+        [Column(TypeName = "nvarchar(50)")]
+        public string State { get; }
+
+        [Required]
+        [StringLength(20)]
+        [Column(TypeName = "nvarchar(20)")]
+        public string ZipCode { get; }
+
+        [Required]
+        [StringLength(50)]
+        [Column(TypeName = "nvarchar(50)")]
+        public string Country { get; }
+
+        public Address() { } // For ORM
 
         public Address(string street, string city, string state, string zipCode, string country)
         {
+            if (string.IsNullOrWhiteSpace(street))
+                throw new ArgumentNullException(nameof(street));
+            if (string.IsNullOrWhiteSpace(city))
+                throw new ArgumentNullException(nameof(city));
+            if (string.IsNullOrWhiteSpace(state))
+                throw new ArgumentNullException(nameof(state));
+            if (string.IsNullOrWhiteSpace(zipCode))
+                throw new ArgumentNullException(nameof(zipCode));
+            if (string.IsNullOrWhiteSpace(country))
+                throw new ArgumentNullException(nameof(country));
+
             Street = street;
             City = city;
             State = state;
