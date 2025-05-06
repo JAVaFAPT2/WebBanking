@@ -6,6 +6,7 @@ using Domain.models;
 using Infrastructure.Persistence.Service;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -23,6 +24,31 @@ public class UserController : ControllerBase
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
+    {
+        if (string.IsNullOrWhiteSpace(command.Username) || string.IsNullOrWhiteSpace(command.Password))
+        {
+            return BadRequest("Username and password are required.");
+        }
+
+        try
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Unauthorized("Invalid username or password.");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
+    }
+
+
 
     [HttpPost]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command)

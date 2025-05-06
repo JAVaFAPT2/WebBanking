@@ -9,6 +9,7 @@ namespace Domain.Interface
         Task<IEnumerable<User?>> GetAllAsync();
         Task<bool> ExistsByUsernameAsync(string username);
         Task<bool> ExistsByEmailAsync(string email);
+        Task<User?> GetByUsernameAsync(string UserName);
         Task<Guid> AddAsync(User? user);
         Task UpdateAsync(User? user);
         Task DeleteAsync(Guid id);

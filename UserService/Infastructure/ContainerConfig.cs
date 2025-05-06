@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Application.CQRS.Commands;
+using Application.CQRS.DTO;
 using Application.CQRS.Handler;
 using Application.CQRS.Validator;
 using Autofac;
@@ -81,21 +82,34 @@ public static class ContainerConfig
                .As<IUserRepository>()
                .InstancePerLifetimeScope();
         builder.RegisterType<KycService>()
-                .As<IKycService>()
-                .InstancePerLifetimeScope();
+               .As<IKycService>()
+               .InstancePerLifetimeScope();
         builder.RegisterType<KycDocumentRepository>()
-            .As<IKycDocumentRepository>()
-            .InstancePerLifetimeScope();
+               .As<IKycDocumentRepository>()
+               .InstancePerLifetimeScope();
 
+        // Register LoginCommandHandler
+        builder.RegisterType<LoginCommandHandler>()
+               .As<IRequestHandler<LoginUserCommand, LoginResponseDto>>()
+               .InstancePerLifetimeScope();
 
+        // Register PasswordHasher
+        builder.RegisterType<PasswordHasher>()
+               .As<IPasswordHasher>()
+               .InstancePerLifetimeScope();
 
-        //KafkaConsumer
+        // Register TokenService
+        builder.Register(c =>
+        {
+            var config = c.Resolve<IConfiguration>();
+            var secretKey = config["JwtSettings:SecretKey"];
+            return new TokenService(secretKey);
+        }).As<ITokenService>().InstancePerLifetimeScope();
+
+        // KafkaConsumer
         builder.RegisterType<KycVerifiedEventConsumer>()
             .AsSelf()
             .InstancePerLifetimeScope();
-
-
-
 
         // Register Kafka producer
         builder.Register(c =>
