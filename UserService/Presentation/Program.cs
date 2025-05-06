@@ -8,6 +8,7 @@ using Infrastructure;
 using Infrastructure.Persistence.DBContext;
 using Serilog;
 using Shared.Middleware;
+using Infrastructure.EventBus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +58,13 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>
 });
 
 var app = builder.Build();
+
+
+// Start Kafka Consumer
+var kycVerifiedEventConsumer = app.Services.GetRequiredService<KycVerifiedEventConsumer>();
+var cts = new CancellationTokenSource();
+await Task.Run(() => kycVerifiedEventConsumer.StartConsuming(cts.Token));
+
 
 // Middleware pipeline
 if (app.Environment.IsDevelopment())

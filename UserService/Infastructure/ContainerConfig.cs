@@ -8,8 +8,10 @@ using Autofac.Features.Variance;
 using Confluent.Kafka;
 using Domain.Interface;
 using FluentValidation;
+using Infrastructure.EventBus;
 using Infrastructure.Persistence.DBContext;
 using Infrastructure.Persistence.Repositories;
+using Infrastructure.Persistence.Service;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Configuration;
@@ -78,6 +80,22 @@ public static class ContainerConfig
         builder.RegisterType<UserRepository>()
                .As<IUserRepository>()
                .InstancePerLifetimeScope();
+        builder.RegisterType<KycService>()
+                .As<IKycService>()
+                .InstancePerLifetimeScope();
+        builder.RegisterType<KycDocumentRepository>()
+            .As<IKycDocumentRepository>()
+            .InstancePerLifetimeScope();
+
+
+
+        //KafkaConsumer
+        builder.RegisterType<KycVerifiedEventConsumer>()
+            .AsSelf()
+            .InstancePerLifetimeScope();
+
+
+
 
         // Register Kafka producer
         builder.Register(c =>
@@ -93,7 +111,7 @@ public static class ContainerConfig
         builder.Register(c =>
         {
             var config = c.Resolve<IConfiguration>();
-            return ConnectionMultiplexer.Connect(config["Redis:ConnectionString"]);
+            return ConnectionMultiplexer.Connect(config["Redis:ConnectionString"] ?? throw new InvalidOperationException());
         }).As<IConnectionMultiplexer>().SingleInstance();
 
         // Populate services

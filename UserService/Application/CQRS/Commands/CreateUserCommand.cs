@@ -1,15 +1,9 @@
 ﻿using MediatR;
 using System;
+using Application.CQRS.DTO;
 
 namespace Application.CQRS.Commands
 {
-    public record AddressC(
-            string Street,
-            string City,
-            string State,
-            string ZipCode,
-            string Country
-        );
 
     public record CreateUserCommand(
             string Username,

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{674AE550-69CE-408C-8698-EA144A287B31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testc", "Testc\Testc.csproj", "{8F69F43D-07BC-443E-8E7E-3D11B193EA39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,8 +41,15 @@ Global
 		{674AE550-69CE-408C-8698-EA144A287B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{674AE550-69CE-408C-8698-EA144A287B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{674AE550-69CE-408C-8698-EA144A287B31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F69F43D-07BC-443E-8E7E-3D11B193EA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F69F43D-07BC-443E-8E7E-3D11B193EA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F69F43D-07BC-443E-8E7E-3D11B193EA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F69F43D-07BC-443E-8E7E-3D11B193EA39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F211201-FBA4-4581-899F-FD4C0D3AF136}
 	EndGlobalSection
 EndGlobal

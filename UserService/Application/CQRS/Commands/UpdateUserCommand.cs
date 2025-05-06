@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using System;
+using Application.CQRS.DTO;
+using Domain.models;
 
 namespace Application.CQRS.Commands
 {
@@ -8,10 +10,9 @@ namespace Application.CQRS.Commands
             string FirstName,
             string LastName,
             string PhoneNumber,
-            string Street,
-            string City,
-            string State,
-            string ZipCode,
-            string Country
+            AddressC Address,
+            KycStatus KycStatus,
+            string? KycDocumentType,
+            string? KycDocumentPath
         ) : IRequest<Unit>;
 }

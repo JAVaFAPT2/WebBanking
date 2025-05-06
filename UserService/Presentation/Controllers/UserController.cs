@@ -1,6 +1,9 @@
 ﻿
 using Application.CQRS.Commands;
 using Application.CQRS.Queries;
+using Domain.Interface;
+using Domain.models;
+using Infrastructure.Persistence.Service;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +29,13 @@ public class UserController : ControllerBase
     {
         var userId = await _mediator.Send(command);
         return Ok(new { UserId = userId });
+    }
+    [HttpPost("{userId}/verify-kyc")]
+    public async Task<IActionResult> VerifyKyc(Guid userId, [FromBody] bool isVerified)
+    {
+        var command = new VerifyKycCommand(userId, isVerified);
+        await _mediator.Send(command);
+        return Ok(new { Message = "KYC verification initiated successfully" });
     }
 
     [HttpGet("{userId}")]

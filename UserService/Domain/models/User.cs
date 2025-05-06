@@ -57,6 +57,9 @@ namespace Domain.models
         [Column(TypeName = "int")]
         public KycStatus KycStatus { get; private set; }
 
+         
+        public KycDocument Document { get; set; }
+
         [Required]
         [Column(TypeName = "datetime2")]
         public DateTime CreatedAt { get; private set; }

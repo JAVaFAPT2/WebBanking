@@ -17,18 +17,29 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Guid> AddAsync(User? user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "User cannot be null.");
+            }
+
             var policy = Policy.Handle<DbUpdateException>()
                 .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(5));
             return await policy.ExecuteAsync(async () =>
             {
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
-                return user!.Id;
+                return user.Id;
             });
         }
 
+
         public async Task UpdateAsync(User? user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "User cannot be null.");
+            }
+
             var policy = Policy.Handle<DbUpdateException>()
                 .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(5));
             await policy.ExecuteAsync(async () =>
@@ -37,6 +48,7 @@ namespace Infrastructure.Persistence.Repositories
                 await _context.SaveChangesAsync();
             });
         }
+
 
         public async Task DeleteAsync(Guid id)
         {
@@ -64,14 +76,14 @@ namespace Infrastructure.Persistence.Repositories
         {
             var policy = Policy.Handle<DbUpdateException>()
                 .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(5));
-            return await policy.ExecuteAsync(() => _context.Users.FirstOrDefaultAsync(u => u.Username == username));
+            return await policy.ExecuteAsync(() => _context.Users.FirstOrDefaultAsync(u => u != null && u.Username == username));
         }
 
         public async Task<User?> GetByEmailAsync(string email)
         {
             var policy = Policy.Handle<DbUpdateException>()
                 .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(5));
-            return await policy.ExecuteAsync(() => _context.Users.FirstOrDefaultAsync(u => u.Email == email));
+            return await policy.ExecuteAsync(() => _context.Users.FirstOrDefaultAsync(u => u != null && u.Email == email));
         }
 
         public async Task<IEnumerable<User?>> GetAllAsync()
@@ -85,14 +97,14 @@ namespace Infrastructure.Persistence.Repositories
         {
             var policy = Policy.Handle<DbUpdateException>()
                 .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(5));
-            return await policy.ExecuteAsync(() => _context.Users.AnyAsync(u => u.Username == username));
+            return await policy.ExecuteAsync(() => _context.Users.AnyAsync(u => u != null && u.Username == username));
         }
 
         public async Task<bool> ExistsByEmailAsync(string email)
         {
             var policy = Policy.Handle<DbUpdateException>()
                 .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(5));
-            return await policy.ExecuteAsync(() => _context.Users.AnyAsync(u => u.Email == email));
+            return await policy.ExecuteAsync(() => _context.Users.AnyAsync(u => u != null && u.Email == email));
         }
 
         public async Task<int> SaveChangesAsync()
