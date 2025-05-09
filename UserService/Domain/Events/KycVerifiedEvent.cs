@@ -7,6 +7,6 @@ using Domain.models;
 
 namespace Domain.Events
 {
-    public record KycVerifiedEvent(Guid UserId,KycStatus Status);
+    public record KycVerifiedEvent(string DocumentType, string DocumentNumber, string IssuingCountry,DateTime? ExpiryDate, string DocumentPath, string Status, DateTime? VerifiedAt,Guid UserId);
 
 }

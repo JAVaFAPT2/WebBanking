@@ -5,31 +5,48 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class KycDocumentRepository(ApplicationDbContext dbContext) : IKycDocumentRepository
+    public class KycDocumentRepository : IKycDocumentRepository
     {
+        private readonly ApplicationDbContext _context;
+
+        public KycDocumentRepository(ApplicationDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
         public async Task AddAsync(KycDocument kycDocument)
         {
-            if (kycDocument == null)
-            {
-                throw new ArgumentNullException(nameof(kycDocument));
-            }
-
-            await dbContext.KycDocuments.AddAsync(kycDocument);
-            await dbContext.SaveChangesAsync();
+            await _context.KycDocuments.AddAsync(kycDocument);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<KycDocument?> GetByIdAsync(Guid id)
         {
-            return await dbContext.KycDocuments.FirstOrDefaultAsync(doc => doc.Id == id);
+            return await _context.KycDocuments
+                .Include(d => d.User)
+                .FirstOrDefaultAsync(d => d.Id == id);
+        }
+
+        public async Task<IEnumerable<KycDocument>> GetByUserIdAsync(Guid userId)
+        {
+            return await _context.KycDocuments
+                .Where(d => d.UserId == userId)
+                .ToListAsync();
+        }
+
+        public async Task UpdateAsync(KycDocument kycDocument)
+        {
+            _context.KycDocuments.Update(kycDocument);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var kycDocument = await GetByIdAsync(id);
-            if (kycDocument != null)
+            var document = await _context.KycDocuments.FindAsync(id);
+            if (document != null)
             {
-                dbContext.KycDocuments.Remove(kycDocument);
-                await dbContext.SaveChangesAsync();
+                _context.KycDocuments.Remove(document);
+                await _context.SaveChangesAsync();
             }
         }
     }

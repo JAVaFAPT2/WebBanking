@@ -7,36 +7,29 @@ using MediatR;
 
 namespace Application.CQRS.Handler
 {
-    public class VerifyKycCommandHandler : IRequestHandler<VerifyKycCommand, Unit>
+    public class VerifyKycCommandHandler : IRequestHandler<VerifyKycCommand, bool>
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IEventBus _eventBus;
+        private readonly IKycDocumentRepository _repository;
 
-        public VerifyKycCommandHandler(IUserRepository userRepository, IEventBus eventBus)
+        public VerifyKycCommandHandler(IKycDocumentRepository repository)
         {
-            _userRepository = userRepository;
-            _eventBus = eventBus;
+            _repository = repository;
         }
 
-        public async Task<Unit> Handle(VerifyKycCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(VerifyKycCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetByIdAsync(request.UserId);
-            if (user == null)
-            {
-                throw new Exception($"User with ID {request.UserId} not found");
-            }
+            var document = await _repository.GetByIdAsync(request.DocumentId);
 
-            user.UpdateKycStatus(request.IsVerified ? KycStatus.Verified : KycStatus.Rejected);
-            await _userRepository.UpdateAsync(user);
+            if (document == null)
+                return false;
 
-            // Publish KYC Verified Event
-            var @event = new KycVerifiedEvent(
-                request.UserId,
-                request.IsVerified ? KycStatus.Verified : KycStatus.Rejected
-            );
-            await _eventBus.PublishAsync(@event);
+            // Optionally validate allowed status values here (e.g., "Verified", "Rejected")
+            document.Status = request.Status;
+            document.VerifierNotes = request.VerifierNotes;
+            document.VerificationDate = DateTime.UtcNow;
 
-            return Unit.Value;
+            await _repository.UpdateAsync(document);
+            return true;
         }
     }
 }

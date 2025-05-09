@@ -1,8 +1,6 @@
 ﻿using Domain.models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Interface
@@ -11,6 +9,8 @@ namespace Domain.Interface
     {
         Task AddAsync(KycDocument kycDocument);
         Task<KycDocument?> GetByIdAsync(Guid id);
+        Task<IEnumerable<KycDocument>> GetByUserIdAsync(Guid userId);
+        Task UpdateAsync(KycDocument kycDocument);
         Task DeleteAsync(Guid id);
     }
 }

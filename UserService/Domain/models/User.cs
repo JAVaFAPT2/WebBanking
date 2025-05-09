@@ -53,11 +53,6 @@ namespace Domain.models
         [Required]
         public Address Address { get; private set; }
 
-        [Required]
-        [Column(TypeName = "int")]
-        public KycStatus KycStatus { get; private set; }
-
-         
         public KycDocument Document { get; set; }
 
         [Required]
@@ -70,6 +65,14 @@ namespace Domain.models
         [Required]
         [DefaultValue(true)]
         public bool IsActive { get; private set; }
+
+        public KycStatus KycStatus { get; private set; } = KycStatus.Unverified;
+        public DateTime? KycVerificationDate { get; set; }
+
+        [StringLength(100)]
+        public string KycVerificationNotes { get; set; }
+
+
 
         /// <summary>
         /// Private constructor for ORM

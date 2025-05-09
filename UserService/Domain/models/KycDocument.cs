@@ -1,34 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
-    [Table("KycDocuments")]
     public class KycDocument
     {
         [Key]
         public Guid Id { get; set; }
-        [Required]
-        public Guid UserId { get; set; }
-        [Required]
-        public string DocumentType { get; set; } // e.g., Passport, ID Card
-        [Required]
-        public string DocumentPath { get; set; } // Path to the uploaded document
-        [Required]
-        public DateTime UploadedAt { get; set; }
 
-        public KycDocument(Guid userId, string documentType, string documentPath)
-        {
-            Id = Guid.NewGuid();
-            UserId = userId;
-            DocumentType = documentType;
-            DocumentPath = documentPath;
-            UploadedAt = DateTime.UtcNow;
-        }
+        public Guid UserId { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string DocumentType { get; set; } // Passport, ID Card, Driver's License, etc.
+
+        [Required]
+        [StringLength(100)]
+        public string DocumentNumber { get; set; }
+
+        [StringLength(50)]
+        public string IssuingCountry { get; set; }
+
+        public DateTime? ExpiryDate { get; set; }
+
+        public DateTime SubmissionDate { get; set; }
+
+        [StringLength(255)]
+        public string DocumentPath { get; set; } // Path to the stored document
+
+        [Required]
+        [StringLength(20)]
+        public string Status { get; set; } // Pending, Approved, Rejected
+
+        public DateTime? VerificationDate { get; set; }
+
+        public string VerifierNotes { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
     }
 }
