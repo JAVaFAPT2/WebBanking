@@ -1,5 +1,4 @@
-﻿using BCrypt.Net;
-using Domain.Interface;
+﻿using Domain.Interface;
 
 namespace Infrastructure.Persistence.Service
 {

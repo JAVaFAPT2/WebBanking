@@ -17,14 +17,9 @@ namespace Presentation.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize(Roles = "User,Admin")]
-public class UserController : ControllerBase
+public class UserController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public UserController(IMediator mediator)
-    {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-    }
+    private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
@@ -58,7 +53,7 @@ public class UserController : ControllerBase
         return Ok(new { UserId = userId });
     }
   // Add these methods to your existing UserController class
-
+  
 [HttpPost("kyc/document")]
 [Authorize(Roles = "User")]
 public async Task<IActionResult> SubmitKycDocument([FromForm] KycDocumentSubmissionDto submission)
@@ -72,23 +67,47 @@ public async Task<IActionResult> SubmitKycDocument([FromForm] KycDocumentSubmiss
             return Unauthorized();
         }
 
-        // Convert the uploaded file to byte array and store it
-        string documentPath = null;
-        if (submission.DocumentFile != null && submission.DocumentFile.Length > 0)
+        // Validate the document file
+        if (submission.DocumentFile.Length == 0)
         {
-            // In a real implementation, you would:
-            // 1. Validate the file (size, type, etc.)
-            // 2. Scan for malware
-            // 3. Store in secure storage (e.g., Azure Blob, S3)
-            // 4. Store the reference path
-
-            // For this example, we'll just generate a path
-            string fileName = $"{userId}_{submission.DocumentType}_{DateTime.UtcNow:yyyyMMddHHmmss}{Path.GetExtension(submission.DocumentFile.FileName)}";
-            documentPath = $"/secure-storage/kyc-documents/{fileName}";
-
-            // Here you would use your file storage service
-            // Example: await _fileStorageService.UploadAsync(submission.DocumentFile, documentPath);
+            return BadRequest(new { Message = "Document file is required." });
         }
+
+        // Validate file size (e.g., max 10MB)
+        if (submission.DocumentFile.Length > 10 * 1024 * 1024)
+        {
+            return BadRequest(new { Message = "File size exceeds the maximum limit of 10MB." });
+        }
+
+        // Validate file type (e.g., only allow PDF, JPG, PNG)
+        var allowedExtensions = new[] { ".pdf", ".jpg", ".jpeg", ".png" };
+        var fileExtension = Path.GetExtension(submission.DocumentFile.FileName).ToLowerInvariant();
+        if (!allowedExtensions.Contains(fileExtension))
+        {
+            return BadRequest(new { Message = "Only PDF, JPG, and PNG files are allowed." });
+        }
+
+        // Generate a unique filename
+        string fileName = $"{userId}_{submission.DocumentType}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+        string documentPath = $"/secure-storage/kyc-documents/{fileName}";
+
+        // In a real implementation, you would:
+        // 1. Save the file to a secure storage location
+        // 2. Use a proper file storage service (Azure Blob Storage, AWS S3, etc.)
+        
+        // For this example, we'll just store the path reference
+        // In a real application, you would need to implement or inject a file storage service
+        
+        // Example of how you might save the file in a real application:
+        //this is not save just a test
+        // string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "secure-storage", "kyc-documents");
+        // if (!Directory.Exists(uploadsFolder))
+        //     Directory.CreateDirectory(uploadsFolder);
+        // string filePath = Path.Combine(uploadsFolder, fileName);
+        // using (var fileStream = new FileStream(filePath, FileMode.Create))
+        // {
+        //     await submission.DocumentFile.CopyToAsync(fileStream);
+        // }
 
         // Create KYC document
         var kycDocument = new KycDocument
@@ -114,6 +133,8 @@ public async Task<IActionResult> SubmitKycDocument([FromForm] KycDocumentSubmiss
         return StatusCode(500, new { Message = $"An error occurred: {ex.Message}" });
     }
 }
+
+
 
 [HttpGet("kyc/documents")]
 [Authorize(Roles = "User")]

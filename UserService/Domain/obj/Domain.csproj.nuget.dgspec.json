@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Domain.csproj": {}
+    "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Domain.csproj": {
+    "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\dangn\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dangn\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
