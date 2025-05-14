@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DF14EA94-A024-48F4-94A2-A0E781F25BF7}|Infastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\accountservice\\infastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF14EA94-A024-48F4-94A2-A0E781F25BF7}|Infastructure\\Infrastructure.csproj|solutionrelative:infastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{30401611-D4B3-4137-A325-CF8F0FF68D4E}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\accountservice\\presentation\\services\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{30401611-D4B3-4137-A325-CF8F0FF68D4E}|Presentation\\Presentation.csproj|solutionrelative:presentation\\services\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -83,6 +87,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Infastructure\\Persistence\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Infastructure\\Persistence\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Infastructure\\Persistence\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Infastructure\\Persistence\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T09:42:01.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AccountsController.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Presentation\\Services\\AccountsController.cs",
               "RelativeDocumentMoniker": "Presentation\\Services\\AccountsController.cs",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Presentation",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Presentation\\Presentation.csproj",
               "RelativeDocumentMoniker": "Presentation\\Presentation.csproj",
@@ -107,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Presentation\\Program.cs",
               "RelativeDocumentMoniker": "Presentation\\Program.cs",
@@ -120,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GreeterService.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Presentation\\Services\\GreeterService.cs",
               "RelativeDocumentMoniker": "Presentation\\Services\\GreeterService.cs",
@@ -133,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "greet.proto",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Presentation\\Protos\\greet.proto",
               "RelativeDocumentMoniker": "Presentation\\Protos\\greet.proto",
@@ -146,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Application",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Application.csproj",
               "RelativeDocumentMoniker": "Application\\Application.csproj",
@@ -159,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Domain",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Domain\\Domain.csproj",
               "RelativeDocumentMoniker": "Domain\\Domain.csproj",
@@ -172,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Infrastructure.csproj",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Infastructure\\Infrastructure.csproj",
               "RelativeDocumentMoniker": "Infastructure\\Infrastructure.csproj",
@@ -185,7 +202,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "IAccountRepository.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Domain\\Repositories\\IAccountRepository.cs",
               "RelativeDocumentMoniker": "Domain\\Repositories\\IAccountRepository.cs",
@@ -198,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Account.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Domain\\Entity\\Account.cs",
               "RelativeDocumentMoniker": "Domain\\Entity\\Account.cs",
@@ -211,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "GetAccountsByUserIdQuery.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Queries\\GetAccountsByUserIdQuery.cs",
               "RelativeDocumentMoniker": "Application\\Queries\\GetAccountsByUserIdQuery.cs",
@@ -224,7 +241,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "GetAllAccountsQuery.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Queries\\GetAllAccountsQuery.cs",
               "RelativeDocumentMoniker": "Application\\Queries\\GetAllAccountsQuery.cs",
@@ -237,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "GetAccountByIdQuery.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Queries\\GetAccountByIdQuery.cs",
               "RelativeDocumentMoniker": "Application\\Queries\\GetAccountByIdQuery.cs",
@@ -250,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "AccountDto.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\DTO\\AccountDto.cs",
               "RelativeDocumentMoniker": "Application\\DTO\\AccountDto.cs",
@@ -263,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "DeleteAccountCommand.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Commands\\DeleteAccountCommand.cs",
               "RelativeDocumentMoniker": "Application\\Commands\\DeleteAccountCommand.cs",
@@ -276,7 +293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "UpdateAccountCommand.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Commands\\UpdateAccountCommand.cs",
               "RelativeDocumentMoniker": "Application\\Commands\\UpdateAccountCommand.cs",
@@ -289,7 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "CreateAccountCommand.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Commands\\CreateAccountCommand.cs",
               "RelativeDocumentMoniker": "Application\\Commands\\CreateAccountCommand.cs",
