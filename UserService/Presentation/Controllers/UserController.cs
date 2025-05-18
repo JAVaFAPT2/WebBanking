@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Dto;
+using ForgotPasswordRequest = Presentation.Dto.ForgotPasswordRequest;
+using ResetPasswordRequest = Presentation.Dto.ResetPasswordRequest;
 
 
 namespace Presentation.Controllers;
@@ -52,9 +54,35 @@ public class UserController(IMediator mediator) : ControllerBase
         var userId = await _mediator.Send(command);
         return Ok(new { UserId = userId });
     }
-  // Add these methods to your existing UserController class
-  
-[HttpPost("kyc/document")]
+
+
+    /// <summary>
+    /// Request a password reset link to be sent to the user's email.
+    /// </summary>
+    [HttpPost("forgot")]
+    public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+    {
+        await _mediator.Send(new ForgotPasswordCommand(request.Email));
+        // Always return 200 to prevent email enumeration
+        return Ok(new { Message = "If the email exists, a reset link has been sent." });
+    }
+
+    /// <summary>
+    /// Reset the user's password using the provided token.
+    /// </summary>
+    [HttpPost("reset")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+    {
+        var result = await _mediator.Send(new ResetPasswordCommand(request.Email, request.Token, request.NewPassword));
+        if (!result)
+            return BadRequest(new { Message = "Invalid token or email." });
+
+        return Ok(new { Message = "Password has been reset successfully." });
+    }
+
+
+
+    [HttpPost("kyc/document")]
 [Authorize(Roles = "User")]
 public async Task<IActionResult> SubmitKycDocument([FromForm] KycDocumentSubmissionDto submission)
 {

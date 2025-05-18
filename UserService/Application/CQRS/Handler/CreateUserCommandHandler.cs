@@ -1,15 +1,12 @@
 ﻿using Application.CQRS.Commands;
-using Application.EventBus;
 using Confluent.Kafka;
 using Domain.Interface;
 using Domain.models;
-using Domain.ValueObjects;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using Polly;
 using StackExchange.Redis;
-using IDatabase = Microsoft.EntityFrameworkCore.Storage.IDatabase;
 
 namespace Application.CQRS.Handler
 {
@@ -17,7 +14,7 @@ namespace Application.CQRS.Handler
     {
         private readonly IUserRepository _userRepository;
         private readonly IProducer<Null, string> _kafkaProducer;
-        private readonly StackExchange.Redis.IDatabase _redis;
+        private readonly IDatabase _redis;
 
         public CreateUserCommandHandler(IUserRepository userRepository, IProducer<Null, string> kafkaProducer, IConnectionMultiplexer redis)
         {

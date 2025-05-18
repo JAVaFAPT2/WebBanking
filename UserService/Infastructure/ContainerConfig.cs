@@ -97,6 +97,10 @@ public static class ContainerConfig
         builder.RegisterType<PasswordHasher>()
                .As<IPasswordHasher>()
                .InstancePerLifetimeScope();
+        // Register EmailService
+        builder.RegisterType<EmailService>()
+            .As<IEmailService>()
+            .InstancePerLifetimeScope();
 
         // Register TokenService
         builder.Register(c =>

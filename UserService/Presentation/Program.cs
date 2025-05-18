@@ -10,6 +10,7 @@ using Serilog;
 using Shared.Middleware;
 using Infrastructure.EventBus;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 

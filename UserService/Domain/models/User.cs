@@ -1,4 +1,5 @@
-﻿using Domain.ValueObjects;
+﻿using Domain.Models;
+using Domain.ValueObjects;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,65 +11,68 @@ namespace Domain.models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 3)]
         [Column(TypeName = "nvarchar(50)")]
-        public string Username { get; private set; }
+        public string Username { get; set; }
 
         [Required]
         [StringLength(50)]
         [Column(TypeName = "nvarchar(50)")]
-        public string FirstName { get; private set; }
+        public string FirstName { get; set; }
 
         [Required]
         [StringLength(50)]
         [Column(TypeName = "nvarchar(50)")]
-        public string LastName { get; private set; }
+        public string LastName { get; set; }
 
         [Required]
         [EmailAddress]
         [StringLength(100)]
         [Column(TypeName = "nvarchar(100)")]
-        public string Email { get; private set; }
+        public string Email { get; set; }
 
         [Required]
         [Phone]
         [StringLength(20)]
         [Column(TypeName = "nvarchar(20)")]
-        public string PhoneNumber { get; private set; }
+        public string PhoneNumber { get; set; }
 
         [Required]
         [StringLength(128)]
         [Column(TypeName = "nvarchar(128)")]
-        public string PasswordHash { get; private set; }
+        public string PasswordHash { get; set; }
 
         [Required]
         [Column(TypeName = "date")]
-        public DateTime DateOfBirth { get; private set; }
+        public DateTime DateOfBirth { get; set; }
 
         [Required]
-        public Address Address { get; private set; }
+        public Address Address { get; set; }
 
         public KycDocument Document { get; set; }
 
         [Required]
         [Column(TypeName = "datetime2")]
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; set; }
 
         [Column(TypeName = "datetime2")]
-        public DateTime? UpdatedAt { get; private set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [Required]
         [DefaultValue(true)]
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; set; }
 
-        public KycStatus KycStatus { get; private set; } = KycStatus.Unverified;
+        public KycStatus KycStatus { get; set; } = KycStatus.Unverified;
         public DateTime? KycVerificationDate { get; set; }
 
         [StringLength(100)]
         public string KycVerificationNotes { get; set; }
+
+        public ICollection<PasswordResetToken> PasswordResetTokens { get; set; }
+
 
 
 

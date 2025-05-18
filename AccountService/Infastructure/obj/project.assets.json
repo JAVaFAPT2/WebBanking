@@ -2843,23 +2843,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dangn\\.nuget\\packages\\": {},
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\AccountService\\Infastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Infastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\AccountService\\Infastructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\dangn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\AccountService\\Infastructure\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Infastructure\\Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Infastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\dangn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2875,8 +2875,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Application.csproj"
+            "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\AccountService\\Application\\Application.csproj"
             }
           }
         }
@@ -2922,7 +2922,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

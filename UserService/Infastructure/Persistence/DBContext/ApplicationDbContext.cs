@@ -1,4 +1,5 @@
 ﻿using Domain.models;
+using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.DBContext
@@ -8,6 +9,8 @@ namespace Infrastructure.Persistence.DBContext
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<PasswordResetToken> PasswordResetTokens { get; set; }
 
 
         public DbSet<KycDocument> KycDocuments { get; set; }
@@ -33,11 +36,27 @@ namespace Infrastructure.Persistence.DBContext
                     address.Property(a => a.ZipCode).IsRequired().HasMaxLength(20).HasColumnType("nvarchar(20)");
                     address.Property(a => a.Country).IsRequired().HasMaxLength(50).HasColumnType("nvarchar(50)");
                 });
+                entity.HasMany(u => u.PasswordResetTokens)
+                    .WithOne(t => t.User)
+                    .HasForeignKey(t => t.UserId);
                 entity.Property(e => e.KycStatus).IsRequired().HasColumnType("int");
                 entity.Property(e => e.CreatedAt).IsRequired().HasColumnType("datetime2");
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime2");
                 entity.Property(e => e.IsActive).IsRequired().HasDefaultValue(true);
                 entity.HasIndex(e => e.Email).IsUnique();
+            });
+            modelBuilder.Entity<PasswordResetToken>(entity =>
+            {
+                entity.ToTable("PasswordResetTokens");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).HasColumnType("uniqueidentifier");
+                entity.Property(e => e.Token).IsRequired().HasMaxLength(256);
+                entity.Property(e => e.Expiry).IsRequired();
+                entity.Property(e => e.IsUsed).IsRequired();
+                entity.HasOne(e => e.User)
+                    .WithMany() // or .WithMany(u => u.PasswordResetTokens) if you add the collection to User
+                    .HasForeignKey(e => e.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

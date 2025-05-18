@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using Domain.Interface;
 using Microsoft.IdentityModel.Tokens;
 
@@ -10,6 +12,8 @@ namespace Infrastructure.Persistence.Service
     public class TokenService : ITokenService
     {
         private readonly string _secretKey;
+        // In-memory store for demo; replace with persistent storage in production
+        private static readonly ConcurrentDictionary<Guid, (string Token, DateTime Expiry)> _resetTokens = new();
 
         public TokenService(string secretKey)
         {
@@ -38,6 +42,37 @@ namespace Infrastructure.Persistence.Service
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        // --- Password Reset Token Methods ---
+
+        public Task<string> GeneratePasswordResetTokenAsync(Guid userId)
+        {
+            // Generate a secure random token
+            var token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            var expiry = DateTime.UtcNow.AddHours(1);
+
+            _resetTokens[userId] = (token, expiry);
+
+            return Task.FromResult(token);
+        }
+
+        public Task<bool> ValidatePasswordResetTokenAsync(Guid userId, string token)
+        {
+            if (_resetTokens.TryGetValue(userId, out var entry))
+            {
+                if (entry.Token == token && entry.Expiry > DateTime.UtcNow)
+                {
+                    return Task.FromResult(true);
+                }
+            }
+            return Task.FromResult(false);
+        }
+
+        public Task InvalidatePasswordResetTokenAsync(Guid userId, string token)
+        {
+            _resetTokens.TryRemove(userId, out _);
+            return Task.CompletedTask;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Testc
         }
 
         [Test]
-        public async Task CreateUser_ReturnsOkResult_WithUserId()
+        public async Task CreateUser_ReturnsOkResult_WithOutUserId()
         {
             // Arrange
             var command = new CreateUserCommand(
