@@ -357,8 +357,7 @@
               "RelativeToolTip": "Application\\CQRS\\DTO\\AddressDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:25:40.557Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:25:40.557Z"
             },
             {
               "$type": "Document",
@@ -370,8 +369,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\UpdateUserCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:39:51.404Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:39:51.404Z"
             },
             {
               "$type": "Document",
@@ -383,8 +381,7 @@
               "RelativeToolTip": "Testc\\Tests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAD4vyoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T16:10:50.885Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T16:10:50.885Z"
             },
             {
               "$type": "Document",
@@ -396,8 +393,7 @@
               "RelativeToolTip": "Application\\CQRS\\DTO\\LoginResponseDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:37:16.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:37:16.597Z"
             },
             {
               "$type": "Document",
@@ -409,8 +405,7 @@
               "RelativeToolTip": "Infastructure\\Persistence\\Service\\EmailService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:46:26.56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:46:26.56Z"
             },
             {
               "$type": "Document",
@@ -422,8 +417,7 @@
               "RelativeToolTip": "Application\\Application.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-05T15:23:10.838Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:23:10.838Z"
             },
             {
               "$type": "Document",
@@ -448,8 +442,7 @@
               "RelativeToolTip": "Testc\\Testc.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-13T11:38:38.152Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-13T11:38:38.152Z"
             },
             {
               "$type": "Document",
@@ -461,8 +454,7 @@
               "RelativeToolTip": "Domain\\models\\PasswordResetToken.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:54:27.513Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:54:27.513Z"
             },
             {
               "$type": "Document",
@@ -474,8 +466,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\CreateUserCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T12:52:46.127Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T12:52:46.127Z"
             },
             {
               "$type": "Document",
@@ -487,8 +478,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\LoginUserCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:24:15.783Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:24:15.783Z"
             },
             {
               "$type": "Document",
@@ -500,8 +490,7 @@
               "RelativeToolTip": "Infastructure\\Persistence\\Service\\EmailSettings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T09:01:32.303Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T09:01:32.303Z"
             },
             {
               "$type": "Document",
@@ -513,8 +502,7 @@
               "RelativeToolTip": "Presentation\\appsettings.json",
               "ViewState": "AgIAABgAAAAAAAAAAAAwwCAAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-26T10:04:32.835Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T10:04:32.835Z"
             },
             {
               "$type": "Document",
@@ -526,8 +514,7 @@
               "RelativeToolTip": "Presentation\\Controllers\\UserController.cs",
               "ViewState": "AgIAAGIAAAAAAAAAAAAUwIAAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T10:15:45.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T10:15:45.034Z"
             },
             {
               "$type": "Document",
@@ -539,8 +526,7 @@
               "RelativeToolTip": "Domain\\models\\User.cs",
               "ViewState": "AgIAADsAAAAAAAAAAAAwwFEAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T08:50:10.219Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T08:50:10.219Z"
             },
             {
               "$type": "Document",
@@ -552,8 +538,7 @@
               "RelativeToolTip": "Presentation\\Dto\\KycVerificationDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:58:00.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:58:00.749Z"
             },
             {
               "$type": "Document",
@@ -565,8 +550,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetUserByIdQueryHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:51:17.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:51:17.64Z"
             },
             {
               "$type": "Document",
@@ -578,8 +562,7 @@
               "RelativeToolTip": "Presentation\\Dto\\KycDocumentSubmissionDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T11:34:42.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-13T11:34:42.676Z"
             },
             {
               "$type": "Document",
@@ -591,8 +574,7 @@
               "RelativeToolTip": "Presentation\\Dto\\Class.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:44:09.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:44:09.668Z"
             },
             {
               "$type": "Document",
@@ -604,8 +586,7 @@
               "RelativeToolTip": "Infastructure\\Persistence\\DBContext\\ApplicationDbContext.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAACYAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T07:27:03.765Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T07:27:03.765Z"
             },
             {
               "$type": "Document",
@@ -617,8 +598,7 @@
               "RelativeToolTip": "Domain\\Interface\\ITokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:40:53.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:40:53.606Z"
             },
             {
               "$type": "Document",
@@ -630,8 +610,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\ResetPasswordCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:45:35.021Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:45:35.021Z"
             },
             {
               "$type": "Document",
@@ -643,8 +622,7 @@
               "RelativeToolTip": "Domain\\Interface\\IPasswordHasher.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:40:00.509Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:40:00.509Z"
             },
             {
               "$type": "Document",
@@ -656,8 +634,7 @@
               "RelativeToolTip": "Infastructure\\ContainerConfig.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAgwF8AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:57:41.348Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:57:41.348Z"
             },
             {
               "$type": "Document",
@@ -669,8 +646,7 @@
               "RelativeToolTip": "Infastructure\\Persistence\\Service\\TokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:41:35.883Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:41:35.883Z"
             },
             {
               "$type": "Document",
@@ -682,8 +658,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\ResetPasswordCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:44:57.835Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:44:57.835Z"
             },
             {
               "$type": "Document",
@@ -695,8 +670,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\ForgotPasswordCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:45:17.152Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:45:17.152Z"
             },
             {
               "$type": "Document",
@@ -708,8 +682,7 @@
               "RelativeToolTip": "Domain\\Interface\\IEmailService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:45:56.721Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:45:56.721Z"
             },
             {
               "$type": "Document",
@@ -721,8 +694,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\ForgotPasswordCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:44:45.974Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:44:45.974Z"
             },
             {
               "$type": "Document",
@@ -734,8 +706,7 @@
               "RelativeToolTip": "Presentation\\Dto\\ResetPasswordRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:44:28.805Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T08:44:28.805Z"
             },
             {
               "$type": "Document",
@@ -747,8 +718,7 @@
               "RelativeToolTip": "Domain\\models\\KycDocument.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAEwCcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:36:54.29Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:36:54.29Z"
             },
             {
               "$type": "Document",
@@ -760,8 +730,7 @@
               "RelativeToolTip": "Domain\\models\\KycStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T15:49:35.468Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T15:49:35.468Z"
             },
             {
               "$type": "Document",
@@ -773,8 +742,7 @@
               "RelativeToolTip": "Infastructure\\Persistence\\Service\\KycService.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAqwBEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:18:27.255Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:18:27.255Z"
             },
             {
               "$type": "Document",
@@ -786,8 +754,7 @@
               "RelativeToolTip": "Infastructure\\Persistence\\Service\\PasswordHasher.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:40:35.77Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:40:35.77Z"
             },
             {
               "$type": "Document",
@@ -799,8 +766,7 @@
               "RelativeToolTip": "Infastructure\\EventBus\\KycVerifiedEventConsumer.cs",
               "ViewState": "AgIAADQAAAAAAAAAAAAYwFkAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:22:17.792Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:22:17.792Z"
             },
             {
               "$type": "Document",
@@ -812,8 +778,7 @@
               "RelativeToolTip": "Domain\\Interface\\IKycDocumentRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:38:24.582Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:38:24.582Z"
             },
             {
               "$type": "Document",
@@ -825,8 +790,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\VerifyKycCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:46:17.243Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:46:17.243Z"
             },
             {
               "$type": "Document",
@@ -838,8 +802,7 @@
               "RelativeToolTip": "Domain\\Events\\KycVerifiedEvent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:48:03.826Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:48:03.826Z"
             },
             {
               "$type": "Document",
@@ -851,8 +814,7 @@
               "RelativeToolTip": "Presentation\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T10:02:33.577Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T10:02:33.577Z"
             },
             {
               "$type": "Document",
@@ -864,8 +826,7 @@
               "RelativeToolTip": "Domain\\Interface\\IKycService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:31:55.6Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:31:55.6Z"
             },
             {
               "$type": "Document",
@@ -877,8 +838,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\VerifyKycCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:45:43.848Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:45:43.848Z"
             },
             {
               "$type": "Document",
@@ -890,8 +850,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\SaveKycDocumentCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:44:10.029Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:44:10.029Z"
             },
             {
               "$type": "Document",
@@ -903,8 +862,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetKycDocumentByUserIdQueriesHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:28:16.896Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:28:16.896Z"
             },
             {
               "$type": "Document",
@@ -916,8 +874,7 @@
               "RelativeToolTip": "Application\\CQRS\\Queries\\GetKycDocumentByUserIdQueries.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:36:23.298Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:36:23.298Z"
             },
             {
               "$type": "Document",
@@ -929,8 +886,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetAllUsersQueryHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T14:58:19.721Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T14:58:19.721Z"
             },
             {
               "$type": "Document",
@@ -942,8 +898,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\UpdateKycDocumentStatusCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:20:23.037Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:20:23.037Z"
             },
             {
               "$type": "Document",
@@ -955,8 +910,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetKycDocumentByIdQueriesHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:26:13.266Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:26:13.266Z"
             },
             {
               "$type": "Document",
@@ -968,8 +922,7 @@
               "RelativeToolTip": "Application\\CQRS\\Queries\\GetKycDocumentByIdQueries.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:21:11.914Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:21:11.914Z"
             },
             {
               "$type": "Document",
@@ -981,8 +934,7 @@
               "RelativeToolTip": "Infastructure\\Persistence\\Repositories\\KycDocumentRepository.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAowAMAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:40:58.169Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T15:40:58.169Z"
             },
             {
               "$type": "Document",
@@ -994,8 +946,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\UpdateKycDocumentStatusCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAB2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:32:55.02Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:32:55.02Z"
             },
             {
               "$type": "Document",
@@ -1007,8 +958,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\UpdateUserCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:48:24.63Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:48:24.63Z"
             },
             {
               "$type": "Document",
@@ -1020,8 +970,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\SaveKycDocumentCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:29:25.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T15:29:25.317Z"
             },
             {
               "$type": "Document",
@@ -1033,8 +982,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\DeleteUserCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T15:48:32.626Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T15:48:32.626Z"
             },
             {
               "$type": "Document",
@@ -1046,8 +994,7 @@
               "RelativeToolTip": "Application\\CQRS\\Validator\\CreateUserCommandValidator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T13:03:23.324Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T13:03:23.324Z"
             },
             {
               "$type": "Document",
@@ -1059,8 +1006,7 @@
               "RelativeToolTip": "Application\\CQRS\\DTO\\UserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:23:23.633Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:23:23.633Z"
             },
             {
               "$type": "Document",
@@ -1072,8 +1018,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\LoginCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:38:25.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:38:25.427Z"
             },
             {
               "$type": "Document",
@@ -1085,8 +1030,7 @@
               "RelativeToolTip": "Domain\\Interface\\IUserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T15:08:50.583Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T15:08:50.583Z"
             },
             {
               "$type": "Document",
@@ -1098,8 +1042,7 @@
               "RelativeToolTip": "Domain\\Domain.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-02T17:34:17.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T17:34:17.781Z"
             },
             {
               "$type": "Document",
@@ -1111,8 +1054,7 @@
               "RelativeToolTip": "Application\\CQRS\\Queries\\GetUserByUsernameQuery.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:30:33.936Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:30:33.936Z"
             },
             {
               "$type": "Document",
@@ -1124,8 +1066,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetUserByUsernameQueryHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:31:08.457Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:31:08.457Z"
             },
             {
               "$type": "Document",
@@ -1137,8 +1078,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\QueriesH\\GetUserByEmailQueryHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwA4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:54:48.461Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:54:48.461Z"
             },
             {
               "$type": "Document",
@@ -1150,8 +1090,7 @@
               "RelativeToolTip": "Infastructure\\Persistence\\Repositories\\UserRepository.cs",
               "ViewState": "AgIAADsAAAAAAAAAAAAIwEwAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T15:34:57.803Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T15:34:57.803Z"
             },
             {
               "$type": "Document",
@@ -1163,8 +1102,7 @@
               "RelativeToolTip": "Infastructure\\Infrastructure.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-27T17:02:51.395Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:02:51.395Z"
             },
             {
               "$type": "Document",
@@ -1176,8 +1114,7 @@
               "RelativeToolTip": "Presentation\\Presentation.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-26T10:26:29.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T10:26:29.508Z"
             },
             {
               "$type": "Document",
@@ -1185,12 +1122,12 @@
               "Title": "loggingSettings.json",
               "DocumentMoniker": "C:\\Users\\Admin\\.nuget\\packages\\compent.shared.logging.serilog\\0.1.0.2\\contentFiles\\any\\netstandard2.0\\config\\Logging\\loggingSettings.json",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\.nuget\\packages\\compent.shared.logging.serilog\\0.1.0.2\\contentFiles\\any\\netstandard2.0\\config\\Logging\\loggingSettings.json",
-              "ToolTip": "C:\\Users\\Admin\\.nuget\\packages\\compent.shared.logging.serilog\\0.1.0.2\\contentFiles\\any\\netstandard2.0\\config\\Logging\\loggingSettings.json",
-              "RelativeToolTip": "..\\..\\..\\..\\.nuget\\packages\\compent.shared.logging.serilog\\0.1.0.2\\contentFiles\\any\\netstandard2.0\\config\\Logging\\loggingSettings.json",
+              "ToolTip": "C:\\Users\\Admin\\.nuget\\packages\\compent.shared.logging.serilog\\0.1.0.2\\contentFiles\\any\\netstandard2.0\\config\\Logging\\loggingSettings.json [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\..\\.nuget\\packages\\compent.shared.logging.serilog\\0.1.0.2\\contentFiles\\any\\netstandard2.0\\config\\Logging\\loggingSettings.json [Read Only]",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-05-05T15:11:57.32Z",
-              "EditorCaption": ""
+              "EditorCaption": " [Read Only]"
             },
             {
               "$type": "Document",
@@ -1202,8 +1139,7 @@
               "RelativeToolTip": "Shared\\Behaviors\\ValidationBehavior.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T12:50:31.549Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T12:50:31.549Z"
             },
             {
               "$type": "Document",
@@ -1215,8 +1151,7 @@
               "RelativeToolTip": "Shared\\Middleware\\ExceptionMiddleware.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T12:48:10.612Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T12:48:10.612Z"
             },
             {
               "$type": "Document",
@@ -1228,8 +1163,7 @@
               "RelativeToolTip": "Domain\\ValueObjects\\Address.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAuwAYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T15:47:41.183Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T15:47:41.183Z"
             },
             {
               "$type": "Document",
@@ -1241,8 +1175,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\CreateUserCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:31:15.373Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:31:15.373Z"
             },
             {
               "$type": "Document",
@@ -1254,8 +1187,7 @@
               "RelativeToolTip": "Application\\CQRS\\Queries\\GetAllUsersQuery.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:22:43.052Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:22:43.052Z"
             },
             {
               "$type": "Document",
@@ -1267,8 +1199,7 @@
               "RelativeToolTip": "Domain\\Events\\UserCreatedEvent.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAkwAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:24:47.387Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T16:24:47.387Z"
             },
             {
               "$type": "Document",
@@ -1280,8 +1211,7 @@
               "RelativeToolTip": "Application\\CQRS\\Queries\\GetUserByIdQuery.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:22:27.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:22:27.441Z"
             },
             {
               "$type": "Document",
@@ -1293,8 +1223,7 @@
               "RelativeToolTip": "Domain\\Events\\UserUpdatedEvent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T07:26:44.174Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T07:26:44.174Z"
             },
             {
               "$type": "Document",
@@ -1306,8 +1235,7 @@
               "RelativeToolTip": "Application\\EventBus\\IEventBus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:53:11.095Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T16:53:11.095Z"
             },
             {
               "$type": "Document",
@@ -1319,8 +1247,7 @@
               "RelativeToolTip": "Infastructure\\EventBus\\KafkaEventBus.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAQwB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:25:52.716Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T16:25:52.716Z"
             },
             {
               "$type": "Document",
@@ -1332,8 +1259,7 @@
               "RelativeToolTip": "Presentation\\docker-compose.yml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2025-04-27T16:51:03.321Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T16:51:03.321Z"
             },
             {
               "$type": "Document",
@@ -1345,8 +1271,7 @@
               "RelativeToolTip": "Presentation\\Dockerfile",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-27T17:13:51.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:13:51.469Z"
             },
             {
               "$type": "Document",
@@ -1358,8 +1283,7 @@
               "RelativeToolTip": "Application\\CQRS\\Queries\\GetUserByEmailQuery.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:23:03.007Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:23:03.007Z"
             },
             {
               "$type": "Document",
@@ -1371,8 +1295,7 @@
               "RelativeToolTip": "Application\\CQRS\\Handler\\DeleteUserCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T09:50:23.662Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T09:50:23.662Z"
             },
             {
               "$type": "Document",
@@ -1406,8 +1329,7 @@
               "RelativeToolTip": "Presentation\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-27T17:14:08.145Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:14:08.145Z"
             }
           ]
         },

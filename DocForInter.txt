@@ -1,0 +1,322 @@
+   {
+        "Microservice": "Customer/Identity",
+        "Bounded Context": "Customer Management",
+        "Responsibilities": "User profiles, credentials, MFA, KYC data",
+        "Language/Framework": "ASP.NET Core (C#)",
+        "Database Type": "Relational (e.g., PostgreSQL)",
+        "Kafka Topics": "Published: CustomerCreated, Consumed: None",
+        "CQRS Usage": "Yes (UserCommands/UserQueries)",
+        "DI Container": "Autofac",
+        "DDD Entities": "Customer, KYCRecord",
+        "Security Mechanisms": "OAuth2/OIDC, JWT, AES-256 encryption",
+        "K8s Namespace": "banking-customer"
+    },
+    {
+        "Microservice": "Account Service",
+        "Bounded Context": "Account Management",
+        "Responsibilities": "Account creation, balance, closure",
+        "Language/Framework": "Spring Boot (Java)",
+        "Database Type": "Relational (e.g., MySQL)",
+        "Kafka Topics": "Published: AccountOpened, Consumed: FundsTransferred",
+        "CQRS Usage": "Yes (AccountCommands/AccountQueries)",
+        "DI Container": "Spring DI",
+        "DDD Entities": "Account, MoneyValue",
+        "Security Mechanisms": "mTLS, TLS 1.3",
+        "K8s Namespace": "banking-account"
+    },
+    {
+        "Microservice": "Payment/Transaction",
+        "Bounded Context": "Payments",
+        "Responsibilities": "Money transfers, bill payments, ledger entries",
+        "Language/Framework": "ASP.NET Core (C#)",
+        "Database Type": "Relational (e.g., SQL Server)",
+        "Kafka Topics": "Published: FundsTransferred, Consumed: AccountOpened",
+        "CQRS Usage": "Yes (PaymentCommands/PaymentQueries)",
+        "DI Container": "Autofac",
+        "DDD Entities": "Payment, LedgerEntry",
+        "Security Mechanisms": "Tokenization, PCI-DSS segmentation",
+        "K8s Namespace": "banking-payments"
+    },
+    {
+        "Microservice": "Notification Service",
+        "Bounded Context": "Notifications",
+        "Responsibilities": "Email, SMS, Push notifications",
+        "Language/Framework": "Spring Boot (Java)",
+        "Database Type": "NoSQL (e.g., MongoDB)",
+        "Kafka Topics": "Consumed: FundsTransferred, AccountThresholdReached",
+        "CQRS Usage": "Read side only",
+        "DI Container": "Spring DI",
+        "DDD Entities": "Notification",
+        "Security Mechanisms": "TLS 1.3",
+        "K8s Namespace": "banking-notifications"
+    },
+    {
+        "Microservice": "Loan Service",
+        "Bounded Context": "Loans",
+        "Responsibilities": "Loan applications, approvals, repayment schedules",
+        "Language/Framework": "ASP.NET Core (C#)",
+        "Database Type": "Relational (e.g., PostgreSQL)",
+        "Kafka Topics": "Published: LoanApproved, Consumed: CustomerCreated",
+        "CQRS Usage": "Yes (LoanCommands/LoanQueries)",
+        "DI Container": "Autofac",
+        "DDD Entities": "LoanApplication, RepaymentSchedule",
+        "Security Mechanisms": "mTLS, AES-256",
+        "K8s Namespace": "banking-loans"
+    },
+    {
+        "Microservice": "Fraud Detection",
+        "Bounded Context": "Fraud Monitoring",
+        "Responsibilities": "Real-time transaction monitoring, alerts",
+        "Language/Framework": "Spring Boot (Java)",
+        "Database Type": "Time-series (e.g., InfluxDB)",
+        "Kafka Topics": "Consumed: FundsTransferred",
+        "CQRS Usage": "Event-driven only",
+        "DI Container": "Spring DI",
+        "DDD Entities": "SuspiciousActivity",
+        "Security Mechanisms": "TLS 1.3",
+        "K8s Namespace": "banking-fraud"
+    },
+    {
+        "Microservice": "Reporting/Analytics",
+        "Bounded Context": "Reporting",
+        "Responsibilities": "BI dashboards, regulatory reports",
+        "Language/Framework": "Spring Boot (Java)",
+        "Database Type": "Columnar (e.g., ClickHouse)",
+        "Kafka Topics": "Consumed: All domain events",
+        "CQRS Usage": "Read side only",
+        "DI Container": "Spring DI",
+        "DDD Entities": "TransactionSummary",
+        "Security Mechanisms": "TLS, read-only access controls",
+        "K8s Namespace": "banking-reporting"
+    },
+    {
+        "Microservice": "Integration Service",
+        "Bounded Context": "External Integrations",
+        "Responsibilities": "External APIs, credit bureaus, payment gateways",
+        "Language/Framework": "ASP.NET Core (C#)",
+        "Database Type": "None (stateless)",
+        "Kafka Topics": "Published: IntegrationEvent, Consumed: Domain events",
+        "CQRS Usage": "No",
+        "DI Container": "Autofac",
+        "DDD Entities": "IntegrationEndpoint",
+        "Security Mechanisms": "mTLS, OAuth2 client creds",
+        "K8s Namespace": "banking-integration"
+    }
+ {
+        "Microservice": "API Gateway",
+        "Bounded Context": "Cross-Cutting",
+        "Responsibilities": "Routing, authentication, rate-limiting, SSL termination, request aggregation",
+        "Language/Framework": "Spring Boot (Java) / Envoy",
+        "Database Type": "None",
+        "Kafka Topics": "N/A",
+        "CQRS Usage": "No",
+        "DI Container": "Spring DI (if applicable)",
+        "DDD Entities": "None",
+        "Security Mechanisms": "TLS, OAuth2 token validation, WAF integration",
+        "K8s Namespace": "banking-gateway"
+    },
+    {
+        "Microservice": "Orchestration Service",
+        "Bounded Context": "Saga Orchestration",
+        "Responsibilities": "Coordinate long-running transactions, saga pattern orchestration",
+        "Language/Framework": "ASP.NET Core (C#)",
+        "Database Type": "Relational (e.g., PostgreSQL) / In-memory state store",
+        "Kafka Topics": "Consumed & Published: Saga events (e.g., PaymentRequested, PaymentCompleted)",
+        "CQRS Usage": "No (coordination only)",
+        "DI Container": "Autofac",
+        "DDD Entities": "SagaInstance",
+        "Security Mechanisms": "mTLS, TLS",
+        "K8s Namespace": "banking-orchestration"
+    }
+## Intern Onboarding Guide: Banking Backend Project
+
+This guide breaks down essential tasks and features for interns building a real-world banking backend, organized into a 5-sprint Agile cycle. Each sprint defines clear objectives, deliverables, and checkpoints, so interns can proceed step-by-step and the QA can verify readiness before moving on.
+
+---
+
+### Sprint Schedule Overview
+
+| Sprint | Duration (Days) | Focus Areas                  | Deliverables                         | QA Checkpoint                                   |
+| ------ | --------------- | ---------------------------- | ------------------------------------ | ----------------------------------------------- |
+| 1      | 7               | Environment & Basic Services | Customer & Account Service v1        | Functional tests for registration, account open |
+| 2      | 7               | Payment Flows & CQRS         | Payment Service basic transfers      | Transfer tests, event publishing                |
+| 3      | 7               | Advanced Flows & Scheduling  | Scheduled Payments, Bill Payments    | Schedule/job tests, saga coordination           |
+| 4      | 7               | Cross-Cutting & Security     | API Gateway, Auth Flows, MFA         | Auth, rate-limiting, security scans             |
+| 5      | 7               | Resilience & QA Automation   | Orchestration Service, CI/CD & Tests | Integration, performance, regression            |
+
+After Sprint 5, a final release candidate will be assembled for stakeholder review.
+
+---
+
+### Sprint 1: Environment & Basic Services
+
+**Duration:** Day 1–7
+
+**Goals:**
+
+* Set up local & Kubernetes environments
+* Implement Customer/Identity Service core flows
+* Implement Account Service core flows
+* Validate event-driven integration between Customer & Account
+
+**Tasks:**
+
+1. Environment Setup (Day 1–2)
+
+   * Clone repos, install tools, start Kafka & Minikube
+   * Verify connectivity: Kafka topics, K8s namespaces
+2. Customer Service v1 (Day 2–5)
+
+   * Endpoints: Registration, Login
+   * Domain: Customer entity, password hashing
+   * Event: Publish `CustomerCreated`
+   * Tests: Unit tests for flows, negative cases
+3. Account Service v1 (Day 4–7)
+
+   * Endpoints: Open Account, Get Balance
+   * Listen for `CustomerCreated` to auto-open accounts
+   * Event: Publish `AccountOpened`
+   * Tests: Integration tests, DB validation
+4. **Sprint Review & QA Checkpoint (Day 7)**
+
+   * QA runs functional tests: registration, login, open account
+   * Fix defects before Sprint 2
+
+---
+
+### Sprint 2: Payment Flows & CQRS
+
+**Duration:** Day 8–14
+
+**Goals:**
+
+* Implement Payment/Transaction Service for one-time transfers
+* Integrate CQRS patterns using Autofac
+* Verify event-driven updates with Account Service
+
+**Tasks:**
+
+1. Payment Service Setup (Day 8–9)
+
+   * Scaffold ASP.NET Core project, configure Kafka
+   * Define `Payment` and `LedgerEntry` entities
+2. CQRS Implementation (Day 9–11)
+
+   * Implement `TransferCommandHandler` & `TransferQueryHandler`
+   * Register handlers with Autofac
+3. Transfer Flow (Day 11–13)
+
+   * Endpoint: `POST /api/payments/transfer`
+   * Validate accounts, publish `FundsTransferred`
+   * Update balances in Account Service via event consumer
+4. Tests & API Docs (Day 13–14)
+
+   * Unit tests for command/query handlers
+   * Integration tests end-to-end transfer
+   * Swagger docs update
+5. **Sprint Review & QA Checkpoint**
+
+   * QA tests transfers, event consumption, CQRS separation
+
+---
+
+### Sprint 3: Advanced Flows & Scheduling
+
+**Duration:** Day 15–21
+
+**Goals:**
+
+* Add scheduled and bill payment capabilities
+* Introduce saga orchestration for multi-step flows
+
+**Tasks:**
+
+1. Scheduled Payments (Day 15–17)
+
+   * Endpoint: `POST /api/payments/schedule`
+   * Persist schedule, configure scheduler (e.g., Hangfire)
+   * Publish execution events
+2. Bill Payments & Reversals (Day 17–19)
+
+   * Endpoints: `/api/payments/bill`, `/api/payments/{id}/reversal`
+   * Validate payee, handle settlement, publish events
+3. Saga Orchestration (Day 19–21)
+
+   * Orchestration Service: coordinate scheduled/bill flows
+   * Persist saga state, handle compensations on failure
+4. **Sprint Review & QA Checkpoint**
+
+   * QA verifies schedules run, compensation logic works, no partial transactions
+
+---
+
+### Sprint 4: Cross-Cutting & Security
+
+**Duration:** Day 22–28
+
+**Goals:**
+
+* Implement API Gateway and global auth flows
+* Add Forgot/Reset Password, MFA, rate limiting
+* Enforce TLS/mTLS and basic PCI compliance
+
+**Tasks:**
+
+1. API Gateway (Day 22–24)
+
+   * Routes, JWT validation, rate limiting rules
+   * SSL termination via Kubernetes Ingress
+2. Auth Enhancements (Day 24–26)
+
+   * Forgot Password & Reset flows
+   * MFA setup and verification
+   * Publish `CustomerUpdated` events on profile change
+3. Security Hardening (Day 26–28)
+
+   * Enable mTLS in service mesh
+   * Configure encryption at rest for DBs
+   * Container vulnerability scans (e.g., Trivy)
+4. **Sprint Review & QA Checkpoint**
+
+   * QA penetration tests on auth, rate limit, token expiry
+
+---
+
+### Sprint 5: Resilience & QA Automation
+
+**Duration:** Day 29–35
+
+**Goals:**
+
+* Deploy Orchestration Service for sagas
+* Configure CI/CD pipelines
+* Automate QA tests (functional, integration, load)
+
+**Tasks:**
+
+1. Orchestration Service (Day 29–31)
+
+   * Deploy saga orchestrator, integrate with Kafka events
+   * Endpoint: REST to query saga status
+2. CI/CD Setup (Day 31–33)
+
+   * Create pipelines to build, test, and deploy on commit
+   * Automate Docker build, Helm deploy to QA cluster
+3. QA Automation (Day 33–35)
+
+   * Integrate Postman/Newman, Testcontainers, JMeter into CI
+   * Generate test and performance reports
+4. **Sprint Review & QA Checkpoint**
+
+   * QA reviews CI artifacts, regression suite, load test results
+   * Final sign-off for release candidate
+
+---
+
+## Final Delivery
+
+* Consolidate all services into a validated release candidate
+* Prepare stakeholder demo with key flows
+* Deliver documentation: API specs, deployment guides, QA reports
+
+Congratulations—upon completion, interns and QA will have a production-ready banking backend aligned with real-world standards and practices.
