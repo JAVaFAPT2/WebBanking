@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -6,4 +6,22 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-</Project>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0-preview.1.24080.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Behaviors\" />
+    <Folder Include="CQRS\Commands\ApproveLoan\" />
+    <Folder Include="CQRS\Commands\CreateLoan\" />
+    <Folder Include="CQRS\Commands\MakeLoanPayment\" />
+    <Folder Include="CQRS\Queries\GetAccountLoans\" />
+    <Folder Include="CQRS\Queries\GetLoan\" />
+  </ItemGroup>
+
+</Project> 
