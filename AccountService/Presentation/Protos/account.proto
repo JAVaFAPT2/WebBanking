@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+option csharp_namespace = "AccountService.Protos";
+
+package account;
+
+service AccountService {
+  // Create a new account
+  rpc CreateAccount (CreateAccountRequest) returns (CreateAccountResponse);
+  
+  // Get account by ID
+  rpc GetAccount (GetAccountRequest) returns (AccountResponse);
+  
+  // Get accounts by user ID
+  rpc GetUserAccounts (GetUserAccountsRequest) returns (GetUserAccountsResponse);
+  
+  // Update account balance
+  rpc UpdateBalance (UpdateBalanceRequest) returns (UpdateBalanceResponse);
+  
+  // Close account
+  rpc CloseAccount (CloseAccountRequest) returns (CloseAccountResponse);
+  
+  // Block/Unblock account
+  rpc BlockAccount (BlockAccountRequest) returns (BlockAccountResponse);
+}
+
+message CreateAccountRequest {
+  string user_id = 1;
+  string account_type = 2;
+  Money initial_balance = 3;
+}
+
+message CreateAccountResponse {
+  string account_id = 1;
+}
+
+message GetAccountRequest {
+  string account_id = 1;
+}
+
+message GetUserAccountsRequest {
+  string user_id = 1;
+}
+
+message GetUserAccountsResponse {
+  repeated AccountResponse accounts = 1;
+}
+
+message AccountResponse {
+  string account_id = 1;
+  string user_id = 2;
+  string account_type = 3;
+  Money balance = 4;
+  bool is_active = 5;
+  bool is_blocked = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message UpdateBalanceRequest {
+  string account_id = 1;
+  Money amount = 2;
+}
+
+message UpdateBalanceResponse {
+  bool success = 1;
+}
+
+message CloseAccountRequest {
+  string account_id = 1;
+}
+
+message CloseAccountResponse {
+  bool success = 1;
+}
+
+message BlockAccountRequest {
+  string account_id = 1;
+  bool block = 2;
+}
+
+message BlockAccountResponse {
+  bool success = 1;
+}
+
+message Money {
+  string currency = 1;
+  int64 amount = 2;
+} 

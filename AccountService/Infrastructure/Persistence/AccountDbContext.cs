@@ -22,9 +22,11 @@ public class AccountDbContext : DbContext
             entity.Property(e => e.AccountNumber).HasConversion(
                 v => v.Value,
                 v => new AccountNumber(v));
-            entity.Property(e => e.Balance).HasConversion(
-                v => v.Amount,
-                v => new Money(v, entity.Property(e => e.Currency).CurrentValue?.ToString() ?? "USD"));
+            entity.OwnsOne(e => e.Balance, b =>
+            {
+                b.Property(m => m.Amount).HasColumnName("BalanceAmount");
+                b.Property(m => m.Currency).HasColumnName("BalanceCurrency").HasMaxLength(3);
+            });
             entity.Property(e => e.Type).HasConversion<string>();
             entity.Property(e => e.Status).HasConversion<string>();
             entity.Property(e => e.Currency).IsRequired().HasMaxLength(3);

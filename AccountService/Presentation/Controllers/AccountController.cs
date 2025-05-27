@@ -2,6 +2,7 @@ using Application.CQRS.Commands.BlockAccount;
 using Application.CQRS.Commands.CloseAccount;
 using Application.CQRS.Commands.CreateAccount;
 using Application.CQRS.Commands.UpdateBalance;
+using Application.CQRS.DTO;
 using Application.CQRS.Queries.GetAccount;
 using Application.CQRS.Queries.GetUserAccounts;
 using MediatR;

@@ -20,10 +20,10 @@ public class AccountRepository : IAccountRepository
         return await _context.Accounts.FindAsync(id);
     }
 
-    public async Task<Account?> GetByAccountNumberAsync(AccountNumber accountNumber)
+    public async Task<Account?> GetByAccountNumberAsync(string accountNumber)
     {
         return await _context.Accounts
-            .FirstOrDefaultAsync(a => a.AccountNumber == accountNumber);
+            .FirstOrDefaultAsync(a => a.AccountNumber.Value == accountNumber);
     }
 
     public async Task<IEnumerable<Account>> GetByUserIdAsync(Guid userId)
@@ -35,30 +35,34 @@ public class AccountRepository : IAccountRepository
 
     public async Task<Account> AddAsync(Account account)
     {
-        await _dbContext.Accounts.AddAsync(account);
-        await _dbContext.SaveChangesAsync();
+        await _context.Accounts.AddAsync(account);
+        await _context.SaveChangesAsync();
         return account;
     }
 
-    public Task UpdateAsync(Account account)
+    public async Task UpdateAsync(Account account)
     {
         _context.Accounts.Update(account);
-        return Task.CompletedTask;
+        await _context.SaveChangesAsync();
     }
 
-    public Task DeleteAsync(Account account)
+    public async Task DeleteAsync(Guid id)
     {
-        _context.Accounts.Remove(account);
-        return Task.CompletedTask;
+        var account = await GetByIdAsync(id);
+        if (account != null)
+        {
+            _context.Accounts.Remove(account);
+            await _context.SaveChangesAsync();
+        }
     }
 
-    public async Task<bool> ExistsAsync(Guid id)
+    public async Task<bool> ExistsAsync(string accountNumber)
     {
-        return await _context.Accounts.AnyAsync(a => a.Id == id);
+        return await _context.Accounts.AnyAsync(a => a.AccountNumber.Value == accountNumber);
     }
 
-    public async Task<int> SaveChangesAsync()
+    public async Task SaveChangesAsync()
     {
-        return await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 } 

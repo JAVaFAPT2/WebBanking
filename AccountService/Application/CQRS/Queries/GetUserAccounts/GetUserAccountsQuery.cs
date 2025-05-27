@@ -3,6 +3,9 @@ using Domain.Interface;
 using FluentValidation;
 using MediatR;
 using Application.CQRS.Queries.GetAccount;
+using Application.CQRS.DTO;
+using System;
+using System.Collections.Generic;
 
 namespace Application.CQRS.Queries.GetUserAccounts;
 
@@ -11,18 +14,26 @@ public record GetUserAccountsQuery(Guid UserId) : IRequest<IEnumerable<AccountDt
 public class GetUserAccountsQueryHandler : IRequestHandler<GetUserAccountsQuery, IEnumerable<AccountDto>>
 {
     private readonly IAccountRepository _accountRepository;
-    private readonly IMapper _mapper;
 
-    public GetUserAccountsQueryHandler(IAccountRepository accountRepository, IMapper mapper)
+    public GetUserAccountsQueryHandler(IAccountRepository accountRepository)
     {
         _accountRepository = accountRepository;
-        _mapper = mapper;
     }
 
     public async Task<IEnumerable<AccountDto>> Handle(GetUserAccountsQuery request, CancellationToken cancellationToken)
     {
         var accounts = await _accountRepository.GetByUserIdAsync(request.UserId);
-        return _mapper.Map<IEnumerable<AccountDto>>(accounts);
+        return accounts.Select(account => new AccountDto(
+            account.Id,
+            account.AccountNumber.Value,
+            account.UserId,
+            account.Type.ToString(),
+            account.Balance.Amount,
+            account.Status.ToString(),
+            account.Balance.Currency,
+            account.CreatedAt,
+            account.LastModifiedAt
+        ));
     }
 }
 

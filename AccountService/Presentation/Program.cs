@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Presentation.Services;
 using Serilog;
 using Shared.Configuration;
 using System.Text;
@@ -62,6 +63,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 Encoding.UTF8.GetBytes(settings.Jwt.Key))
         };
     });
+
+// Add gRPC services
+builder.Services.AddGrpc(options =>
+{
+    options.EnableDetailedErrors = true;
+    options.MaxReceiveMessageSize = 2 * 1024 * 1024; // 2 MB
+    options.MaxSendMessageSize = 5 * 1024 * 1024; // 5 MB
+}).AddJsonTranscoding();
 
 // Add controllers
 builder.Services.AddControllers();
@@ -119,7 +128,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+// Map gRPC service
+app.MapGrpcService<AccountGrpcService>();
 
 // Apply migrations at startup
 using (var scope = app.Services.CreateScope())
