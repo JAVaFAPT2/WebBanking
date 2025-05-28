@@ -4,16 +4,11 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Infrastructure;
 using Infrastructure.Persistence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Presentation.Services;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Serilog;
 using Shared.Configuration;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,19 +17,27 @@ var settings = builder.Configuration.GetSection("AccountServiceSettings").Get<Ac
     ?? throw new InvalidOperationException("AccountServiceSettings section is missing in configuration");
 builder.Services.Configure<AccountServiceSettings>(builder.Configuration.GetSection("AccountServiceSettings"));
 
-// Add services to the container.
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+// Configure Serilog
+builder.Host.UseSerilog((context, config) =>
 {
-    containerBuilder.AddInfrastructure();
+    config.WriteTo.Console()
+          .ReadFrom
+          .Configuration(context.Configuration.GetSection("Serilog"));
 });
 
-// Configure Serilog
-Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .CreateLogger();
+// Configure gRPC
+builder.Services.AddGrpc();
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenLocalhost(5001, o => o.Protocols = HttpProtocols.Http2);
+});
 
-builder.Host.UseSerilog();
+// Redis Cache
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = settings.Redis.ConnectionString;
+    options.InstanceName = settings.Redis.InstanceName;
+});
 
 // Add infrastructure services
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -47,89 +50,31 @@ builder.Services.AddMediatR(cfg => {
     cfg.RegisterServicesFromAssembly(typeof(CreateAccountCommand).Assembly);
 });
 
-// Add JWT Authentication
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+// Add Health Checks
+builder.Services.AddHealthChecks()
+    .AddSqlServer(settings.Database.ConnectionString)
+    .AddRedis(settings.Redis.ConnectionString)
+    .AddKafka(new Confluent.Kafka.ProducerConfig
     {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = settings.Jwt.Issuer,
-            ValidAudience = settings.Jwt.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(settings.Jwt.Key))
-        };
+        BootstrapServers = settings.Kafka.BootstrapServers
     });
 
-// Add gRPC services
-builder.Services.AddGrpc(options =>
+// Switch to Autofac
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
-    options.EnableDetailedErrors = true;
-    options.MaxReceiveMessageSize = 2 * 1024 * 1024; // 2 MB
-    options.MaxSendMessageSize = 5 * 1024 * 1024; // 5 MB
-}).AddJsonTranscoding();
-
-// Add controllers
-builder.Services.AddControllers();
-
-// Add API versioning
-builder.Services.AddApiVersioning(options =>
-{
-    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
-    options.AssumeDefaultVersionWhenUnspecified = true;
-    options.ReportApiVersions = true;
-});
-
-// Add Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Account Service API", Version = "v1" });
-    
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Description = "JWT Authorization header using the Bearer scheme",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
-    });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            Array.Empty<string>()
-        }
-    });
+    containerBuilder.AddInfrastructure();
 });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Map gRPC service
+app.MapGrpcService<Presentation.Services.AccountGrpcService>();
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapGrpcReflectionService();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-// Map gRPC service
-app.MapGrpcService<AccountGrpcService>();
 
 // Apply migrations at startup
 using (var scope = app.Services.CreateScope())

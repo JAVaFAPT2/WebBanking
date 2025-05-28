@@ -13,6 +13,7 @@ using Presentation.Services;
 using Serilog;
 using StackExchange.Redis;
 using System.Reflection;
+using MediatR.Extensions.FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

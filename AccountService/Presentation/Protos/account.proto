@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "AccountService.Protos";
+option csharp_namespace = "Presentation.Protos";
 
 package account;
 
@@ -32,6 +32,7 @@ message CreateAccountRequest {
 
 message CreateAccountResponse {
   string account_id = 1;
+  string account_number = 2;
 }
 
 message GetAccountRequest {
@@ -49,17 +50,19 @@ message GetUserAccountsResponse {
 message AccountResponse {
   string account_id = 1;
   string user_id = 2;
-  string account_type = 3;
-  Money balance = 4;
-  bool is_active = 5;
-  bool is_blocked = 6;
-  string created_at = 7;
-  string updated_at = 8;
+  string account_number = 3;
+  string account_type = 4;
+  Money balance = 5;
+  string status = 6;
+  string currency = 7;
+  string created_at = 8;
+  string last_modified_at = 9;
 }
 
 message UpdateBalanceRequest {
   string account_id = 1;
   Money amount = 2;
+  string transaction_type = 3;
 }
 
 message UpdateBalanceResponse {
@@ -77,6 +80,7 @@ message CloseAccountResponse {
 message BlockAccountRequest {
   string account_id = 1;
   bool block = 2;
+  string reason = 3;
 }
 
 message BlockAccountResponse {
@@ -85,5 +89,5 @@ message BlockAccountResponse {
 
 message Money {
   string currency = 1;
-  int64 amount = 2;
+  int64 amount = 2;  // Amount in smallest currency unit (e.g., cents)
 } 
