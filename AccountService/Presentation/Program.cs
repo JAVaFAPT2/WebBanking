@@ -6,7 +6,6 @@ using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Serilog;
 using Shared.Configuration;
 
@@ -66,21 +65,28 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.AddInfrastructure();
 });
 
+builder.Services.AddGrpcReflection();
+
 var app = builder.Build();
+
+
 
 // Map gRPC service
 app.MapGrpcService<Presentation.Services.AccountGrpcService>();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapGrpcReflectionService();
+        app.MapGrpcReflectionService();
 }
 
 // Apply migrations at startup
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AccountDbContext>();
-    db.Database.Migrate();
+    if (!db.Database.CanConnect())
+    {
+        db.Database.Migrate();
+    }
 }
 
 app.Run();
