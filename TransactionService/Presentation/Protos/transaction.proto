@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+option csharp_namespace = "TransactionService.Protos";
+
+package transaction;
+
+// Import for Google.Protobuf.Timestamp if needed for specific date handling
+// import "google/protobuf/timestamp.proto";
+
+service Transactioner // Changed from TransactionService to avoid C# class name collision with namespace
+{
+  rpc InitiateTransaction (InitiateTransactionRequest) returns (InitiateTransactionResponse);
+  rpc GetTransactionById (GetTransactionByIdRequest) returns (TransactionDetailsResponse); 
+  rpc GetTransactionsByAccountId (GetTransactionsByAccountIdRequest) returns (GetTransactionsByAccountIdResponse);
+  // Add rpc for UpdateTransactionStatus if it needs to be exposed via gRPC
+  // rpc UpdateTransactionStatus (UpdateTransactionStatusRequest) returns (UpdateTransactionStatusResponse);
+}
+
+message Money {
+  double amount = 1;
+  string currency = 2;
+}
+
+enum TransactionTypeProto {
+  TRANSACTION_TYPE_UNSPECIFIED = 0;
+  TRANSACTION_TYPE_DEBIT = 1;
+  TRANSACTION_TYPE_CREDIT = 2;
+  TRANSACTION_TYPE_TRANSFER = 3;
+  TRANSACTION_TYPE_FEE = 4;
+  TRANSACTION_TYPE_REFUND = 5;
+  TRANSACTION_TYPE_PAYMENT = 6;
+  TRANSACTION_TYPE_REVERSAL = 7;
+}
+
+enum TransactionStatusProto {
+  TRANSACTION_STATUS_UNSPECIFIED = 0;
+  TRANSACTION_STATUS_PENDING = 1;
+  TRANSACTION_STATUS_PROCESSING = 2;
+  TRANSACTION_STATUS_SUCCEEDED = 3;
+  TRANSACTION_STATUS_FAILED = 4;
+  TRANSACTION_STATUS_CANCELLED = 5;
+  TRANSACTION_STATUS_REQUIRES_ACTION = 6;
+}
+
+message InitiateTransactionRequest {
+  optional string account_from_id = 1;
+  optional string account_to_id = 2;
+  TransactionTypeProto type = 3;
+  Money amount = 4;
+  optional string description = 5;
+  string initiated_by = 6;
+  optional string correlation_id = 7;
+}
+
+message InitiateTransactionResponse {
+  string transaction_id = 1;
+  TransactionStatusProto initial_status = 2;
+}
+
+message GetTransactionByIdRequest {
+  string transaction_id = 1;
+}
+
+// Reusing this for GetTransactionById response as well for consistency
+message TransactionDetailsResponse {
+  string id = 1;
+  string correlation_id = 2;
+  optional string account_from_id = 3;
+  optional string account_to_id = 4;
+  TransactionTypeProto type = 5;
+  TransactionStatusProto status = 6;
+  Money amount = 7;
+  string initiated_at = 8; // Consider using google.protobuf.Timestamp for proper date handling
+  string last_updated_at = 9; // Consider using google.protobuf.Timestamp
+  optional string description = 10;
+  optional string failure_reason = 11;
+  optional string reference_number = 12;
+  optional string initiated_by = 13;
+}
+
+message GetTransactionsByAccountIdRequest {
+  string account_id = 1;
+  optional string from_date = 2; // Consider ISO 8601 string or google.protobuf.Timestamp
+  optional string to_date = 3;   // Consider ISO 8601 string or google.protobuf.Timestamp
+  optional int32 page_number = 4;
+  optional int32 page_size = 5;
+}
+
+message GetTransactionsByAccountIdResponse {
+  repeated TransactionDetailsResponse transactions = 1;
+}
+
+// If UpdateTransactionStatus is exposed:
+/*
+message UpdateTransactionStatusRequest {
+  string transaction_id = 1;
+  TransactionStatusProto new_status = 2;
+  optional string reason = 3;
+  optional string reference_number = 4;
+}
+
+message UpdateTransactionStatusResponse {
+  bool success = 1;
+}
+*/ 
