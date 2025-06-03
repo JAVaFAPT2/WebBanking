@@ -12,14 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" /> <!-- Or your preferred DB provider -->
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.5" /> <!-- Or your preferred DB provider -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.5" />
     <PackageReference Include="StackExchange.Redis" Version="2.7.17" /> <!-- If using Redis for caching -->
     <PackageReference Include="Confluent.Kafka" Version="2.3.0" /> <!-- Added Kafka client -->
     <!-- Add message bus client (e.g., MassTransit, RabbitMQ.Client) if needed -->
@@ -29,8 +29,8 @@
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.12.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.5.1" />
   </ItemGroup>
 
