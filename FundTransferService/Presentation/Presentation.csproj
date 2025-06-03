@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>FundTransferService.Presentation</RootNamespace>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>../..</DockerfileContext> <!-- Assuming Dockerfile will be at solution level or one level up from service root -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Application/Application.csproj" />
+    <ProjectReference Include="../Infrastructure/Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.60.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.60.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0-preview.4.25258.110" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" /> <!-- If also exposing HTTP/JSON APIs -->
+     <!-- Add OpenTelemetry packages if used, similar to LoanService -->
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.12.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.6.0-beta.3" />
+    <PackageReference Include="Autofac" Version="7.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" /> <!-- Adjust version if needed to match your .NET 8 setup -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\fund_transfer.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+</Project> 

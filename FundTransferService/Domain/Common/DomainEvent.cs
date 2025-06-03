@@ -1,0 +1,10 @@
+using MediatR;
+
+namespace FundTransferService.Domain.Common
+{
+    // Base class for domain events, implements INotification for MediatR
+    public abstract class DomainEvent : INotification
+    {
+        public DateTime OccurredOn { get; protected set; } = DateTime.UtcNow;
+    }
+}
