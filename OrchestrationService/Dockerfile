@@ -1,30 +1,31 @@
-FROM openjdk:17-jdk-slim as builder
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
 
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./ 
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
 
-# Download dependencies
-RUN ./mvnw dependency:go-offline -B
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["OrchestrationService.sln", "./"]
+COPY ["Domain/OrchestrationService.Domain.csproj", "Domain/"]
+COPY ["Application/OrchestrationService.Application.csproj", "Application/"]
+COPY ["Infrastructure/OrchestrationService.Infrastructure.csproj", "Infrastructure/"]
+COPY ["Presentation/OrchestrationService.Presentation.csproj", "Presentation/"]
 
-COPY src ./src
+RUN dotnet restore "OrchestrationService.sln"
+COPY . .
+WORKDIR "/src/Presentation"
+RUN dotnet build "OrchestrationService.Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-RUN ./mvnw clean install -DskipTests
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "OrchestrationService.Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-FROM openjdk:17-jre-slim
+FROM base AS final
 WORKDIR /app
-
-# Define an argument for the JAR file name, defaulting to target/*.jar
-ARG JAR_FILE=target/orchestration-service-0.0.1-SNAPSHOT.jar
-
-COPY --from=builder /app/${JAR_FILE} application.jar
-
-# Expose the port the application will run on (defined in application.yml or default 8080)
-EXPOSE 8090
-
-# Add user and group for security
-RUN groupadd -r orchestrator && useradd -r -g orchestrator orchestrator
-RUN chown -R orchestrator:orchestrator /app
-USER orchestrator
-
-ENTRYPOINT ["java","-jar","/app/application.jar"] 
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "OrchestrationService.Presentation.dll"] 

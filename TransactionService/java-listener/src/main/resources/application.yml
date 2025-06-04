@@ -1,0 +1,31 @@
+server:
+  port: 8082 # Or any other free port
+
+spring:
+  application:
+    name: transaction-service-listener
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: transaction-listener-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.webbanking.transactionservice.dto,com.example.orchestrationservice.dto"
+        spring.json.use.type.headers: "false"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+# Topics (optional here if defined in listener and orchestrator, but good for reference)
+# app:
+#   kafka:
+#     topics:
+#       transaction-record-command: "fundtransfer.transaction.record.command"
+#       transaction-recorded-reply: "fundtransfer.transaction.recorded.reply"
+
+logging:
+  level:
+    com.webbanking.transactionservice.listener: DEBUG
+    org.springframework.kafka: INFO 

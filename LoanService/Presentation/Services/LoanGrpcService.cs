@@ -4,14 +4,12 @@ using Application.CQRS.Commands.MakeLoanPayment;
 using Application.CQRS.Queries.GetAccountLoans;
 using Application.CQRS.Queries.GetLoan;
 using Domain.Models;
-using Domain.ValueObjects;
 using Grpc.Core;
 using MediatR;
-using Presentation.Protos;
 
 namespace Presentation.Services;
 
-public class LoanGrpcService : Protos.LoanService.LoanServiceBase
+public class LoanGrpcService : Presentation.Protos.LoanService.LoanServiceBase
 {
     private readonly IMediator _mediator;
     private readonly ILogger<LoanGrpcService> _logger;
@@ -22,7 +20,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
         _logger = logger;
     }
 
-    public override async Task<CreateLoanResponse> CreateLoan(CreateLoanRequest request, ServerCallContext context)
+    public override async Task<Presentation.Protos.CreateLoanResponse> CreateLoan(Presentation.Protos.CreateLoanRequest request, ServerCallContext context)
     {
         var correlationId = Guid.NewGuid().ToString();
         _logger.LogInformation(
@@ -35,7 +33,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
                 Guid.Parse(request.AccountId),
                 request.CardId != null ? Guid.Parse(request.CardId) : null,
                 MapLoanType(request.LoanType),
-                new Money((decimal)request.Amount.Amount, request.Amount.Currency),
+                new Domain.ValueObjects.Money((decimal)request.Amount.Amount, request.Amount.Currency),
                 (decimal)request.InterestRate,
                 request.TermMonths
             );
@@ -46,7 +44,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
                 "Loan created successfully [{CorrelationId}] - LoanId: {LoanId}",
                 correlationId, loanId);
 
-            return new CreateLoanResponse { LoanId = loanId.ToString() };
+            return new Presentation.Protos.CreateLoanResponse { LoanId = loanId.ToString() };
         }
         catch (Exception ex)
         {
@@ -58,7 +56,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
         }
     }
 
-    public override async Task<ApproveLoanResponse> ApproveLoan(ApproveLoanRequest request, ServerCallContext context)
+    public override async Task<Presentation.Protos.ApproveLoanResponse> ApproveLoan(Presentation.Protos.ApproveLoanRequest request, ServerCallContext context)
     {
         var correlationId = Guid.NewGuid().ToString();
         _logger.LogInformation(
@@ -74,7 +72,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
                 "Loan approved successfully [{CorrelationId}] - LoanId: {LoanId}",
                 correlationId, request.LoanId);
 
-            return new ApproveLoanResponse { Success = true };
+            return new Presentation.Protos.ApproveLoanResponse { Success = true };
         }
         catch (Exception ex)
         {
@@ -86,7 +84,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
         }
     }
 
-    public override async Task<MakeLoanPaymentResponse> MakeLoanPayment(MakeLoanPaymentRequest request, ServerCallContext context)
+    public override async Task<Presentation.Protos.MakeLoanPaymentResponse> MakeLoanPayment(Presentation.Protos.MakeLoanPaymentRequest request, ServerCallContext context)
     {
         var correlationId = Guid.NewGuid().ToString();
         _logger.LogInformation(
@@ -97,7 +95,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
         {
             var command = new MakeLoanPaymentCommand(
                 Guid.Parse(request.LoanId),
-                new Money((decimal)request.PaymentAmount.Amount, request.PaymentAmount.Currency)
+                new Domain.ValueObjects.Money((decimal)request.PaymentAmount.Amount, request.PaymentAmount.Currency)
             );
 
             await _mediator.Send(command);
@@ -106,7 +104,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
                 "Payment processed successfully [{CorrelationId}] - LoanId: {LoanId}",
                 correlationId, request.LoanId);
 
-            return new MakeLoanPaymentResponse { Success = true };
+            return new Presentation.Protos.MakeLoanPaymentResponse { Success = true };
         }
         catch (Exception ex)
         {
@@ -118,7 +116,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
         }
     }
 
-    public override async Task<LoanResponse> GetLoan(GetLoanRequest request, ServerCallContext context)
+    public override async Task<Presentation.Protos.LoanResponse> GetLoan(Presentation.Protos.GetLoanRequest request, ServerCallContext context)
     {
         var correlationId = Guid.NewGuid().ToString();
         _logger.LogInformation(
@@ -154,7 +152,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
         }
     }
 
-    public override async Task<GetAccountLoansResponse> GetAccountLoans(GetAccountLoansRequest request, ServerCallContext context)
+    public override async Task<Presentation.Protos.GetAccountLoansResponse> GetAccountLoans(Presentation.Protos.GetAccountLoansRequest request, ServerCallContext context)
     {
         var correlationId = Guid.NewGuid().ToString();
         _logger.LogInformation(
@@ -170,7 +168,7 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
                 "Account loans retrieved successfully [{CorrelationId}] - AccountId: {AccountId}, Count: {Count}",
                 correlationId, request.AccountId, loans.Count());
 
-            var response = new GetAccountLoansResponse();
+            var response = new Presentation.Protos.GetAccountLoansResponse();
             response.Loans.AddRange(loans.Select(MapLoanToResponse));
             return response;
         }
@@ -184,28 +182,28 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
         }
     }
 
-    private static LoanResponse MapLoanToResponse(Loan loan)
+    private static Presentation.Protos.LoanResponse MapLoanToResponse(Domain.Models.Loan loan)
     {
-        return new LoanResponse
+        return new Presentation.Protos.LoanResponse
         {
             LoanId = loan.Id.ToString(),
             AccountId = loan.AccountId.ToString(),
             CardId = loan.CardId?.ToString(),
             LoanType = MapLoanType(loan.Type),
             Status = MapLoanStatus(loan.Status),
-            Amount = new Protos.Money
+            Amount = new Presentation.Protos.Money
             {
                 Amount = (double)loan.Amount.Amount,
                 Currency = loan.Amount.Currency
             },
-            RemainingAmount = new Protos.Money
+            RemainingAmount = new Presentation.Protos.Money
             {
                 Amount = (double)loan.RemainingAmount.Amount,
                 Currency = loan.RemainingAmount.Currency
             },
             InterestRate = (double)loan.InterestRate,
             TermMonths = loan.TermMonths,
-            MonthlyPayment = new Protos.Money
+            MonthlyPayment = new Presentation.Protos.Money
             {
                 Amount = (double)loan.MonthlyPayment.Amount,
                 Currency = loan.MonthlyPayment.Currency
@@ -218,37 +216,37 @@ public class LoanGrpcService : Protos.LoanService.LoanServiceBase
         };
     }
 
-    private static LoanType MapLoanType(Protos.LoanType type) => type switch
+    private static Domain.Models.LoanType MapLoanType(Presentation.Protos.LoanType type) => type switch
     {
-        Protos.LoanType.LoanTypePersonal => LoanType.Personal,
-        Protos.LoanType.LoanTypeCreditCard => LoanType.CreditCard,
-        Protos.LoanType.LoanTypeMortgage => LoanType.Mortgage,
-        Protos.LoanType.LoanTypeAuto => LoanType.Auto,
-        Protos.LoanType.LoanTypeStudent => LoanType.Student,
-        Protos.LoanType.LoanTypeBusiness => LoanType.Business,
+        Presentation.Protos.LoanType.Personal => Domain.Models.LoanType.Personal,
+        Presentation.Protos.LoanType.CreditCard => Domain.Models.LoanType.CreditCard,
+        Presentation.Protos.LoanType.Mortgage => Domain.Models.LoanType.Mortgage,
+        Presentation.Protos.LoanType.Auto => Domain.Models.LoanType.Auto,
+        Presentation.Protos.LoanType.Student => Domain.Models.LoanType.Student,
+        Presentation.Protos.LoanType.Business => Domain.Models.LoanType.Business,
         _ => throw new ArgumentOutOfRangeException(nameof(type))
     };
 
-    private static Protos.LoanType MapLoanType(LoanType type) => type switch
+    private static Presentation.Protos.LoanType MapLoanType(Domain.Models.LoanType type) => type switch
     {
-        LoanType.Personal => Protos.LoanType.LoanTypePersonal,
-        LoanType.CreditCard => Protos.LoanType.LoanTypeCreditCard,
-        LoanType.Mortgage => Protos.LoanType.LoanTypeMortgage,
-        LoanType.Auto => Protos.LoanType.LoanTypeAuto,
-        LoanType.Student => Protos.LoanType.LoanTypeStudent,
-        LoanType.Business => Protos.LoanType.LoanTypeBusiness,
+        Domain.Models.LoanType.Personal => Presentation.Protos.LoanType.Personal,
+        Domain.Models.LoanType.CreditCard => Presentation.Protos.LoanType.CreditCard,
+        Domain.Models.LoanType.Mortgage => Presentation.Protos.LoanType.Mortgage,
+        Domain.Models.LoanType.Auto => Presentation.Protos.LoanType.Auto,
+        Domain.Models.LoanType.Student => Presentation.Protos.LoanType.Student,
+        Domain.Models.LoanType.Business => Presentation.Protos.LoanType.Business,
         _ => throw new ArgumentOutOfRangeException(nameof(type))
     };
 
-    private static Protos.LoanStatus MapLoanStatus(LoanStatus status) => status switch
+    private static Presentation.Protos.LoanStatus MapLoanStatus(Domain.Models.LoanStatus status) => status switch
     {
-        LoanStatus.Pending => Protos.LoanStatus.LoanStatusPending,
-        LoanStatus.Approved => Protos.LoanStatus.LoanStatusApproved,
-        LoanStatus.Active => Protos.LoanStatus.LoanStatusActive,
-        LoanStatus.Rejected => Protos.LoanStatus.LoanStatusRejected,
-        LoanStatus.Closed => Protos.LoanStatus.LoanStatusClosed,
-        LoanStatus.Default => Protos.LoanStatus.LoanStatusDefault,
-        LoanStatus.PaidOff => Protos.LoanStatus.LoanStatusPaidOff,
+        Domain.Models.LoanStatus.Pending => Presentation.Protos.LoanStatus.Pending,
+        Domain.Models.LoanStatus.Approved => Presentation.Protos.LoanStatus.Approved,
+        Domain.Models.LoanStatus.Active => Presentation.Protos.LoanStatus.Active,
+        Domain.Models.LoanStatus.Rejected => Presentation.Protos.LoanStatus.Rejected,
+        Domain.Models.LoanStatus.Closed => Presentation.Protos.LoanStatus.Closed,
+        Domain.Models.LoanStatus.Default => Presentation.Protos.LoanStatus.Default,
+        Domain.Models.LoanStatus.PaidOff => Presentation.Protos.LoanStatus.PaidOff,
         _ => throw new ArgumentOutOfRangeException(nameof(status))
     };
-} 
+}

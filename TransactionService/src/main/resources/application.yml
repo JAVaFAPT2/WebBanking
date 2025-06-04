@@ -1,0 +1,33 @@
+server:
+  port: 8082 # Assuming TransactionService runs on a different port
+
+spring:
+  application:
+    name: transaction-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: transaction-service-group # Specific group ID for TransactionService
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.webbanking.transactionservice.application.cqrs.dto,com.example.orchestrationservice.dto"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,prometheus"
+
+app:
+  kafka:
+    topics:
+      # Commands consumed by TransactionService
+      transaction-record-command: ${TRANSACTION_RECORD_COMMAND_TOPIC:fundtransfer.transaction.record.command}
+
+      # Replies produced by TransactionService
+      transaction-recorded-reply: ${TRANSACTION_RECORDED_REPLY_TOPIC:fundtransfer.transaction.recorded.reply} 

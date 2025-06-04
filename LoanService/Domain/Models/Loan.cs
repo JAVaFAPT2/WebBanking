@@ -11,11 +11,11 @@ public class Loan : AggregateRoot
     public Guid? CardId { get; private set; }
     public LoanType Type { get; private set; }
     public LoanStatus Status { get; private set; }
-    public Money Amount { get; private set; }
-    public Money RemainingAmount { get; private set; }
+    public Money Amount { get; private set; } = default!;
+    public Money RemainingAmount { get; private set; } = default!;
     public decimal InterestRate { get; private set; }
     public int TermMonths { get; private set; }
-    public Money MonthlyPayment { get; private set; }
+    public Money MonthlyPayment { get; private set; } = default!;
     public DateTime StartDate { get; private set; }
     public DateTime EndDate { get; private set; }
     public DateTime CreatedAt { get; private set; }
@@ -49,10 +49,10 @@ public class Loan : AggregateRoot
         };
 
         // Calculate monthly payment using the loan amortization formula
-        var monthlyRate = interestRate / 12 / 100;
+        var monthlyRate = (double)(interestRate / 12 / 100);
         var denominator = Math.Pow(1 + monthlyRate, termMonths) - 1;
-        var monthlyPaymentAmount = amount.Amount * monthlyRate * Math.Pow(1 + monthlyRate, termMonths) / denominator;
-        loan.MonthlyPayment = new Money(Math.Round(monthlyPaymentAmount, 2), amount.Currency);
+        var monthlyPaymentAmount = (double)amount.Amount * monthlyRate * Math.Pow(1 + monthlyRate, termMonths) / denominator;
+        loan.MonthlyPayment = new Money((decimal)Math.Round(monthlyPaymentAmount, 2), amount.Currency);
 
         loan.AddDomainEvent(new LoanCreatedEvent(loan.Id, accountId, amount));
         return loan;

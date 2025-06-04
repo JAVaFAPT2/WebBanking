@@ -1,0 +1,7 @@
+C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Presentation\obj\Debug\net9.0\Presentation.csproj.AssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Presentation\obj\Debug\net9.0\Presentation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Presentation\obj\Debug\net9.0\Presentation.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Presentation\obj\Debug\net9.0\Presentation.AssemblyInfo.cs
+C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Presentation\obj\Debug\net9.0\Presentation.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Presentation\obj\Debug\net9.0\Presentation.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\UserService\Presentation\obj\Debug\net9.0\Presentation.sourcelink.json

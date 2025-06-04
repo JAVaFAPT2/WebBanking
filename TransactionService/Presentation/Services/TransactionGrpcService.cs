@@ -9,6 +9,7 @@ using TransactionService.Application.CQRS.Queries.GetTransactionById;
 using TransactionService.Application.CQRS.Queries.GetTransactionsByAccountId;
 using TransactionService.Protos; // Namespace from your .proto file
 using static TransactionService.Protos.Transactioner; // For TransactionerBase
+using ProtoInitiateTransactionResponse = TransactionService.Protos.InitiateTransactionResponse;
 
 namespace TransactionService.Presentation.Services;
 
@@ -23,7 +24,7 @@ public class TransactionGrpcService : TransactionerBase
         _logger = logger;
     }
 
-    public override async Task<InitiateTransactionResponse> InitiateTransaction(InitiateTransactionRequest request, ServerCallContext context)
+    public override async Task<ProtoInitiateTransactionResponse> InitiateTransaction(InitiateTransactionRequest request, ServerCallContext context)
     {
         _logger.LogInformation("gRPC InitiateTransaction called for InitiatedBy: {InitiatedBy}", request.InitiatedBy);
         try
@@ -40,7 +41,7 @@ public class TransactionGrpcService : TransactionerBase
 
             var result = await _mediator.Send(command);
 
-            return new InitiateTransactionResponse
+            return new ProtoInitiateTransactionResponse
             {
                 TransactionId = result.TransactionId.ToString(),
                 InitialStatus = MapDomainToProto(result.InitialStatus)

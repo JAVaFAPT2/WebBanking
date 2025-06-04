@@ -1,0 +1,39 @@
+server:
+  port: 8081 # Assuming AccountService runs on a different port than OrchestrationService
+
+spring:
+  application:
+    name: account-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092} # Allow override by environment variable
+    consumer:
+      group-id: account-service-group # Specific group ID for AccountService consumers
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.webbanking.accountservice.application.cqrs.dto,com.example.orchestrationservice.dto" # Trusted packages for DTOs
+        # spring.json.value.default.type: com.webbanking.accountservice.application.cqrs.dto.DefaultCommand # Optional default type
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # For sending POJOs as JSON
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,prometheus"
+
+# Define topic names used by AccountService
+app:
+  kafka:
+    topics:
+      # Commands consumed by AccountService (from Orchestrator)
+      debit-account-command: ${DEBIT_ACCOUNT_COMMAND_TOPIC:fundtransfer.account.debit.command} # Match Orchestrator's output topic
+      credit-account-command: ${CREDIT_ACCOUNT_COMMAND_TOPIC:fundtransfer.account.credit.command} # Match Orchestrator's output topic
+      compensate-debit-command: ${COMPENSATE_DEBIT_COMMAND_TOPIC:fundtransfer.account.debit.compensate.command} # Match Orchestrator's output topic
+
+      # Replies produced by AccountService (to Orchestrator)
+      account-debit-reply: ${ACCOUNT_DEBIT_REPLY_TOPIC:fundtransfer.account.debit.reply} # Match Orchestrator's input topic
+      account-credit-reply: ${ACCOUNT_CREDIT_REPLY_TOPIC:fundtransfer.account.credit.reply} # Match Orchestrator's input topic
+      compensate-debit-reply: ${COMPENSATE_DEBIT_REPLY_TOPIC:fundtransfer.account.debit.compensate.reply} # Match Orchestrator's input topic 

@@ -1,8 +1,9 @@
-﻿using Domain.Interface;
-using Domain.models;
+﻿using Domain.models;
+using Domain.Interface;
 using Infrastructure.Persistence.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Polly;
+using Domain.Models;
 
 namespace Infrastructure.Persistence.Repositories
 {
@@ -112,6 +113,23 @@ namespace Infrastructure.Persistence.Repositories
             var policy = Policy.Handle<DbUpdateException>()
                 .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(5));
             return await policy.ExecuteAsync(() => _context.SaveChangesAsync());
+        }
+
+        public async Task<string> GeneratePasswordResetTokenAsync(User user)
+        {
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            var token = Guid.NewGuid().ToString();
+            if (user.PasswordResetTokens == null)
+                user.PasswordResetTokens = new List<PasswordResetToken>();
+            user.PasswordResetTokens.Add(new PasswordResetToken
+            {
+                Token = token,
+                User = user,
+                Expiry = DateTime.UtcNow.AddHours(1),
+                IsUsed = false
+            });
+            await _context.SaveChangesAsync();
+            return token;
         }
     }
 }

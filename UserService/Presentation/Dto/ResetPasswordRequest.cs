@@ -1,8 +1,9 @@
-﻿namespace Presentation.Dto;
-
-public record ResetPasswordRequest
+namespace Presentation.Dto
 {
-    public string Email { get; set; }
-    public string Token { get; set; }
-    public string NewPassword { get; set; }
-}
+    public class ResetPasswordRequest
+    {
+        public string Email { get; set; }
+        public string Token { get; set; }
+        public string NewPassword { get; set; }
+    }
+} 

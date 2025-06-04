@@ -94,8 +94,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T13:47:42.988Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T13:47:42.988Z"
             },
             {
               "$type": "Document",
@@ -107,21 +106,19 @@
               "RelativeToolTip": "Domain\\Interfaces\\IMessageProducer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T13:47:35.844Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T13:47:35.844Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "Application",
+              "Title": "Application.csproj",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\Application.csproj",
               "RelativeDocumentMoniker": "Application\\Application.csproj",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\Application.csproj",
               "RelativeToolTip": "Application\\Application.csproj",
               "ViewState": "AgIAABQAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-03T13:40:11.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T13:40:11.033Z"
             },
             {
               "$type": "Document",
@@ -133,8 +130,7 @@
               "RelativeToolTip": "Infrastructure\\EventBus\\KafkaConsumerService.cs",
               "ViewState": "AgIAAIIAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T12:06:23.62Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T12:06:23.62Z"
             },
             {
               "$type": "Document",
@@ -159,8 +155,7 @@
               "RelativeToolTip": "Presentation\\Configuration\\ContainerConfig.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAALoAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T11:41:35.359Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T11:41:35.359Z"
             },
             {
               "$type": "Document",
@@ -172,8 +167,7 @@
               "RelativeToolTip": "Domain\\Events\\FundTransferInitiatedEvent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T12:06:01.105Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T12:06:01.105Z"
             },
             {
               "$type": "Document",
@@ -185,8 +179,7 @@
               "RelativeToolTip": "Domain\\Common\\DomainEvent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T12:05:47.86Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T12:05:47.86Z"
             },
             {
               "$type": "Document",
@@ -198,8 +191,7 @@
               "RelativeToolTip": "Application\\Messaging\\IMessageProducer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T12:05:27.104Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T12:05:27.104Z"
             },
             {
               "$type": "Document",
@@ -211,8 +203,7 @@
               "RelativeToolTip": "Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommandHandler.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAAAFcAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T11:48:44.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T11:48:44.574Z"
             },
             {
               "$type": "Document",
@@ -224,8 +215,7 @@
               "RelativeToolTip": "Infrastructure\\EventBus\\KafkaProducerService.cs",
               "ViewState": "AgIAAF4AAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T12:06:23.433Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T12:06:23.433Z"
             },
             {
               "$type": "Document",
@@ -237,8 +227,7 @@
               "RelativeToolTip": "Presentation\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-03T11:41:22.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T11:41:22.952Z"
             },
             {
               "$type": "Document",
@@ -250,8 +239,7 @@
               "RelativeToolTip": "Presentation\\Protos\\fund_transfer.proto",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
-              "WhenOpened": "2025-06-03T11:36:32.754Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T11:36:32.754Z"
             },
             {
               "$type": "Document",
@@ -263,8 +251,7 @@
               "RelativeToolTip": "Presentation\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-03T11:36:04.499Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T11:36:04.499Z"
             },
             {
               "$type": "Document",
@@ -276,8 +263,7 @@
               "RelativeToolTip": "Presentation\\Program.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAASwAYBAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T11:35:56.422Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T11:35:56.422Z"
             },
             {
               "$type": "Document",
@@ -289,8 +275,7 @@
               "RelativeToolTip": "Application\\Behaviors\\ValidationBehavior.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T11:36:24.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T11:36:24.749Z"
             }
           ]
         },

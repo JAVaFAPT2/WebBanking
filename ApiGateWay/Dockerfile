@@ -1,12 +1,12 @@
-FROM openjdk:17-jdk-slim as builder
+FROM eclipse-temurin:17-jdk as builder
 WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 RUN ./mvnw dependency:go-offline
 COPY src ./src
-RUN ./mvnw clean install -DskipTests
+RUN ./mvnw clean install -DskipTests -Dmaven.compiler.release=17
 
-FROM openjdk:17-jre-slim
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY --from=builder /app/${JAR_FILE} application.jar

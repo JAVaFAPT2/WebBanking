@@ -32,8 +32,8 @@ public class TransactionDbContext : DbContext
         {
             b.OwnsOne(t => t.Amount, a =>
             {
-                a.Property(m => m.Amount).HasColumnName("Amount").HasColumnType("decimal(18,2)");
-                a.Property(m => m.Currency).HasColumnName("Currency").HasMaxLength(3);
+                a.Property(m => m.Amount).HasColumnType("decimal(18,2)");
+                a.Property(m => m.Currency).HasMaxLength(3);
             });
         });
         

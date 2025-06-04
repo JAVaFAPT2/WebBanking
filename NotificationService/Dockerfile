@@ -12,26 +12,27 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Copy csproj files and restore as distinct layers
-COPY ["NotificationService/Presentation/Presentation.csproj", "NotificationService/Presentation/"]
-COPY ["NotificationService/Application/Application.csproj", "NotificationService/Application/"]
-COPY ["NotificationService/Domain/Domain.csproj", "NotificationService/Domain/"]
-COPY ["NotificationService/Infrastructure/Infrastructure.csproj", "NotificationService/Infrastructure/"]
+COPY ["Presentation/Presentation.csproj", "Presentation/"]
+COPY ["Application/Application.csproj", "Application/"]
+COPY ["Domain/Domain.csproj", "Domain/"]
+COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
 # If you had a Shared project for NotificationService, you would copy its csproj here too.
 
 # Restore solution or individual projects. Restoring the solution is often cleaner if all projects are within it.
 # COPY ["NotificationService/NotificationService.sln", "NotificationService/"]
 # RUN dotnet restore "NotificationService/NotificationService.sln"
 # Altenatively, restore the presentation project which should pull other dependencies.
-RUN dotnet restore "NotificationService/Presentation/Presentation.csproj"
+RUN dotnet restore "Presentation/Presentation.csproj"
 
 # Copy the Sdk files
 COPY . .
-WORKDIR "/src/NotificationService/Presentation"
-RUN dotnet build "Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN ls -l /src/Presentation
+WORKDIR "/src"
+RUN dotnet build "Presentation/Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Presentation/Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

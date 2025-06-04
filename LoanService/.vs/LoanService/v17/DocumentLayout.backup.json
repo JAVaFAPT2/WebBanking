@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\presentation\\middleware\\requestresponseloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|solutionrelative:presentation\\middleware\\requestresponseloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\presentation\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|solutionrelative:presentation\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\presentation\\services\\loangrpcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,6 +13,34 @@
     {
       "AbsoluteMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\presentation\\protos\\loan.proto||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|solutionrelative:presentation\\protos\\loan.proto||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46AE5DB2-F55B-44D3-82E2-86894AD0F547}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\domain\\models\\loan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46AE5DB2-F55B-44D3-82E2-86894AD0F547}|Domain\\Domain.csproj|solutionrelative:domain\\models\\loan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A7336E2-E5AE-4881-BA6B-CEEDB2D5BEED}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2A7336E2-E5AE-4881-BA6B-CEEDB2D5BEED}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F06C93F-32C1-44BE-960B-37C062EA2B2B}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\application\\cqrs\\commands\\createloan\\createloancommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F06C93F-32C1-44BE-960B-37C062EA2B2B}|Application\\Application.csproj|solutionrelative:application\\cqrs\\commands\\createloan\\createloancommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46AE5DB2-F55B-44D3-82E2-86894AD0F547}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\domain\\events\\loanevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46AE5DB2-F55B-44D3-82E2-86894AD0F547}|Domain\\Domain.csproj|solutionrelative:domain\\events\\loanevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46AE5DB2-F55B-44D3-82E2-86894AD0F547}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\domain\\events\\idomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46AE5DB2-F55B-44D3-82E2-86894AD0F547}|Domain\\Domain.csproj|solutionrelative:domain\\events\\idomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|solutionrelative:presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\loanservice\\presentation\\middleware\\requestresponseloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9B02638-FE70-4C9C-91FD-61E9CBCC7FA8}|Presentation\\Presentation.csproj|solutionrelative:presentation\\middleware\\requestresponseloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 245,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,15 +62,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RequestResponseLoggingMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Middleware\\RequestResponseLoggingMiddleware.cs",
-              "RelativeDocumentMoniker": "Presentation\\Middleware\\RequestResponseLoggingMiddleware.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Middleware\\RequestResponseLoggingMiddleware.cs",
-              "RelativeToolTip": "Presentation\\Middleware\\RequestResponseLoggingMiddleware.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Loan.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Domain\\Models\\Loan.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\Loan.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Domain\\Models\\Loan.cs",
+              "RelativeToolTip": "Domain\\Models\\Loan.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAwwAYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T17:48:42.413Z",
+              "WhenOpened": "2025-06-04T16:37:40.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Infrastructure",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Infrastructure\\Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Infrastructure\\Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Infrastructure\\Infrastructure.csproj",
+              "RelativeToolTip": "Infrastructure\\Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-04T16:36:29.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CreateLoanCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Application\\CQRS\\Commands\\CreateLoan\\CreateLoanCommandHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Commands\\CreateLoan\\CreateLoanCommandHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Application\\CQRS\\Commands\\CreateLoan\\CreateLoanCommandHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Commands\\CreateLoan\\CreateLoanCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T16:34:00.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "loan.proto",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Protos\\loan.proto",
+              "RelativeDocumentMoniker": "Presentation\\Protos\\loan.proto",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Protos\\loan.proto",
+              "RelativeToolTip": "Presentation\\Protos\\loan.proto",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
+              "WhenOpened": "2025-05-27T17:48:35.844Z",
               "EditorCaption": ""
             },
             {
@@ -53,21 +120,75 @@
               "RelativeDocumentMoniker": "Presentation\\Services\\LoanGrpcService.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Services\\LoanGrpcService.cs",
               "RelativeToolTip": "Presentation\\Services\\LoanGrpcService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAANgAAAAAAAAAAIAwwPsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T17:48:40.688Z"
+              "WhenOpened": "2025-05-27T17:48:40.688Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "loan.proto",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Protos\\loan.proto",
-              "RelativeDocumentMoniker": "Presentation\\Protos\\loan.proto",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Protos\\loan.proto",
-              "RelativeToolTip": "Presentation\\Protos\\loan.proto",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\appsettings.json",
+              "RelativeDocumentMoniker": "Presentation\\appsettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\appsettings.json",
+              "RelativeToolTip": "Presentation\\appsettings.json",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAA4AAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-28T07:31:18.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoanEvents.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Domain\\Events\\LoanEvents.cs",
+              "RelativeDocumentMoniker": "Domain\\Events\\LoanEvents.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Domain\\Events\\LoanEvents.cs",
+              "RelativeToolTip": "Domain\\Events\\LoanEvents.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
-              "WhenOpened": "2025-05-27T17:48:35.844Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:33:16.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Program.cs",
+              "RelativeDocumentMoniker": "Presentation\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Program.cs",
+              "RelativeToolTip": "Presentation\\Program.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAIBJwJUAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:27:21.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IDomainEvent.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Domain\\Events\\IDomainEvent.cs",
+              "RelativeDocumentMoniker": "Domain\\Events\\IDomainEvent.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Domain\\Events\\IDomainEvent.cs",
+              "RelativeToolTip": "Domain\\Events\\IDomainEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:33:16.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RequestResponseLoggingMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Middleware\\RequestResponseLoggingMiddleware.cs",
+              "RelativeDocumentMoniker": "Presentation\\Middleware\\RequestResponseLoggingMiddleware.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\LoanService\\Presentation\\Middleware\\RequestResponseLoggingMiddleware.cs",
+              "RelativeToolTip": "Presentation\\Middleware\\RequestResponseLoggingMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T17:48:42.413Z",
+              "EditorCaption": ""
             }
           ]
         },

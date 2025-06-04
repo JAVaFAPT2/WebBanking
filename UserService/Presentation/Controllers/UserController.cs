@@ -1,5 +1,4 @@
-﻿
-using Application.CQRS.Commands;
+﻿using Application.CQRS.Commands;
 using Application.CQRS.Queries;
 using Domain.Interface;
 using Domain.models;
@@ -23,28 +22,28 @@ public class UserController(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
-    {
-        if (string.IsNullOrWhiteSpace(command.Username) || string.IsNullOrWhiteSpace(command.Password))
-        {
-            return BadRequest("Username and password are required.");
-        }
-
-        try
-        {
-            var response = await _mediator.Send(command);
-            return Ok(response);
-        }
-        catch (UnauthorizedAccessException)
-        {
-            return Unauthorized("Invalid username or password.");
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"An error occurred: {ex.Message}");
-        }
-    }
+    // [HttpPost("login")]
+    // public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
+    // {
+    //     if (string.IsNullOrWhiteSpace(command.Username) || string.IsNullOrWhiteSpace(command.Password))
+    //     {
+    //         return BadRequest("Username and password are required.");
+    //     }
+    //
+    //     try
+    //     {
+    //         var response = await _mediator.Send(command);
+    //         return Ok(response);
+    //     }
+    //     catch (UnauthorizedAccessException)
+    //     {
+    //         return Unauthorized("Invalid username or password.");
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         return StatusCode(500, $"An error occurred: {ex.Message}");
+    //     }
+    // }
 
 
 

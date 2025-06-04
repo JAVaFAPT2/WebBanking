@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EPaGF9V6tgk=",
+  "dgSpecHash": "lHS8qOmFKXM=",
   "success": true,
   "projectFilePath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Admin\\.nuget\\packages\\autofac\\8.2.1\\autofac.8.2.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\autofac\\8.3.0\\autofac.8.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\autofac.extensions.dependencyinjection\\10.0.0\\autofac.extensions.dependencyinjection.10.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\autofac.extras.attributemetadata\\6.0.0\\autofac.extras.attributemetadata.6.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\autofac.mef\\6.0.0\\autofac.mef.6.0.0.nupkg.sha512",
@@ -60,7 +60,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\polly\\8.5.2\\polly.8.5.2.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\polly.core\\8.5.2\\polly.core.8.5.2.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\serilog\\2.8.0\\serilog.2.8.0.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\stackexchange.redis\\2.8.31\\stackexchange.redis.2.8.31.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\stackexchange.redis\\2.8.37\\stackexchange.redis.2.8.37.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.clientmodel\\1.0.0\\system.clientmodel.1.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.collections.nongeneric\\4.3.0\\system.collections.nongeneric.4.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.componentmodel\\4.0.1\\system.componentmodel.4.0.1.nupkg.sha512",
@@ -102,8 +102,10 @@
     {
       "code": "NU1603",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "Compent.Shared.DependencyInjection.Contract 0.2.5 depends on Compent.Shared.Extensions.Bcl (>= 0.1.1) but Compent.Shared.Extensions.Bcl 0.1.1 was not found. Compent.Shared.Extensions.Bcl 0.1.2 was resolved instead.",
+      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure\\Infrastructure.csproj",
       "libraryId": "Compent.Shared.Extensions.Bcl",
       "targetGraphs": [
         "net9.0"

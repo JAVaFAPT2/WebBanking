@@ -1,0 +1,6 @@
+@OrchestrationService.Presentation_HostAddress = http://localhost:5250
+
+GET {{OrchestrationService.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

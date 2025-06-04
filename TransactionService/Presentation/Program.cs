@@ -29,7 +29,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // --- Configuration --- 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"appsettings.{builder.Environment.Name}.json", optional: true, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
     .AddEnvironmentVariables();
 
 // Bind KafkaSettings and CacheSettings from configuration
@@ -60,7 +60,7 @@ builder.Services.AddDbContext<TransactionDbContext>(options =>
             sqlOptions.MigrationsAssembly(typeof(TransactionDbContext).Assembly.FullName); // Infrastructure assembly
             sqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorCodesToAdd: null);
         })
-    .UseSnakeCaseNamingConvention() // Optional: if you prefer snake_case for DB objects
+    // .UseSnakeCaseNamingConvention() // Optional: if you prefer snake_case for DB objects
     // .LogTo(Console.WriteLine, LogLevel.Information) // Enable EF Core logging if needed
     // .EnableSensitiveDataLogging() // For development only
     );

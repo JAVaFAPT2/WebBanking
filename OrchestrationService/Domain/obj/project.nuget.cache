@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "19QLkCeOoH0=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\OrchestrationService\\Domain\\OrchestrationService.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

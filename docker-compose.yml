@@ -1,0 +1,181 @@
+version: '3.8'
+
+services:
+  # API Gateway
+  api-gateway:
+    build: 
+      context: ./ApiGateWay
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - kafka
+      - orchestration-service
+    networks:
+      - webbanking-network
+
+  # Orchestration Service
+  orchestration-service:
+    build: 
+      context: ./OrchestrationService
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Kafka__BootstrapServers=kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - webbanking-network
+
+  # Account Service
+  account-service:
+    build: 
+      context: ./AccountService
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Kafka__BootstrapServers=kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - webbanking-network
+
+  # Card Service
+  card-service:
+    build: 
+      context: ./CardService
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Kafka__BootstrapServers=kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - webbanking-network
+
+  # Loan Service
+  loan-service:
+    build: 
+      context: ./LoanService
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Kafka__BootstrapServers=kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - webbanking-network
+
+  # Notification Service
+  notification-service:
+    build: 
+      context: ./NotificationService
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Kafka__BootstrapServers=kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - webbanking-network
+
+  # User Service
+  user-service:
+    build: 
+      context: ./UserService
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - webbanking-network
+
+  # Fund Transfer Service
+  fund-transfer-service:
+    build: 
+      context: ./FundTransferService
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Kafka__BootstrapServers=kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - webbanking-network
+
+  # Transaction Service
+  transaction-service:
+    build: 
+      context: ./TransactionService
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - webbanking-network
+
+  # Caching Service
+  caching-service:
+    build: 
+      context: ./caching-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - redis
+    networks:
+      - webbanking-network
+
+  # Monitor Service
+  monitor-service:
+    build: 
+      context: ./monitorService
+    ports:
+      - "9090:9090" # Prometheus
+      - "3000:3000" # Grafana
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    networks:
+      - webbanking-network
+
+  # Kafka
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - webbanking-network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.3.0
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    ports:
+      - "9092:9092"
+    networks:
+      - webbanking-network
+
+  # Redis
+  redis:
+    image: redis:7.0
+    ports:
+      - "6379:6379"
+    networks:
+      - webbanking-network
+
+  # Keycloak for authentication
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0
+    ports:
+      - "8180:8080"
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_DB=dev-file
+    command: 
+      - "start-dev"
+    networks:
+      - webbanking-network
+
+networks:
+  webbanking-network:
+    driver: bridge 

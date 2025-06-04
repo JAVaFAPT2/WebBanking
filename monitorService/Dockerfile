@@ -6,7 +6,7 @@ COPY mvnw pom.xml ./
 COPY src ./src
 RUN ./mvnw clean package -DskipTests
 
-FROM openjdk:21-jre-slim
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY --from=builder /app/${JAR_FILE} application.jar

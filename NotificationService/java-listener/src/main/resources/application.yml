@@ -1,0 +1,38 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: notification-listener-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: notification-listener-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.webbanking.notificationservice.dto"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+# Topic names used by this listener (should align with OrchestrationService)
+app:
+  kafka:
+    topics:
+      notification-send-command: notification-send-command
+      notification-sent-reply: notification-sent-reply
+      fund-transfer-notification-command: fund-transfer-notification-command
+      fund-transfer-notification-reply: fund-transfer-notification-reply
+      transaction-notification-command: transaction-notification-command
+  notification:
+    service:
+      grpc:
+        url: ${NOTIFICATION_SERVICE_GRPC_URL:localhost:9091}
+
+logging:
+  level:
+    root: INFO
+    com.webbanking: DEBUG
+    org.springframework.kafka: INFO 

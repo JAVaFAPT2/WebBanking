@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Shared.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +59,20 @@ builder.Services.AddHealthChecks()
         BootstrapServers = settings.Kafka.BootstrapServers
     });
 
+// Add Authentication and Authorization
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.Authority = builder.Configuration["Keycloak:Authority"];
+    options.Audience = builder.Configuration["Keycloak:Audience"];
+    options.RequireHttpsMetadata = builder.Configuration.GetValue<bool>("Keycloak:RequireHttpsMetadata");
+});
+builder.Services.AddAuthorization();
+
 // Switch to Autofac
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
@@ -69,16 +84,6 @@ builder.Services.AddGrpcReflection();
 
 var app = builder.Build();
 
-
-
-// Map gRPC service
-app.MapGrpcService<Presentation.Services.AccountGrpcService>();
-
-if (app.Environment.IsDevelopment())
-{
-        app.MapGrpcReflectionService();
-}
-
 // Apply migrations at startup
 using (var scope = app.Services.CreateScope())
 {
@@ -87,6 +92,18 @@ using (var scope = app.Services.CreateScope())
     {
         db.Database.Migrate();
     }
+}
+
+// Use Authentication and Authorization
+app.UseAuthentication();
+app.UseAuthorization();
+
+// Map gRPC service
+app.MapGrpcService<Presentation.Services.AccountGrpcService>();
+
+if (app.Environment.IsDevelopment())
+{
+        app.MapGrpcReflectionService();
 }
 
 app.Run();

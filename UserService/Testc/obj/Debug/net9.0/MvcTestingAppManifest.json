@@ -1,0 +1,7 @@
+{
+  "Application": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application",
+  "Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Domain",
+  "Infrastructure": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Infastructure",
+  "Presentation": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation",
+  "Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Shared"
+}

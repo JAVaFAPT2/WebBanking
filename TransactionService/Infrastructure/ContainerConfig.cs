@@ -1,7 +1,7 @@
 using Autofac;
 using MediatR;
 using System.Reflection;
-using TransactionService.Application.Behaviors; // For pipeline behaviors
+using TransactionService.Infrastructure.Behaviors; // For pipeline behaviors
 using TransactionService.Application.IntegrationEvents.Handlers; // For IIntegrationEventHandler
 using TransactionService.Domain.Interfaces;
 using TransactionService.Infrastructure.Caching;

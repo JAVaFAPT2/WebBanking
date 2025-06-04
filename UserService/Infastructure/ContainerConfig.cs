@@ -88,27 +88,10 @@ public static class ContainerConfig
                .As<IKycDocumentRepository>()
                .InstancePerLifetimeScope();
 
-        // Register LoginCommandHandler
-        builder.RegisterType<LoginCommandHandler>()
-               .As<IRequestHandler<LoginUserCommand, LoginResponseDto>>()
-               .InstancePerLifetimeScope();
-
-        // Register PasswordHasher
-        builder.RegisterType<PasswordHasher>()
-               .As<IPasswordHasher>()
-               .InstancePerLifetimeScope();
         // Register EmailService
         builder.RegisterType<EmailService>()
             .As<IEmailService>()
             .InstancePerLifetimeScope();
-
-        // Register TokenService
-        builder.Register(c =>
-        {
-            var config = c.Resolve<IConfiguration>();
-            var secretKey = config["JwtSettings:SecretKey"];
-            return new TokenService(secretKey);
-        }).As<ITokenService>().InstancePerLifetimeScope();
 
         // KafkaConsumer
         builder.RegisterType<KycVerifiedEventConsumer>()

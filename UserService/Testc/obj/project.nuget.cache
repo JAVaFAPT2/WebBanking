@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "P8n13w75Aq0=",
+  "dgSpecHash": "Wd/WcFKGS5M=",
   "success": true,
   "projectFilePath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Testc\\Testc.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Admin\\.nuget\\packages\\autofac\\8.2.1\\autofac.8.2.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\autofac\\8.3.0\\autofac.8.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\autofac.extensions.dependencyinjection\\10.0.0\\autofac.extensions.dependencyinjection.10.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\autofac.extras.attributemetadata\\6.0.0\\autofac.extras.attributemetadata.6.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\autofac.mef\\6.0.0\\autofac.mef.6.0.0.nupkg.sha512",
@@ -113,7 +113,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\serilog.settings.configuration\\9.0.0\\serilog.settings.configuration.9.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\serilog.sinks.console\\4.1.0\\serilog.sinks.console.4.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\serilog.sinks.console.logthemes\\0.3.0\\serilog.sinks.console.logthemes.0.3.0.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\stackexchange.redis\\2.8.31\\stackexchange.redis.2.8.31.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\stackexchange.redis\\2.8.37\\stackexchange.redis.2.8.37.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore\\8.1.1\\swashbuckle.aspnetcore.8.1.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\8.1.1\\swashbuckle.aspnetcore.swagger.8.1.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\8.1.1\\swashbuckle.aspnetcore.swaggergen.8.1.1.nupkg.sha512",
@@ -180,8 +180,10 @@
     {
       "code": "NU1603",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "Compent.Shared.DependencyInjection.Contract 0.2.5 depends on Compent.Shared.Extensions.Bcl (>= 0.1.1) but Compent.Shared.Extensions.Bcl 0.1.1 was not found. Compent.Shared.Extensions.Bcl 0.1.2 was resolved instead.",
+      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Testc\\Testc.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Testc\\Testc.csproj",
       "libraryId": "Compent.Shared.Extensions.Bcl",
       "targetGraphs": [
         "net9.0"
