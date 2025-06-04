@@ -1,0 +1,151 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\cardservice\\domain\\valueobjects\\money.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|solutionrelative:domain\\valueobjects\\money.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A20A28EC-8390-4B5D-BD96-D7B1F612A929}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\cardservice\\presentation\\services\\cardgrpcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A20A28EC-8390-4B5D-BD96-D7B1F612A929}|Presentation\\Presentation.csproj|solutionrelative:presentation\\services\\cardgrpcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CD4D5C3-8FC0-4E4B-9919-BFA9B7EEA2C7}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\cardservice\\application\\cqrs\\commands\\issuecard\\issuecardcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CD4D5C3-8FC0-4E4B-9919-BFA9B7EEA2C7}|Application\\Application.csproj|solutionrelative:application\\cqrs\\commands\\issuecard\\issuecardcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\cardservice\\domain\\models\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|solutionrelative:domain\\models\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\cardservice\\domain\\interface\\icardrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|solutionrelative:domain\\interface\\icardrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\cardservice\\domain\\interface\\icardnumbergenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|solutionrelative:domain\\interface\\icardnumbergenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\cardservice\\domain\\events\\cardevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF4921AC-FF4E-45EC-94E5-A127ED83E68A}|Domain\\Domain.csproj|solutionrelative:domain\\events\\cardevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 245,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Money.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\ValueObjects\\Money.cs",
+              "RelativeDocumentMoniker": "Domain\\ValueObjects\\Money.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\ValueObjects\\Money.cs",
+              "RelativeToolTip": "Domain\\ValueObjects\\Money.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T14:12:53.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CardEvents.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\Events\\CardEvents.cs",
+              "RelativeDocumentMoniker": "Domain\\Events\\CardEvents.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\Events\\CardEvents.cs",
+              "RelativeToolTip": "Domain\\Events\\CardEvents.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T13:56:02.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ICardRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\Interface\\ICardRepository.cs",
+              "RelativeDocumentMoniker": "Domain\\Interface\\ICardRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\Interface\\ICardRepository.cs",
+              "RelativeToolTip": "Domain\\Interface\\ICardRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T13:56:00.031Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ICardNumberGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\Interface\\ICardNumberGenerator.cs",
+              "RelativeDocumentMoniker": "Domain\\Interface\\ICardNumberGenerator.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\Interface\\ICardNumberGenerator.cs",
+              "RelativeToolTip": "Domain\\Interface\\ICardNumberGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T13:55:59.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Card.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\Models\\Card.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\Card.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Domain\\Models\\Card.cs",
+              "RelativeToolTip": "Domain\\Models\\Card.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAzwC0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T13:54:34.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IssueCardCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Application\\CQRS\\Commands\\IssueCard\\IssueCardCommand.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Commands\\IssueCard\\IssueCardCommand.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Application\\CQRS\\Commands\\IssueCard\\IssueCardCommand.cs",
+              "RelativeToolTip": "Application\\CQRS\\Commands\\IssueCard\\IssueCardCommand.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAADgvyoAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T13:54:28.235Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CardGrpcService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Presentation\\Services\\CardGrpcService.cs",
+              "RelativeDocumentMoniker": "Presentation\\Services\\CardGrpcService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\CardService\\Presentation\\Services\\CardGrpcService.cs",
+              "RelativeToolTip": "Presentation\\Services\\CardGrpcService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T13:53:48.997Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 245,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

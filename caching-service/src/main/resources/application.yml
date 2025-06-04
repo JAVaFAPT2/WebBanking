@@ -1,0 +1,23 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: "caching-service"
+  data:
+    redis:
+      host: redis-server
+      port: 6379
+      password: your-password
+      database: 0
+      timeout: 3000ms
+      connect-timeout: 3000ms
+      client-type: lettuce
+      # For cluster configuration
+      cluster:
+        nodes: []
+        max-redirects: 3
+      # For sentinel configuration  
+      sentinel:
+        master:
+        nodes: []

@@ -1,0 +1,100 @@
+﻿using Grpc.Core;
+using MediatR;
+using FundTransferService.Application.CQRS.Commands.InitiateTransfer;
+using FundTransferService.Application.CQRS.Queries.GetTransferDetails;
+using FundTransferService.Presentation.Protos; // This will be generated from .proto
+using FundTransferService.Domain.ValueObjects; // For domain Money
+using Google.Protobuf.WellKnownTypes; // For Timestamp
+using Microsoft.AspNetCore.Authorization; // Added for Authorize attribute
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+
+namespace FundTransferService.Presentation.Services;
+
+// Apply authorize attribute at the class level to protect all methods
+// Or apply it to individual methods as needed
+[Authorize] // This will require authentication for all RPCs in this service
+public class FundTransferGrpcService : FundTransferApi.FundTransferApiBase
+{
+    private readonly IMediator _mediator;
+    private readonly ILogger<FundTransferGrpcService> _logger;
+
+    public FundTransferGrpcService(IMediator mediator, ILogger<FundTransferGrpcService> logger)
+    {
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
+
+    // Example: This RPC will now require a valid JWT
+    public override async Task<InitiateTransferResponse> InitiateTransfer(InitiateTransferRequest request, ServerCallContext context)
+    {
+        _logger.LogInformation("gRPC InitiateTransfer request received for {Amount} from {FromAccountId} to {ToAccountId}", 
+            request.Amount, request.FromAccountId, request.ToAccountId);
+
+        var command = new InitiateFundTransferCommand(
+            Guid.Parse(request.FromAccountId),
+            Guid.Parse(request.ToAccountId),
+            ProtoToDomainMoney(request.Amount),
+            request.ReferenceNumber // This is optional in proto and command
+        );
+
+        var transferId = await _mediator.Send(command);
+
+        return new InitiateTransferResponse
+        {
+            TransferId = transferId.ToString(),
+            Status = "PENDING"
+        };
+    }
+
+    // Example: This RPC will also require a valid JWT due to class-level attribute
+    // You could also add more specific policies e.g., [Authorize(Policy = "CanReadTransferDetails")]
+    public override async Task<TransferDetailsResponse> GetTransferDetails(GetTransferDetailsRequest request, ServerCallContext context)
+    {
+        _logger.LogInformation("gRPC GetTransferDetails request received for Transfer ID: {TransferId}", request.TransferId);
+
+        var query = new GetFundTransferDetailsQuery(Guid.Parse(request.TransferId));
+        var transferDetails = await _mediator.Send(query);
+
+        if (transferDetails == null)
+        {
+            _logger.LogWarning("Transfer details not found for Transfer ID: {TransferId}", request.TransferId);
+            throw new RpcException(new Status(StatusCode.NotFound, "Transfer not found."));
+        }
+
+        return new TransferDetailsResponse
+        {
+            TransferId = transferDetails.Id.ToString(),
+            FromAccountId = transferDetails.FromAccountId.ToString(),
+            ToAccountId = transferDetails.ToAccountId.ToString(),
+            Amount = DomainToProtoMoney(new Money(transferDetails.Amount, transferDetails.Currency)),
+            TransferDate = Timestamp.FromDateTime(DateTime.SpecifyKind(transferDetails.TransferDate, DateTimeKind.Utc)),
+            Status = transferDetails.Status,
+            ReferenceNumber = transferDetails.ReferenceNumber ?? string.Empty,
+            FailureReason = transferDetails.FailureReason ?? string.Empty,
+            CreatedAt = Timestamp.FromDateTime(DateTime.SpecifyKind(transferDetails.CreatedAt, DateTimeKind.Utc)),
+            LastModifiedAt = Timestamp.FromDateTime(DateTime.SpecifyKind(transferDetails.LastModifiedAt, DateTimeKind.Utc))
+        };
+    }
+
+    // Helper methods for Money conversion
+    private static Money ProtoToDomainMoney(MoneyMessage protoMoney)
+    {
+        if (protoMoney == null) throw new ArgumentNullException(nameof(protoMoney));
+        decimal amount = protoMoney.Units + (protoMoney.Nanos / 1_000_000_000m);
+        return new Money(amount, protoMoney.CurrencyCode);
+    }
+
+    private static MoneyMessage DomainToProtoMoney(Money domainMoney)
+    {
+        if (domainMoney == null) throw new ArgumentNullException(nameof(domainMoney));
+        var units = (long)Math.Truncate(domainMoney.Amount);
+        var nanos = (int)((domainMoney.Amount - units) * 1_000_000_000);
+        return new MoneyMessage
+        {
+            CurrencyCode = domainMoney.Currency,
+            Units = units,
+            Nanos = nanos
+        };
+    }
+} 

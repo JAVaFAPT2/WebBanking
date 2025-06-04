@@ -1,0 +1,186 @@
+﻿using Autofac;
+using FundTransferService.Application.Behaviors;
+using FundTransferService.Application.CQRS.Commands.InitiateTransfer; // For assembly scanning
+using FundTransferService.Application.Messaging.Events;
+using FundTransferService.Application.Messaging.Handlers;
+using FundTransferService.Domain.Interfaces;
+using FundTransferService.Infrastructure.Caching;
+using FundTransferService.Infrastructure.EventBus;
+using FundTransferService.Infrastructure.Persistence.Repositories;
+using FundTransferService.Infrastructure.Repositories;
+using FluentValidation;
+using MediatR;
+using MediatR.Pipeline;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection; // Required for AddHostedService extension
+using Microsoft.Extensions.Logging;
+using StackExchange.Redis;
+
+namespace FundTransferService.Presentation.Configuration
+{
+    public static class ContainerConfig
+    {
+        public static void Configure(ContainerBuilder builder, IConfiguration configuration)
+        {
+            // Register application layer modules
+            builder.RegisterModule(new ApplicationModule(configuration));
+            // Register infrastructure layer modules
+            builder.RegisterModule(new InfrastructureModule(configuration));
+        }
+    }
+
+    public class ApplicationModule : Module
+    {
+        private readonly IConfiguration _configuration;
+        public ApplicationModule(IConfiguration configuration) { _configuration = configuration; }
+
+        protected override void Load(ContainerBuilder builder)
+        {
+            // MediatR
+            builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsImplementedInterfaces();
+
+            var mediatRAssembly = typeof(InitiateFundTransferCommand).Assembly;
+            builder.RegisterAssemblyTypes(mediatRAssembly).AsClosedTypesOf(typeof(IRequestHandler<,>));
+            builder.RegisterAssemblyTypes(mediatRAssembly).AsClosedTypesOf(typeof(INotificationHandler<>));
+
+            // Request Pre-Processor Behaviors
+            // Note: Order matters. Validation should usually come before logging or other behaviors.
+            builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
+            builder.RegisterGeneric(typeof(ValidationBehavior<,>)).As(typeof(IPipelineBehavior<,>));
+            // Add other behaviors like logging, caching etc.
+            // builder.RegisterGeneric(typeof(LoggingBehavior<,>)).As(typeof(IPipelineBehavior<,>));
+
+            // FluentValidation Validators
+            builder.RegisterAssemblyTypes(typeof(InitiateFundTransferCommandValidator).Assembly)
+                .Where(t => t.IsClosedTypeOf(typeof(IValidator<>)))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
+            // Register Message Handlers (for Kafka consumer)
+            builder.RegisterType<AccountUpdatedEventHandler>() // Our example handler
+                   .As<IMessageHandler<string, AccountUpdatedEvent>>() // Register it as the interface for specific key/value types
+                   .InstancePerLifetimeScope(); // Or InstancePerDependency depending on its nature
+        }
+    }
+
+    public class InfrastructureModule : Module
+    {
+        private readonly IConfiguration _configuration;
+        public InfrastructureModule(IConfiguration configuration) { _configuration = configuration; }
+
+        protected override void Load(ContainerBuilder builder)
+        {
+            // DbContext - resolved by EF Core's AddDbContext in Program.cs, but if you need to resolve it via Autofac directly:
+            // builder.Register(context =>
+            // {
+            //     var optionsBuilder = new DbContextOptionsBuilder<FundTransferDbContext>();
+            //     optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+            //     return new FundTransferDbContext(optionsBuilder.Options, context.Resolve<IMediator>());
+            // }).InstancePerLifetimeScope();
+
+            // Repositories
+            builder.RegisterType<FundTransferRepository>().As<IFundTransferRepository>().InstancePerLifetimeScope();
+            // Add other repositories
+
+            // Caching Service (Redis or InMemory)
+            var redisEnabled = _configuration.GetValue<bool>("Redis:Enabled", true);
+            var redisConnectionString = _configuration.GetConnectionString("RedisConnection");
+
+            if (redisEnabled && !string.IsNullOrEmpty(redisConnectionString))
+            {
+                 // IConnectionMultiplexer is registered as Singleton in Program.cs
+                builder.RegisterType<RedisCacheService>().As<ICacheService>().InstancePerLifetimeScope(); 
+            }
+            else
+            {
+                // InMemoryCacheService is registered as Singleton in Program.cs if Redis isn't available/enabled
+                // If you want Autofac to manage it and it has dependencies like ILogger:
+                // builder.RegisterType<InMemoryCacheService>().As<ICacheService>().SingleInstance();
+            }
+
+            // Kafka Producer
+            builder.RegisterType<KafkaProducerService>().As<IMessageProducer>().SingleInstance(); // Producer is thread-safe and can be singleton
+
+            // Kafka Consumer Hosted Service(s)
+            // For each topic/message type you want to consume, register a KafkaConsumerService
+            // Ensure KafkaSettings:ConsumerTopic in appsettings.json is set for this specific consumer if it differs from the default
+            // The topic name here ("account-events") should match what's in your appsettings.json under Kafka:ConsumerTopic or a specific override.
+            
+            // This registers the hosted service itself. ASP.NET Core will start it.
+            // We pass the topic name directly here. The GroupId will be taken from KafkaSettings.ConsumerGroupId.
+            // Note: The Key type for KafkaConsumerService is string, Value is AccountUpdatedEvent
+            // This implies that the IMessageHandler<string, AccountUpdatedEvent> (AccountUpdatedEventHandler) will be used.
+            builder.Register(ctx => new KafkaConsumerService<string, AccountUpdatedEvent>(
+                ctx.Resolve<IOptions<FundTransferService.Domain.Configuration.KafkaSettings>>(),
+                ctx.Resolve<ILogger<KafkaConsumerService<string, AccountUpdatedEvent>>>(),
+                ctx.Resolve<System.IServiceProvider>(),
+                _configuration.GetValue<string>("Kafka:ConsumerTopic", "account-events")! // Topic to consume from, ensure this is in config
+            ))
+            .As<IHostedService>()
+            .SingleInstance();
+
+            // If you have multiple consumers for different topics/message types:
+            // builder.Register(ctx => new KafkaConsumerService<string, AnotherEvent>(
+            //     ctx.Resolve<IOptions<KafkaSettings>>(), 
+            //     ctx.Resolve<ILogger<KafkaConsumerService<string, AnotherEvent>>>(),
+            //     ctx.Resolve<IServiceProvider>(),
+            //     "another-topic"
+            // ))
+            // .As<IHostedService>()
+            // .SingleInstance();
+        }
+    }
+}
+
+// Placeholder for InMemoryCacheService - this should be the same one as in Program.cs or moved to a common location
+// For now, I'm assuming it's accessible or will be moved. If not, this will cause a compile error.
+// It's better to define it once. For this exercise, I'll assume it's defined in Program.cs and will be resolved by the main DI container if needed.
+// Or move this class to Infrastructure/Caching/
+/*
+public class InMemoryCacheService : ICacheService
+{
+    private readonly Dictionary<string, (object value, DateTimeOffset? expiry)> _cache = new();
+    // ILogger would need to be resolved here if this was a standalone class used by Autofac directly
+    public InMemoryCacheService() {}
+
+    public Task<T?> GetAsync<T>(string key, CancellationToken cancellationToken = default)
+    {
+        if (_cache.TryGetValue(key, out var item))
+        {
+            if (item.expiry == null || item.expiry > DateTimeOffset.UtcNow)
+            {
+                return Task.FromResult((T?)item.value);
+            }
+            _cache.Remove(key); // Expired
+        }
+        return Task.FromResult(default(T));
+    }
+
+    public Task SetAsync<T>(string key, T value, TimeSpan? expiry = null, CancellationToken cancellationToken = default)
+    {
+        DateTimeOffset? absoluteExpiry = expiry.HasValue ? DateTimeOffset.UtcNow.Add(expiry.Value) : null;
+        _cache[key] = (value!, absoluteExpiry);
+        return Task.CompletedTask;
+    }
+
+    public Task RemoveAsync(string key, CancellationToken cancellationToken = default)
+    {
+        _cache.Remove(key);
+        return Task.CompletedTask;
+    }
+
+    public Task<bool> ExistsAsync(string key, CancellationToken cancellationToken = default)
+    {
+        if (_cache.TryGetValue(key, out var item))
+        {
+            if (item.expiry == null || item.expiry > DateTimeOffset.UtcNow)
+            {
+                return Task.FromResult(true);
+            }
+            _cache.Remove(key); // Expired
+        }
+        return Task.FromResult(false);
+    }
+}
+*/

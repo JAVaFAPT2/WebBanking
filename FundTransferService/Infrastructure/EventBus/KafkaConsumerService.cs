@@ -1,0 +1,177 @@
+using Confluent.Kafka;
+using FundTransferService.Domain.Configuration;
+using FundTransferService.Application.Messaging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace FundTransferService.Infrastructure.EventBus
+{
+    public class KafkaConsumerService<TKey, TValue> : BackgroundService
+    {
+        private readonly ILogger<KafkaConsumerService<TKey, TValue>> _logger;
+        private readonly KafkaSettings _kafkaSettings;
+        private readonly IServiceProvider _serviceProvider; // To resolve scoped IMessageHandler
+        private readonly string _topic;
+        private readonly string _groupId;
+
+        public KafkaConsumerService(
+            IOptions<KafkaSettings> kafkaSettingsOptions,
+            ILogger<KafkaConsumerService<TKey, TValue>> logger,
+            IServiceProvider serviceProvider,
+            string topic, // Specific topic for this consumer instance
+            string? groupId = null) // Optional specific group ID
+        {
+            _logger = logger;
+            _kafkaSettings = kafkaSettingsOptions.Value;
+            _serviceProvider = serviceProvider;
+            _topic = topic ?? throw new ArgumentNullException(nameof(topic));
+            _groupId = groupId ?? _kafkaSettings.ConsumerGroupId ?? throw new ArgumentNullException(nameof(_kafkaSettings.ConsumerGroupId));
+
+            if (string.IsNullOrEmpty(_topic)) throw new InvalidOperationException("Kafka consumer topic cannot be empty.");
+            if (string.IsNullOrEmpty(_groupId)) throw new InvalidOperationException("Kafka consumer group ID cannot be empty.");
+            
+            _logger.LogInformation("KafkaConsumerService for topic '{Topic}' and group '{GroupId}' is initializing.", _topic, _groupId);
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            _logger.LogInformation("KafkaConsumerService for topic '{Topic}' is starting.", _topic);
+
+            var consumerConfig = new ConsumerConfig
+            {
+                BootstrapServers = _kafkaSettings.BootstrapServers,
+                GroupId = _groupId,
+                EnableAutoCommit = _kafkaSettings.EnableAutoCommit,
+                AutoOffsetReset = _kafkaSettings.AutoOffsetReset.ToLower() switch {
+                    "earliest" => AutoOffsetReset.Earliest,
+                    "latest" => AutoOffsetReset.Latest,
+                    _ => AutoOffsetReset.Earliest
+                },
+                // Add SSL/SASL configuration here if needed from KafkaSettings
+            };
+
+            // if (!string.IsNullOrEmpty(_kafkaSettings.SecurityProtocol))
+            // {
+            //     consumerConfig.SecurityProtocol = Enum.Parse<SecurityProtocol>(_kafkaSettings.SecurityProtocol, true);
+            // }
+            // if (!string.IsNullOrEmpty(_kafkaSettings.SaslMechanism))
+            // {
+            //     consumerConfig.SaslMechanism = Enum.Parse<SaslMechanism>(_kafkaSettings.SaslMechanism, true);
+            //     consumerConfig.SaslUsername = _kafkaSettings.SaslUsername;
+            //     consumerConfig.SaslPassword = _kafkaSettings.SaslPassword;
+            // }
+
+            using var consumer = new ConsumerBuilder<Ignore, string>(consumerConfig)
+                .SetErrorHandler((_, e) => _logger.LogError("Kafka Consumer Error: {Reason} for topic {Topic}", e.Reason, _topic))
+                .SetStatisticsHandler((_, json) => _logger.LogDebug("Kafka Consumer Statistics: {StatisticsJson} for topic {Topic}", json, _topic))
+                .Build();
+
+            consumer.Subscribe(_topic);
+            _logger.LogInformation("KafkaConsumerService subscribed to topic: {Topic}", _topic);
+
+            try
+            {
+                while (!stoppingToken.IsCancellationRequested)
+                {
+                    try
+                    {
+                        var consumeResult = consumer.Consume(stoppingToken); // Blocks until a message is received or cancellation
+
+                        if (consumeResult.IsPartitionEOF)
+                        {
+                            _logger.LogInformation("Reached end of partition {Partition} at offset {Offset} for topic {Topic}.", 
+                                consumeResult.Partition, consumeResult.Offset, _topic);
+                            continue;
+                        }
+
+                        _logger.LogInformation("Message received from Kafka. Topic: {Topic}, Partition: {Partition}, Offset: {Offset}, Key: {Key}",
+                            consumeResult.Topic, consumeResult.Partition, consumeResult.Offset, consumeResult.Message.Key?.ToString() ?? "null");
+
+                        TKey? messageKey = default;
+                        TValue? messageValue = default;
+
+                        try
+                        {
+                            // Assuming key is string or can be ignored (consumer uses Ignore for key deserialization by default)
+                            // If specific key deserialization is needed, configure the consumer accordingly.
+                            if (typeof(TKey) == typeof(string) && consumeResult.Message.Key != null)
+                            {
+                                // This part is tricky with generics. For simplicity, we'll assume key is not complex or handled externally.
+                                // messageKey = (TKey)(object)System.Text.Encoding.UTF8.GetString(consumeResult.Message.Key); 
+                            }
+                            
+                            messageValue = JsonSerializer.Deserialize<TValue>(consumeResult.Message.Value);
+                        }
+                        catch (JsonException jsonEx)
+                        {
+                            _logger.LogError(jsonEx, "Failed to deserialize Kafka message value from JSON. Topic: {Topic}, Value: {Value}", _topic, consumeResult.Message.Value);
+                            // Potentially send to a dead-letter queue or log and skip
+                            if (!_kafkaSettings.EnableAutoCommit) consumer.Commit(consumeResult); // Commit even if deserialization fails to avoid reprocessing bad message
+                            continue;
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError(ex, "Error processing Kafka message key/value before handling. Topic: {Topic}", _topic);
+                             if (!_kafkaSettings.EnableAutoCommit) consumer.Commit(consumeResult); // Commit to avoid reprocessing
+                            continue;
+                        }
+                        
+                        if (messageValue == null)
+                        {
+                            _logger.LogWarning("Deserialized Kafka message value is null. Topic: {Topic}, Original Value: {Value}", _topic, consumeResult.Message.Value);
+                            if (!_kafkaSettings.EnableAutoCommit) consumer.Commit(consumeResult); // Commit to avoid reprocessing
+                            continue;
+                        }
+
+                        // Resolve the handler from DI scope for each message
+                        using (var scope = _serviceProvider.CreateScope())
+                        {
+                            var handler = scope.ServiceProvider.GetRequiredService<IMessageHandler<TKey, TValue>>();
+                            await handler.HandleAsync(messageKey!, messageValue, stoppingToken);
+                        }
+
+                        if (!_kafkaSettings.EnableAutoCommit)
+                        {
+                            consumer.Commit(consumeResult);
+                            _logger.LogDebug("Message committed for topic {Topic}, offset {Offset}", _topic, consumeResult.Offset);
+                        }
+                    }
+                    catch (ConsumeException e)
+                    {
+                        _logger.LogError(e, "Error consuming message from Kafka. Topic: {Topic}, Error: {Reason}", _topic, e.Error.Reason);
+                        // Consider a delay before retrying to avoid tight loop on persistent errors
+                        await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+                    }
+                    catch (OperationCanceledException) // Catches Consume(stoppingToken) cancellation
+                    {
+                        _logger.LogInformation("Kafka consumer operation cancelled for topic {Topic}. Shutting down.", _topic);
+                        break; // Exit loop on cancellation
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "An unexpected error occurred in Kafka consumer loop for topic {Topic}.", _topic);
+                        // Consider a delay before retrying
+                        await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+                    }
+                }
+            }
+            finally
+            {
+                consumer.Close(); // Close the consumer connection
+                _logger.LogInformation("KafkaConsumerService for topic '{Topic}' has stopped.", _topic);
+            }
+        }
+
+        public override async Task StopAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("KafkaConsumerService for topic '{Topic}' is stopping.", _topic);
+            await base.StopAsync(cancellationToken);
+        }
+    }
+} 

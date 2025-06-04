@@ -1,0 +1,88 @@
+---
+config:
+  theme: neo-dark
+---
+erDiagram
+    USER ||--o{ ACCOUNT : owns
+    USER ||--o{ NOTIFICATION : receives
+    ACCOUNT ||--o{ CARD : has
+    ACCOUNT ||--o{ LOAN : has
+    ACCOUNT ||--o{ FUND_TRANSFER : initiates
+    ACCOUNT ||--o{ TRANSACTION : initiates
+    CARD ||--o{ LOAN : guarantees
+    CARD ||--o{ TRANSACTION : authorizes
+    LOAN ||--o{ TRANSACTION : triggers
+    LOAN ||--o{ NOTIFICATION : alerts
+    FUND_TRANSFER ||--|| TRANSACTION : results_in
+    FUND_TRANSFER ||--|| NOTIFICATION : informs
+    TRANSACTION ||--|| NOTIFICATION : updates
+    USER {
+        Guid UserId PK
+        string Username
+        string Email
+        string PasswordHash
+        DateTime CreatedAt
+    }
+    ACCOUNT {
+        Guid AccountId PK
+        Guid UserId FK
+        string AccountNumber
+        decimal Balance
+        string AccountType
+        DateTime CreatedAt
+    }
+    CARD {
+        Guid CardId PK
+        Guid AccountId FK
+        string CardNumber
+        string CardType
+        DateTime ExpiryDate
+        string CVV
+        string Status
+        decimal CreditLimit
+        DateTime CreatedAt
+    }
+    LOAN {
+        Guid LoanId PK
+        Guid AccountId FK
+        Guid CardId FK
+        decimal LoanAmount
+        decimal InterestRate
+        string LoanType
+        DateTime StartDate
+        DateTime EndDate
+        decimal MonthlyPayment
+        string Status
+        DateTime CreatedAt
+    }
+    FUND_TRANSFER {
+        Guid TransferId PK
+        Guid FromAccountId FK
+        Guid ToAccountId FK
+        decimal Amount
+        DateTime TransferDate
+        string Status
+        string ReferenceNumber
+    }
+    TRANSACTION {
+        Guid TransactionId PK
+        Guid AccountId FK
+        Guid TransferId FK
+        Guid CardId FK
+        Guid LoanId FK
+        decimal Amount
+        string TransactionType
+        DateTime TransactionDate
+        string Description
+    }
+    NOTIFICATION {
+        Guid NotificationId PK
+        Guid UserId FK
+        Guid TransferId FK
+        Guid TransactionId FK
+        Guid LoanId FK
+        string Message
+        string Channel
+        DateTime SentAt
+        string Status
+    }

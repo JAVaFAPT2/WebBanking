@@ -1,0 +1,10 @@
+﻿using System.Threading;
+using System.Threading.Tasks;
+
+namespace FundTransferService.Application.Messaging
+{
+    public interface IMessageProducer
+    {
+        Task ProduceAsync<TKey, TValue>(string topic, TKey key, TValue value, CancellationToken cancellationToken = default);
+    }
+}

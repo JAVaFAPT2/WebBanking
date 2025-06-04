@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+option csharp_namespace = "Presentation.Protos";
+
+package loan;
+
+service LoanService {
+  rpc CreateLoan (CreateLoanRequest) returns (CreateLoanResponse);
+  rpc ApproveLoan (ApproveLoanRequest) returns (ApproveLoanResponse);
+  rpc MakeLoanPayment (MakeLoanPaymentRequest) returns (MakeLoanPaymentResponse);
+  rpc GetLoan (GetLoanRequest) returns (LoanResponse);
+  rpc GetAccountLoans (GetAccountLoansRequest) returns (GetAccountLoansResponse);
+}
+
+message Money {
+  double amount = 1;
+  string currency = 2;
+}
+
+enum LoanType {
+  LOAN_TYPE_UNSPECIFIED = 0;
+  LOAN_TYPE_PERSONAL = 1;
+  LOAN_TYPE_CREDIT_CARD = 2;
+  LOAN_TYPE_MORTGAGE = 3;
+  LOAN_TYPE_AUTO = 4;
+  LOAN_TYPE_STUDENT = 5;
+  LOAN_TYPE_BUSINESS = 6;
+}
+
+enum LoanStatus {
+  LOAN_STATUS_UNSPECIFIED = 0;
+  LOAN_STATUS_PENDING = 1;
+  LOAN_STATUS_APPROVED = 2;
+  LOAN_STATUS_ACTIVE = 3;
+  LOAN_STATUS_REJECTED = 4;
+  LOAN_STATUS_CLOSED = 5;
+  LOAN_STATUS_DEFAULT = 6;
+  LOAN_STATUS_PAID_OFF = 7;
+}
+
+message CreateLoanRequest {
+  string account_id = 1;
+  optional string card_id = 2;
+  LoanType loan_type = 3;
+  Money amount = 4;
+  double interest_rate = 5;
+  int32 term_months = 6;
+}
+
+message CreateLoanResponse {
+  string loan_id = 1;
+}
+
+message ApproveLoanRequest {
+  string loan_id = 1;
+}
+
+message ApproveLoanResponse {
+  bool success = 1;
+}
+
+message MakeLoanPaymentRequest {
+  string loan_id = 1;
+  Money payment_amount = 2;
+}
+
+message MakeLoanPaymentResponse {
+  bool success = 1;
+}
+
+message GetLoanRequest {
+  string loan_id = 1;
+}
+
+message GetAccountLoansRequest {
+  string account_id = 1;
+}
+
+message GetAccountLoansResponse {
+  repeated LoanResponse loans = 1;
+}
+
+message LoanResponse {
+  string loan_id = 1;
+  string account_id = 2;
+  optional string card_id = 3;
+  LoanType loan_type = 4;
+  LoanStatus status = 5;
+  Money amount = 6;
+  Money remaining_amount = 7;
+  double interest_rate = 8;
+  int32 term_months = 9;
+  Money monthly_payment = 10;
+  string start_date = 11;
+  string end_date = 12;
+  string created_at = 13;
+  optional string last_payment_date = 14;
+  optional string rejection_reason = 15;
+} 

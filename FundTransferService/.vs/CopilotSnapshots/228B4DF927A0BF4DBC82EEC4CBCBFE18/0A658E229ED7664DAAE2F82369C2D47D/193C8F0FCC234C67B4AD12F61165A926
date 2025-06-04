@@ -1,0 +1,101 @@
+﻿using MediatR;
+using FundTransferService.Domain.Interfaces;
+using FundTransferService.Domain.Entities;
+using Microsoft.Extensions.Logging;
+using FundTransferService.Domain.Events;
+using FundTransferService.Domain.ValueObjects;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using FundTransferService.Domain.Configuration;
+using Microsoft.Extensions.Options;
+using FundTransferService.Application.Messaging;
+
+namespace FundTransferService.Application.CQRS.Commands.InitiateTransfer;
+
+public class InitiateFundTransferCommandHandler : IRequestHandler<InitiateFundTransferCommand, Guid>
+{
+    private readonly IFundTransferRepository _fundTransferRepository;
+    private readonly ILogger<InitiateFundTransferCommandHandler> _logger;
+    private readonly IMessageProducer _messageProducer;
+    private readonly KafkaSettings _kafkaSettings;
+
+    public InitiateFundTransferCommandHandler(
+        IFundTransferRepository fundTransferRepository, 
+        ILogger<InitiateFundTransferCommandHandler> logger,
+        IMessageProducer messageProducer,
+        IOptions<KafkaSettings> kafkaSettingsOptions)
+    {
+        _fundTransferRepository = fundTransferRepository ?? throw new ArgumentNullException(nameof(fundTransferRepository));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _messageProducer = messageProducer ?? throw new ArgumentNullException(nameof(messageProducer));
+        _kafkaSettings = kafkaSettingsOptions.Value ?? throw new ArgumentNullException(nameof(kafkaSettingsOptions));
+    }
+
+    public async Task<Guid> Handle(InitiateFundTransferCommand request, CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Initiating fund transfer from {SourceAccountId} to {DestinationAccountId} for {Amount} {Currency}",
+            request.SourceAccountId, request.DestinationAccountId, request.Amount.Amount, request.Amount.Currency);
+
+        // Basic validation (more complex validation should be in the validator)
+        if (request.SourceAccountId == Guid.Empty || request.DestinationAccountId == Guid.Empty || request.Amount.Amount <= 0)
+        {
+            _logger.LogError("Invalid fund transfer request parameters.");
+            // Consider throwing a specific validation exception that can be caught by an error handling middleware
+            throw new ArgumentException("Invalid fund transfer request parameters.");
+        }
+
+        var transfer = new FundTransfer(
+            Guid.NewGuid(), // Generate new ID for the transfer
+            request.SourceAccountId,
+            request.DestinationAccountId,
+            new Money(request.Amount.Amount, request.Amount.Currency),
+            request.TransactionReference ?? string.Empty,
+            request.InitiatedBy ?? "System"
+        );
+        
+        // The FundTransfer entity constructor should set the initial status and raise a domain event
+        // For example, FundTransfer.Status could be set to PENDING and a FundTransferCreatedEvent raised.
+        // Here, we explicitly create and publish the event after saving, for demonstration with Kafka.
+
+        await _fundTransferRepository.AddAsync(transfer, cancellationToken);
+        
+        _logger.LogInformation("Fund transfer entity {TransferId} created and persisted with status {Status}.", transfer.Id, transfer.Status);
+
+        // Create and publish the event to Kafka
+        var eventToPublish = new FundTransferInitiatedEvent(
+            transfer.Id,
+            transfer.SourceAccountId,
+            transfer.DestinationAccountId,
+            transfer.Amount,
+            transfer.TransactionReference,
+            transfer.CreatedAt, // Assuming CreatedAt is set in FundTransfer constructor or by repository
+            transfer.Status
+        );
+
+        try
+        {
+            // Use the producer topic from KafkaSettings
+            string topic = _kafkaSettings.ProducerTopic;
+            if (string.IsNullOrEmpty(topic))
+            {
+                _logger.LogError("Kafka producer topic is not configured. Cannot send FundTransferInitiatedEvent.");
+                // Decide on handling: throw, log and continue, etc.
+            }
+            else
+            {
+                await _messageProducer.ProduceAsync(topic, transfer.Id.ToString(), eventToPublish, cancellationToken);
+                _logger.LogInformation("FundTransferInitiatedEvent for TransferId {TransferId} published to Kafka topic {Topic}.", 
+                    transfer.Id, topic);
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log the error but don't let Kafka failure roll back the primary operation (usually)
+            // Consider a retry mechanism or dead-letter queue for Kafka publishing failures.
+            _logger.LogError(ex, "Failed to publish FundTransferInitiatedEvent to Kafka for TransferId {TransferId}. The fund transfer itself was successful.", transfer.Id);
+        }
+
+        return transfer.Id;
+    }
+} 

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option csharp_namespace = "FundTransferService.Presentation.Protos";
+
+package fundtransfer;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service FundTransferApi {
+  rpc InitiateTransfer (InitiateTransferRequest) returns (InitiateTransferResponse);
+  rpc GetTransferDetails (GetTransferDetailsRequest) returns (TransferDetailsResponse);
+  // Add other RPCs as needed, e.g., CancelTransfer, GetAccountTransfers
+}
+
+message MoneyMessage {
+  string currency_code = 1;
+  int64 units = 2;         // Whole units of the amount.
+  int32 nanos = 3;         // Nano units of the amount. Should be between -999,999,999 and +999,999,999 inclusive.
+}
+
+message InitiateTransferRequest {
+  string from_account_id = 1;
+  string to_account_id = 2;
+  MoneyMessage amount = 3;
+  optional string reference_number = 4;
+}
+
+message InitiateTransferResponse {
+  string transfer_id = 1;
+  string status = 2;
+}
+
+message GetTransferDetailsRequest {
+  string transfer_id = 1;
+}
+
+message TransferDetailsResponse {
+  string transfer_id = 1;
+  string from_account_id = 2;
+  string to_account_id = 3;
+  MoneyMessage amount = 4;
+  google.protobuf.Timestamp transfer_date = 5;
+  string status = 6;
+  optional string reference_number = 7;
+  optional string failure_reason = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp last_modified_at = 10;
+} 

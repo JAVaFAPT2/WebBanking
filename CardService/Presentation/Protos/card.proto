@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+option csharp_namespace = "CardService.Protos";
+
+package card;
+
+service CardService {
+  // Issue a new card
+  rpc IssueCard (IssueCardRequest) returns (IssueCardResponse);
+  
+  // Activate a card
+  rpc ActivateCard (ActivateCardRequest) returns (CardResponse);
+  
+  // Block/Unblock card
+  rpc BlockCard (BlockCardRequest) returns (CardResponse);
+  
+  // Get card by ID
+  rpc GetCard (GetCardRequest) returns (CardResponse);
+  
+  // Get cards by account ID
+  rpc GetAccountCards (GetAccountCardsRequest) returns (GetAccountCardsResponse);
+  
+  // Update credit limit
+  rpc UpdateCreditLimit (UpdateCreditLimitRequest) returns (CardResponse);
+  
+  // Authorize transaction
+  rpc AuthorizeTransaction (AuthorizeTransactionRequest) returns (AuthorizeTransactionResponse);
+}
+
+message IssueCardRequest {
+  string account_id = 1;
+  string card_type = 2;
+  Money credit_limit = 3;
+}
+
+message IssueCardResponse {
+  string card_id = 1;
+  string card_number = 2;  // Last 4 digits only
+  string expiry_date = 3;
+}
+
+message ActivateCardRequest {
+  string card_id = 1;
+  string activation_code = 2;  // For security
+}
+
+message BlockCardRequest {
+  string card_id = 1;
+  bool block = 2;
+  string reason = 3;
+}
+
+message GetCardRequest {
+  string card_id = 1;
+}
+
+message GetAccountCardsRequest {
+  string account_id = 1;
+}
+
+message GetAccountCardsResponse {
+  repeated CardResponse cards = 1;
+}
+
+message UpdateCreditLimitRequest {
+  string card_id = 1;
+  Money new_limit = 2;
+  string reason = 3;
+}
+
+message AuthorizeTransactionRequest {
+  string card_number = 1;
+  string cvv = 2;
+  string expiry_date = 3;
+  Money amount = 4;
+  string merchant_id = 5;
+  string merchant_name = 6;
+  string transaction_id = 7;
+}
+
+message AuthorizeTransactionResponse {
+  bool is_approved = 1;
+  string authorization_code = 2;
+  string decline_reason = 3;
+}
+
+message CardResponse {
+  string card_id = 1;
+  string account_id = 2;
+  string card_type = 3;
+  string masked_card_number = 4;  // Only last 4 digits
+  string expiry_date = 5;
+  string status = 6;
+  Money credit_limit = 7;
+  string created_at = 8;
+  string last_modified_at = 9;
+}
+
+message Money {
+  string currency = 1;
+  int64 amount = 2;  // Amount in smallest currency unit (e.g., cents)
+} 

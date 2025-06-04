@@ -1,0 +1,293 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\presentation\\services\\notificationgrpcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD}|Presentation\\Presentation.csproj|solutionrelative:presentation\\services\\notificationgrpcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\application\\application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|solutionrelative:application\\application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\application\\behaviors\\loggingbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|solutionrelative:application\\behaviors\\loggingbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\application\\cqrs\\commands\\sendemail\\sendemailcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|solutionrelative:application\\cqrs\\commands\\sendemail\\sendemailcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\application\\cqrs\\queries\\getnotificationlogbyid\\getnotificationlogbyidqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|solutionrelative:application\\cqrs\\queries\\getnotificationlogbyid\\getnotificationlogbyidqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\application\\cqrs\\commands\\sendpush\\sendpushnotificationcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|solutionrelative:application\\cqrs\\commands\\sendpush\\sendpushnotificationcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\application\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|solutionrelative:application\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\application\\cqrs\\commands\\sendsms\\sendsmscommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}|Application\\Application.csproj|solutionrelative:application\\cqrs\\commands\\sendsms\\sendsmscommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\presentation\\presentation.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD}|Presentation\\Presentation.csproj|solutionrelative:presentation\\presentation.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD}|Presentation\\Presentation.csproj|solutionrelative:presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\infrastructure\\services\\placeholderemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\placeholderemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\infrastructure\\services\\.gitkeep||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\.gitkeep||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\infrastructure\\infrastructuremodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\infrastructuremodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\notificationservice\\presentation\\containerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD}|Presentation\\Presentation.csproj|solutionrelative:presentation\\containerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NotificationGrpcService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Presentation\\Services\\NotificationGrpcService.cs",
+              "RelativeDocumentMoniker": "Presentation\\Services\\NotificationGrpcService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Presentation\\Services\\NotificationGrpcService.cs",
+              "RelativeToolTip": "Presentation\\Services\\NotificationGrpcService.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAowFsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:13:15.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoggingBehavior.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\Behaviors\\LoggingBehavior.cs",
+              "RelativeDocumentMoniker": "Application\\Behaviors\\LoggingBehavior.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\Behaviors\\LoggingBehavior.cs",
+              "RelativeToolTip": "Application\\Behaviors\\LoggingBehavior.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAvwC8AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:11:18.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GetNotificationLogByIdQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\CQRS\\Queries\\GetNotificationLogById\\GetNotificationLogByIdQueryHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Queries\\GetNotificationLogById\\GetNotificationLogByIdQueryHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\CQRS\\Queries\\GetNotificationLogById\\GetNotificationLogByIdQueryHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Queries\\GetNotificationLogById\\GetNotificationLogByIdQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:11:12.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ValidationBehavior.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\Behaviors\\ValidationBehavior.cs",
+              "RelativeDocumentMoniker": "Application\\Behaviors\\ValidationBehavior.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\Behaviors\\ValidationBehavior.cs",
+              "RelativeToolTip": "Application\\Behaviors\\ValidationBehavior.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:11:05.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Application",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\Application.csproj",
+              "RelativeDocumentMoniker": "Application\\Application.csproj",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\Application.csproj",
+              "RelativeToolTip": "Application\\Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-04T10:10:54.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SendSmsCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\CQRS\\Commands\\SendSms\\SendSmsCommandHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Commands\\SendSms\\SendSmsCommandHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\CQRS\\Commands\\SendSms\\SendSmsCommandHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Commands\\SendSms\\SendSmsCommandHandler.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwAIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:10:44.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Infrastructure",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Infrastructure\\Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Infrastructure\\Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Infrastructure\\Infrastructure.csproj",
+              "RelativeToolTip": "Infrastructure\\Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-04T10:10:28.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Presentation",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Presentation\\Presentation.csproj",
+              "RelativeDocumentMoniker": "Presentation\\Presentation.csproj",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Presentation\\Presentation.csproj",
+              "RelativeToolTip": "Presentation\\Presentation.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-04T10:10:20.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PlaceholderEmailProvider.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Infrastructure\\Services\\PlaceholderEmailProvider.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Services\\PlaceholderEmailProvider.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Infrastructure\\Services\\PlaceholderEmailProvider.cs",
+              "RelativeToolTip": "Infrastructure\\Services\\PlaceholderEmailProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:09:10.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": ".gitkeep",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Infrastructure\\Services\\.gitkeep",
+              "RelativeDocumentMoniker": "Infrastructure\\Services\\.gitkeep",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Infrastructure\\Services\\.gitkeep",
+              "RelativeToolTip": "Infrastructure\\Services\\.gitkeep",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-04T10:09:09.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SendEmailCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\CQRS\\Commands\\SendEmail\\SendEmailCommandHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Commands\\SendEmail\\SendEmailCommandHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\CQRS\\Commands\\SendEmail\\SendEmailCommandHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Commands\\SendEmail\\SendEmailCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:07:23.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "InfrastructureModule.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Infrastructure\\InfrastructureModule.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\InfrastructureModule.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Infrastructure\\InfrastructureModule.cs",
+              "RelativeToolTip": "Infrastructure\\InfrastructureModule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:09:07.79Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SendPushNotificationCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\CQRS\\Commands\\SendPush\\SendPushNotificationCommandHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Commands\\SendPush\\SendPushNotificationCommandHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Application\\CQRS\\Commands\\SendPush\\SendPushNotificationCommandHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Commands\\SendPush\\SendPushNotificationCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:06:55.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ContainerConfig.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Presentation\\ContainerConfig.cs",
+              "RelativeDocumentMoniker": "Presentation\\ContainerConfig.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Presentation\\ContainerConfig.cs",
+              "RelativeToolTip": "Presentation\\ContainerConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:08:28.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Presentation\\Program.cs",
+              "RelativeDocumentMoniker": "Presentation\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\NotificationService\\Presentation\\Program.cs",
+              "RelativeToolTip": "Presentation\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T10:06:41.937Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 245,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

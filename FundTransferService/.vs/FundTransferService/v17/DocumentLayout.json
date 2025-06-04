@@ -1,0 +1,310 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\presentation\\services\\fundtransfergrpcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|solutionrelative:presentation\\services\\fundtransfergrpcservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\presentation\\configuration\\containerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|solutionrelative:presentation\\configuration\\containerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\application\\cqrs\\commands\\initiatetransfer\\initiatefundtransfercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|solutionrelative:application\\cqrs\\commands\\initiatetransfer\\initiatefundtransfercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6DD64379-B45B-4AC7-907C-07D0F7B6935F}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\infrastructure\\eventbus\\kafkaconsumerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6DD64379-B45B-4AC7-907C-07D0F7B6935F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\eventbus\\kafkaconsumerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B648DC-7015-4861-AF8C-20E3E6994F1F}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\domain\\events\\fundtransferinitiatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9B648DC-7015-4861-AF8C-20E3E6994F1F}|Domain\\Domain.csproj|solutionrelative:domain\\events\\fundtransferinitiatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B648DC-7015-4861-AF8C-20E3E6994F1F}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\domain\\common\\domainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9B648DC-7015-4861-AF8C-20E3E6994F1F}|Domain\\Domain.csproj|solutionrelative:domain\\common\\domainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\application\\messaging\\imessageproducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|solutionrelative:application\\messaging\\imessageproducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\application\\cqrs\\commands\\initiatetransfer\\initiatefundtransfercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|solutionrelative:application\\cqrs\\commands\\initiatetransfer\\initiatefundtransfercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\presentation\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|solutionrelative:presentation\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\presentation\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|solutionrelative:presentation\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\presentation\\protos\\fund_transfer.proto||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|solutionrelative:presentation\\protos\\fund_transfer.proto||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D029313-2CC6-4CE7-A55E-2B3215BFD88F}|Presentation\\Presentation.csproj|solutionrelative:presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\application\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|solutionrelative:application\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6DD64379-B45B-4AC7-907C-07D0F7B6935F}|Infrastructure\\Infrastructure.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\infrastructure\\eventbus\\kafkaproducerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6DD64379-B45B-4AC7-907C-07D0F7B6935F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\eventbus\\kafkaproducerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\application\\application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{52276392-917C-4C99-807C-91A2CFC91447}|Application\\Application.csproj|solutionrelative:application\\application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B648DC-7015-4861-AF8C-20E3E6994F1F}|Domain\\Domain.csproj|c:\\users\\admin\\documents\\github\\webbanking\\fundtransferservice\\domain\\interfaces\\imessageproducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9B648DC-7015-4861-AF8C-20E3E6994F1F}|Domain\\Domain.csproj|solutionrelative:domain\\interfaces\\imessageproducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 245,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InitiateFundTransferCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommand.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommand.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommand.cs",
+              "RelativeToolTip": "Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T13:47:42.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IMessageProducer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Domain\\Interfaces\\IMessageProducer.cs",
+              "RelativeDocumentMoniker": "Domain\\Interfaces\\IMessageProducer.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Domain\\Interfaces\\IMessageProducer.cs",
+              "RelativeToolTip": "Domain\\Interfaces\\IMessageProducer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T13:47:35.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Application",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\Application.csproj",
+              "RelativeDocumentMoniker": "Application\\Application.csproj",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\Application.csproj",
+              "RelativeToolTip": "Application\\Application.csproj",
+              "ViewState": "AgIAABQAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-03T13:40:11.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "KafkaConsumerService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Infrastructure\\EventBus\\KafkaConsumerService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\EventBus\\KafkaConsumerService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Infrastructure\\EventBus\\KafkaConsumerService.cs",
+              "RelativeToolTip": "Infrastructure\\EventBus\\KafkaConsumerService.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T12:06:23.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FundTransferGrpcService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Services\\FundTransferGrpcService.cs",
+              "RelativeDocumentMoniker": "Presentation\\Services\\FundTransferGrpcService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Services\\FundTransferGrpcService.cs",
+              "RelativeToolTip": "Presentation\\Services\\FundTransferGrpcService.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowGMAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T11:36:33.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ContainerConfig.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Configuration\\ContainerConfig.cs",
+              "RelativeDocumentMoniker": "Presentation\\Configuration\\ContainerConfig.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Configuration\\ContainerConfig.cs",
+              "RelativeToolTip": "Presentation\\Configuration\\ContainerConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALoAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T11:41:35.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FundTransferInitiatedEvent.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Domain\\Events\\FundTransferInitiatedEvent.cs",
+              "RelativeDocumentMoniker": "Domain\\Events\\FundTransferInitiatedEvent.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Domain\\Events\\FundTransferInitiatedEvent.cs",
+              "RelativeToolTip": "Domain\\Events\\FundTransferInitiatedEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T12:06:01.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DomainEvent.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Domain\\Common\\DomainEvent.cs",
+              "RelativeDocumentMoniker": "Domain\\Common\\DomainEvent.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Domain\\Common\\DomainEvent.cs",
+              "RelativeToolTip": "Domain\\Common\\DomainEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T12:05:47.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IMessageProducer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\Messaging\\IMessageProducer.cs",
+              "RelativeDocumentMoniker": "Application\\Messaging\\IMessageProducer.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\Messaging\\IMessageProducer.cs",
+              "RelativeToolTip": "Application\\Messaging\\IMessageProducer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T12:05:27.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "InitiateFundTransferCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommandHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommandHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommandHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\Commands\\InitiateTransfer\\InitiateFundTransferCommandHandler.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAAFcAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T11:48:44.574Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "KafkaProducerService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Infrastructure\\EventBus\\KafkaProducerService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\EventBus\\KafkaProducerService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Infrastructure\\EventBus\\KafkaProducerService.cs",
+              "RelativeToolTip": "Infrastructure\\EventBus\\KafkaProducerService.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T12:06:23.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\appsettings.json",
+              "RelativeDocumentMoniker": "Presentation\\appsettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\appsettings.json",
+              "RelativeToolTip": "Presentation\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-03T11:41:22.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "fund_transfer.proto",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Protos\\fund_transfer.proto",
+              "RelativeDocumentMoniker": "Presentation\\Protos\\fund_transfer.proto",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Protos\\fund_transfer.proto",
+              "RelativeToolTip": "Presentation\\Protos\\fund_transfer.proto",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
+              "WhenOpened": "2025-06-03T11:36:32.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Presentation\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Presentation\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-03T11:36:04.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Program.cs",
+              "RelativeDocumentMoniker": "Presentation\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Presentation\\Program.cs",
+              "RelativeToolTip": "Presentation\\Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAASwAYBAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T11:35:56.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ValidationBehavior.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\Behaviors\\ValidationBehavior.cs",
+              "RelativeDocumentMoniker": "Application\\Behaviors\\ValidationBehavior.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\FundTransferService\\Application\\Behaviors\\ValidationBehavior.cs",
+              "RelativeToolTip": "Application\\Behaviors\\ValidationBehavior.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T11:36:24.749Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 245,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

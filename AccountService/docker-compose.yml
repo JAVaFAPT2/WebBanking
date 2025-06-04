@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  accountservice:
+    image: accountservice
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+      - "5002:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - AccountServiceSettings__Database__ConnectionString=Server=sqlserver;Database=AccountServiceDb;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;
+      - AccountServiceSettings__Redis__ConnectionString=redis:6379
+      - AccountServiceSettings__Redis__InstanceName=AccountService_
+      - AccountServiceSettings__Jwt__Key=your-256-bit-secret-key-here
+      - AccountServiceSettings__Jwt__Issuer=https://localhost:5001
+      - AccountServiceSettings__Jwt__Audience=https://localhost:5001
+    depends_on:
+      - sqlserver
+      - redis
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  sqlserver_data:
+  redis_data: 

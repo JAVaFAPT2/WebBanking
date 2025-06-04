@@ -1,0 +1,99 @@
+﻿using Confluent.Kafka;
+using FundTransferService.Domain.Configuration;
+using FundTransferService.Domain.Interfaces;
+using FundTransferService.Application.Messaging;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System;
+
+namespace FundTransferService.Infrastructure.EventBus
+{
+    public class KafkaProducerService : IMessageProducer
+    {
+        private readonly IProducer<string, string> _producer;
+        private readonly ILogger<KafkaProducerService> _logger;
+        private readonly KafkaSettings _kafkaSettings;
+
+        public KafkaProducerService(IOptions<KafkaSettings> kafkaSettingsOptions, ILogger<KafkaProducerService> logger)
+        {
+            _logger = logger;
+            _kafkaSettings = kafkaSettingsOptions.Value;
+
+            var producerConfig = new ProducerConfig
+            {
+                BootstrapServers = _kafkaSettings.BootstrapServers,
+                Acks = _kafkaSettings.Acks switch
+                {
+                    "Leader" => Acks.Leader,
+                    "All" => Acks.All,
+                    "None" => Acks.None,
+                    _ => Acks.All // Default
+                },
+                MessageSendMaxRetries = _kafkaSettings.MessageSendMaxRetries,
+                RetryBackoffMs = _kafkaSettings.RetryBackoffMs
+                // Add SSL/SASL configuration here if needed based on KafkaSettings
+            };
+
+            // if (!string.IsNullOrEmpty(_kafkaSettings.SecurityProtocol))
+            // {
+            //     producerConfig.SecurityProtocol = Enum.Parse<SecurityProtocol>(_kafkaSettings.SecurityProtocol, true);
+            // }
+            // if (!string.IsNullOrEmpty(_kafkaSettings.SaslMechanism))
+            // {
+            //     producerConfig.SaslMechanism = Enum.Parse<SaslMechanism>(_kafkaSettings.SaslMechanism, true);
+            //     producerConfig.SaslUsername = _kafkaSettings.SaslUsername;
+            //     producerConfig.SaslPassword = _kafkaSettings.SaslPassword;
+            // }
+            // // ... other SSL settings like SslCaLocation
+
+            _producer = new ProducerBuilder<string, string>(producerConfig).Build();
+            _logger.LogInformation("KafkaProducerService initialized. BootstrapServers: {BootstrapServers}", _kafkaSettings.BootstrapServers);
+        }
+
+        public async Task ProduceAsync<TKey, TValue>(string topic, TKey key, TValue value, CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrEmpty(topic))
+            {
+                _logger.LogError("Kafka topic cannot be null or empty.");
+                throw new ArgumentNullException(nameof(topic));
+            }
+            if (value == null)
+            {
+                _logger.LogWarning("Kafka message value is null for key {Key} on topic {Topic}. Sending tombstone.", key, topic);
+                 // Kafka treats null value as a tombstone message, which can be valid for log compaction.
+                 // Depending on your needs, you might want to throw an ArgumentNullException(nameof(value)) instead.
+            }
+
+            var messageKey = key?.ToString(); // Or more sophisticated serialization for key
+            var messageValue = JsonSerializer.Serialize(value);
+
+            try
+            {
+                var deliveryResult = await _producer.ProduceAsync(topic, new Message<string, string> { Key = messageKey, Value = messageValue }, cancellationToken);
+                _logger.LogInformation("Message delivered to {TopicPartitionOffset}. Key: {Key}, Value: {Value}", 
+                    deliveryResult.TopicPartitionOffset, messageKey, messageValue);
+            }
+            catch (ProduceException<string, string> e)
+            {
+                _logger.LogError(e, "Failed to deliver message to Kafka. Topic: {Topic}, Key: {Key}, Error: {Error}", 
+                    topic, messageKey, e.Error.Reason);
+                throw; // Rethrow to allow calling code to handle (e.g., retry, dead-letter queue)
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred while producing message to Kafka. Topic: {Topic}, Key: {Key}", topic, messageKey);
+                throw;
+            }
+        }
+
+        public void Dispose()
+        {
+            _producer.Flush(TimeSpan.FromSeconds(10)); // Ensure all messages are sent before disposing
+            _producer.Dispose();
+            _logger.LogInformation("KafkaProducerService disposed.");
+            GC.SuppressFinalize(this);
+        }
+    }
+} 
