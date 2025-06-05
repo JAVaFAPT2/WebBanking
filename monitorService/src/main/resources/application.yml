@@ -6,7 +6,7 @@ spring:
       name: user
       password: 25102005
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     consumer:
       group-id: monitor-service
       auto-offset-reset: earliest
@@ -14,9 +14,9 @@ spring:
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   # MySQL Configuration
   datasource:
-    url: jdbc:mysql://localhost:3306/monitor_service?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://db:3306/DD?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
     username: root
-    password: 25102005
+    password: root_password
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

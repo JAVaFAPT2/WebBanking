@@ -52,7 +52,7 @@ builder.Services.AddMediatR(cfg => {
 
 // Add Health Checks
 builder.Services.AddHealthChecks()
-    .AddSqlServer(settings.Database.ConnectionString)
+    .AddMySql(settings.Database.ConnectionString)
     .AddRedis(settings.Redis.ConnectionString)
     .AddKafka(new Confluent.Kafka.ProducerConfig
     {

@@ -4,6 +4,7 @@ COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 # Consider RUN ./mvnw dependency:go-offline if you want to cache dependencies
 COPY src ./src
+RUN ls -l ./src/main/resources
 RUN ./mvnw clean package -DskipTests
 
 FROM eclipse-temurin:21-jre
@@ -17,4 +18,4 @@ RUN groupadd -r monitor && useradd -r -g monitor monitor
 RUN chown -R monitor:monitor /app
 USER monitor
 
-ENTRYPOINT ["java","-jar","/app/application.jar"]
+ENTRYPOINT ["java","-Dspring.kafka.bootstrap-servers=kafka:9092","-jar","/app/application.jar"]

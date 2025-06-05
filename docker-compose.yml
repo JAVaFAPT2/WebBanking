@@ -12,6 +12,7 @@ services:
     depends_on:
       - kafka
       - orchestration-service
+      - keycloak
     networks:
       - webbanking-network
 
@@ -24,6 +25,8 @@ services:
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
+      - db
+      - keycloak
     networks:
       - webbanking-network
 
@@ -33,9 +36,10 @@ services:
       context: ./AccountService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - Kafka__BootstrapServers=kafka:9092
+      - AccountServiceSettings__Database__ConnectionString=Server=db;Database=AccountService_db;Uid=root;Pwd=root_password;
     depends_on:
       - kafka
+      - db
     networks:
       - webbanking-network
 
@@ -48,6 +52,9 @@ services:
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
+      - db
+      - redis
+      - keycloak
     networks:
       - webbanking-network
 
@@ -60,6 +67,9 @@ services:
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
+      - db
+      - redis
+      - keycloak
     networks:
       - webbanking-network
 
@@ -72,6 +82,8 @@ services:
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
+      - db
+      - keycloak
     networks:
       - webbanking-network
 
@@ -81,8 +93,16 @@ services:
       context: ./UserService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - Kafka__BootstrapServers=kafka:9092
+    depends_on:
+      - kafka
+      - db
+      - redis
+      - keycloak
     networks:
       - webbanking-network
+    dns:
+      - 127.0.0.11
 
   # Fund Transfer Service
   fund-transfer-service:
@@ -93,6 +113,9 @@ services:
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
+      - db
+      - redis
+      - keycloak
     networks:
       - webbanking-network
 
@@ -105,6 +128,8 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
     depends_on:
       - kafka
+      - db
+      - redis
     networks:
       - webbanking-network
 
@@ -128,29 +153,37 @@ services:
       - "3000:3000" # Grafana
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - kafka
+      - db
     networks:
       - webbanking-network
 
   # Kafka
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.3.0
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-    networks:
-      - webbanking-network
-
   kafka:
-    image: confluentinc/cp-kafka:7.3.0
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    image: confluentinc/cp-kafka:7.9.1
+    hostname: kafka
+    user: root
     ports:
       - "9092:9092"
+    environment:
+      KAFKA_KRAFT_MODE: "true"
+      KAFKA_PROCESS_ROLES: controller,broker
+      KAFKA_NODE_ID: 1
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_CLUSTER_ID: "v_ARixrRSDm6Kqp1beRjkA"
+      CLUSTER_ID: "v_ARixrRSDm6Kqp1beRjkA"
+      KAFKA_LOG_DIRS: "/tmp/kraft-storage"
+    volumes:
+      - ./custom-entrypoint.sh:/custom-entrypoint.sh
+      - kafka-data:/tmp/kraft-storage
+    entrypoint: /custom-entrypoint.sh
     networks:
       - webbanking-network
 
@@ -162,6 +195,25 @@ services:
     networks:
       - webbanking-network
 
+  # Database (MySQL for DD)
+  db:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: DD
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - webbanking-network
+    volumes:
+      - db_data:/var/lib/mysql
+
   # Keycloak for authentication
   keycloak:
     image: quay.io/keycloak/keycloak:23.0
@@ -169,12 +221,23 @@ services:
       - "8180:8080"
     environment:
       - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
-      - KC_DB=dev-file
-    command: 
+      - KEYCLOAK_ADMIN_PASSWORD=admin_password
+      - KC_DB=mysql
+      - KC_DB_URL=jdbc:mysql://db:3306/DD?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - KC_DB_USERNAME=root
+      - KC_DB_PASSWORD=root_password
+      - KC_HTTP_PORT=8080
+      - KC_HOSTNAME_STRICT_HTTPS=false
+    command:
       - "start-dev"
     networks:
       - webbanking-network
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+  kafka-data:
 
 networks:
   webbanking-network:

@@ -3,6 +3,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>false</InvariantGlobalization>
     <!-- Consider adding <UserSecretsId> if you plan to use user secrets -->
     <!-- <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS> -->
     <!-- <DockerfileContext>..\..</DockerfileContext> -->
@@ -12,15 +13,12 @@
     <ProjectReference Include="../Infrastructure/Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
-    <PackageReference Include="Grpc.AspNetCore" Version="2.62.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-preview.5.24306.7" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-    <PackageReference Include="Google.Protobuf" Version="3.27.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.64.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" />
+    <PackageReference Include="Google.Protobuf" Version="3.30.2" />
+    <PackageReference Include="Grpc.Tools" Version="2.71.0" MaxTargetSharedFrameworkVersion="" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.Kafka" Version="8.0.1" />

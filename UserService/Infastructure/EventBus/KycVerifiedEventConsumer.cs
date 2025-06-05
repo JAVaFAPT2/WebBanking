@@ -28,7 +28,7 @@ namespace Infrastructure.EventBus
 
             var config = new ConsumerConfig
             {
-                BootstrapServers = configuration["Kafka:BootstrapServers"],
+                BootstrapServers = "kafka:9092",
                 GroupId = "kyc-service-group",
                 AutoOffsetReset = AutoOffsetReset.Earliest
             };

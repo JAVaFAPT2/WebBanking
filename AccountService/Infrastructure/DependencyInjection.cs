@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Shared.Configuration;
 using StackExchange.Redis;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Infrastructure;
 
@@ -36,7 +37,7 @@ public static class DependencyInjection
 
         // Database
         services.AddDbContext<AccountDbContext>(options =>
-            options.UseSqlServer(settings.Database.ConnectionString));
+            options.UseMySql(settings.Database.ConnectionString, new MySqlServerVersion(new Version(8, 0, 21))));
 
         // Redis
         services.AddSingleton<IConnectionMultiplexer>(sp =>

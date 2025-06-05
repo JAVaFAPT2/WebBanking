@@ -86,6 +86,8 @@ async Task SetupMessageSubscriptionsAsync(IServiceProvider serviceProvider)
         var accountEventHandlers = serviceProvider.GetRequiredService<AccountEventHandlers>();
         var notificationEventHandlers = serviceProvider.GetRequiredService<NotificationEventHandlers>();
         var kafkaSettings = serviceProvider.GetRequiredService<Microsoft.Extensions.Options.IOptions<KafkaSettings>>().Value;
+        kafkaSettings.BootstrapServers = Environment.GetEnvironmentVariable("Kafka__BootstrapServers") ?? kafkaSettings.BootstrapServers;
+        Console.WriteLine($"Kafka BootstrapServers: {kafkaSettings.BootstrapServers}");
 
         // Account service events
         await messageBroker.SubscribeAsync<AccountDebitedEvent>(

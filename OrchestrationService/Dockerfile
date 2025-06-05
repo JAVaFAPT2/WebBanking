@@ -28,4 +28,5 @@ RUN dotnet publish "OrchestrationService.Presentation.csproj" -c $BUILD_CONFIGUR
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "OrchestrationService.Presentation.dll"] 
+ENV Kafka__BootstrapServers=kafka:9092
+ENTRYPOINT ["dotnet", "OrchestrationService.Presentation.dll", "--Kafka:BootstrapServers=kafka:9092"] 

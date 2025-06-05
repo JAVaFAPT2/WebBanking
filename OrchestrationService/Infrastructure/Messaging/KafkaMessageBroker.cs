@@ -29,7 +29,7 @@ public class KafkaMessageBroker : IMessageBroker
     {
         var config = new ProducerConfig
         {
-            BootstrapServers = _settings.BootstrapServers,
+            BootstrapServers = "kafka:9092",
             ClientId = _settings.ClientId
         };
         
@@ -59,7 +59,7 @@ public class KafkaMessageBroker : IMessageBroker
     {
         var config = new ConsumerConfig
         {
-            BootstrapServers = _settings.BootstrapServers,
+            BootstrapServers = "kafka:9092",
             GroupId = groupId,
             AutoOffsetReset = AutoOffsetReset.Earliest,
             EnableAutoCommit = true

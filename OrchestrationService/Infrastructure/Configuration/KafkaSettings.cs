@@ -8,7 +8,7 @@ public class KafkaSettings
     /// <summary>
     /// Connection string for Kafka bootstrap servers (comma-separated list)
     /// </summary>
-    public string BootstrapServers { get; set; } = "localhost:9092";
+    public string BootstrapServers { get; set; } = "kafka:9092";
     
     /// <summary>
     /// Client ID for Kafka producer

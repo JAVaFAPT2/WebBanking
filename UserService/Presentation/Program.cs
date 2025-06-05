@@ -62,6 +62,7 @@ var app = builder.Build();
 
 // Start Kafka Consumer
 var kycVerifiedEventConsumer = app.Services.GetRequiredService<KycVerifiedEventConsumer>();
+
 var cts = new CancellationTokenSource();
 await Task.Run(() => kycVerifiedEventConsumer.StartConsuming(cts.Token));
 

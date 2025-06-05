@@ -3,12 +3,11 @@ server:
 
 spring:
   application:
-    name: "caching-service"
+    name: caching-service
   data:
     redis:
-      host: redis-server
+      host: redis
       port: 6379
-      password: your-password
       database: 0
       timeout: 3000ms
       connect-timeout: 3000ms
