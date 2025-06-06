@@ -13,6 +13,7 @@ kotlin {
             }
         }
     }
+    jvm()
     
     // iOS targets - these will be skipped on Windows but needed for MacOS
     listOf(
@@ -46,6 +47,11 @@ kotlin {
         val iosMain by creating {
             dependencies {
                 implementation(libs.ktor.client.darwin)
+            }
+        }
+        val jvmMain by getting {
+            dependencies {
+                // Add JVM-specific dependencies here if needed
             }
         }
         val commonTest by getting {

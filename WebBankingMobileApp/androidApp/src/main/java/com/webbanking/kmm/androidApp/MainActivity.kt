@@ -18,6 +18,8 @@ import com.webbanking.kmm.androidApp.auth.LoginUiState
 import com.webbanking.kmm.androidApp.auth.LoginViewModel
 import com.webbanking.kmm.shared.Platform // Example of using another shared class
 import com.webbanking.kmm.shared.settings.AuthTokenManager // For checking initial auth state
+import com.webbanking.kmm.shared.settings.AndroidContextHolder
+import com.webbanking.kmm.shared.settings.SettingsFactory
 
 // Simple navigation state
 enum class Screen {
@@ -28,12 +30,17 @@ enum class Screen {
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Initialize AuthTokenManager for KMM settings
+        AndroidContextHolder.context = applicationContext
+        AuthTokenManager.init(SettingsFactory())
+
+        // Determine initial screen after initialization
+        val initialScreen = if (AuthTokenManager.hasToken()) Screen.AccountList else Screen.Login
+
         setContent {
             MyApplicationTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    var currentScreen by remember { 
-                        mutableStateOf(if (AuthTokenManager.hasToken()) Screen.AccountList else Screen.Login) 
-                    }
+                    var currentScreen by remember { mutableStateOf(initialScreen) }
                     val loginViewModel: LoginViewModel = viewModel()
 
                     when (currentScreen) {

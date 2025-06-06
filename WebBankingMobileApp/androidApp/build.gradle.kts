@@ -20,7 +20,11 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     packaging {

@@ -1,7 +1,6 @@
 package com.webbanking.kmm.shared.settings
 
-import com.russhwolf.settings.Settings
-import com.russhwolf.settings.coroutines.getStringFlow
+import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.coroutines.getStringOrNullFlow
 import com.russhwolf.settings.get
 import com.russhwolf.settings.set
@@ -9,10 +8,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 object AuthTokenManager {
-    private const val KEY_AUTH_TOKEN = "auth_token"
+    private const val KEY_AUTH_TOKEN = "0f2kkTGwqXG9AUFt9hKDMgj6wCu5908EXVEAwqeFkqSK5soEbUqsdxQkchWmAlxi"
 
-    private val settings: Settings by lazy {
-        SettingsFactory().createSettings()
+    lateinit var settings: ObservableSettings
+
+    fun init(settingsFactory: SettingsFactory) {
+        settings = settingsFactory.createSettings()
     }
 
     fun saveAuthToken(token: String) {
@@ -20,7 +21,7 @@ object AuthTokenManager {
     }
 
     fun getAuthToken(): String? {
-        return settings[KEY_AUTH_TOKEN]
+        return settings.getStringOrNull(KEY_AUTH_TOKEN)
     }
 
     fun clearAuthToken() {
@@ -32,7 +33,6 @@ object AuthTokenManager {
     }
 
     // Coroutines Flow for observing token changes, useful for reactive UI updates
-    val authTokenFlow: Flow<String?> = settings.getStringOrNullFlow(KEY_AUTH_TOKEN)
-
-    val isAuthenticatedFlow: Flow<Boolean> = authTokenFlow.map { it != null }
+    fun authTokenFlow(): Flow<String?> = settings.getStringOrNullFlow(KEY_AUTH_TOKEN)
+    fun isAuthenticatedFlow(): Flow<Boolean> = authTokenFlow().map { it != null }
 } 

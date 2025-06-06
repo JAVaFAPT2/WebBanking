@@ -1,17 +1,19 @@
 [versions]
-kotlin = "1.9.23"
+kotlin = "1.9.25"
 kotlinxCoroutines = "1.8.0"
 kotlinxSerializationJson = "1.6.3"
 ktor = "2.3.10"
 multiplatformSettings = "1.1.1"
+composeCompiler = "1.5.15"
 
-androidGradlePlugin = "8.2.2"
+androidGradlePlugin = "8.10.1"
 androidMinSdk = "24"
 androidCompileSdk = "34"
 androidTargetSdk = "34"
 
-compose = "1.2.1"
+compose = "1.6.7"
 composeActivity = "1.9.0"
+composeMaterial3 = "1.2.1"
 
 [libraries]
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -34,7 +36,7 @@ multiplatform-settings-coroutines = { module = "com.russhwolf:multiplatform-sett
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
-androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

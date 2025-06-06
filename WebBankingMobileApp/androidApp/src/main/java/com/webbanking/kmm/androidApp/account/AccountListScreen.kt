@@ -1,1 +1,112 @@
-package com.webbanking.kmm.androidApp.account\n\nimport androidx.compose.foundation.layout.*\nimport androidx.compose.foundation.lazy.LazyColumn\nimport androidx.compose.foundation.lazy.items\nimport androidx.compose.material.icons.Icons\nimport androidx.compose.material.icons.filled.ExitToApp\nimport androidx.compose.material3.*\nimport androidx.compose.runtime.*\nimport androidx.compose.ui.Alignment\nimport androidx.compose.ui.Modifier\nimport androidx.compose.ui.unit.dp\nimport androidx.lifecycle.viewmodel.compose.viewModel\nimport com.webbanking.kmm.shared.model.UserAccount\n\n@OptIn(ExperimentalMaterial3Api::class)\n@Composable\nfun AccountListScreen(\n    accountViewModel: AccountViewModel = viewModel(),\n    onLogout: () -> Unit\n) {\n    val uiState by rememberUpdatedState(accountViewModel.uiState)\n\n    LaunchedEffect(Unit) { // Call fetchUserAccounts when the screen is first composed\n        accountViewModel.fetchUserAccounts()\n    }\n\n    Scaffold(\n        topBar = {\n            TopAppBar(\n                title = { Text(\"Your Accounts\") },\n                actions = {\n                    IconButton(onClick = onLogout) {\n                        Icon(Icons.Filled.ExitToApp, contentDescription = \"Logout\")\n                    }\n                }\n            )\n        }\n    ) {\ paddingValues ->\n        Box(\n            modifier = Modifier\n                .fillMaxSize()\n                .padding(paddingValues)\n                .padding(16.dp),\n            contentAlignment = Alignment.Center\n        ) {\n            when (val state = uiState) {\n                is AccountListUiState.Loading -> {\n                    CircularProgressIndicator()\n                }\n                is AccountListUiState.Success -> {\n                    if (state.accounts.isEmpty()) {\n                        Text(\"No accounts found.\")\n                    } else {\n                        AccountListView(accounts = state.accounts)\n                    }\n                }\n                is AccountListUiState.NoAccounts -> {\n                    Text(\"You don\\'t have any accounts yet.\")\n                }\n                is AccountListUiState.Error -> {\n                    Column(horizontalAlignment = Alignment.CenterHorizontally) {\n                        Text(\"Error: ${state.message}\", color = MaterialTheme.colorScheme.error)\n                        Spacer(modifier = Modifier.height(8.dp))\n                        Button(onClick = { accountViewModel.fetchUserAccounts() }) {\n                            Text(\"Retry\")\n                        }\n                    }\n                }\n            }\n        }\n    }\n}\n\n@Composable\nfun AccountListView(accounts: List<UserAccount>) {\n    LazyColumn(modifier = Modifier.fillMaxSize()) {\n        items(accounts) { account ->\n            AccountItem(account = account)\n            Divider()\n        }\n    }\n}\n\n@Composable\nfun AccountItem(account: UserAccount) {\n    Card(\n        modifier = Modifier\n            .fillMaxWidth()\n            .padding(vertical = 8.dp),\n        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)\n    ) {\n        Row(\n            modifier = Modifier\n                .padding(16.dp)\n                .fillMaxWidth(),\n            horizontalArrangement = Arrangement.SpaceBetween,\n            verticalAlignment = Alignment.CenterVertically\n        ) {\n            Column(modifier = Modifier.weight(1f)) {\n                Text(account.accountType, style = MaterialTheme.typography.titleMedium)\n                Text(\"ID: ${account.accountId}\", style = MaterialTheme.typography.bodySmall)\n                Text(\"Status: ${account.status}\", style = MaterialTheme.typography.bodySmall)\n            }\n            Text(\n                text = \"${account.balance} ${account.currency}\",\n                style = MaterialTheme.typography.titleMedium,\n                color = if (account.balance >= 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error\n            )\n        }\n    }\n}\n 
+package com.webbanking.kmm.androidApp.account
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.webbanking.kmm.shared.model.UserAccount
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AccountListScreen(
+    accountViewModel: AccountViewModel = viewModel(),
+    onLogout: () -> Unit
+) {
+    val uiState by rememberUpdatedState(accountViewModel.uiState)
+
+    LaunchedEffect(Unit) { // Call fetchUserAccounts when the screen is first composed
+        accountViewModel.fetchUserAccounts()
+    }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Your Accounts") },
+                actions = {
+                    IconButton(onClick = onLogout) {
+                        Icon(Icons.Filled.ExitToApp, contentDescription = "Logout")
+                    }
+                }
+            )
+        }
+    ) { paddingValues ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            when (val state = uiState) {
+                is AccountListUiState.Loading -> {
+                    CircularProgressIndicator()
+                }
+                is AccountListUiState.Success -> {
+                    if (state.accounts.isEmpty()) {
+                        Text("No accounts found.")
+                    } else {
+                        AccountListView(accounts = state.accounts)
+                    }
+                }
+                is AccountListUiState.NoAccounts -> {
+                    Text("You don't have any accounts yet.")
+                }
+                is AccountListUiState.Error -> {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("Error: ${state.message}", color = MaterialTheme.colorScheme.error)
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Button(onClick = { accountViewModel.fetchUserAccounts() }) {
+                            Text("Retry")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun AccountListView(accounts: List<UserAccount>) {
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
+        items(accounts) { account ->
+            AccountItem(account = account)
+            Divider()
+        }
+    }
+}
+
+@Composable
+fun AccountItem(account: UserAccount) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(account.accountType, style = MaterialTheme.typography.titleMedium)
+                Text("ID: ${account.accountId}", style = MaterialTheme.typography.bodySmall)
+                Text("Status: ${account.status}", style = MaterialTheme.typography.bodySmall)
+            }
+            Text(
+                text = "${account.balance} ${account.currency}",
+                style = MaterialTheme.typography.titleMedium,
+                color = if (account.balance >= 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
+            )
+        }
+    }
+} 

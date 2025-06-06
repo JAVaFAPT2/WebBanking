@@ -1,7 +1,7 @@
 package com.webbanking.kmm.shared.settings
 
-import com.russhwolf.settings.Settings
+import com.russhwolf.settings.ObservableSettings
 
-expect class SettingsFactory {
-    fun createSettings(): Settings
+expect class SettingsFactory() {
+    fun createSettings(): ObservableSettings
 } 
