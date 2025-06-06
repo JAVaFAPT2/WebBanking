@@ -1,0 +1,47 @@
+# Gradle
+.gradle/
+build/
+
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+local.properties
+
+# Kotlin
+*.kexe
+
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+*/build/
+*/release/
+*/debug/
+*/generated/
+
+# iOS / Xcode
+*.xcworkspace/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcuserdatad/
+DerivedData/
+build/
+*.hmap
+*.ipa
+*.dsym
+*.swiftpm/
+
+# Cocoapods
+Pods/
+
+# macOS
+.DS_Store
+
+# KMM specific build folders if any others appear
+shared/build/
+androidApp/build/
+iosApp/build/ # If you have a build folder directly under iosApp 

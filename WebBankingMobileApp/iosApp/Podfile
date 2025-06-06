@@ -1,0 +1,16 @@
+# CocoaPods Podfile for WebBanking iOS App
+# This is a placeholder. Typically, you would run `pod init` in your Xcode project's root directory
+# and then add the :shared module dependency.
+
+platform :ios, '14.1' # Match or exceed shared.build.gradle.kts cocoapods.ios.deploymentTarget
+
+target 'iosApp' do # Replace 'iosApp' with your actual Xcode project target name
+  use_frameworks!
+
+  # Pods for iosApp
+  pod 'shared', :path => '../shared'
+
+  # Add other iOS specific pods here if needed
+  # e.g., pod 'Alamofire', '~> 5.0'
+
+end 

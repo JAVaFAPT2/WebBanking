@@ -1,0 +1,7 @@
+package com.webbanking.kmm.shared.network
+
+actual object PlatformSpecificNetworkConfig {
+    // 10.0.2.2 is the special alias for the host machine's localhost from the Android emulator.
+    // Ensure your API Gateway is running on port 8080 of your host machine.
+    actual val baseUrl: String = "http://10.0.2.2:8080/api"
+} 
