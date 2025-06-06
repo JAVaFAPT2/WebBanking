@@ -12,7 +12,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - AccountServiceSettings__Database__ConnectionString=Server=sqlserver;Database=AccountServiceDb;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;
+      - AccountServiceSettings__Database__ConnectionString=Server=DD;Database=AccountServiceDb;TrustServerCertificate=True;
       - AccountServiceSettings__Redis__ConnectionString=redis:6379
       - AccountServiceSettings__Redis__InstanceName=AccountService_
       - AccountServiceSettings__Jwt__Key=your-256-bit-secret-key-here

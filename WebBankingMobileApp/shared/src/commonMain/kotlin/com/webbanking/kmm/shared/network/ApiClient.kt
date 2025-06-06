@@ -2,7 +2,6 @@ package com.webbanking.kmm.shared.network
 
 import io.ktor.client.* 
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.logging.* // Optional: for logging requests/responses
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
@@ -17,12 +16,6 @@ object ApiClient {
                 isLenient = true
                 ignoreUnknownKeys = true // Important for API evolution
             })
-        }
-
-        // Optional: Logging for debugging network requests
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.ALL // Log headers, body, etc.
         }
     }
 

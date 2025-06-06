@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.webbanking.kmm.androidApp"
-    compileSdk = libs.versions.androidCompileSdk.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.webbanking.kmm.androidApp"
-        minSdk = libs.versions.androidMinSdk.get().toInt()
-        targetSdk = libs.versions.androidTargetSdk.get().toInt()
+        minSdk = 24
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
@@ -30,7 +30,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
         }
     }

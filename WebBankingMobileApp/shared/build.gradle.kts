@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.kotlin.native.cocoapods)
+    alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.serialization)
 }
@@ -8,10 +8,13 @@ plugins {
 kotlin {
     androidTarget {
         compilations.all {
-            kotlinOptions { jvmTarget = "1.8" }
+            kotlinOptions { 
+                jvmTarget = "1.8"
+            }
         }
     }
     
+    // iOS targets - these will be skipped on Windows but needed for MacOS
     listOf(
         iosX64(),
         iosArm64(),
@@ -24,23 +27,31 @@ kotlin {
     }
 
     sourceSets {
-        commonMain.dependencies {
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlinx.serialization.json)
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.multiplatform.settings.noarg)
-            implementation(libs.multiplatform.settings.coroutines)
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.multiplatform.settings.noarg)
+                implementation(libs.multiplatform.settings.coroutines)
+            }
         }
-        androidMain.dependencies {
-            implementation(libs.ktor.client.cio) // Ktor engine for Android
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+            }
         }
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin) // Ktor engine for iOS
+        val iosMain by creating {
+            dependencies {
+                implementation(libs.ktor.client.darwin)
+            }
         }
-        commonTest.dependencies {
-            implementation(kotlin("test"))
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
         }
     }
 }
@@ -57,17 +68,18 @@ android {
     }
 }
 
-// CocoaPods configuration for iOS
-iosPod("AFNetworking", "~> 4.0.1") // Example if you need an iOS specific pod, not strictly needed for Ktor alone
-
+// CocoaPods configuration - this will be skipped on Windows
 kotlin {
     cocoapods {
         summary = "Shared KMM module for WebBanking App"
-        homepage = "https://github.com/yourusername/WebBankingMobileApp" // Replace with your repo
-        ios.deploymentTarget = "14.1" // Minimum iOS version
+        homepage = "https://github.com/yourusername/WebBankingMobileApp"
+        version = "1.0"
+        ios.deploymentTarget = "14.1"
         framework {
             baseName = "shared"
             isStatic = true
         }
+        // Add any iOS dependencies here
+        // pod("AFNetworking", "~> 4.0.1")  // Uncomment if you need AFNetworking
     }
 } 

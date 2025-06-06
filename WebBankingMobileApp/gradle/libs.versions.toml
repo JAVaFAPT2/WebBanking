@@ -5,12 +5,12 @@ kotlinxSerializationJson = "1.6.3"
 ktor = "2.3.10"
 multiplatformSettings = "1.1.1"
 
-androidGradlePlugin = "8.2.2" // Or your project's AGP version
+androidGradlePlugin = "8.2.2"
 androidMinSdk = "24"
 androidCompileSdk = "34"
 androidTargetSdk = "34"
 
-compose = "1.6.7" // Jetpack Compose compiler and libraries
+compose = "1.2.1"
 composeActivity = "1.9.0"
 
 [libraries]

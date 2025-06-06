@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    ports:
+      - "8080:8080"  # Expose API Gateway port
+    networks:
+      - webbanking-network
+
+  user-service:
+    networks:
+      - webbanking-network
+
+  account-service:
+    networks:
+      - webbanking-network
+
+  transaction-service:
+    networks:
+      - webbanking-network
+
+  card-service:
+    networks:
+      - webbanking-network
+
+  loan-service:
+    networks:
+      - webbanking-network
+
+  notification-service:
+    networks:
+      - webbanking-network
+
+  caching-service:
+    networks:
+      - webbanking-network
+
+  monitor-service:
+    networks:
+      - webbanking-network
+
+  orchestration-service:
+    networks:
+      - webbanking-network
+
+networks:
+  webbanking-network:
+    driver: bridge 
