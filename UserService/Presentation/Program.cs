@@ -10,6 +10,7 @@ using Serilog;
 using Shared.Middleware;
 using Infrastructure.EventBus;
 
+Console.WriteLine("Starting UserService...");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,10 +62,9 @@ var app = builder.Build();
 
 
 // Start Kafka Consumer
-var kycVerifiedEventConsumer = app.Services.GetRequiredService<KycVerifiedEventConsumer>();
-
-var cts = new CancellationTokenSource();
-await Task.Run(() => kycVerifiedEventConsumer.StartConsuming(cts.Token));
+// var kycVerifiedEventConsumer = app.Services.GetRequiredService<KycVerifiedEventConsumer>();
+// var cts = new CancellationTokenSource();
+// _ = Task.Run(() => kycVerifiedEventConsumer.StartConsuming(cts.Token)); // Fire-and-forget
 
 
 // Middleware pipeline

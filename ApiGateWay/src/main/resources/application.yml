@@ -5,16 +5,36 @@ logging:
   level:
     org.springframework.cloud.openfeign: DEBUG
     org.apigateway: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
+    org.springdoc: INFO
+
+# OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    tryItOutEnabled: true
+    filter: true
+  packages-to-scan: org.apigateway
+  paths-to-match: /api/**, /auth/**
 
 jwt:
   secret: t4whZJUAhgif/tV1Y9b2lB+p7INVKkGKm4EZcxWpvP0=
   expiration: 86400
   excluded:
     paths:
-      - /public/**
       - /auth/login
       - /auth/register
       - /actuator/**
+      - /public/**
+      - /api-docs/**
+      - /swagger-ui/**
+      - /swagger-ui.html
+      - /v3/api-docs/**
 
 spring:
   application:
@@ -24,38 +44,123 @@ spring:
       discovery:
         locator:
           enabled: true
+          lowerCaseServiceId: true
       routes:
-        - id: user-service
-          uri: lb://USER-SERVICE
+        # Auth routes - no authentication required
+        - id: auth-register
+          uri: lb://user-service
           predicates:
-            - Path=/users/**
+            - Path=/auth/register
           filters:
+            - RewritePath=/auth/register, /api/User/register
+
+        - id: auth-login
+          uri: lb://user-service
+          predicates:
+            - Path=/auth/login
+          filters:
+            - RewritePath=/auth/login, /api/User/login
+
+        # User service routes
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=1
             - name: RateLimitingFilter
               args:
                 limitForPeriod: 10
                 refreshPeriod: 1000
 
+        # Account service routes
         - id: account-service
-          uri: lb://ACCOUNT-SERVICE
+          uri: lb://account-service
           predicates:
-            - Path=/accounts/**
+            - Path=/api/accounts/**
+          filters:
+            - StripPrefix=1
+            - name: RateLimitingFilter
+              args:
+                limitForPeriod: 5
+                refreshPeriod: 1000
+
+        # Admin service routes
+        - id: admin-service
+          uri: lb://orchestration-service
+          predicates:
+            - Path=/api/admin/**
+          filters:
+            - StripPrefix=1
+            - name: RBACFilter
+              args:
+                requiredRoles:
+                  - ROLE_ADMIN
+
+        - id: fund-transfer-service
+          uri: lb://fund-transfer-service
+          predicates:
+            - Path=/api/transfers/**
           filters:
             - name: RateLimitingFilter
               args:
                 limitForPeriod: 5
                 refreshPeriod: 1000
 
-        - id: admin-service
-          uri: lb://ADMIN-SERVICE
+        - id: transaction-service
+          uri: lb://transaction-service
           predicates:
-            - Path=/admin/**
+            - Path=/api/transactions/**
           filters:
-            - name: RBACFilter
+            - name: RateLimitingFilter
               args:
-                requiredRoles:
-                  - ROLE_ADMIN
+                limitForPeriod: 5
+                refreshPeriod: 1000
+
+        - id: card-service
+          uri: lb://card-service
+          predicates:
+            - Path=/api/cards/**
+          filters:
+            - name: RateLimitingFilter
+              args:
+                limitForPeriod: 5
+                refreshPeriod: 1000
+
+        - id: loan-service
+          uri: lb://loan-service
+          predicates:
+            - Path=/api/loans/**
+          filters:
+            - name: RateLimitingFilter
+              args:
+                limitForPeriod: 5
+                refreshPeriod: 1000
+
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**
+          filters:
+            - name: RateLimitingFilter
+              args:
+                limitForPeriod: 5
+                refreshPeriod: 1000
+
   main:
     allow-bean-definition-overriding: true
+
+# Kafka Configuration
+spring.kafka:
+  bootstrap-servers: kafka:9092
+  consumer:
+    group-id: api-gateway-group
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 # Rate limit configuration
 rate-limit:
@@ -90,4 +195,11 @@ management:
   endpoint:
     health:
       show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
 #just have user-service account-service admin-service for testing

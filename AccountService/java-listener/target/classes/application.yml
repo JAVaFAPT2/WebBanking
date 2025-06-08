@@ -1,0 +1,34 @@
+server:
+  port: 8081 # Or any other free port, less critical for a pure listener but good practice
+
+spring:
+  application:
+    name: account-service-listener
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092} # Allow override by environment variable
+    consumer:
+      group-id: account-listener-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.webbanking.accountservice.dto,com.example.orchestrationservice.dto"
+        # If commands/replies can be of different types on the same topic, configure type mapping or use headers
+        # spring.json.value.default.type: com.webbanking.accountservice.dto.DefaultEvent # If applicable
+        spring.json.use.type.headers: "false" # Set to true if type info is in headers, false if embedded or relying on default.type
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+# Topic names (referenced in listener code, good to have them here for visibility if not using constants from a shared lib)
+# app:
+#   kafka:
+#     topics:
+#       debit-account-command: "fundtransfer.account.debit.command"
+#       account-debit-reply: "fundtransfer.account.debit.reply"
+#       compensate-debit-command: "fundtransfer.account.debit.compensate.command"
+
+logging:
+  level:
+    com.webbanking.accountservice.listener: DEBUG
+    org.springframework.kafka: INFO # Set to DEBUG for more verbose Kafka logging if needed 

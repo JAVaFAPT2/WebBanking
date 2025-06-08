@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.webbanking.kmm.shared.model.AuthResponse
 import com.webbanking.kmm.shared.model.LoginRequest
+import com.webbanking.kmm.shared.model.RegistrationRequest
 import com.webbanking.kmm.shared.repository.AuthRepository
 import com.webbanking.kmm.shared.repository.AuthRepositoryImpl // Direct instantiation for simplicity
 import com.webbanking.kmm.shared.repository.NetworkResult
@@ -19,9 +20,19 @@ sealed class LoginUiState {
     data class Error(val message: String) : LoginUiState()
 }
 
+sealed class RegisterUiState {
+    object Idle : RegisterUiState()
+    object Loading : RegisterUiState()
+    data class Success(val message: String?) : RegisterUiState()
+    data class Error(val message: String) : RegisterUiState()
+}
+
 class LoginViewModel(private val authRepository: AuthRepository = AuthRepositoryImpl()) : ViewModel() {
 
     var uiState by mutableStateOf<LoginUiState>(LoginUiState.Idle)
+        private set
+
+    var registerUiState by mutableStateOf<RegisterUiState>(RegisterUiState.Idle)
         private set
 
     var email by mutableStateOf("user@example.com") // Sample default
@@ -48,6 +59,45 @@ class LoginViewModel(private val authRepository: AuthRepository = AuthRepository
             }
         }
     }
+
+    fun register(username: String, email: String, password: String, confirmPassword: String, firstName: String, lastName: String, address: String, phoneNumber: String) {
+        if (username.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank() || firstName.isBlank() || lastName.isBlank() || address.isBlank() || phoneNumber.isBlank()) {
+            registerUiState = RegisterUiState.Error("All fields are required.")
+            return
+        }
+        if (password != confirmPassword) {
+            registerUiState = RegisterUiState.Error("Passwords do not match.")
+            return
+        }
+        viewModelScope.launch {
+            registerUiState = RegisterUiState.Loading
+            val result = authRepository.register(
+                RegistrationRequest(
+                    username = username,
+                    email = email,
+                    password = password,
+                    confirmPassword = confirmPassword,
+                    firstName = firstName,
+                    lastName = lastName,
+                    address = address,
+                    phoneNumber = phoneNumber
+                )
+            )
+            registerUiState = when (result) {
+                is NetworkResult.Success -> {
+                    if (result.data.success) {
+                        RegisterUiState.Success(result.data.message)
+                    } else {
+                        RegisterUiState.Error(result.data.message ?: "Registration failed.")
+                    }
+                }
+                is NetworkResult.Error -> {
+                    RegisterUiState.Error(result.message ?: "An unknown error occurred.")
+                }
+                is NetworkResult.Loading -> RegisterUiState.Loading // Should not happen here
+            }
+        }
+    }
     
     fun performLogout(){
         viewModelScope.launch {
@@ -56,5 +106,9 @@ class LoginViewModel(private val authRepository: AuthRepository = AuthRepository
             uiState = LoginUiState.Idle // Reset to Idle or navigate to login screen
             // Potentially emit a different state like LogoutSuccess if needed for UI reaction
         }
+    }
+
+    fun resetRegisterUiState() {
+        registerUiState = RegisterUiState.Idle
     }
 } 

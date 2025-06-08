@@ -13,5 +13,6 @@ COPY --from=build /app/publish .
 ENV Kafka__BootstrapServers=kafka:9092
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 ENV KAFKA_CLIENT_DNS_LOOKUP=resolve_canonical_bootstrap_servers_only
+ENV ASPNETCORE_URLS=http://+:5001
 EXPOSE 80
 ENTRYPOINT ["dotnet", "Presentation.dll", "--Kafka:BootstrapServers=kafka:9092"] 

@@ -55,14 +55,17 @@ public class GatewayConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 // Public routes - no RBAC required
-                .route("auth-service", r -> r.path("/api/auth/**")
-                        .uri("lb://auth-service"))
+                .route("user-service-auth-register", r -> r.path("/api/auth/register")
+                        .filters(f -> f.rewritePath("/api/auth/register", "/api/User/register"))
+                        .uri("http://user-service:5001"))
+                .route("user-service-auth", r -> r.path("/api/auth/**")
+                        .uri("http://user-service:5001"))
 
                 // User service routes - require USER role
                 .route("user-service", r -> r.path("/api/users/**")
                         .filters(f -> f.filter(rbacFilter.apply(config ->
                                 config.setRequiredRoles(Arrays.asList("USER", "ADMIN")))))
-                        .uri("lb://user-service"))
+                        .uri("http://user-service:5001"))
 
                 // Account service routes - require USER role
                 .route("account-service", r -> r.path("/api/accounts/**")

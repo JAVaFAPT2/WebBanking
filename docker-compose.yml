@@ -1,19 +1,33 @@
-
 services:
   # API Gateway
   api-gateway:
     build: 
       context: ./ApiGateWay
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED=true
+      - SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_LOWERCASE_SERVICE_ID=true
+      - SERVER_PORT=8081
+      - MANAGEMENT_SERVER_PORT=8081
+      - MANAGEMENT_ENDPOINTS_WEB_BASE_PATH=/actuator
+      - MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS=always
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
     depends_on:
       - kafka
+      - user-service
+      - account-service
       - orchestration-service
       - keycloak
     networks:
       - webbanking-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   # Orchestration Service
   orchestration-service:
@@ -36,11 +50,18 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - AccountServiceSettings__Database__ConnectionString=Server=db;Database=AccountService_db;Uid=root;Pwd=root_password;
+      - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
       - db
     networks:
       - webbanking-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   # Card Service
   card-service:
@@ -102,6 +123,14 @@ services:
       - webbanking-network
     dns:
       - 127.0.0.11
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    ports:
+      - "5001:5001"
 
   # Fund Transfer Service
   fund-transfer-service:
@@ -171,7 +200,7 @@ services:
       KAFKA_NODE_ID: 1
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://webbanking-kafka-1:9092
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -185,6 +214,12 @@ services:
     entrypoint: /custom-entrypoint.sh
     networks:
       - webbanking-network
+    healthcheck:
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   # Redis
   redis:

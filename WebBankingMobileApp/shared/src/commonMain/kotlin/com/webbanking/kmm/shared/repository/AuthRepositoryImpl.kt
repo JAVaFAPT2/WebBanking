@@ -3,6 +3,7 @@ package com.webbanking.kmm.shared.repository
 import com.webbanking.kmm.shared.model.AuthResponse
 import com.webbanking.kmm.shared.model.GenericApiResponse
 import com.webbanking.kmm.shared.model.LoginRequest
+import com.webbanking.kmm.shared.model.RegistrationRequest
 import com.webbanking.kmm.shared.network.ApiClient
 import com.webbanking.kmm.shared.settings.AuthTokenManager
 import io.ktor.client.call.*
@@ -28,6 +29,23 @@ class AuthRepositoryImpl : AuthRepository {
             }
         } catch (e: Exception) {
             NetworkResult.Error(e, "Network error during login: ${e.message}")
+        }
+    }
+
+    override suspend fun register(registrationRequest: RegistrationRequest): NetworkResult<GenericApiResponse<AuthResponse>> {
+        return try {
+            val response = httpClient.post(ApiClient.constructUrl("auth/register")) {
+                contentType(ContentType.Application.Json)
+                setBody(registrationRequest)
+            }
+            if (response.status == HttpStatusCode.OK || response.status == HttpStatusCode.Created) {
+                val apiResponse = response.body<GenericApiResponse<AuthResponse>>()
+                NetworkResult.Success(apiResponse)
+            } else {
+                NetworkResult.Error(Exception("Registration failed: ${response.status.description}"))
+            }
+        } catch (e: Exception) {
+            NetworkResult.Error(e, "Network error during registration: ${e.message}")
         }
     }
 
