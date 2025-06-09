@@ -29,7 +29,7 @@ public class UserController(IMediator mediator, ILogger<UserController> logger) 
         _logger.LogInformation("Login request: {@Command}", request);
         if (string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
         {
-            var badReq = new GenericApiResponse<AuthResponse> { Success = false, Message = "Username and password are required." };
+            var badReq = new GenericApiResponse<AuthResponse> { Success = false, Message = "Username and password are required.", Data = null };
             _logger.LogWarning("Login failed: missing username or password");
             return BadRequest(badReq);
         }
@@ -40,7 +40,7 @@ public class UserController(IMediator mediator, ILogger<UserController> logger) 
             var response = await _mediator.Send(command);
             if (response == null)
             {
-                var fail = new GenericApiResponse<AuthResponse> { Success = false, Message = "Invalid username or password." };
+                var fail = new GenericApiResponse<AuthResponse> { Success = false, Message = "Invalid username or password.", Data = null };
                 _logger.LogWarning("Login failed: invalid credentials for {Username}", request.Username);
                 return Unauthorized(fail);
             }
@@ -51,7 +51,7 @@ public class UserController(IMediator mediator, ILogger<UserController> logger) 
         catch (Exception ex)
         {
             _logger.LogError(ex, "Login error");
-            var err = new GenericApiResponse<AuthResponse> { Success = false, Message = "Internal server error." };
+            var err = new GenericApiResponse<AuthResponse> { Success = false, Message = "Internal server error.", Data = null };
             return StatusCode(500, err);
         }
     }
@@ -63,7 +63,7 @@ public class UserController(IMediator mediator, ILogger<UserController> logger) 
         _logger.LogInformation("Register request: {@Command}", command);
         if (string.IsNullOrWhiteSpace(command.Username) || string.IsNullOrWhiteSpace(command.Password) || string.IsNullOrWhiteSpace(command.Email))
         {
-            var badReq = new GenericApiResponse<AuthResponse> { Success = false, Message = "Username, email, and password are required." };
+            var badReq = new GenericApiResponse<AuthResponse> { Success = false, Message = "Username, email, and password are required.", Data = null };
             _logger.LogWarning("Register bad request: {@Response}", badReq);
             return BadRequest(badReq);
         }
@@ -76,7 +76,8 @@ public class UserController(IMediator mediator, ILogger<UserController> logger) 
             {
                 Token = "dummy-token",
                 Username = command.Username,
-                Email = command.Email
+                Email = command.Email,
+                UserId = userId
             };
             var okResp = new GenericApiResponse<AuthResponse> { Success = true, Data = auth, Message = "Registration successful." };
             _logger.LogInformation("Register success: {@Response}", okResp);
@@ -85,7 +86,7 @@ public class UserController(IMediator mediator, ILogger<UserController> logger) 
         catch (Exception ex)
         {
             _logger.LogError(ex, "Register exception");
-            var errResp = new GenericApiResponse<AuthResponse> { Success = false, Message = ex.Message };
+            var errResp = new GenericApiResponse<AuthResponse> { Success = false, Message = ex.Message, Data = null };
             return StatusCode(500, errResp);
         }
     }

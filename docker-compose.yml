@@ -5,6 +5,7 @@ services:
       context: ./ApiGateWay
     ports:
       - "8081:8081"
+      - "9081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED=true
@@ -124,13 +125,13 @@ services:
     dns:
       - 127.0.0.11
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5001/api/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8051/api/health"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 30s
     ports:
-      - "5001:5001"
+      - "8051:8051"
 
   # Fund Transfer Service
   fund-transfer-service:

@@ -10,4 +10,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/publish .
 EXPOSE 80
-ENTRYPOINT ["dotnet", "Presentation.dll"] 
+ENTRYPOINT ["dotnet", "Presentation.dll"]
+
+ENV ConnectionStrings__DefaultConnection=Server=db;Database=AccountService_db;Uid=root;Pwd=root_password;Port=3306; 

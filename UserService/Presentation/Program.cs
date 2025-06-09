@@ -2,6 +2,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Infrastructure;
@@ -31,11 +32,30 @@ builder.Services.AddSwaggerGen();
 
 // EF Core
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    if (connectionString.Contains("Data Source=") && !connectionString.Contains("Server="))
+    {
+        // Use SQLite for local development
+        options.UseSqlite(connectionString);
+    }
+    else
+    {
+        // Use MySQL for production/Docker
+        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+    }
+});
 
 // Redis Cache
-builder.Services.AddStackExchangeRedisCache(options =>
-    options.Configuration = builder.Configuration["Redis:ConnectionString"]);
+var redisConnectionString = builder.Configuration["Redis:ConnectionString"];
+if (!string.IsNullOrEmpty(redisConnectionString))
+{
+    builder.Services.AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = redisConnectionString;
+        options.InstanceName = "UserService:";
+    });
+}
 
 // Keycloak OIDC Authentication
 builder.Services.AddAuthentication(options =>
@@ -60,6 +80,21 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>
 
 var app = builder.Build();
 
+// Ensure database is created and migrations are applied
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    try
+    {
+        // Create database if it doesn't exist
+        context.Database.EnsureCreated();
+        Console.WriteLine("Database created successfully");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error creating database: {ex.Message}");
+    }
+}
 
 // Start Kafka Consumer
 // var kycVerifiedEventConsumer = app.Services.GetRequiredService<KycVerifiedEventConsumer>();

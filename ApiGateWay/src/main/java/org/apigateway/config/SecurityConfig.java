@@ -24,11 +24,7 @@ public class SecurityConfig {
             .httpBasic(httpBasic -> httpBasic.disable())
             .formLogin(formLogin -> formLogin.disable())
             .authorizeExchange(exchanges -> exchanges
-                .pathMatchers("/actuator/**").permitAll()
-                .pathMatchers("/auth/login", "/auth/register").permitAll()
-                .pathMatchers("/public/**").permitAll()
-                .pathMatchers("/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
-                .anyExchange().authenticated()
+                .anyExchange().permitAll()
             );
         return http.build();
     }

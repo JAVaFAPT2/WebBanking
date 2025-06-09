@@ -1,0 +1,114 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    org.springframework.cloud.openfeign: DEBUG
+    org.apigateway: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
+    org.springdoc: INFO
+
+# OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    tryItOutEnabled: true
+    filter: true
+  packages-to-scan: org.apigateway
+  paths-to-match: /api/**, /auth/**
+
+jwt:
+  secret: t4whZJUAhgif/tV1Y9b2lB+p7INVKkGKm4EZcxWpvP0=
+  expiration: 86400
+  excluded:
+    paths:
+      - /api/auth/login
+      - /api/auth/register
+      - /actuator/**
+      - /public/**
+      - /api-docs/**
+      - /swagger-ui/**
+      - /swagger-ui.html
+      - /v3/api-docs/**
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        # Auth routes - no authentication required
+        - id: auth-register
+          uri: http://user-service:8051
+          predicates:
+            - Path=/api/auth/register
+          filters:
+            - RewritePath=/api/auth/register, /api/User/register
+
+        - id: auth-login
+          uri: http://user-service:8051
+          predicates:
+            - Path=/api/auth/login
+          filters:
+            - RewritePath=/api/auth/login, /api/User/login
+
+        # User service routes
+        - id: user-service
+          uri: http://user-service:8051
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=1
+
+        # Account service routes
+        - id: account-service
+          uri: http://account-service:8052
+          predicates:
+            - Path=/api/accounts/**
+          filters:
+            - StripPrefix=1
+
+  main:
+    allow-bean-definition-overriding: true
+
+# Kafka Configuration
+spring.kafka:
+  bootstrap-servers: kafka:9092
+  consumer:
+    group-id: api-gateway-dev-group
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+# Rate limit configuration
+rate-limit:
+  default-limit: 100
+  default-refresh-period: 1000
+  default-timeout-duration: 100
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true 

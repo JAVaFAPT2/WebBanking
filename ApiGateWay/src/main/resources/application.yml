@@ -1,5 +1,6 @@
 server:
   port: 8081
+  address: 0.0.0.0
 
 logging:
   level:
@@ -27,8 +28,8 @@ jwt:
   expiration: 86400
   excluded:
     paths:
-      - /auth/login
-      - /auth/register
+      - /api/auth/login
+      - /api/auth/register
       - /actuator/**
       - /public/**
       - /api-docs/**
@@ -48,22 +49,22 @@ spring:
       routes:
         # Auth routes - no authentication required
         - id: auth-register
-          uri: lb://user-service
+          uri: http://user-service:8051
           predicates:
-            - Path=/auth/register
+            - Path=/api/auth/register
           filters:
-            - RewritePath=/auth/register, /api/User/register
+            - RewritePath=/api/auth/register, /api/User/register
 
         - id: auth-login
-          uri: lb://user-service
+          uri: http://user-service:8051
           predicates:
-            - Path=/auth/login
+            - Path=/api/auth/login
           filters:
-            - RewritePath=/auth/login, /api/User/login
+            - RewritePath=/api/auth/login, /api/User/login
 
         # User service routes
         - id: user-service
-          uri: lb://user-service
+          uri: http://user-service:8051
           predicates:
             - Path=/api/users/**
           filters:
@@ -75,7 +76,7 @@ spring:
 
         # Account service routes
         - id: account-service
-          uri: lb://account-service
+          uri: http://account-service:8052
           predicates:
             - Path=/api/accounts/**
           filters:
@@ -87,7 +88,7 @@ spring:
 
         # Admin service routes
         - id: admin-service
-          uri: lb://orchestration-service
+          uri: http://orchestration-service:8080
           predicates:
             - Path=/api/admin/**
           filters:
@@ -98,7 +99,7 @@ spring:
                   - ROLE_ADMIN
 
         - id: fund-transfer-service
-          uri: lb://fund-transfer-service
+          uri: http://fund-transfer-service:8080
           predicates:
             - Path=/api/transfers/**
           filters:
@@ -108,7 +109,7 @@ spring:
                 refreshPeriod: 1000
 
         - id: transaction-service
-          uri: lb://transaction-service
+          uri: http://transaction-service:8080
           predicates:
             - Path=/api/transactions/**
           filters:
@@ -118,7 +119,7 @@ spring:
                 refreshPeriod: 1000
 
         - id: card-service
-          uri: lb://card-service
+          uri: http://card-service:8080
           predicates:
             - Path=/api/cards/**
           filters:
@@ -128,7 +129,7 @@ spring:
                 refreshPeriod: 1000
 
         - id: loan-service
-          uri: lb://loan-service
+          uri: http://loan-service:8080
           predicates:
             - Path=/api/loans/**
           filters:
@@ -138,7 +139,7 @@ spring:
                 refreshPeriod: 1000
 
         - id: notification-service
-          uri: lb://notification-service
+          uri: http://notification-service:8080
           predicates:
             - Path=/api/notifications/**
           filters:

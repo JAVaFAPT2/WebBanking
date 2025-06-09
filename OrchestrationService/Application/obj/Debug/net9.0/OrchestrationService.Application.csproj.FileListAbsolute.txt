@@ -1,0 +1,16 @@
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\bin\Debug\net9.0\OrchestrationService.Application.deps.json
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\bin\Debug\net9.0\OrchestrationService.Application.dll
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\bin\Debug\net9.0\OrchestrationService.Application.pdb
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\bin\Debug\net9.0\OrchestrationService.Domain.dll
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\bin\Debug\net9.0\OrchestrationService.Domain.pdb
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\OrchestrationService.Application.csproj.AssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\OrchestrationService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\OrchestrationService.Application.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\OrchestrationService.Application.AssemblyInfo.cs
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\OrchestrationService.Application.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\OrchestrationService.Application.sourcelink.json
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\Orchestr.BCC706A9.Up2Date
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\OrchestrationService.Application.dll
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\refint\OrchestrationService.Application.dll
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\OrchestrationService.Application.pdb
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Application\obj\Debug\net9.0\ref\OrchestrationService.Application.dll

@@ -60,8 +60,8 @@ class LoginViewModel(private val authRepository: AuthRepository = AuthRepository
         }
     }
 
-    fun register(username: String, email: String, password: String, confirmPassword: String, firstName: String, lastName: String, address: String, phoneNumber: String) {
-        if (username.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank() || firstName.isBlank() || lastName.isBlank() || address.isBlank() || phoneNumber.isBlank()) {
+    fun register(username: String, email: String, password: String, confirmPassword: String, firstName: String, lastName: String, phoneNumber: String, dateOfBirth: String, street: String, city: String, state: String, zipCode: String, country: String) {
+        if (username.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank() || firstName.isBlank() || lastName.isBlank() || phoneNumber.isBlank() || dateOfBirth.isBlank() || street.isBlank() || city.isBlank() || state.isBlank() || zipCode.isBlank() || country.isBlank()) {
             registerUiState = RegisterUiState.Error("All fields are required.")
             return
         }
@@ -73,14 +73,20 @@ class LoginViewModel(private val authRepository: AuthRepository = AuthRepository
             registerUiState = RegisterUiState.Loading
             val result = authRepository.register(
                 RegistrationRequest(
-                    username = username,
-                    email = email,
-                    password = password,
-                    confirmPassword = confirmPassword,
-                    firstName = firstName,
-                    lastName = lastName,
-                    address = address,
-                    phoneNumber = phoneNumber
+                    Username = username,
+                    Email = email,
+                    Password = password,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PhoneNumber = phoneNumber,
+                    DateOfBirth = dateOfBirth,
+                    Address = com.webbanking.kmm.shared.model.Address(
+                        Street = street,
+                        City = city,
+                        State = state,
+                        ZipCode = zipCode,
+                        Country = country
+                    )
                 )
             )
             registerUiState = when (result) {

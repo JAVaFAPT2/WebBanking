@@ -5,6 +5,8 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -150,8 +152,13 @@ fun RegisterScreen(
     var confirmPassword by remember { mutableStateOf("") }
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
-    var address by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
+    var dateOfBirth by remember { mutableStateOf("") }
+    var street by remember { mutableStateOf("") }
+    var city by remember { mutableStateOf("") }
+    var state by remember { mutableStateOf("") }
+    var zipCode by remember { mutableStateOf("") }
+    var country by remember { mutableStateOf("") }
     val registerUiState = loginViewModel.registerUiState
     val context = LocalContext.current
 
@@ -172,12 +179,14 @@ fun RegisterScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Text("Register", style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(32.dp))
+        
         OutlinedTextField(
             value = username,
             onValueChange = { username = it },
@@ -186,6 +195,7 @@ fun RegisterScreen(
             singleLine = true
         )
         Spacer(modifier = Modifier.height(16.dp))
+        
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
@@ -194,6 +204,7 @@ fun RegisterScreen(
             singleLine = true
         )
         Spacer(modifier = Modifier.height(16.dp))
+        
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -203,6 +214,7 @@ fun RegisterScreen(
             singleLine = true
         )
         Spacer(modifier = Modifier.height(16.dp))
+        
         OutlinedTextField(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
@@ -212,6 +224,7 @@ fun RegisterScreen(
             singleLine = true
         )
         Spacer(modifier = Modifier.height(16.dp))
+        
         OutlinedTextField(
             value = firstName,
             onValueChange = { firstName = it },
@@ -220,6 +233,7 @@ fun RegisterScreen(
             singleLine = true
         )
         Spacer(modifier = Modifier.height(16.dp))
+        
         OutlinedTextField(
             value = lastName,
             onValueChange = { lastName = it },
@@ -228,14 +242,7 @@ fun RegisterScreen(
             singleLine = true
         )
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            value = address,
-            onValueChange = { address = it },
-            label = { Text("Address") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
-        )
-        Spacer(modifier = Modifier.height(16.dp))
+        
         OutlinedTextField(
             value = phoneNumber,
             onValueChange = { phoneNumber = it },
@@ -243,14 +250,70 @@ fun RegisterScreen(
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
         )
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        OutlinedTextField(
+            value = dateOfBirth,
+            onValueChange = { dateOfBirth = it },
+            label = { Text("Date of Birth (YYYY-MM-DD)") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        OutlinedTextField(
+            value = street,
+            onValueChange = { street = it },
+            label = { Text("Street") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        OutlinedTextField(
+            value = city,
+            onValueChange = { city = it },
+            label = { Text("City") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        OutlinedTextField(
+            value = state,
+            onValueChange = { state = it },
+            label = { Text("State") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        OutlinedTextField(
+            value = zipCode,
+            onValueChange = { zipCode = it },
+            label = { Text("Zip Code") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        OutlinedTextField(
+            value = country,
+            onValueChange = { country = it },
+            label = { Text("Country") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
         Spacer(modifier = Modifier.height(24.dp))
+        
         if (registerUiState is RegisterUiState.Error) {
             Text(registerUiState.message, color = MaterialTheme.colorScheme.error)
             Spacer(modifier = Modifier.height(8.dp))
         }
+        
         Button(
             onClick = {
-                loginViewModel.register(username, email, password, confirmPassword, firstName, lastName, address, phoneNumber)
+                loginViewModel.register(username, email, password, confirmPassword, firstName, lastName, phoneNumber, dateOfBirth, street, city, state, zipCode, country)
             },
             modifier = Modifier.fillMaxWidth(),
             enabled = registerUiState != RegisterUiState.Loading

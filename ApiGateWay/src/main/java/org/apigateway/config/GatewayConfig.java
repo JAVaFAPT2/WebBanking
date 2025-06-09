@@ -57,15 +57,15 @@ public class GatewayConfig {
                 // Public routes - no RBAC required
                 .route("user-service-auth-register", r -> r.path("/api/auth/register")
                         .filters(f -> f.rewritePath("/api/auth/register", "/api/User/register"))
-                        .uri("http://user-service:5001"))
+                        .uri("http://user-service:8051"))
                 .route("user-service-auth", r -> r.path("/api/auth/**")
-                        .uri("http://user-service:5001"))
+                        .uri("http://user-service:8051"))
 
                 // User service routes - require USER role
                 .route("user-service", r -> r.path("/api/users/**")
                         .filters(f -> f.filter(rbacFilter.apply(config ->
                                 config.setRequiredRoles(Arrays.asList("USER", "ADMIN")))))
-                        .uri("http://user-service:5001"))
+                        .uri("http://user-service:8051"))
 
                 // Account service routes - require USER role
                 .route("account-service", r -> r.path("/api/accounts/**")

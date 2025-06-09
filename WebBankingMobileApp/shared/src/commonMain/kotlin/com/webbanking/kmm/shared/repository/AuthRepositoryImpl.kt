@@ -16,7 +16,7 @@ class AuthRepositoryImpl : AuthRepository {
 
     override suspend fun login(loginRequest: LoginRequest): NetworkResult<AuthResponse> {
         return try {
-            val response = httpClient.post(ApiClient.constructUrl("auth/login")) {
+            val response = httpClient.post(ApiClient.constructUrl("api/auth/login")) {
                 contentType(ContentType.Application.Json)
                 setBody(loginRequest)
             }
@@ -34,7 +34,7 @@ class AuthRepositoryImpl : AuthRepository {
 
     override suspend fun register(registrationRequest: RegistrationRequest): NetworkResult<GenericApiResponse<AuthResponse>> {
         return try {
-            val response = httpClient.post(ApiClient.constructUrl("auth/register")) {
+            val response = httpClient.post(ApiClient.constructUrl("api/auth/register")) {
                 contentType(ContentType.Application.Json)
                 setBody(registrationRequest)
             }

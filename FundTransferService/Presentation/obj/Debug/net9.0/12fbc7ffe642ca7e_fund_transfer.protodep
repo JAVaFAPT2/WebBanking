@@ -1,0 +1,4 @@
+obj\Debug\net9.0\Protos/FundTransfer.cs \
+obj\Debug\net9.0\Protos/FundTransferGrpc.cs: C:/Users/Admin/.nuget/packages/grpc.tools/2.71.0/build/native/include/google/protobuf/timestamp.proto\
+ C:/Users/Admin/.nuget/packages/grpc.tools/2.71.0/build/native/include/google/protobuf/empty.proto\
+ Protos/fund_transfer.proto

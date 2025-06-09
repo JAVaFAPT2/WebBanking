@@ -191,7 +191,6 @@ C:\Users\Admin\Documents\GitHub\WebBanking\LoanService\Presentation\obj\Debug\ne
 C:\Users\Admin\Documents\GitHub\WebBanking\LoanService\Presentation\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\Admin\Documents\GitHub\WebBanking\LoanService\Presentation\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\Admin\Documents\GitHub\WebBanking\LoanService\Presentation\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\Admin\Documents\GitHub\WebBanking\LoanService\Presentation\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\Admin\Documents\GitHub\WebBanking\LoanService\Presentation\obj\Debug\net9.0\Presenta.BC777DBE.Up2Date
 C:\Users\Admin\Documents\GitHub\WebBanking\LoanService\Presentation\obj\Debug\net9.0\Presentation.dll
 C:\Users\Admin\Documents\GitHub\WebBanking\LoanService\Presentation\obj\Debug\net9.0\refint\Presentation.dll

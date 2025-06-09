@@ -1,0 +1,13 @@
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\bin\Debug\net9.0\OrchestrationService.Domain.deps.json
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\bin\Debug\net9.0\OrchestrationService.Domain.dll
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\bin\Debug\net9.0\OrchestrationService.Domain.pdb
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\OrchestrationService.Domain.csproj.AssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\OrchestrationService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\OrchestrationService.Domain.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\OrchestrationService.Domain.AssemblyInfo.cs
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\OrchestrationService.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\OrchestrationService.Domain.sourcelink.json
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\OrchestrationService.Domain.dll
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\refint\OrchestrationService.Domain.dll
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\OrchestrationService.Domain.pdb
+C:\Users\Admin\Documents\GitHub\WebBanking\OrchestrationService\Domain\obj\Debug\net9.0\ref\OrchestrationService.Domain.dll

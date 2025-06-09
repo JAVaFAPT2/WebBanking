@@ -4,6 +4,7 @@ using Domain.Interface;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using BCrypt.Net;
 
 namespace Application.CQRS.Handler
 {
@@ -23,14 +24,15 @@ namespace Application.CQRS.Handler
                 return null;
 
             // For now, just check if password matches (dummy logic, replace with real hash check)
-            if (user.PasswordHash != request.Password) // Replace with BCrypt check in real code
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
                 return null;
 
             return new AuthResponse
             {
                 Token = "dummy-token",
                 Username = user.Username,
-                Email = user.Email
+                Email = user.Email,
+                UserId = user.Id
             };
         }
     }

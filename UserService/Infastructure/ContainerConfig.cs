@@ -17,8 +17,11 @@ using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Shared.Behaviors;
 using StackExchange.Redis;
+using System;
+using System.Linq;
 
 namespace Infrastructure;
 
@@ -98,21 +101,63 @@ public static class ContainerConfig
             .AsSelf()
             .InstancePerLifetimeScope();
 
-        // Register Kafka producer
+        // Register Kafka producer with fallback mechanism
         builder.Register(c =>
         {
             var config = c.Resolve<IConfiguration>();
-            return new ProducerBuilder<Null, string>(new ProducerConfig
+            var bootstrapServers = config["Kafka:BootstrapServers"];
+            bool allowLocalFallback = false;
+            if (bool.TryParse(config["Kafka:AllowLocalFallback"], out bool result))
             {
-                BootstrapServers = config["Kafka:BootstrapServers"]
-            }).Build();
-        }).As<IProducer<Null, string>>().InstancePerLifetimeScope();
+                allowLocalFallback = result;
+            }
+            
+            try
+            {
+                return new ProducerBuilder<Null, string>(new ProducerConfig
+                {
+                    BootstrapServers = bootstrapServers,
+                    // Fix: Set Acks to All for idempotence
+                    Acks = Acks.All,
+                    MessageSendMaxRetries = 3,
+                    RetryBackoffMs = 1000,
+                    EnableIdempotence = true
+                }).Build();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Warning: Failed to connect to Kafka at {bootstrapServers}. Error: {ex.Message}");
+                
+                // Return null instead of a dummy producer
+                return null;
+            }
+        }).As<IProducer<Null, string>>().SingleInstance();
 
-        // Register Redis connection
+        // Register Redis connection with fallback mechanism
         builder.Register(c =>
         {
             var config = c.Resolve<IConfiguration>();
-            return ConnectionMultiplexer.Connect(config["Redis:ConnectionString"] ?? throw new InvalidOperationException());
+            var redisConnectionString = config["Redis:ConnectionString"];
+            bool allowLocalFallback = false;
+            if (bool.TryParse(config["Redis:AllowLocalFallback"], out bool result))
+            {
+                allowLocalFallback = result;
+            }
+            
+            try
+            {
+                if (string.IsNullOrEmpty(redisConnectionString))
+                    throw new InvalidOperationException("Redis connection string is missing");
+                
+                return ConnectionMultiplexer.Connect(redisConnectionString);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Warning: Failed to connect to Redis at {redisConnectionString}. Error: {ex.Message}");
+                
+                // Return null instead of a dummy connection multiplexer
+                return null;
+            }
         }).As<IConnectionMultiplexer>().SingleInstance();
 
         // Populate services
