@@ -2261,6 +2261,23 @@
           "lib/net6.0/Moq.dll": {}
         }
       },
+      "MySqlConnector/2.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2"
+        },
+        "compile": {
+          "lib/net9.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -2349,6 +2366,23 @@
         "runtime": {
           "lib/net8.0/Polly.Core.dll": {
             "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Pomelo.EntityFrameworkCore.MySql/9.0.0-preview.3.efcore.9.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "[9.0.0, 9.0.999]",
+          "MySqlConnector": "2.4.0"
+        },
+        "compile": {
+          "lib/net8.0/Pomelo.EntityFrameworkCore.MySql.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Pomelo.EntityFrameworkCore.MySql.dll": {
+            "related": ".xml"
           }
         }
       },
@@ -3662,7 +3696,7 @@
           "Confluent.SchemaRegistry": "2.10.0",
           "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.4",
-          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.4",
+          "Pomelo.EntityFrameworkCore.MySql": "9.0.0-preview.3.efcore.9.0.0",
           "Shared": "1.0.0"
         },
         "compile": {
@@ -6791,6 +6825,35 @@
         "readme.md"
       ]
     },
+    "MySqlConnector/2.4.0": {
+      "sha512": "78M+gVOjbdZEDIyXQqcA7EYlCGS3tpbUELHvn6638A2w0pkPI625ixnzsa5staAd3N9/xFmPJtkKDYwsXpFi/w==",
+      "type": "package",
+      "path": "mysqlconnector/2.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/MySqlConnector.dll",
+        "lib/net462/MySqlConnector.xml",
+        "lib/net471/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.xml",
+        "lib/net48/MySqlConnector.dll",
+        "lib/net48/MySqlConnector.xml",
+        "lib/net6.0/MySqlConnector.dll",
+        "lib/net6.0/MySqlConnector.xml",
+        "lib/net8.0/MySqlConnector.dll",
+        "lib/net8.0/MySqlConnector.xml",
+        "lib/net9.0/MySqlConnector.dll",
+        "lib/net9.0/MySqlConnector.xml",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.xml",
+        "lib/netstandard2.1/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.xml",
+        "logo.png",
+        "mysqlconnector.2.4.0.nupkg.sha512",
+        "mysqlconnector.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.1": {
       "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
@@ -6950,6 +7013,21 @@
         "package-readme.md",
         "polly.core.8.5.2.nupkg.sha512",
         "polly.core.nuspec"
+      ]
+    },
+    "Pomelo.EntityFrameworkCore.MySql/9.0.0-preview.3.efcore.9.0.0": {
+      "sha512": "jNC/DLeRfFpgklIoSYkX3VoQy+ILY0wIZRtiYZrWknSv3u7BERM1XJcGDY9gt+RliPI07eUHE8utc315cH35hw==",
+      "type": "package",
+      "path": "pomelo.entityframeworkcore.mysql/9.0.0-preview.3.efcore.9.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net8.0/Pomelo.EntityFrameworkCore.MySql.dll",
+        "lib/net8.0/Pomelo.EntityFrameworkCore.MySql.xml",
+        "pomelo.entityframeworkcore.mysql.9.0.0-preview.3.efcore.9.0.0.nupkg.sha512",
+        "pomelo.entityframeworkcore.mysql.nuspec"
       ]
     },
     "Serilog/4.2.0": {
@@ -9891,23 +9969,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Users\\dangn\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Testc\\Testc.csproj",
+      "projectUniqueName": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Testc\\Testc.csproj",
       "projectName": "Testc",
-      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Testc\\Testc.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Testc\\obj\\",
+      "projectPath": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Testc\\Testc.csproj",
+      "packagesPath": "C:\\Users\\dangn\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Testc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dangn\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -9923,11 +10001,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Application\\Application.csproj"
+            "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Application\\Application.csproj"
             },
-            "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Presentation.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Presentation.csproj"
+            "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Presentation.csproj": {
+              "projectPath": "C:\\Users\\dangn\\OneDrive\\Documents\\GitHub\\WebBanking\\UserService\\Presentation\\Presentation.csproj"
             }
           }
         }

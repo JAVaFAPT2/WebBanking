@@ -9,7 +9,6 @@ import com.webbanking.kmm.shared.model.AuthResponse
 import com.webbanking.kmm.shared.model.LoginRequest
 import com.webbanking.kmm.shared.model.RegistrationRequest
 import com.webbanking.kmm.shared.repository.AuthRepository
-import com.webbanking.kmm.shared.repository.AuthRepositoryImpl // Direct instantiation for simplicity
 import com.webbanking.kmm.shared.repository.NetworkResult
 import kotlinx.coroutines.launch
 
@@ -27,7 +26,7 @@ sealed class RegisterUiState {
     data class Error(val message: String) : RegisterUiState()
 }
 
-class LoginViewModel(private val authRepository: AuthRepository = AuthRepositoryImpl()) : ViewModel() {
+class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
     var uiState by mutableStateOf<LoginUiState>(LoginUiState.Idle)
         private set

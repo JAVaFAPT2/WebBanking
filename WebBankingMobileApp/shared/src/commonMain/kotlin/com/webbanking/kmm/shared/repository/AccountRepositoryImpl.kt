@@ -21,13 +21,15 @@ class AccountRepositoryImpl : AccountRepository {
         }
     }
 
-    override suspend fun getUserAccounts(): NetworkResult<List<UserAccount>> {
+    override suspend fun getUserAccounts(page: Int, size: Int): NetworkResult<List<UserAccount>> {
         if (!AuthTokenManager.hasToken()) {
             return NetworkResult.Error(Exception("Not authenticated. No token found."))
         }
         return try {
             val response = httpClient.get(ApiClient.constructUrl("accounts")) {
                 addAuthHeader()
+                parameter("page", page)
+                parameter("size", size)
             }
             if (response.status == HttpStatusCode.OK) {
                 NetworkResult.Success(response.body())

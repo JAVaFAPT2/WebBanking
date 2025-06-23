@@ -1,6 +1,16 @@
 [
   {
     "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "GlobalHealth",
+    "RelativePath": "api/health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
     "Method": "CreateUser",
     "RelativePath": "api/User",
     "HttpMethod": "POST",
@@ -10,22 +20,6 @@
       {
         "Name": "command",
         "Type": "Application.CQRS.Commands.CreateUserCommand",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.UserController",
-    "Method": "UpdateUser",
-    "RelativePath": "api/User",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "command",
-        "Type": "Application.CQRS.Commands.UpdateUserCommand",
         "IsRequired": true
       }
     ],
@@ -43,15 +37,15 @@
   },
   {
     "ContainingType": "Presentation.Controllers.UserController",
-    "Method": "DeleteUser",
-    "RelativePath": "api/User/{userId}",
-    "HttpMethod": "DELETE",
+    "Method": "UpdateUser",
+    "RelativePath": "api/User",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.Guid",
+        "Name": "command",
+        "Type": "Application.CQRS.Commands.UpdateUserCommand",
         "IsRequired": true
       }
     ],
@@ -75,6 +69,22 @@
   },
   {
     "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/User/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
     "Method": "GetUserByEmail",
     "RelativePath": "api/User/email/{email}",
     "HttpMethod": "GET",
@@ -84,6 +94,163 @@
       {
         "Name": "email",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/User/forgot",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Presentation.Dto.ForgotPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "Health",
+    "RelativePath": "api/User/health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "SubmitKycDocument",
+    "RelativePath": "api/User/kyc/document",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DocumentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "IssuingCountry",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ExpiryDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "GetMyKycDocuments",
+    "RelativePath": "api/User/kyc/documents",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "GetKycDocument",
+    "RelativePath": "api/User/kyc/documents/{documentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "VerifyKycDocument",
+    "RelativePath": "api/User/kyc/documents/{documentId}/verify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "verification",
+        "Type": "Presentation.Dto.KycVerificationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "api/User/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Presentation.Dto.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "Register",
+    "RelativePath": "api/User/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Application.CQRS.Commands.CreateUserCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/User/reset",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Presentation.Dto.ResetPasswordRequest",
         "IsRequired": true
       }
     ],

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f9ef32b5-d874-4063-a239-ff97b50966e5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/ProjectEvaluation/userservice.metadata.v9.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/ProjectEvaluation/userservice.projects.v9.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/ProjectEvaluation/userservice.strings.v9.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/UserService/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/.vs/UserService/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/UserService/FileContentIndex/500addfe-5515-44bd-a9be-41c91bc3f98e.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/UserService/FileContentIndex/5111ceb3-b208-429d-b1d6-327d4c1c3bcc.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/UserService/FileContentIndex/64ad67c5-3d15-44c9-a8a3-a4c2491574bd.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/UserService/FileContentIndex/6d043fa2-79be-4550-8c56-468a7b161903.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/UserService/FileContentIndex/b684fe15-e2bf-4d67-8035-068f46679a9f.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/.vs/UserService/copilot-chat/976458c2/sessions/435b1574-6a90-4e54-97c2-cfec1622062d" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/.vs/UserService/copilot-chat/976458c2/sessions/435b1574-6a90-4e54-97c2-cfec1622062d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Application/CQRS/Handler/DeleteUserCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Application/CQRS/Handler/DeleteUserCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Application/obj/Application.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Application/obj/Application.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Application/obj/Application.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Application/obj/Application.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Application/obj/Debug/net9.0/Application.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Application/obj/Debug/net9.0/Application.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Application/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Application/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Domain/Events/UserUpdatedEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Domain/Events/UserUpdatedEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Domain/obj/Debug/net9.0/Domain.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Domain/obj/Debug/net9.0/Domain.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Domain/obj/Domain.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Domain/obj/Domain.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Domain/obj/Domain.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Domain/obj/Domain.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Domain/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Domain/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Infastructure/obj/Debug/net9.0/Infrastructure.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Infastructure/obj/Debug/net9.0/Infrastructure.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Infastructure/obj/Infrastructure.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Infastructure/obj/Infrastructure.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Infastructure/obj/Infrastructure.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Infastructure/obj/Infrastructure.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Infastructure/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Infastructure/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Presentation/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Presentation/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Presentation/obj/Debug/net9.0/Presentation.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Presentation/obj/Debug/net9.0/Presentation.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Presentation/obj/Presentation.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Presentation/obj/Presentation.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Presentation/obj/Presentation.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Presentation/obj/Presentation.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Presentation/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Presentation/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Shared/obj/Debug/net9.0/Shared.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Shared/obj/Debug/net9.0/Shared.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Shared/obj/Shared.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Shared/obj/Shared.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Shared/obj/Shared.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Shared/obj/Shared.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Shared/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Shared/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Testc/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Testc" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Testc/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Testc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Testc/obj/Debug/net9.0/Testc.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Testc/obj/Testc.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Testc/obj/Testc.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Testc/obj/Testc.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Testc/obj/Testc.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/Testc/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/Testc/obj/project.assets.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="Record" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="v3-CachingService" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2uwisjqTsnBLCZFiarCWqecL7x3" />
+  <component name="ProjectViewState">
+    <option name="flattenModules" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.monitorService/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monitorService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monitorService [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monitorService [deploy].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monitorService [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monitorService [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monitorService [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monitorService [verify].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ChatTagsLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAccountHistoryMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAccountsIdsRefresh&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAssignOrphanedChatsToActiveAccount&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyConvertUrlToCodebaseName&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyHistoryLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyMigrateChatHistory-v2&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyProjectSettingsMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.DeprecatedChatLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ToggleCodyToolWindowAfterMigration&quot;: &quot;true&quot;,
+    &quot;Spring Boot.MonitorServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;v3-CSharp-Business-Services&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;liberica-full-21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dangn/OneDrive/Documents/GitHub/WebBanking/MessageBroker&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Docker.monitorService/Dockerfile">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="user-service" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="user-service" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AccountServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="account-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.accountservice.AccountServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AnalyzeServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="analyzeService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.analyzeservice.AnalyzeServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGateWayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ApiGateWay" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.apigateway.ApiGateWayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuditServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="audit-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.auditservice.AuditServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CachingServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="caching-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.cachingservice.CachingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CachingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="caching-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.cachingservice.CachingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CircuitBreakerServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="circuit-breaker-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.circuitbreakerservice.CircuitBreakerServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.configserver.ConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoggingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="logging-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.loggingservice.LoggingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MessageBrokerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="MessageBroker" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.messagebroker.MessageBrokerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MonitorServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="monitorService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.monitorservice.MonitorServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="notification-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.notificationservice.NotificationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrchestrationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="orchestration-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.orchestrationservice.OrchestrationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="user-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="service.userservice.UserServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="monitorService/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="monitorService/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.monitorService/Dockerfile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f9ef32b5-d874-4063-a239-ff97b50966e5" name="Changes" comment="" />
+      <created>1743166248520</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743166248520</updated>
+      <workItem from="1743166251927" duration="15000" />
+      <workItem from="1743505758191" duration="10449000" />
+      <workItem from="1744110312804" duration="2393000" />
+      <workItem from="1744198851974" duration="443000" />
+      <workItem from="1744199310541" duration="85000" />
+      <workItem from="1744201556435" duration="70000" />
+      <workItem from="1744201656330" duration="7000" />
+      <workItem from="1744201709492" duration="61000" />
+      <workItem from="1744283747989" duration="701000" />
+      <workItem from="1744371107072" duration="5005000" />
+      <workItem from="1744715284927" duration="7608000" />
+      <workItem from="1744723259545" duration="1416000" />
+      <workItem from="1744891168667" duration="5583000" />
+      <workItem from="1745321681179" duration="19518000" />
+      <workItem from="1746529684272" duration="1121000" />
+      <workItem from="1746535256782" duration="23000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

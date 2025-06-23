@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.webbanking.kmm.shared.model.UserAccount
 import com.webbanking.kmm.shared.repository.AccountRepository
-import com.webbanking.kmm.shared.repository.AccountRepositoryImpl // Direct instantiation
 import com.webbanking.kmm.shared.repository.NetworkResult
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 sealed class AccountListUiState {
     object Loading : AccountListUiState()
@@ -18,11 +20,13 @@ sealed class AccountListUiState {
     object NoAccounts : AccountListUiState() // For when the list is empty but no error
 }
 
-class AccountViewModel(private val accountRepository: AccountRepository = AccountRepositoryImpl()) : ViewModel() {
+class AccountViewModel(private val accountRepository: AccountRepository) : ViewModel() {
 
     var uiState by mutableStateOf<AccountListUiState>(AccountListUiState.Loading)
         private set
 
+    // Pagination helpers
+    private var currentPage = 1
     fun fetchUserAccounts() {
         viewModelScope.launch {
             uiState = AccountListUiState.Loading

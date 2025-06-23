@@ -3,6 +3,7 @@ package com.webbanking.kmm.androidApp.account
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material3.*
@@ -10,14 +11,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import org.koin.androidx.compose.koinViewModel
 import com.webbanking.kmm.shared.model.UserAccount
+import com.webbanking.kmm.androidApp.ui.components.SecondaryButton
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.runtime.LaunchedEffect
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.snapshotFlow
+import androidx.compose.foundation.lazy.LazyListState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AccountListScreen(
-    accountViewModel: AccountViewModel = viewModel(),
-    onLogout: () -> Unit
+    accountViewModel: AccountViewModel = koinViewModel(),
+    onLogout: () -> Unit,
+    onAccountSelected: (UserAccount) -> Unit = {}
 ) {
     val uiState by rememberUpdatedState(accountViewModel.uiState)
 
@@ -52,7 +62,22 @@ fun AccountListScreen(
                     if (state.accounts.isEmpty()) {
                         Text("No accounts found.")
                     } else {
-                        AccountListView(accounts = state.accounts)
+                        val listState = rememberLazyListState()
+                        val swipeState = rememberSwipeRefreshState(isRefreshing = accountViewModel.isRefreshing.collectAsState().value)
+
+                        SwipeRefresh(state = swipeState, onRefresh = { accountViewModel.refresh() }) {
+                            AccountListView(accounts = state.accounts, onAccountSelected, listState)
+                        }
+
+                        // detect end
+                        LaunchedEffect(listState) {
+                            snapshotFlow { listState.layoutInfo }
+                                .collect { info ->
+                                    val total = info.totalItemsCount
+                                    val last = info.visibleItemsInfo.lastOrNull()?.index ?: 0
+                                    if (last >= total - 3) accountViewModel.loadNextPage()
+                                }
+                        }
                     }
                 }
                 is AccountListUiState.NoAccounts -> {
@@ -62,9 +87,7 @@ fun AccountListScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Error: ${state.message}", color = MaterialTheme.colorScheme.error)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Button(onClick = { accountViewModel.fetchUserAccounts() }) {
-                            Text("Retry")
-                        }
+                        SecondaryButton(text = "Retry", onClick = { accountViewModel.fetchUserAccounts() })
                     }
                 }
             }
@@ -73,21 +96,22 @@ fun AccountListScreen(
 }
 
 @Composable
-fun AccountListView(accounts: List<UserAccount>) {
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
+fun AccountListView(accounts: List<UserAccount>, onAccountSelected: (UserAccount) -> Unit, listState: LazyListState) {
+    LazyColumn(modifier = Modifier.fillMaxSize(), state = listState) {
         items(accounts) { account ->
-            AccountItem(account = account)
+            AccountItem(account = account, onClick = { onAccountSelected(account) })
             Divider()
         }
     }
 }
 
 @Composable
-fun AccountItem(account: UserAccount) {
+fun AccountItem(account: UserAccount, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
+            .padding(vertical = 8.dp)
+            .clickable { onClick() },
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Row(
