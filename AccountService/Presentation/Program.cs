@@ -25,11 +25,12 @@ builder.Host.UseSerilog((context, config) =>
           .Configuration(context.Configuration.GetSection("Serilog"));
 });
 
-// Configure gRPC
+// Configure gRPC and REST API
 builder.Services.AddGrpc();
+builder.Services.AddControllers();
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenLocalhost(5001, o => o.Protocols = HttpProtocols.Http2);
+    options.ListenLocalhost(5001, o => o.Protocols = HttpProtocols.Http1AndHttp2);
 });
 
 // Redis Cache
@@ -97,6 +98,12 @@ using (var scope = app.Services.CreateScope())
 // Use Authentication and Authorization
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Map health checks
+app.MapHealthChecks("/api/health");
+
+// Map REST controllers
+app.MapControllers();
 
 // Map gRPC service
 app.MapGrpcService<Presentation.Services.AccountGrpcService>();

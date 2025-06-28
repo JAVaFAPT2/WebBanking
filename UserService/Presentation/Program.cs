@@ -42,7 +42,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     else
     {
         // Use MySQL for production/Docker
-        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+        options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 21)));
     }
 });
 

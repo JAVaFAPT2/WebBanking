@@ -50,7 +50,7 @@ services:
       context: ./AccountService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=Server=db;Database=AccountService_db;Uid=root;Pwd=root_password;
+      - AccountServiceSettings__Database__ConnectionString=Server=db;Database=AccountService_db;Uid=root;Pwd=root_password;
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
@@ -86,7 +86,7 @@ services:
       context: ./LoanService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=Server=db;Database=LoanService_db;Uid=root;Pwd=root_password;
+      - ConnectionStrings__Database=Server=db;Database=LoanService_db;Uid=root;Pwd=root_password;
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
@@ -180,6 +180,12 @@ services:
       - redis
     networks:
       - webbanking-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8083/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   # Monitor Service
   monitor-service:

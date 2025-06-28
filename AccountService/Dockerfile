@@ -12,4 +12,4 @@ COPY --from=build /app/publish .
 EXPOSE 80
 ENTRYPOINT ["dotnet", "Presentation.dll"]
 
-ENV ConnectionStrings__DefaultConnection=Server=db;Database=AccountService_db;Uid=root;Pwd=root_password;Port=3306; 
+ENV AccountServiceSettings__Database__ConnectionString=Server=db;Database=AccountService_db;Uid=root;Pwd=root_password;Port=3306; 
