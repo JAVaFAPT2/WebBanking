@@ -1,10 +1,10 @@
-using Application.CQRS.Commands.InitiateTransfer;
-using Application.DTOs;
+using FundTransferService.Application.CQRS.Commands.InitiateTransfer;
+using FundTransferService.Application.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Presentation.Controllers;
+namespace FundTransferService.Presentation.Controllers;
 
 [ApiController]
 [Route("transfers")]
@@ -23,7 +23,7 @@ public class TransferController : ControllerBase
     {
         var result = await _mediator.Send(command);
         if (result.IsSuccess)
-            return Ok(result.Value);
+            return Ok(result.TransferId);
         return BadRequest(result.ErrorMessage);
     }
 } 

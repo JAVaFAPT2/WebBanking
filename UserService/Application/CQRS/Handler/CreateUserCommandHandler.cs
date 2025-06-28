@@ -104,7 +104,7 @@ namespace Application.CQRS.Handler
                     });
                     
                     var cacheDuration = _configuration.GetValue<int?>("Redis:DefaultCacheDurationMinutes") ?? 10;
-                    await database.StringSetAsync($"user:{user.Id}", serializedUser, TimeSpan.FromMinutes(cacheDuration), cancellationToken);
+                    await database.StringSetAsync($"user:{user.Id}", serializedUser, TimeSpan.FromMinutes(cacheDuration));
                     _logger?.LogInformation("Cached user {UserId} in Redis for {Duration} minutes", user.Id, cacheDuration);
                 }
                 else

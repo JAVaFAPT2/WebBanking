@@ -1,5 +1,6 @@
 using MediatR;
 using FundTransferService.Domain.ValueObjects;
+using FundTransferService.Application.DTOs;
 
 namespace FundTransferService.Application.CQRS.Commands.InitiateTransfer;
 
@@ -8,4 +9,4 @@ public record InitiateFundTransferCommand(
     Guid ToAccountId,
     Money Amount,
     string? ReferenceNumber // Optional, could be client-provided or generated
-) : IRequest<Guid>; // Returns the ID of the new fund transfer 
+) : IRequest<FundTransferResult>; // Returns the ID of the new fund transfer 

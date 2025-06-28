@@ -32,7 +32,7 @@ Write-Host "Checking service health..." -ForegroundColor Yellow
 # Check API Gateway
 Write-Host "Checking API Gateway..." -ForegroundColor Cyan
 try {
-    $response = Invoke-WebRequest -Uri "http://localhost:8081/actuator/health" -TimeoutSec 10
+    $response = Invoke-WebRequest -Uri "http://localhost:8088/actuator/health" -TimeoutSec 10
     if ($response.StatusCode -eq 200) {
         Write-Host "API Gateway is healthy" -ForegroundColor Green
     } else {
@@ -72,13 +72,13 @@ Write-Host ""
 Write-Host "Development services are ready!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Mobile App Configuration:" -ForegroundColor Cyan
-Write-Host "   API Gateway: http://localhost:8081" -ForegroundColor White
+Write-Host "   API Gateway: http://localhost:8088" -ForegroundColor White
 Write-Host "   User Service: http://localhost:8051" -ForegroundColor White
 Write-Host "   Account Service: http://localhost:8052" -ForegroundColor White
 Write-Host ""
 Write-Host "Useful URLs:" -ForegroundColor Cyan
-Write-Host "   API Gateway Swagger: http://localhost:8081/swagger-ui.html" -ForegroundColor White
-Write-Host "   API Gateway Health: http://localhost:8081/actuator/health" -ForegroundColor White
+Write-Host "   API Gateway Swagger: http://localhost:8088/swagger-ui.html" -ForegroundColor White
+Write-Host "   API Gateway Health: http://localhost:8088/actuator/health" -ForegroundColor White
 Write-Host "   User Service Health: http://localhost:8051/api/User/health" -ForegroundColor White
 Write-Host "   Account Service Health: http://localhost:8052/api/health" -ForegroundColor White
 Write-Host ""

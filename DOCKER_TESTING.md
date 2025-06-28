@@ -29,7 +29,7 @@ Check that all services are healthy:
 
 ```powershell
 # Check API Gateway
-curl http://localhost:8081/actuator/health
+curl http://localhost:8088/actuator/health
 
 # Check User Service
 curl http://localhost:8051/api/User/health
@@ -49,7 +49,7 @@ curl http://localhost:8052/api/health
 
 The mobile app is already configured to connect to the Docker services:
 
-- **API Gateway**: `http://10.0.2.2:8081` (Android emulator localhost)
+- **API Gateway**: `http://10.0.2.2:8088` (Android emulator localhost)
 - **User Service**: `http://10.0.2.2:8051`
 - **Account Service**: `http://10.0.2.2:8052`
 
@@ -59,7 +59,7 @@ The mobile app is already configured to connect to the Docker services:
 
 | Service | Port | Description |
 |---------|------|-------------|
-| API Gateway | 8081 | Main entry point, routing, authentication |
+| API Gateway | 8088 | Main entry point, routing, authentication |
 | User Service | 8051 | User management, authentication |
 | Account Service | 8052 | Account management |
 | Kafka | 9092 | Message broker |
@@ -85,7 +85,7 @@ The mobile app is already configured to connect to the Docker services:
 ### 1. User Registration Test
 
 ```bash
-curl -X POST http://localhost:8081/api/auth/register \
+curl -X POST http://localhost:8088/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser",
@@ -108,7 +108,7 @@ curl -X POST http://localhost:8081/api/auth/register \
 ### 2. User Login Test
 
 ```bash
-curl -X POST http://localhost:8081/api/auth/login \
+curl -X POST http://localhost:8088/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser",
@@ -144,7 +144,7 @@ docker-compose -f docker-compose.dev.yml logs -f account-service
 
 ```powershell
 # API Gateway Health
-curl http://localhost:8081/actuator/health
+curl http://localhost:8088/actuator/health
 
 # User Service Health
 curl http://localhost:8051/api/User/health
@@ -155,18 +155,18 @@ curl http://localhost:8052/api/health
 
 ### Swagger Documentation
 
-- **API Gateway Swagger**: http://localhost:8081/swagger-ui.html
+- **API Gateway Swagger**: http://localhost:8088/swagger-ui.html
 - **User Service Swagger**: http://localhost:8051/swagger
 - **Account Service Swagger**: http://localhost:8052/swagger
 
-## 🛠️ Troubleshooting
+## ��️ Troubleshooting
 
 ### Common Issues
 
 #### 1. Port Already in Use
 ```powershell
 # Check what's using the port
-netstat -ano | findstr :8081
+netstat -ano | findstr :8088
 
 # Kill the process if needed
 taskkill /PID <PID> /F

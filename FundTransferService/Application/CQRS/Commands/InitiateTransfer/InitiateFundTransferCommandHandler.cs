@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using FundTransferService.Domain.Configuration;
 using Microsoft.Extensions.Options;
 using FundTransferService.Application.Messaging;
+using FundTransferService.Application.DTOs;
 
 namespace FundTransferService.Application.CQRS.Commands.InitiateTransfer;
 
-public class InitiateFundTransferCommandHandler : IRequestHandler<InitiateFundTransferCommand, Guid>
+public class InitiateFundTransferCommandHandler : IRequestHandler<InitiateFundTransferCommand, FundTransferResult>
 {
     private readonly IFundTransferRepository _fundTransferRepository;
     private readonly ILogger<InitiateFundTransferCommandHandler> _logger;
@@ -32,57 +33,65 @@ public class InitiateFundTransferCommandHandler : IRequestHandler<InitiateFundTr
         _kafkaSettings = kafkaSettingsOptions.Value ?? throw new ArgumentNullException(nameof(kafkaSettingsOptions));
     }
 
-    public async Task<Guid> Handle(InitiateFundTransferCommand request, CancellationToken cancellationToken)
+    public async Task<FundTransferResult> Handle(InitiateFundTransferCommand request, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Initiating fund transfer from {FromAccountId} to {ToAccountId} for {Amount} {Currency}",
-            request.FromAccountId, request.ToAccountId, request.Amount.Amount, request.Amount.Currency);
-
-        // Basic validation (more complex validation should be in the validator)
-        if (request.FromAccountId == Guid.Empty || request.ToAccountId == Guid.Empty || request.Amount.Amount <= 0)
-        {
-            _logger.LogError("Invalid fund transfer request parameters.");
-            throw new ArgumentException("Invalid fund transfer request parameters.");
-        }
-
-        var transfer = FundTransfer.Create(
-            request.FromAccountId,
-            request.ToAccountId,
-            request.Amount,
-            request.ReferenceNumber
-        );
-
-        await _fundTransferRepository.AddAsync(transfer, cancellationToken);
-        _logger.LogInformation("Fund transfer entity {TransferId} created and persisted with status {Status}.", transfer.Id, transfer.Status);
-
-        var eventToPublish = new FundTransferInitiatedEvent(
-            transfer.Id,
-            transfer.FromAccountId,
-            transfer.ToAccountId,
-            transfer.Amount,
-            transfer.ReferenceNumber ?? string.Empty,
-            transfer.CreatedAt,
-            transfer.Status
-        );
-
         try
         {
-            string topic = _kafkaSettings.ProducerTopic;
-            if (string.IsNullOrEmpty(topic))
+            _logger.LogInformation("Initiating fund transfer from {FromAccountId} to {ToAccountId} for {Amount} {Currency}",
+                request.FromAccountId, request.ToAccountId, request.Amount.Amount, request.Amount.Currency);
+
+            // Basic validation (more complex validation should be in the validator)
+            if (request.FromAccountId == Guid.Empty || request.ToAccountId == Guid.Empty || request.Amount.Amount <= 0)
             {
-                _logger.LogError("Kafka producer topic is not configured. Cannot send FundTransferInitiatedEvent.");
+                _logger.LogError("Invalid fund transfer request parameters.");
+                return new FundTransferResult(false, null, "Invalid fund transfer request parameters.");
             }
-            else
+
+            var transfer = FundTransfer.Create(
+                request.FromAccountId,
+                request.ToAccountId,
+                request.Amount,
+                request.ReferenceNumber
+            );
+
+            await _fundTransferRepository.AddAsync(transfer, cancellationToken);
+            _logger.LogInformation("Fund transfer entity {TransferId} created and persisted with status {Status}.", transfer.Id, transfer.Status);
+
+            var eventToPublish = new FundTransferInitiatedEvent(
+                transfer.Id,
+                transfer.FromAccountId,
+                transfer.ToAccountId,
+                transfer.Amount,
+                transfer.ReferenceNumber ?? string.Empty,
+                transfer.CreatedAt,
+                transfer.Status
+            );
+
+            try
             {
-                await _messageProducer.ProduceAsync(topic, transfer.Id.ToString(), eventToPublish, cancellationToken);
-                _logger.LogInformation("FundTransferInitiatedEvent for TransferId {TransferId} published to Kafka topic {Topic}.", 
-                    transfer.Id, topic);
+                string topic = _kafkaSettings.ProducerTopic;
+                if (string.IsNullOrEmpty(topic))
+                {
+                    _logger.LogError("Kafka producer topic is not configured. Cannot send FundTransferInitiatedEvent.");
+                }
+                else
+                {
+                    await _messageProducer.ProduceAsync(topic, transfer.Id.ToString(), eventToPublish, cancellationToken);
+                    _logger.LogInformation("FundTransferInitiatedEvent for TransferId {TransferId} published to Kafka topic {Topic}.",
+                        transfer.Id, topic);
+                }
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to publish FundTransferInitiatedEvent to Kafka for TransferId {TransferId}. The fund transfer itself was successful.", transfer.Id);
+            }
+
+            return new FundTransferResult(true, transfer.Id, null);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to publish FundTransferInitiatedEvent to Kafka for TransferId {TransferId}. The fund transfer itself was successful.", transfer.Id);
+            _logger.LogError(ex, "An unexpected error occurred during fund transfer initiation.");
+            return new FundTransferResult(false, null, ex.Message);
         }
-
-        return transfer.Id;
     }
 } 
