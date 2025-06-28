@@ -12,7 +12,7 @@ This is a Kotlin Multiplatform Mobile (KMM) application for the WebBanking platf
 
 The mobile application interacts with the backend services via the `ApiGateway`. Ensure the backend services (defined in the root `docker-compose.yml`) are running.
 
-**Assumed API Gateway Base URL:** `http://localhost:8080/api` (or your configured gateway URL)
+**Assumed API Gateway Base URL:** `http://localhost:8081` (or your configured gateway URL)
 
 ## Setup
 

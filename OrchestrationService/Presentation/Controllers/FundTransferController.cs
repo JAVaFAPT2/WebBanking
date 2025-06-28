@@ -15,7 +15,7 @@ namespace OrchestrationService.Presentation.Controllers;
 /// Controller for fund transfer operations
 /// </summary>
 [ApiController]
-[Route("api/[controller]")]
+[Route("fundtransfer")]
 public class FundTransferController : ControllerBase
 {
     private readonly FundTransferOrchestrator _orchestrator;

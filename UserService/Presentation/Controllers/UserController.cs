@@ -15,7 +15,7 @@ using Application.CQRS.DTO;
 namespace Presentation.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("users")]
 [Authorize(Roles = "User,Admin")]
 public class UserController(IMediator mediator, ILogger<UserController> logger) : ControllerBase
 {

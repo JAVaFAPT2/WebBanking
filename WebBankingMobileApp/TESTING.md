@@ -60,8 +60,8 @@
 1. **Cannot connect to backend**
    - Ensure Docker services are running (`docker-compose ps`)
    - Check if API Gateway is accessible:
-     - Android Emulator: `http://10.0.2.2:8080/api/health`
-     - iOS Simulator: `http://localhost:8080/api/health`
+     - Android Emulator: `http://10.0.2.2:8081/api/health`
+     - iOS Simulator: `http://localhost:8081/api/health`
      - Physical devices: `http://YOUR_LOCAL_IP:8080/api/health`
 
 2. **Network Security Issues on Android**
@@ -77,4 +77,5 @@
 - Shared code is in the `shared` module
 - Platform-specific code is in `androidApp` and `iosApp` modules
 - Network calls are handled through Ktor client in the shared module
-- Authentication token is managed by `AuthTokenManager` in the shared module 
+- Authentication token is managed by `AuthTokenManager` in the shared module
+- **Assumed API Gateway Base URL:** `http://localhost:8081` (API routes start with `/api/...`) 

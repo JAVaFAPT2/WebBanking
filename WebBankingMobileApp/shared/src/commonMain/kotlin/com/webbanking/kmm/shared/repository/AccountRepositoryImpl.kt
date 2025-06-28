@@ -26,7 +26,7 @@ class AccountRepositoryImpl : AccountRepository {
             return NetworkResult.Error(Exception("Not authenticated. No token found."))
         }
         return try {
-            val response = httpClient.get(ApiClient.constructUrl("accounts")) {
+            val response = httpClient.get(ApiClient.constructUrl("api/accounts")) {
                 addAuthHeader()
                 parameter("page", page)
                 parameter("size", size)
@@ -46,7 +46,7 @@ class AccountRepositoryImpl : AccountRepository {
             return NetworkResult.Error(Exception("Not authenticated. No token found."))
         }
         return try {
-            val response = httpClient.get(ApiClient.constructUrl("accounts/$accountId")) {
+            val response = httpClient.get(ApiClient.constructUrl("api/accounts/$accountId")) {
                 addAuthHeader()
             }
             if (response.status == HttpStatusCode.OK) {
@@ -64,7 +64,7 @@ class AccountRepositoryImpl : AccountRepository {
             return NetworkResult.Error(Exception("Not authenticated. No token found."))
         }
         return try {
-            val response = httpClient.get(ApiClient.constructUrl("accounts/$accountId/transactions")) {
+            val response = httpClient.get(ApiClient.constructUrl("api/accounts/$accountId/transactions")) {
                 addAuthHeader()
                 parameter("page", page)
                 parameter("size", size)

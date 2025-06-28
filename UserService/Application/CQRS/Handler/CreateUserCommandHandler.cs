@@ -8,6 +8,7 @@ using System.Text.Json;
 using Polly;
 using StackExchange.Redis;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace Application.CQRS.Handler
 {
@@ -17,10 +18,12 @@ namespace Application.CQRS.Handler
         private readonly IProducer<Null, string>? _kafkaProducer;
         private readonly IConnectionMultiplexer? _redis;
         private readonly ILogger<CreateUserCommandHandler>? _logger;
+        private readonly IConfiguration _configuration;
 
         public CreateUserCommandHandler(
-            IUserRepository userRepository, 
-            IProducer<Null, string>? kafkaProducer = null, 
+            IUserRepository userRepository,
+            IConfiguration configuration,
+            IProducer<Null, string>? kafkaProducer = null,
             IConnectionMultiplexer? redis = null,
             ILogger<CreateUserCommandHandler>? logger = null)
         {
@@ -28,6 +31,7 @@ namespace Application.CQRS.Handler
             _kafkaProducer = kafkaProducer;
             _redis = redis;
             _logger = logger;
+            _configuration = configuration;
         }
 
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -61,6 +65,7 @@ namespace Application.CQRS.Handler
             {
                 if (_kafkaProducer != null)
                 {
+                    var kafkaTopic = _configuration["Kafka:Topic"] ?? "user-events";
                     var eventMessage = JsonSerializer.Serialize(new
                     {
                         UserId = user.Id,
@@ -69,8 +74,8 @@ namespace Application.CQRS.Handler
                         EventType = "UserCreated"
                     });
                     
-                    await _kafkaProducer.ProduceAsync("user-events", new Message<Null, string> { Value = eventMessage }, cancellationToken);
-                    _logger?.LogInformation("Published user created event to Kafka for user {UserId}", user.Id);
+                    await _kafkaProducer.ProduceAsync(kafkaTopic, new Message<Null, string> { Value = eventMessage }, cancellationToken);
+                    _logger?.LogInformation("Published user created event to Kafka topic {Topic} for user {UserId}", kafkaTopic, user.Id);
                 }
                 else
                 {
@@ -98,8 +103,9 @@ namespace Application.CQRS.Handler
                         user.LastName
                     });
                     
-                    await database.StringSetAsync($"user:{user.Id}", serializedUser, TimeSpan.FromMinutes(10));
-                    _logger?.LogInformation("Cached user {UserId} in Redis", user.Id);
+                    var cacheDuration = _configuration.GetValue<int?>("Redis:DefaultCacheDurationMinutes") ?? 10;
+                    await database.StringSetAsync($"user:{user.Id}", serializedUser, TimeSpan.FromMinutes(cacheDuration), cancellationToken);
+                    _logger?.LogInformation("Cached user {UserId} in Redis for {Duration} minutes", user.Id, cacheDuration);
                 }
                 else
                 {

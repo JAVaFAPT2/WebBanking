@@ -24,7 +24,7 @@ class TransferRepositoryImpl : TransferRepository {
             return NetworkResult.Error(Exception("Not authenticated. No token found."))
         }
         return try {
-            val response = httpClient.post(ApiClient.constructUrl("transfers")) {
+            val response = httpClient.post(ApiClient.constructUrl("api/transfers")) {
                 contentType(ContentType.Application.Json)
                 setBody(transferRequest)
                 addAuthHeader()

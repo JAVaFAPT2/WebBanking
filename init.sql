@@ -1,0 +1,8 @@
+CREATE DATABASE IF NOT EXISTS `AccountService_db`;
+CREATE DATABASE IF NOT EXISTS `UserService_db`;
+CREATE DATABASE IF NOT EXISTS `CardService_db`;
+CREATE DATABASE IF NOT EXISTS `LoanService_db`;
+CREATE DATABASE IF NOT EXISTS `NotificationService_db`;
+CREATE DATABASE IF NOT EXISTS `FundTransferService_db`;
+CREATE DATABASE IF NOT EXISTS `TransactionService_db`;
+CREATE DATABASE IF NOT EXISTS `OrchestrationService_db`; 

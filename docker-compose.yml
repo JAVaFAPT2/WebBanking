@@ -50,7 +50,7 @@ services:
       context: ./AccountService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - AccountServiceSettings__Database__ConnectionString=Server=db;Database=AccountService_db;Uid=root;Pwd=root_password;
+      - ConnectionStrings__DefaultConnection=Server=db;Database=AccountService_db;Uid=root;Pwd=root_password;
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
@@ -70,6 +70,7 @@ services:
       context: ./CardService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=db;Database=CardService_db;Uid=root;Pwd=root_password;
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
@@ -85,6 +86,7 @@ services:
       context: ./LoanService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=db;Database=LoanService_db;Uid=root;Pwd=root_password;
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
@@ -100,6 +102,7 @@ services:
       context: ./NotificationService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=db;Database=NotificationService_db;Uid=root;Pwd=root_password;
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
@@ -114,6 +117,7 @@ services:
       context: ./UserService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=db;Database=UserService_db;Uid=root;Pwd=root_password;
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
@@ -139,6 +143,7 @@ services:
       context: ./FundTransferService
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=db;Database=FundTransferService_db;Uid=root;Pwd=root_password;
       - Kafka__BootstrapServers=kafka:9092
     depends_on:
       - kafka
@@ -154,6 +159,9 @@ services:
       context: ./TransactionService
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+      - spring.datasource.url=jdbc:mysql://db:3306/TransactionService_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - spring.datasource.username=root
+      - spring.datasource.password=root_password
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
     depends_on:
       - kafka
@@ -247,6 +255,7 @@ services:
     networks:
       - webbanking-network
     volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - db_data:/var/lib/mysql
 
   # Keycloak for authentication

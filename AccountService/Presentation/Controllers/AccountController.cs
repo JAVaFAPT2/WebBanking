@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Presentation.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("accounts")]
 [Authorize]
 public class AccountController : ControllerBase
 {
